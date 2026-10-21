@@ -23,3 +23,7 @@ export { Chart, type ChartProps, type ChartDatum } from './components/Chart';
 export { Navbar, type NavbarProps } from './components/Navbar';
 export { Sidebar, type SidebarProps } from './components/Sidebar';
 export { Breadcrumbs, type BreadcrumbsProps, type BreadcrumbItem } from './components/Breadcrumbs';
+export { Select, type SelectProps } from './components/Select';
+export { Alert, type AlertProps } from './components/Alert';
+export { Progress, type ProgressProps } from './components/Progress';
+export { Skeleton, type SkeletonProps } from './components/Skeleton';

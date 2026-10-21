@@ -27,14 +27,14 @@ belongs in the docs app until a reusable public component is deliberately being 
 2. Implement the React source; extract reusable non-DOM logic to core only when appropriate.
    Use public `dvy-` classes and `--dvy-` tokens. Preserve focus, RTL and media fallbacks.
 3. For a new public entry, update `packages/react/src/index.ts`,
-   `packages/react/tsup.config.ts` and `packages/react/package.json` exports/types. Keep
+   `packages/react/components.json` and `packages/react/package.json` exports/types. Build entries derive from the inventory in tsup.config.ts. Keep
    React external/peer and retain client boundaries in built entries.
-4. Update `packages/registry/build.mjs` to generate the component and required copied
+4. Registry entries derive from the inventory. Update `packages/registry/build.mjs` for required copied
    dependencies. Its core import rewrite must stay compatible with the generated layout.
    Rebuild; keep `scripts/check-packages.mjs`'s current inventory/parity checks accurate
    when adding an entry. Do not reduce parity coverage to make a new component pass.
 5. Add catalog API/usage data and a working `ComponentPreview` case. Keep source/install
-   instructions accurate. Update the component list in browser tests and relevant consumer
+   instructions accurate. Browser route checks use the shared inventory; update relevant consumer
    fixtures. Shared Vite `Showcase` changes also affect docs previews.
 6. Add focused behavior/SSR/hydration/keyboard tests where relevant. Cover new public
    interactions and regressions rather than duplicating the implementation in assertions.

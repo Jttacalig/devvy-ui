@@ -5,8 +5,8 @@
 **Build once. Style freely. Run anywhere.**
 
 An original, React-first UI foundation by [DEV STATION](https://www.dev-station.dev).
-Repository: [Jttacalig/devvy-ui](https://github.com/Jttacalig/devvy-ui). Local Git origin is configured; implementation changes have not been pushed.
-MIT licensed. Version **0.1.0-alpha.0**. Packages are **unpublished**; scope and CLI name
+Repository: [Jttacalig/devvy-ui](https://github.com/Jttacalig/devvy-ui).
+MIT licensed. Version **0.1.0-beta.1**. Packages are **unpublished**; scope and CLI name
 ownership have not been verified. This checkout is independent of the private Dev Station app.
 
 ## Run locally
@@ -33,14 +33,14 @@ example. `examples/vanilla/index.html` demonstrates native HTML with shared CSS 
 
 ## The foundation
 
-| Package              | Delivered                                                             |
-| -------------------- | --------------------------------------------------------------------- |
-| `@devvy-ui/core`     | DOM-free class, keyboard navigation and material capability utilities |
-| `@devvy-ui/react`    | 17 components: foundation, charts, navigation and optional Glass      |
-| `@devvy-ui/tokens`   | Scoped light, dark, system, density, typography and contrast tokens   |
-| `@devvy-ui/styles`   | Namespaced CSS, focus styles, RTL, reduced motion and forced colors   |
-| `@devvy-ui/registry` | Source snapshots generated from those exact implementations           |
-| `@devvy-ui/cli`      | Local `init`, `add` and `doctor`; protects edited source files        |
+| Package              | Delivered                                                                       |
+| -------------------- | ------------------------------------------------------------------------------- |
+| `@devvy-ui/core`     | DOM-free class, keyboard navigation and material capability utilities           |
+| `@devvy-ui/react`    | 21 components: native controls, feedback, charts, navigation and optional Glass |
+| `@devvy-ui/tokens`   | Scoped light, dark, system, density, typography and contrast tokens             |
+| `@devvy-ui/styles`   | Namespaced CSS, focus styles, RTL, reduced motion and forced colors             |
+| `@devvy-ui/registry` | Source snapshots generated from those exact implementations                     |
+| `@devvy-ui/cli`      | Local `init`, `add` and `doctor`; protects edited source files                  |
 
 No runtime styling engine. No Tailwind requirement. React and React DOM are peer dependencies.
 Vue, Svelte and Web Components packages are intentionally absent until adapters work.
@@ -72,7 +72,7 @@ All React entries retain client boundaries for Next.js; SSR is supported, but a 
 React Server Component-only rendering API is not shipped. The original
 `@devvy-ui/react/styles.css` import remains a compatibility alias.
 
-For external local consumption, `pnpm pack:all` writes installable alpha tarballs into
+For external local consumption, `pnpm pack:all` writes installable prerelease tarballs into
 `.artifacts`. Install core, tokens, styles and react tarballs together. pnpm consumers of
 unpublished tarballs need local overrides for the internal package names; the consumer-test
 script generates an example pnpm-workspace.yaml. Public npm commands
@@ -88,7 +88,7 @@ node /absolute/path/to/devvy-ui/packages/cli/src/cli.mjs add button tabs
 node /absolute/path/to/devvy-ui/packages/cli/src/cli.mjs doctor
 ```
 
-Import `src/devvy.css` once and import the copied component files. This alpha installer
+Import `src/devvy.css` once and import the copied component files. This source installer
 uses its bundled registry, does not install dependencies or edit app entry files, and
 refuses changed-file overwrites. Styles are a snapshot; upgrades require manual review.
 See [CLI documentation](packages/cli/README.md).
@@ -132,7 +132,7 @@ See [the AI contributor guide](docs/ai.md) for invocation, consumer setup and ma
 | `pnpm exec playwright install` | Install browser test engines                                           |
 | `pnpm test:browser`            | Production docs tests in Chromium, Firefox and WebKit                  |
 | `pnpm bench`                   | Reproducible compressed sizes, CSS, SSR comparison and size budgets    |
-| `pnpm pack:all`                | Prepare six installable alpha tarballs                                 |
+| `pnpm pack:all`                | Prepare six installable prerelease tarballs                            |
 | `pnpm test:consumer 18.3.1`    | Install packed packages and verify React 18 SSR/hydration/interactions |
 | `pnpm test:consumer 19.3.1`    | Equivalent React 19 consumer check                                     |
 | `pnpm audit`                   | Dependency advisory check                                              |
@@ -142,15 +142,23 @@ CI is configured for Node 22/24, installed React 18/19 consumers and all three b
 Configured workflows are not proof of a successful public CI run. Local evidence and limitations
 are recorded in [verification](docs/verification.md) and [compatibility](docs/compatibility.md).
 
+Browser tests start a production preview and refuse to reuse an existing server by default.
+Set `DEVVY_DOCS_PORT` to a free port if your development server is already on port 3000.
+Only set `DEVVY_REUSE_DOCS_SERVER=1` when intentionally testing an identified production
+preview of the current build. Build before running the browser suite.
+The suite defaults to two workers locally and in CI; use the explicit `--workers` option
+only when intentionally testing a different concurrency level.
+
 The protected release-preflight workflow builds tarballs without publishing. Configure the
 `npm-alpha` environment with required reviewers, verify scope ownership and provenance,
-then follow [release instructions](docs/publish.md). Do not publish a stable tag for this alpha.
+then follow [release instructions](docs/publish.md). Do not publish a stable tag for this prerelease.
 
 ## Project documentation
 
 [Audit](docs/audit.md) · [Architecture](docs/architecture.md) ·
 [Accessibility](docs/accessibility.md) · [Performance](docs/performance.md) ·
 [Roadmap](ROADMAP.md) · [Contributing](CONTRIBUTING.md) ·
+[100-component plan](docs/roadmap-100.md) ·
 [Governance](GOVERNANCE.md) · [Security](SECURITY.md) · [MIT license](LICENSE)
 
 This project is not affiliated with shadcn/ui, Base UI, Radix UI or React maintainers.

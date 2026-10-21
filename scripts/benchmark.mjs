@@ -47,6 +47,10 @@ const fixtures = {
   sidebar: 'import { Sidebar } from "./packages/react/dist/sidebar.js"; console.log(Sidebar);',
   breadcrumbs:
     'import { Breadcrumbs } from "./packages/react/dist/breadcrumbs.js"; console.log(Breadcrumbs);',
+  select: 'import { Select } from "./packages/react/dist/select.js"; console.log(Select);',
+  alert: 'import { Alert } from "./packages/react/dist/alert.js"; console.log(Alert);',
+  progress: 'import { Progress } from "./packages/react/dist/progress.js"; console.log(Progress);',
+  skeleton: 'import { Skeleton } from "./packages/react/dist/skeleton.js"; console.log(Skeleton);',
   foundation:
     'import { Button, Input, Textarea, Label, Badge, Card, CardHeader, CardContent, CardFooter, CardTitle, CardDescription, Separator, Checkbox, Switch, Tabs, Glass, Dialog, Dock } from "./packages/react/dist/index.js"; console.log(Button, Input, Textarea, Label, Badge, Card, CardHeader, CardContent, CardFooter, CardTitle, CardDescription, Separator, Checkbox, Switch, Tabs, Glass, Dialog, Dock);',
   all: 'import * as UI from "./packages/react/dist/index.js"; console.log(UI);',
@@ -71,7 +75,7 @@ for (const [name, contents] of Object.entries(fixtures)) {
     for (const unused of ['dvy-tab-list', 'showModal', 'data-devvy-material'])
       assert.ok(!new TextDecoder().decode(bytes).includes(unused), `Button pulled in ${unused}`);
 }
-for (const name of ['tokens', 'styles', 'glass', 'foundation']) {
+for (const name of ['tokens', 'styles', 'glass', 'foundation', 'existing17', 'feedback']) {
   const path =
     name === 'tokens'
       ? 'packages/tokens/src/theme.css'
@@ -79,10 +83,15 @@ for (const name of ['tokens', 'styles', 'glass', 'foundation']) {
         ? 'packages/styles/glass.css'
         : 'packages/styles/components.css';
   const result = await build({
-    ...(name === 'foundation'
+    ...(['foundation', 'existing17', 'feedback'].includes(name)
       ? {
           stdin: {
-            contents: (await readFile(resolve(root, path), 'utf8')).split('/* Data display */')[0],
+            contents:
+              name === 'foundation'
+                ? (await readFile(resolve(root, path), 'utf8')).split('/* Data display */')[0]
+                : (await readFile(resolve(root, path), 'utf8')).split(
+                    '/* Native controls and feedback */',
+                  )[name === 'existing17' ? 0 : 1],
             loader: 'css',
           },
         }

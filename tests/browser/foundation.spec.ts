@@ -1,25 +1,8 @@
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
+import components from '../../packages/react/components.json';
 
-for (const name of [
-  'button',
-  'input',
-  'textarea',
-  'label',
-  'badge',
-  'card',
-  'separator',
-  'checkbox',
-  'switch',
-  'tabs',
-  'glass',
-  'dialog',
-  'dock',
-  'chart',
-  'navbar',
-  'sidebar',
-  'breadcrumbs',
-]) {
+for (const { slug: name } of components) {
   test(`${name} documentation passes axe with real light and dark styles`, async ({ page }) => {
     await page.goto(`/ui/components/${name}`);
     for (const theme of ['light', 'dark']) {

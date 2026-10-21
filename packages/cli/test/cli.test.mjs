@@ -41,6 +41,16 @@ test('source installation, repeat installs and doctor', async () => {
       new RegExp('export const ' + name),
     );
   }
+  await run(['add', 'select', 'alert', 'progress', 'skeleton'], dir);
+  for (const name of ['Select', 'Alert', 'Progress', 'Skeleton']) {
+    assert.equal(
+      await readFile(join(dir, 'src/components/devvy/components/' + name + '.tsx'), 'utf8'),
+      await readFile(
+        new URL('../../react/src/components/' + name + '.tsx', import.meta.url),
+        'utf8',
+      ),
+    );
+  }
   await assert.rejects(run(['init'], dir), /already exists/);
   await assert.rejects(run(['add', 'combobox'], dir), /Unknown component/);
   await writeFile(join(dir, 'src/components/devvy/components/Button.tsx'), '// my edits');

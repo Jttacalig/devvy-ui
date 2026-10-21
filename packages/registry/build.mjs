@@ -9,28 +9,10 @@ const common = [
   { path: 'lib/cx.ts', content: "export { cx } from './core';\n" },
   { path: 'LICENSE', content: license },
 ];
-const names = [
-  'Button',
-  'Input',
-  'Textarea',
-  'Label',
-  'Badge',
-  'Card',
-  'Separator',
-  'Checkbox',
-  'Switch',
-  'Tabs',
-  'Glass',
-  'Dialog',
-  'Dock',
-  'Chart',
-  'Navbar',
-  'Sidebar',
-  'Breadcrumbs',
-];
+const components = JSON.parse(await read('packages/react/components.json'));
 const items = await Promise.all(
-  names.map(async (name) => ({
-    name: name.toLowerCase(),
+  components.map(async ({ name, slug }) => ({
+    name: slug,
     files: [
       ...common,
       {

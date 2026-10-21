@@ -75,6 +75,22 @@
       "types": "./dist/sidebar.d.ts",
       "import": "./dist/sidebar.js"
     },
+    "./select": {
+      "types": "./dist/select.d.ts",
+      "import": "./dist/select.js"
+    },
+    "./alert": {
+      "types": "./dist/alert.d.ts",
+      "import": "./dist/alert.js"
+    },
+    "./progress": {
+      "types": "./dist/progress.d.ts",
+      "import": "./dist/progress.js"
+    },
+    "./skeleton": {
+      "types": "./dist/skeleton.d.ts",
+      "import": "./dist/skeleton.js"
+    },
     "./breadcrumbs": {
       "types": "./dist/breadcrumbs.d.ts",
       "import": "./dist/breadcrumbs.js"

@@ -51,8 +51,8 @@ export default async function Section({ params }: { params: Promise<{ section: s
             <span className="eyebrow">CATALOG</span>
             <h1>Small by design.</h1>
             <p className="page-lead">
-              Seventeen components, including charts, route navigation and Glass. Accessible markup,
-              strict types, and ordinary CSS.
+              {catalog.length} components, including native controls, feedback, charts, navigation
+              and Glass. Accessible markup, strict types, and ordinary CSS.
             </p>
           </div>
           <Separator className="section-divider" />
@@ -113,7 +113,7 @@ export default async function Section({ params }: { params: Promise<{ section: s
         <>
           <h1>Start with a solid foundation.</h1>
           <p className="page-lead">
-            The alpha is available in this workspace. Public npm packages have not been published.
+            The beta is available in this workspace. Public npm packages have not been published.
           </p>
           <h2>1. Run the workspace</h2>
           <p>Use Node.js 22.12+ and pnpm 11.25.0. From the repository root:</p>
@@ -210,6 +210,12 @@ export default async function Section({ params }: { params: Promise<{ section: s
         <>
           <h1>A foundation in progress.</h1>
           <p className="page-lead">Unreleased development notes · 22 October 2026</p>
+          <h2>Native controls and feedback</h2>
+          <p>
+            Select, Alert, Progress and Skeleton add native form selection, composed messages, task
+            progress and reduced-motion loading shapes. A shared component inventory keeps focused
+            builds, source installation and documentation checks aligned.
+          </p>
           <h2>Charts, navigation and a paper website</h2>
           <p>
             Bar, line, area and donut charts with accessible data tables. Responsive Navbar, Sidebar
@@ -218,7 +224,8 @@ export default async function Section({ params }: { params: Promise<{ section: s
           <h2>The React foundation</h2>
           <ul>
             <li>
-              Seventeen React components with individual entry points, including four chart views.
+              {catalog.length} React components with individual entry points, including four chart
+              views.
             </li>
             <li>Optional DEVVY GLASS material, native Dialog and floating Dock.</li>
             <li>Shared core, namespaced CSS, scoped light/dark/system tokens.</li>
@@ -227,7 +234,7 @@ export default async function Section({ params }: { params: Promise<{ section: s
             <li>Build, type, unit, SSR, hydration, axe and browser verification tools.</li>
           </ul>
           <p>
-            This alpha is unpublished. CI runs, manual screen-reader review and release ownership
+            This beta is unpublished. CI runs, manual screen-reader review and release ownership
             require maintainer verification. No performance superiority is claimed.
           </p>
         </>
@@ -254,7 +261,7 @@ export default async function Section({ params }: { params: Promise<{ section: s
           <p>
             Add a Changeset for public package changes. Document compatibility and accessibility
             implications. Contributors are credited through release notes and version history. The
-            maintainers review release proposals before alpha publication.
+            maintainers review release proposals before publication.
           </p>
           <h2>Security</h2>
           <p>

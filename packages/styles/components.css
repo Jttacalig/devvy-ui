@@ -753,3 +753,194 @@
     outline: 1px solid Highlight;
   }
 }
+
+/* Native controls and feedback */
+.dvy-select {
+  appearance: auto;
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  min-height: var(--dvy-control-height, 2.5rem);
+  padding: 0.55rem 0.75rem;
+  padding-inline-end: 2.5rem;
+  border: 1px solid var(--dvy-border);
+  border-radius: var(--dvy-radius-md);
+  background: var(--dvy-background);
+  color: var(--dvy-foreground);
+  font: 400 0.875rem/1.4 var(--dvy-font);
+}
+.dvy-select[data-size='sm'] {
+  min-height: 2rem;
+  padding-block: 0.375rem;
+}
+.dvy-select[data-size='lg'] {
+  min-height: 3rem;
+  padding-block: 0.75rem;
+  font-size: 1rem;
+}
+.dvy-select[data-variant='filled'] {
+  background: var(--dvy-surface);
+}
+.dvy-select:focus-visible {
+  outline: 3px solid var(--dvy-focus);
+  outline-offset: 2px;
+}
+.dvy-select[aria-invalid='true'] {
+  border-color: var(--dvy-danger);
+}
+.dvy-select:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.dvy-select:where([multiple], [size]:not([size='0']):not([size='1'])) {
+  padding: 0.55rem 0.75rem;
+}
+.dvy-alert {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid var(--dvy-border);
+  border-radius: var(--dvy-radius-md);
+  background: var(--dvy-surface);
+  color: var(--dvy-foreground);
+  font: 400 0.875rem/1.6 var(--dvy-font);
+}
+.dvy-alert[data-tone='brand'] {
+  border-color: var(--dvy-brand);
+}
+.dvy-alert[data-tone='danger'] {
+  border-color: var(--dvy-danger);
+}
+.dvy-alert[data-variant='outline'] {
+  background: var(--dvy-background);
+}
+.dvy-alert-icon {
+  display: flex;
+  flex: 0 0 1.25rem;
+  margin-top: 0.125rem;
+}
+.dvy-alert-icon > svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+.dvy-alert[data-tone='brand'] .dvy-alert-icon {
+  color: var(--dvy-brand);
+}
+.dvy-alert[data-tone='danger'] .dvy-alert-icon {
+  color: var(--dvy-danger);
+}
+.dvy-alert-content {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.dvy-alert-content > :first-child {
+  margin-top: 0;
+}
+.dvy-alert-content > :last-child {
+  margin-bottom: 0;
+}
+.dvy-progress {
+  appearance: none;
+  display: block;
+  width: 100%;
+  height: 0.5rem;
+  overflow: hidden;
+  border: 0;
+  border-radius: 999px;
+  background: var(--dvy-surface);
+  color: var(--dvy-brand);
+  accent-color: var(--dvy-brand);
+}
+.dvy-progress[data-size='sm'] {
+  height: 0.25rem;
+}
+.dvy-progress[data-size='lg'] {
+  height: 0.75rem;
+}
+.dvy-progress[data-tone='neutral'] {
+  color: var(--dvy-muted);
+  accent-color: var(--dvy-muted);
+}
+.dvy-progress::-webkit-progress-bar {
+  background: var(--dvy-surface);
+  border-radius: inherit;
+}
+.dvy-progress::-webkit-progress-value {
+  background: currentColor;
+  border-radius: inherit;
+}
+.dvy-progress::-moz-progress-bar {
+  background: currentColor;
+  border-radius: inherit;
+}
+.dvy-progress:indeterminate {
+  background: repeating-linear-gradient(
+    110deg,
+    var(--dvy-border) 0 0.5rem,
+    var(--dvy-surface) 0.5rem 1rem
+  );
+}
+.dvy-progress:indeterminate::-webkit-progress-bar {
+  background: transparent;
+}
+.dvy-progress:indeterminate::-moz-progress-bar {
+  background: transparent;
+}
+.dvy-skeleton {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  height: 1em;
+  border-radius: var(--dvy-radius-sm);
+  background: var(--dvy-border);
+  opacity: 0.35;
+}
+.dvy-skeleton[data-variant='circle'] {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+}
+.dvy-skeleton[data-variant='rect'] {
+  height: 6rem;
+  border-radius: var(--dvy-radius-md);
+}
+.dvy-skeleton[data-animated='true'] {
+  animation: dvy-skeleton-pulse 1.8s ease-in-out infinite;
+}
+@keyframes dvy-skeleton-pulse {
+  50% {
+    opacity: 0.6;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dvy-skeleton {
+    animation: none !important;
+  }
+}
+@media (forced-colors: active) {
+  .dvy-alert {
+    border-color: CanvasText;
+  }
+  .dvy-alert-icon {
+    color: CanvasText !important;
+  }
+  .dvy-progress {
+    border: 1px solid CanvasText;
+    color: Highlight;
+  }
+  .dvy-progress::-webkit-progress-value {
+    background: Highlight;
+  }
+  .dvy-progress::-moz-progress-bar {
+    background: Highlight;
+  }
+  .dvy-skeleton {
+    background: GrayText;
+    animation: none !important;
+  }
+}

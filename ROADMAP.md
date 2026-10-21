@@ -1,5 +1,10 @@
 # DEVVY UI roadmap
 
+The [100-component architecture and phased plan](docs/roadmap-100.md) preserves the existing
+17 components and allocates 83 additions. The current foundation batch adds Select, Alert,
+Progress and Skeleton, bringing the source inventory to 21. The remaining 79 are planned;
+they are not shipped implementations. Release verification and manual review remain separate gates.
+
 ## Delivered alpha foundation
 
 - [x] pnpm/Turbo workspace, exact dependencies, lockfile, strict types and package exports
@@ -33,7 +38,7 @@
 DEVVY GLASS, Dialog and Dock are implemented as alpha enhancements. Complete their
 manual assistive-technology and target-device checks before promoting them to stable.
 
-Dropdown Menu, Tooltip, Popover, Select, Accordion, Toast, Sheet and Navigation Menu.
+Dropdown Menu, Tooltip, Popover, Accordion, Toast, Drawer and Navigation Menu.
 Each needs an interaction specification, focus/overlay review and browser/assistive-tech tests
 before shipping. Proven accessible primitives can be evaluated for complex overlays.
 

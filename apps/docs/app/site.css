@@ -933,6 +933,16 @@ td {
 .component-preview .field {
   max-width: 25rem;
 }
+.foundation-preview {
+  width: 100%;
+  max-width: 32rem;
+}
+.foundation-preview > .dvy-button {
+  justify-self: start;
+}
+.foundation-preview > p {
+  margin-block: 0.25rem;
+}
 .button-row {
   display: flex;
   gap: 0.75rem;
