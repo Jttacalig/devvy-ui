@@ -30,3 +30,19 @@ These tests do not prove full WCAG conformance. Manual release procedure:
 CardTitle defaults to h3; provide an appropriate h2 section, or compose your own heading.
 Decorative separators are hidden from assistive technology by default. Neither badge color
 nor a spinner should be the only way to understand status. Do not remove native focus styles.
+
+Select uses the native [select element](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/select),
+including option groups, multiple selection and form validation/reset. Its numeric size is
+the native visible-option count; controlSize only changes appearance. Provide a visible label
+and connect validation messages with aria-describedby.
+
+Alert defaults to role="status" for polite updates. Choose role="alert" only for urgent
+changes, or role="note" for static guidance; do not rely on initial live-region content being
+announced. Its icon is decorative. Keep actions in message content and manage dismissal focus
+in the caller. Progress uses native [progress semantics](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/progress)
+and needs an accessible label. Omitted/nonfinite value is indeterminate. Provide visible task
+context and announce milestones separately when appropriate.
+
+Skeleton is aria-hidden and has no interaction or children API. Put aria-busy on the content
+region, with one readable loading status outside it. Reduced motion and forced colors disable
+the opacity pulse. Match the expected content dimensions to reduce layout movement.

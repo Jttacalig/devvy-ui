@@ -12,6 +12,8 @@ import {
 import { Workbench } from '../../components/Workbench';
 import { ComponentCollection } from '../../components/ComponentCollection';
 import { CopyCode } from '../../components/CopyCode';
+import { catalog } from '../../lib/catalog';
+import { version } from '../../../../package.json';
 
 export default function Home() {
   return (
@@ -23,7 +25,7 @@ export default function Home() {
         <div className="release-note">
           <span className="status-dot" />
           <span className="release-note-label">THE REACT FOUNDATION</span>
-          <Badge tone="brand">v0.1 alpha</Badge>
+          <Badge tone="brand">v{version}</Badge>
         </div>
         <h1 id="hero-title">
           <span>Small components.</span>
@@ -159,7 +161,7 @@ export default function Home() {
           </div>
           <CardTitle>Your next idea starts here.</CardTitle>
           <CardDescription>
-            Explore the unpublished alpha from this workspace with Node 22+ and pnpm.
+            Explore the unpublished beta from this workspace with Node 22+ and pnpm.
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -190,8 +192,8 @@ export default function Home() {
       <div className="alpha-disclosure-box">
         <span className="status-dot" />
         <p className="alpha-disclosure">
-          An honest alpha: 17 components, including charts, navigation and optional Glass. More
-          framework adapters and public npm releases are still ahead.
+          An unpublished beta: {catalog.length} components, including charts, navigation and
+          optional Glass. More framework adapters and public npm releases are still ahead.
         </p>
       </div>
     </>

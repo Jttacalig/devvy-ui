@@ -269,5 +269,104 @@ export const catalog = [
     code: '<Breadcrumbs items={[\n  { label: "Home", href: "/" },\n  { label: "Projects", href: "/projects" },\n  { label: "Orbit" },\n]} />',
     note: 'An ordered list inside a named navigation landmark. The final item receives aria-current="page", whether or not it has a URL. Separators are decorative. Long labels wrap. Links support native attributes, refs are forwarded to the nav, and no route interception is added.',
   },
+  {
+    slug: 'select',
+    name: 'Select',
+    description:
+      'A styled native select that preserves familiar keyboard, mobile picker and form behavior.',
+    props: [
+      ['controlSize', 'sm | md | lg', 'md', 'Visual size; native numeric size is preserved.'],
+      ['variant', 'outline | filled', 'outline', 'Background treatment.'],
+      [
+        'value / defaultValue',
+        'string | number | readonly string[]',
+        '—',
+        'Controlled or initial selection. Use arrays with multiple.',
+      ],
+      [
+        'multiple / size',
+        'boolean / number',
+        'false / native default',
+        'Native listbox and visible option count.',
+      ],
+      [
+        'disabled / required / aria-invalid',
+        'native attributes',
+        '—',
+        'Native disabled, validation and error semantics.',
+      ],
+    ],
+    code: '<Label htmlFor="project">Project</Label>\n<Select id="project" name="project" defaultValue="orbit">\n  <option value="orbit">Orbit</option>\n  <option value="studio">Studio</option>\n</Select>',
+    note: 'Label the select visibly. Compose option and optgroup children; the browser owns the popup. Use aria-describedby for help/error text. Supports native reset, form association, multiple, size, disabled options and forwarded HTMLSelectElement refs. className and style customize the select. This is a native picker, not a searchable combobox.',
+  },
+  {
+    slug: 'alert',
+    name: 'Alert',
+    description: 'A composed message with clear emphasis and announcement semantics you control.',
+    props: [
+      [
+        'tone',
+        'neutral | brand | danger',
+        'neutral',
+        'Border and decorative icon tone. Message text carries meaning.',
+      ],
+      ['variant', 'soft | outline', 'soft', 'Surface treatment.'],
+      [
+        'role',
+        'native ARIA role',
+        'status',
+        'Polite updates by default; use alert for urgent changes or note for static guidance.',
+      ],
+      [
+        'icon',
+        'ReactNode',
+        'information icon',
+        'Decorative only. Keep essential information in the message.',
+      ],
+    ],
+    code: '<Alert tone="brand">\n  <strong>Changes saved.</strong>\n  <p>Your workspace is up to date.</p>\n</Alert>',
+    note: 'Compose headings, descriptions and actions as children. Announcements are most reliable when an existing live region receives changed content; initial page content is not guaranteed to be announced. Avoid nested live regions and interactive icon content. Dismissal state belongs to the caller. In a Glass scope the surface can adopt the optional material. Native div props, styles and refs are forwarded.',
+  },
+  {
+    slug: 'progress',
+    name: 'Progress',
+    description: 'Determinate or indeterminate task progress with native browser semantics.',
+    props: [
+      ['label', 'string', 'required', 'Accessible name of the task.'],
+      [
+        'value',
+        'number',
+        'omitted',
+        'Finite values clamp to 0..max. Omit for indeterminate progress.',
+      ],
+      ['max', 'number', '100', 'Positive finite maximum; invalid values fall back to 100.'],
+      ['size', 'sm | md | lg', 'md', 'Track thickness.'],
+      ['tone', 'brand | neutral', 'brand', 'Fill color.'],
+    ],
+    code: '<Progress label="Uploading files" value={42} />\n<Progress label="Connecting" />',
+    note: 'Uses a native progress element and HTMLProgressElement ref. Provide visible context too; aria-describedby can connect details. Nonfinite values are indeterminate. The indeterminate stripe stays still, including under reduced motion. Consumers own task state and announcements; progress is not a live region. CSS variables, className and style allow customization.',
+  },
+  {
+    slug: 'skeleton',
+    name: 'Skeleton',
+    description: 'Quiet loading shapes that reserve space while real content arrives.',
+    props: [
+      ['variant', 'text | circle | rect', 'text', 'Placeholder shape.'],
+      [
+        'animated',
+        'boolean',
+        'true',
+        'Opacity pulse; disabled automatically for reduced motion and forced colors.',
+      ],
+      [
+        'width / height',
+        'CSSProperties dimensions',
+        'shape default',
+        'Reserve the expected content dimensions. style can override.',
+      ],
+    ],
+    code: '<section aria-busy={loading} aria-label="Profile">\n  {loading ? <Skeleton variant="rect" height={120} /> : <p>Profile loaded.</p>}\n</section>',
+    note: 'Always decorative and aria-hidden. No children, focus or interaction API. Put aria-busy on the enclosing content region and provide one readable loading status outside it. Replace shapes with content when ready. Error and disabled states belong to that content, not to the skeleton. Supports span refs, className, style and theme variables.',
+  },
 ] as const;
 export type ComponentName = (typeof catalog)[number]['slug'];

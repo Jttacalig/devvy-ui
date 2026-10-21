@@ -1,5 +1,8 @@
 # Local verification — 21–22 October 2026
 
+This page records the earlier foundation/Glass snapshot. For the current 21-component
+foundation batch, see [its separate verification record](verification-foundations.md).
+
 Environment: Windows x64, Node 24.19.0, pnpm 11.25.0, React 19.3.1,
 TypeScript 5.9.3. These are actual local results, not public CI results.
 Foundation/package measurements were recorded on 21 October. The refined docs, native

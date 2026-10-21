@@ -19,6 +19,7 @@ import {
 import '@devvy-ui/styles/glass.css';
 import { useId, useState, useRef } from 'react';
 import { ChartPreview, NavigationPreview } from './DataNavigationPreview';
+import { FoundationPreview } from './FoundationPreview';
 import type { ComponentName } from '../lib/catalog';
 export function ComponentPreview({ name }: { name: ComponentName }) {
   const id = useId();
@@ -27,7 +28,9 @@ export function ComponentPreview({ name }: { name: ComponentName }) {
   return (
     <div className="component-preview">
       <h2 className="sr-only">Interactive preview</h2>
-      {name === 'chart' ? (
+      {['select', 'alert', 'progress', 'skeleton'].includes(name) ? (
+        <FoundationPreview name={name} />
+      ) : name === 'chart' ? (
         <ChartPreview />
       ) : ['navbar', 'sidebar', 'breadcrumbs'].includes(name) ? (
         <NavigationPreview name={name} />

@@ -24,6 +24,9 @@ Do not infer npm publication or a deployed website from repository/package metad
 | `tests/browser`, `scripts`      | Browser flows, package/consumer checks and reproducible measurements          |
 
 Change source inputs, not `dist`, `.next`, `.turbo`, `.artifacts` or generated registry JSON.
+The primary component inventory is `packages/react/components.json`; build entries and registry
+items derive from it. Keep explicit package/barrel exports, docs catalog entries and consumer
+fixtures aligned. `check:packages` checks every copied source/helper and stylesheet for drift.
 This repository is independent of the private Dev Station application and its hosting.
 
 ## Component and styling contracts
@@ -65,8 +68,10 @@ For code changes, run relevant tests, then the applicable repository checks:
 
 CI defines the complete release verification matrix. Run supported engines; report unavailable
 checks honestly rather than deleting them. `pnpm test:browser` can reuse a local production
-server: make sure it serves the current build, and only restart a process identified as this
-project's preview. Docs-only work does not require unrelated browser/benchmark reruns.
+server only with `DEVVY_REUSE_DOCS_SERVER=1`: make sure it serves the current build. Set
+`DEVVY_DOCS_PORT` to a free port when a development server is already running. Only restart
+a process identified as this project's preview. Docs-only work does not require unrelated
+browser/benchmark reruns.
 
 Public package changes require a Changeset and matching docs. Report what changed, checks
 actually run and remaining limits. Do not claim accessibility certification or a performance

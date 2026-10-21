@@ -10,6 +10,14 @@ Builds externalize React and core. React files retain `use client` boundaries fo
 they can SSR and hydrate but are not a zero-client-JS RSC API. Static CSS and HTML need no JS.
 CSS is explicitly marked as having side effects; component JS is tree-shakable.
 
+`packages/react/components.json` is the primary component inventory. It drives focused
+build entries, registry generation and documentation route checks. Public package exports
+and the React barrel remain explicit; `check:packages` verifies their parity with that
+inventory, including copied helpers, dependent component sources, licenses and styles.
+Add docs catalog entries and consumer fixtures with each new component; helpers and variants
+do not count as separate primary components. See the [100-component roadmap](roadmap-100.md)
+for the phased plan and acceptance gates.
+
 Registry build reads canonical source and rewrites only the internal core import path.
 Turbo inputs include those sources so cached registries cannot silently become stale.
 The CLI reads only the bundled registry, validates project paths, preflights conflicts and

@@ -10,11 +10,17 @@
     "chart": 1800,
     "navbar": 850,
     "sidebar": 350,
-    "breadcrumbs": 500
+    "breadcrumbs": 500,
+    "select": 650,
+    "alert": 650,
+    "progress": 550,
+    "skeleton": 450
   },
   "cssGzip": {
     "tokens": 850,
-    "styles": 3600,
+    "styles": 3900,
+    "existing17": 3600,
+    "feedback": 1250,
     "glass": 1800,
     "foundation": 2600
   }

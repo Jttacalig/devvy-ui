@@ -6,6 +6,13 @@ import { renderToString } from 'react-dom/server';
 import { hydrateRoot } from 'react-dom/client';
 import * as UI from '@devvy-ui/react';
 import { Button } from '@devvy-ui/react/button';
+import { Select } from '@devvy-ui/react/select';
+import { Alert } from '@devvy-ui/react/alert';
+import { Progress } from '@devvy-ui/react/progress';
+import { Skeleton } from '@devvy-ui/react/skeleton';
+
+for (const [name, entry] of Object.entries({ Select, Alert, Progress, Skeleton }))
+  assert.equal(entry, UI[name]);
 
 const dom = new JSDOM('<!doctype html><html lang="en"><body><div id="root"></div></body></html>', {
   url: 'http://localhost',
@@ -52,6 +59,11 @@ const tree = h(
   h(UI.Checkbox, { 'aria-label': 'Mixed', indeterminate: true, ref: checkbox }),
   h(UI.Switch, { 'aria-label': 'Updates', defaultChecked: true }),
   h(UI.Separator),
+  h(Select, { 'aria-label': 'Plan', defaultValue: 'team' }, h('option', { value: 'team' }, 'Team')),
+  h(Alert, null, 'Saved successfully'),
+  h(Progress, { label: 'Upload', value: 42 }),
+  h(Progress, { label: 'Connecting' }),
+  h(Skeleton, { animated: false }),
   h(Button, null, 'Save'),
   h(UI.Tabs, {
     label: 'Views',
@@ -76,6 +88,10 @@ assert.deepEqual(
   initialIds,
 );
 assert.equal(checkbox.current.indeterminate, true);
+assert.equal(root.querySelector('select').value, 'team');
+assert.equal(root.querySelector('progress').position, 0.42);
+assert.equal(root.querySelectorAll('progress')[1].position, -1);
+assert.equal(root.querySelector('.dvy-skeleton').getAttribute('aria-hidden'), 'true');
 const materialTrigger = [...root.querySelectorAll('button')].find(
   (button) => button.textContent === 'Open consumer dialog',
 );

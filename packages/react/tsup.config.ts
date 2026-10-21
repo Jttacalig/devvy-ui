@@ -1,25 +1,10 @@
 import { defineConfig } from 'tsup';
+import components from './components.json';
 
 export default defineConfig({
   entry: {
     index: 'src/index.ts',
-    button: 'src/components/Button.tsx',
-    input: 'src/components/Input.tsx',
-    textarea: 'src/components/Textarea.tsx',
-    label: 'src/components/Label.tsx',
-    badge: 'src/components/Badge.tsx',
-    card: 'src/components/Card.tsx',
-    separator: 'src/components/Separator.tsx',
-    checkbox: 'src/components/Checkbox.tsx',
-    switch: 'src/components/Switch.tsx',
-    tabs: 'src/components/Tabs.tsx',
-    glass: 'src/components/Glass.tsx',
-    dock: 'src/components/Dock.tsx',
-    dialog: 'src/components/Dialog.tsx',
-    chart: 'src/components/Chart.tsx',
-    navbar: 'src/components/Navbar.tsx',
-    sidebar: 'src/components/Sidebar.tsx',
-    breadcrumbs: 'src/components/Breadcrumbs.tsx',
+    ...Object.fromEntries(components.map(({ name, slug }) => [slug, `src/components/${name}.tsx`])),
   },
   format: ['esm'],
   dts: true,

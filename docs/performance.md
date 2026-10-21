@@ -22,3 +22,11 @@ Browser interaction latency, hydration timings, style recalculation and memory p
 controlled, repeatable browser experiments before performance claims. Functional browser tests
 verify hydration and interaction correctness, not a timing score. See verification.md for actual
 local runs. Budget ceilings are regression limits, not advertised sizes.
+
+The Select/Alert/Progress/Skeleton batch retains the existing JavaScript limits, including
+the 5,500-byte gzip all-components limit. Its 21-component stylesheet is measured separately
+from the unchanged 17-component CSS slice and the added feedback/control CSS. The old slice
+keeps its 3,600-byte limit; the new slice has a 1,250-byte limit. The combined 21-component
+stylesheet limit is 3,900 bytes to account for the additions (measured 3,656 bytes, versus
+3,078 for the existing slice). Compression shares dictionaries, so slice sizes do not add.
+See the batch verification record for exact fixtures, environment and remaining manual gates.

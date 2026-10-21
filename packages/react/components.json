@@ -1,0 +1,23 @@
+[
+  { "name": "Button", "slug": "button" },
+  { "name": "Input", "slug": "input" },
+  { "name": "Textarea", "slug": "textarea" },
+  { "name": "Label", "slug": "label" },
+  { "name": "Badge", "slug": "badge" },
+  { "name": "Card", "slug": "card" },
+  { "name": "Separator", "slug": "separator" },
+  { "name": "Checkbox", "slug": "checkbox" },
+  { "name": "Switch", "slug": "switch" },
+  { "name": "Tabs", "slug": "tabs" },
+  { "name": "Glass", "slug": "glass" },
+  { "name": "Dialog", "slug": "dialog" },
+  { "name": "Dock", "slug": "dock" },
+  { "name": "Chart", "slug": "chart" },
+  { "name": "Navbar", "slug": "navbar" },
+  { "name": "Sidebar", "slug": "sidebar" },
+  { "name": "Breadcrumbs", "slug": "breadcrumbs" },
+  { "name": "Select", "slug": "select" },
+  { "name": "Alert", "slug": "alert" },
+  { "name": "Progress", "slug": "progress" },
+  { "name": "Skeleton", "slug": "skeleton" }
+]
