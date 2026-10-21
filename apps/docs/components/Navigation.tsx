@@ -100,7 +100,7 @@ export function Navigation() {
             <span className="status-dot" />
             <span>Independent MIT Foundation</span>
           </div>
-          <span className="sidebar-version-tag">v0.1.0-alpha.0 · DEV STATION</span>
+          <span className="sidebar-version-tag">v0.1.0-beta.1 · DEV STATION</span>
         </div>
       </div>
     </aside>

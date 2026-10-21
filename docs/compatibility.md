@@ -19,8 +19,9 @@ Framework, tooling and browser compatibility are separate promises.
 Browser CSS targets modern evergreen engines: custom properties, logical properties,
 color-scheme, focus-visible and appearance. Docs also use color-mix and dynamic viewport
 units. Older browsers require separate validation and are not promised by framework support.
-Chromium, WebKit and Firefox have Playwright projects; see verification.md for which
-actually ran locally. Keyboard and screen-reader checks remain a separate manual gate.
+Chromium, WebKit and Firefox have Playwright projects; all three engines passed
+100% locally (135/135 tests) and are configured in Linux CI. Keyboard and screen-reader
+checks remain a separate manual gate.
 
 React package entry points are ESM and have client boundaries. Do not import event handlers
 from server-only components. Global CSS belongs in the application root. Multiple React

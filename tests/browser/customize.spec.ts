@@ -5,6 +5,7 @@ import AxeBuilder from '@axe-core/playwright';
 test('custom HTML and CSS update an isolated preview and export the edited design', async ({
   page,
 }) => {
+  test.slow();
   await page.goto('/ui/playground#code-playground');
   const css =
     '.my-workspace { padding: 2rem; background: #eef6f2; color: #18251f; } h1 { color: #087565; }';

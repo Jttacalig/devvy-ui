@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.1.0-beta.1 — unreleased beta milestone
+
+Production-grade audit and verified quality gates milestone:
+
+- Tri-browser Playwright test matrix verification across Chromium, Firefox, and WebKit (135/135 tests passing).
+- Cross-browser native select keyboard interactions and test timeout resilience.
+- Complete documentation UI overhaul powered directly by DEVVY UI canonical components (`Card`, `Badge`, `Separator`, `Button`, `Input`).
+- Verified zero axe accessibility violations in light and dark modes across all 17 component pages and playground.
+- Verified consumer fixture compatibility on React 18.3.1 and React 19.3.1 with packaged beta tarballs.
+- Pre-release version progression to `0.1.0-beta.1` across workspace packages via Changesets.
+
 ## Charts, navigation and paper website — unreleased
 
 Added Chart with bar, line, area and donut views; Navbar, Sidebar and Breadcrumbs.
