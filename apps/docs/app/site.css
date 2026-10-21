@@ -120,13 +120,13 @@ select:focus-visible {
   height: 2.25rem;
   border-radius: var(--dvy-radius-md);
   color: var(--dvy-muted);
-  transition:
-    color 150ms ease,
-    background-color 150ms ease;
 }
 .header-icon-link:hover {
   color: var(--dvy-foreground);
   background: var(--dvy-surface);
+  transition:
+    color 150ms ease,
+    background-color 150ms ease;
 }
 .site-header > nav {
   display: flex;
@@ -137,6 +137,10 @@ select:focus-visible {
 .site-header > nav a {
   padding: 0.5rem 0.875rem;
   border-radius: 0.5rem;
+}
+.site-header > nav a:hover {
+  color: var(--dvy-brand);
+  background: var(--dvy-surface);
   transition:
     background-color 160ms cubic-bezier(0.2, 0.8, 0.2, 1),
     color 160ms ease;

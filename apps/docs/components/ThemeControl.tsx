@@ -5,7 +5,24 @@ import { InterfaceIcon } from './InterfaceIcon';
 export function ThemeControl() {
   const [theme, setTheme] = useState('light');
   useEffect(() => {
+    const css = document.createElement('style');
+    css.appendChild(
+      document.createTextNode(
+        '*, *::before, *::after { -webkit-transition: none !important; -moz-transition: none !important; -o-transition: none !important; -ms-transition: none !important; transition: none !important; }',
+      ),
+    );
+    document.head.appendChild(css);
+
     document.documentElement.dataset.devvyTheme = theme;
+
+    // Force computed style recalculation before transitions are restored
+    void window.getComputedStyle(document.documentElement).opacity;
+
+    requestAnimationFrame(() => {
+      if (css.parentNode) {
+        css.parentNode.removeChild(css);
+      }
+    });
   }, [theme]);
   return (
     <div className="theme-control">

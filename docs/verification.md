@@ -121,4 +121,15 @@ All three major modern browser engines were installed and verified locally on Wi
 
 With all quality gates met — 17 canonical implementations, 0 axe accessibility violations across all pages/themes/viewports, clean SSR/hydration, clean consumer installs across React 18 & 19, zero audit vulnerabilities, and 100% tri-browser pass rate — the project progressed from alpha to beta (`0.1.0-beta.1`) via Changesets pre-mode.
 
+### WebKit Ubuntu Linux accessibility failure investigation & resolution
+
+GitHub Actions CI run on Ubuntu Linux previously revealed 24 failing WebKit accessibility tests:
+
+- **Root cause confirmed**: Base CSS transitions on `.site-header > nav a` (`transition: color 160ms, background-color 160ms`) and `.header-icon-link` caused text color to interpolate gradually when `data-devvy-theme` changed from light to dark. Because `.site-header` changed its background instantaneously from `#f5f3ee` to `#1b1a18`, the lingering intermediate text colors (e.g. `#686661`, luminance ratio 3.03:1) violated the WCAG 2.1 AA minimum contrast threshold of 4.5:1.
+- **Why it passed on Windows**: Host CPU and worker scheduling differences caused Axe scans on Windows to run slightly after the 160ms transition had settled, masking the race condition locally. In Linux headless WebKit on GitHub Actions, Axe audits evaluated immediately during the transition.
+- **Underlying UI fix**:
+  1. Scoped `transition: color ..., background-color ...` to `:hover` on `.site-header > nav a:hover` and `.header-icon-link:hover` so theme palette switches update instantaneously without intermediate low-contrast interpolation.
+  2. In `ThemeControl.tsx`, temporarily suppressed global transitions during theme attribute mutation via a transient head stylesheet to guarantee zero intermediate transition artifacts across all page elements.
+  3. No accessibility rules or checks were disabled; full WCAG AA Axe audits remain active on every page in both themes.
+
 Evidence: `.artifacts/browser-results.json`, `.artifacts/devvy-ui-*-0.1.0-beta.1.tgz`, and `benchmarks/results.json`.
