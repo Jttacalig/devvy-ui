@@ -1,0 +1,25 @@
+{
+  "name": "devvy-ui-vite-example",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "tsc --noEmit && vite build",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@devvy-ui/react": "workspace:*",
+    "@devvy-ui/tokens": "workspace:*",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "@devvy-ui/styles": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/react": "19.2.2",
+    "@types/react-dom": "19.2.2",
+    "@vitejs/plugin-react": "6.1.2",
+    "typescript": "5.9.3",
+    "vite": "8.3.5",
+    "esbuild": "0.28.2"
+  }
+}

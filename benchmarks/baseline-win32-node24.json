@@ -1,0 +1,61 @@
+{
+  "generatedAt": "2026-10-21T10:38:10.327Z",
+  "node": "v24.19.0",
+  "platform": "win32/x64",
+  "react": "19.3.1",
+  "esbuild": "0.28.2",
+  "comparator": "@radix-ui/react-tabs@1.2.1",
+  "cpu": "AMD Ryzen 5 3600X 6-Core Processor             ",
+  "mode": "production",
+  "method": "esbuild browser ESM/es2020; React external; minify; compression defaults; SSR median of 5 runs after 100 warmups. Lower bytes does not prove faster interaction.",
+  "bundles": {
+    "button": {
+      "minified": 511,
+      "gzip": 335,
+      "brotli": 282
+    },
+    "tabs": {
+      "minified": 1917,
+      "gzip": 959,
+      "brotli": 824
+    },
+    "all": {
+      "minified": 5232,
+      "gzip": 1874,
+      "brotli": 1657
+    },
+    "radixTabs": {
+      "minified": 28133,
+      "gzip": 9815,
+      "brotli": 8729
+    }
+  },
+  "css": {
+    "tokens": {
+      "minified": 1691,
+      "gzip": 591,
+      "brotli": 506
+    },
+    "styles": {
+      "minified": 5741,
+      "gzip": 1589,
+      "brotli": 1332
+    }
+  },
+  "ssr": {
+    "devvyTabs": {
+      "millisecondsPerRenderMedian": 0.017592899999999988,
+      "samples": [
+        0.028014899999999954, 0.018186000000000035, 0.017592899999999988, 0.014621999999999958,
+        0.01442750000000001
+      ]
+    },
+    "radixTabs": {
+      "millisecondsPerRenderMedian": 0.09208619999999985,
+      "samples": [
+        0.11151560000000006, 0.08338739999999996, 0.1338782, 0.09208619999999985,
+        0.08138409999999999
+      ]
+    }
+  }
+}

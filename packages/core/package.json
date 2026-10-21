@@ -1,0 +1,45 @@
+{
+  "name": "@devvy-ui/core",
+  "version": "0.1.0-alpha.0",
+  "type": "module",
+  "license": "MIT",
+  "description": "Framework-independent DEVVY UI interaction utilities",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsup src/index.ts --format esm --dts --clean",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "tsup": "8.5.0",
+    "typescript": "5.9.3",
+    "vitest": "5.0.5",
+    "esbuild": "0.28.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=22.12"
+  },
+  "repository": {
+    "url": "https://github.com/Jttacalig/devvy-ui.git",
+    "directory": "packages/core",
+    "type": "git"
+  },
+  "homepage": "https://www.dev-station.dev/ui",
+  "bugs": {
+    "url": "https://github.com/Jttacalig/devvy-ui/issues"
+  }
+}

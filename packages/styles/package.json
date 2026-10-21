@@ -1,0 +1,35 @@
+{
+  "name": "@devvy-ui/styles",
+  "version": "0.1.0-alpha.0",
+  "description": "Ordinary CSS for DEVVY UI",
+  "license": "MIT",
+  "exports": {
+    ".": "./components.css",
+    "./components.css": "./components.css",
+    "./glass.css": "./glass.css"
+  },
+  "files": [
+    "components.css",
+    "LICENSE",
+    "README.md",
+    "glass.css"
+  ],
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "dependencies": {
+    "@devvy-ui/tokens": "workspace:^"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "url": "https://github.com/Jttacalig/devvy-ui.git",
+    "directory": "packages/styles",
+    "type": "git"
+  },
+  "homepage": "https://www.dev-station.dev/ui",
+  "bugs": {
+    "url": "https://github.com/Jttacalig/devvy-ui/issues"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "name": "@devvy-ui/cli",
+  "version": "0.1.0-alpha.0",
+  "type": "module",
+  "license": "MIT",
+  "description": "Local source-ownership installer for DEVVY UI",
+  "bin": {
+    "devvy-ui": "./src/cli.mjs"
+  },
+  "files": [
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "dependencies": {
+    "@devvy-ui/registry": "workspace:^"
+  },
+  "scripts": {
+    "test": "node --test test/cli.test.mjs"
+  },
+  "engines": {
+    "node": ">=22.12"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "url": "https://github.com/Jttacalig/devvy-ui.git",
+    "directory": "packages/cli",
+    "type": "git"
+  },
+  "homepage": "https://www.dev-station.dev/ui",
+  "bugs": {
+    "url": "https://github.com/Jttacalig/devvy-ui/issues"
+  }
+}

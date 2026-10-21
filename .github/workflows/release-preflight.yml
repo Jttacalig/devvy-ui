@@ -1,0 +1,26 @@
+name: Alpha release preflight
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  package:
+    if: github.ref == 'refs/heads/main'
+    environment: npm-alpha
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build && pnpm typecheck && pnpm lint && pnpm test && pnpm check:packages
+      - run: pnpm pack:all
+      - uses: actions/upload-artifact@v4
+        with:
+          name: devvy-ui-alpha-packages
+          path: .artifacts/*.tgz
+      # Publication is deliberately a separate maintainer step until scope ownership,
+      # registry provenance and npm-alpha environment protections are configured.

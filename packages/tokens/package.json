@@ -1,0 +1,32 @@
+{
+  "name": "@devvy-ui/tokens",
+  "version": "0.1.0-alpha.0",
+  "description": "Framework-agnostic CSS design tokens for Devvy UI",
+  "license": "MIT",
+  "sideEffects": [
+    "./src/theme.css"
+  ],
+  "files": [
+    "src/theme.css",
+    "README.md",
+    "LICENSE"
+  ],
+  "exports": {
+    "./theme.css": "./src/theme.css"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "url": "https://github.com/Jttacalig/devvy-ui.git",
+    "directory": "packages/tokens",
+    "type": "git"
+  },
+  "homepage": "https://www.dev-station.dev/ui",
+  "bugs": {
+    "url": "https://github.com/Jttacalig/devvy-ui/issues"
+  }
+}

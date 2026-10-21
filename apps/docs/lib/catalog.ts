@@ -1,0 +1,273 @@
+export const catalog = [
+  {
+    slug: 'button',
+    name: 'Button',
+    description:
+      'A clear next step. Native button behavior with sizes, tones and loading feedback.',
+    props: [
+      ['variant', 'solid | outline | ghost', 'solid', 'Visual emphasis.'],
+      [
+        'tone',
+        'brand | neutral | danger',
+        'brand',
+        'Solid background tone. Outline and ghost use neutral text.',
+      ],
+      ['size', 'sm | md | lg', 'md', 'Control dimensions.'],
+      ['loading', 'boolean', 'false', 'Shows a spinner, sets aria-busy and disables activation.'],
+    ],
+    code: '<Button loading={saving} onClick={save}>Save changes</Button>',
+    note: 'Defaults to type="button". Set type="submit" inside forms. Keep a clear accessible name during loading.',
+  },
+  {
+    slug: 'input',
+    name: 'Input',
+    description: 'A familiar text field with all the capabilities of a native input.',
+    props: [
+      ['type', 'HTML input type', 'text', 'Native input mode.'],
+      ['disabled', 'boolean', 'false', 'Prevents interaction and form submission.'],
+      ['aria-invalid', 'boolean', '—', 'Announces invalid state and applies an error border.'],
+    ],
+    code: '<Label htmlFor="email">Email</Label>\n<Input id="email" type="email" autoComplete="email" />',
+    note: 'Supply a visible Label. Connect help and error text with aria-describedby. Native size controls character width, not a visual size variant.',
+  },
+  {
+    slug: 'textarea',
+    name: 'Textarea',
+    description: 'Give longer thoughts a little more room.',
+    props: [
+      ['rows', 'number', '4', 'Initial visible lines.'],
+      ['disabled', 'boolean', 'false', 'Disables native interaction.'],
+      ['value / defaultValue', 'string', '—', 'Controlled or initial content.'],
+    ],
+    code: '<Label htmlFor="notes">Notes</Label>\n<Textarea id="notes" rows={3} />',
+    note: 'Supports native required, maxLength, aria-invalid, form association and vertical resizing.',
+  },
+  {
+    slug: 'label',
+    name: 'Label',
+    description: 'A small connection that makes forms easier for everyone.',
+    props: [
+      ['htmlFor', 'string', '—', 'ID of the associated form control.'],
+      ['children', 'ReactNode', '—', 'Visible label content.'],
+    ],
+    code: '<Label htmlFor="project">Project name</Label>\n<Input id="project" />',
+    note: 'Use htmlFor with a unique ID, or wrap a single control. Clicking the label activates its native control.',
+  },
+  {
+    slug: 'badge',
+    name: 'Badge',
+    description: 'Quiet context for status, categories and the details that matter.',
+    props: [['tone', 'neutral | brand | danger', 'neutral', 'Text and border tone.']],
+    code: '<Badge tone="brand">Alpha</Badge>',
+    note: 'A noninteractive span. Include readable status text and avoid relying on color alone. Use a live region separately for changing status.',
+  },
+  {
+    slug: 'card',
+    name: 'Card',
+    description: 'A composable surface. Arrange the content around your application.',
+    props: [
+      [
+        'children',
+        'ReactNode',
+        '—',
+        'Compose CardHeader, CardTitle, CardDescription, CardContent and CardFooter.',
+      ],
+      ['className', 'string', '—', 'Extend the surface with ordinary CSS.'],
+    ],
+    code: '<Card>\n  <CardHeader><CardTitle>Project</CardTitle></CardHeader>\n  <CardContent>Your next idea.</CardContent>\n</Card>',
+    note: 'CardTitle renders h3. Choose a surrounding h2 section or use your own heading inside the card to preserve document hierarchy.',
+  },
+  {
+    slug: 'separator',
+    name: 'Separator',
+    description: 'A useful pause between related groups of content.',
+    props: [
+      ['decorative', 'boolean', 'true', 'Hides the separator from assistive technology.'],
+      ['orientation', 'horizontal | vertical', 'horizontal', 'Layout and semantic orientation.'],
+    ],
+    code: '<Separator decorative={false} />',
+    note: 'Use decorative separators for visual spacing. Set decorative=false when the division conveys meaning. Give vertical separators a parent with a defined height.',
+  },
+  {
+    slug: 'checkbox',
+    name: 'Checkbox',
+    description: 'One native input. Form submission, validation and keyboard support included.',
+    props: [
+      ['checked / defaultChecked', 'boolean', 'false', 'Controlled or initial checked state.'],
+      ['indeterminate', 'boolean', 'false', 'Mixed state; does not determine submission value.'],
+      ['onChange', 'ChangeEventHandler', '—', 'Native change event.'],
+      ['disabled', 'boolean', 'false', 'Disables the control.'],
+    ],
+    code: '<Label><Checkbox name="terms" required /> Accept terms</Label>',
+    note: 'Space toggles the checkbox. Mixed state uses aria-checked and the native indeterminate property after hydration. Manage that prop when implementing select-all behavior.',
+  },
+  {
+    slug: 'switch',
+    name: 'Switch',
+    description: 'An immediate on or off choice, built on a native form control.',
+    props: [
+      ['checked / defaultChecked', 'boolean', 'false', 'Controlled or initial checked state.'],
+      ['onChange', 'ChangeEventHandler', '—', 'Read event.target.checked.'],
+      ['disabled', 'boolean', 'false', 'Disables interaction.'],
+      ['name / value', 'string', '— / on', 'Native checked form submission.'],
+    ],
+    code: '<Label><Switch name="updates" defaultChecked /> Product updates</Label>',
+    note: 'Uses input type="checkbox" with role="switch". Space toggles it. A stable label should describe the preference, without changing when toggled.',
+  },
+  {
+    slug: 'tabs',
+    name: 'Tabs',
+    description:
+      'Related views with predictable focus, keyboard navigation and preserved panel state.',
+    props: [
+      [
+        'items',
+        'readonly TabItem[]',
+        'required',
+        'Unique value, label, content and optional disabled.',
+      ],
+      ['label', 'string', 'required', 'Accessible name for the tab list.'],
+      ['value / defaultValue', 'string', 'first enabled', 'Controlled or initial selection.'],
+      ['onValueChange', '(value: string) => void', '—', 'Selection request callback.'],
+      ['activationMode', 'automatic | manual', 'automatic', 'Select on focus or Enter/Space.'],
+      ['orientation', 'horizontal | vertical', 'horizontal', 'Arrow key axis and layout.'],
+      ['dir', 'ltr | rtl', 'ltr', 'Explicit direction; set this for RTL.'],
+    ],
+    code: '<Tabs label="Project" defaultValue="general" items={[\n  { value: "general", label: "General", content: <p>Details</p> },\n  { value: "members", label: "Members", content: <p>Your team</p> },\n]} />',
+    note: 'Arrow keys wrap and skip disabled tabs. Home/End jump to enabled boundaries. Hidden panels stay mounted. Missing or disabled selections display the first enabled item without firing a callback. Empty/all-disabled lists show no panel. Values must be unique. Intended for local panels, not route navigation.',
+  },
+  {
+    slug: 'glass',
+    name: 'Glass',
+    description:
+      'An optional material scope for adaptive frost, lighting and ordinary DEVVY components.',
+    props: [
+      ['enabled', 'boolean', 'true', 'Turn the material off without unmounting children.'],
+      [
+        'quality',
+        'auto | full | reduced',
+        'auto',
+        'Hardware hints choose a conservative effect profile.',
+      ],
+      ['theme', 'light | dark | system', 'inherited', 'Scoped light or dark token set.'],
+    ],
+    code: '<Glass quality="auto" theme="dark">\n  <Card><CardContent>Your next idea.</CardContent></Card>\n</Glass>',
+    note: 'Import @devvy-ui/styles/glass.css explicitly. Opaque SSR markup enhances after hydration. Reduced transparency, contrast and forced-color preferences override effects. See /ui/glass for the complete material lab.',
+  },
+  {
+    slug: 'dialog',
+    name: 'Dialog',
+    description:
+      'A controlled native modal, with focus managed by the browser and an honest inline fallback.',
+    props: [
+      ['open', 'boolean', 'required', 'Controlled visibility.'],
+      [
+        'onOpenChange',
+        '(open: boolean) => void',
+        'required',
+        'Visibility requests from close, Escape or native forms.',
+      ],
+      ['title', 'ReactNode', 'required', 'Visible accessible title.'],
+      ['description', 'ReactNode', '—', 'Optional supporting description.'],
+      [
+        'returnFocusRef',
+        'RefObject<HTMLElement | null>',
+        'native invoker',
+        'Explicit focus return target for pointer triggers, including Safari.',
+      ],
+      [
+        'initialFocusRef',
+        'RefObject<HTMLElement | null>',
+        'native first control',
+        'Preferred initial focus target.',
+      ],
+      ['closeLabel', 'string', 'Close dialog', 'Localize the close button.'],
+    ],
+    code: '<Dialog open={open} onOpenChange={setOpen}\n  title="Workspace settings" description="Make it yours.">\n  <Button onClick={() => setOpen(false)}>Done</Button>\n</Dialog>',
+    note: 'Use a stateful client component. The native modal provides inert background, focus containment, Escape and focus return. SSR markup remains closed until hydration. Without showModal support it renders a named, nonmodal inline panel. A visible close button is always included.',
+  },
+  {
+    slug: 'dock',
+    name: 'Dock',
+    description: 'A named navigation surface with native links and buttons. Glass is optional.',
+    props: [
+      ['label', 'string', 'required', 'Accessible name for this navigation.'],
+      [
+        'floating',
+        'boolean',
+        'false',
+        'Pin to the viewport safe area. Reserve space in the layout.',
+      ],
+    ],
+    code: '<Dock label="Workspace navigation">\n  <a href="/workspace" aria-current="page">Workspace</a>\n  <a href="/activity">Activity</a>\n</Dock>',
+    note: 'Use links for navigation, and buttons for actions. Every item retains normal Tab behavior. Label icon-only controls. The dock wraps instead of hiding items; a floating dock needs layout space so it never obscures content or focus.',
+  },
+  {
+    slug: 'chart',
+    name: 'Chart',
+    description: 'Original SVG charts. Four views, one small API and every value within reach.',
+    props: [
+      ['data', 'readonly ChartDatum[]', 'required', 'Label/value pairs; finite numbers.'],
+      [
+        'title / description',
+        'string',
+        'required / —',
+        'Visible chart caption and optional context.',
+      ],
+      ['type', 'bar | line | area | donut', 'bar', 'Single-series visualization.'],
+      ['valueFormatter', '(number) => string', 'compact number', 'Formats axes and values.'],
+      [
+        'dataLabel / emptyLabel',
+        'string',
+        'View data / No data to display.',
+        'Disclosure and empty-state copy.',
+      ],
+    ],
+    code: '<Chart title="Weekly activity" type="bar" data={[\n  { label: "Mon", value: 24 },\n  { label: "Tue", value: 38 },\n  { label: "Wed", value: 31 },\n]} />',
+    note: 'An accessible named SVG, visible caption and native data-table disclosure. Bar, line and area support signed values. Donuts require nonnegative values and a positive finite total. Nonfinite values are omitted; unsupported/empty data shows the empty state. Axis labels shorten visually; the table retains full labels. Single series; aggregate large datasets before rendering. Theme with --dvy-chart-color and --dvy-chart-series-1 through -4. No new dependency or animation.',
+  },
+  {
+    slug: 'navbar',
+    name: 'Navbar',
+    description:
+      'A product header with a place for your brand, routes and actions. A disclosure on smaller screens.',
+    props: [
+      ['label', 'string', 'required', 'Accessible name of the navigation.'],
+      ['brand', 'ReactNode', 'required', 'Your logo or home link.'],
+      ['actions', 'ReactNode', '—', 'Account, search or other actions.'],
+      ['children', 'ReactNode', '—', 'Native route links; aria-current on the active link.'],
+      ['menuLabel', 'string', 'Menu', 'Visible mobile toggle label.'],
+    ],
+    code: '<Navbar label="Product" brand={<a href="/">Orbit</a>}>\n  <a href="/overview" aria-current="page">Overview</a>\n  <a href="/projects">Projects</a>\n</Navbar>',
+    note: 'Normal Tab and link behavior. Below 40rem, a native button toggles the route disclosure. Escape closes it and returns focus. Desktop links are always visible. This is navigation, not an ARIA menu; it does not impose a router, intercept links or trap focus.',
+  },
+  {
+    slug: 'sidebar',
+    name: 'Sidebar',
+    description: 'A quiet workspace rail. Compose route links, group labels and your own icons.',
+    props: [
+      ['label', 'string', 'required', 'Accessible name of the navigation.'],
+      ['children', 'ReactNode', '—', 'Native links, headings and groups.'],
+    ],
+    code: '<Sidebar label="Workspace">\n  <span className="dvy-sidebar-heading">WORKSPACE</span>\n  <a href="/overview" aria-current="page">Overview</a>\n  <a href="/projects">Projects</a>\n</Sidebar>',
+    note: 'A native named navigation landmark. Set aria-current="page" on the active link. Native Tab/link behavior, logical spacing and visible focus work with your router. Positioning and mobile disclosure belong to the application. If adding icons, hide decorative ones from assistive technology.',
+  },
+  {
+    slug: 'breadcrumbs',
+    name: 'Breadcrumbs',
+    description:
+      'A readable trail back to where you started. Long names wrap without breaking the layout.',
+    props: [
+      [
+        'items',
+        'readonly BreadcrumbItem[]',
+        'required',
+        'ReactNode label with optional native anchor attributes, including href.',
+      ],
+      ['label', 'string', 'Breadcrumb', 'Accessible name of the navigation.'],
+    ],
+    code: '<Breadcrumbs items={[\n  { label: "Home", href: "/" },\n  { label: "Projects", href: "/projects" },\n  { label: "Orbit" },\n]} />',
+    note: 'An ordered list inside a named navigation landmark. The final item receives aria-current="page", whether or not it has a URL. Separators are decorative. Long labels wrap. Links support native attributes, refs are forwarded to the nav, and no route interception is added.',
+  },
+] as const;
+export type ComponentName = (typeof catalog)[number]['slug'];

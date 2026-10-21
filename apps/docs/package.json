@@ -1,0 +1,25 @@
+{
+  "name": "devvy-ui-docs",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev --hostname 127.0.0.1",
+    "build": "next build",
+    "typecheck": "tsc --noEmit",
+    "start": "next start --hostname 127.0.0.1"
+  },
+  "dependencies": {
+    "next": "16.4.2",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "@devvy-ui/react": "workspace:*",
+    "@devvy-ui/styles": "workspace:*",
+    "@devvy-ui/tokens": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/react": "19.2.2",
+    "@types/react-dom": "19.2.2",
+    "@types/node": "22.19.0",
+    "typescript": "5.9.3"
+  }
+}

@@ -1,0 +1,75 @@
+/* Import once. Theme containers can be nested, including preview canvases. */
+:root,
+[data-devvy-theme] {
+  color-scheme: light;
+  --dvy-background: #ffffff;
+  --dvy-glass-tint: 255 255 255;
+  --dvy-foreground: #18251f;
+  --dvy-surface: #f3f6f4;
+  --dvy-muted: #52645a;
+  --dvy-border: #7a8c81;
+  --dvy-brand: #087565;
+  --dvy-on-brand: #ffffff;
+  --dvy-danger: #b42336;
+  --dvy-on-danger: #ffffff;
+  --dvy-focus: #087565;
+  --dvy-radius-sm: 0.25rem;
+  --dvy-radius-md: 0.5rem;
+  --dvy-radius-lg: 0.75rem;
+  --dvy-control-height: 2.5rem;
+  --dvy-font: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --dvy-font-mono: ui-monospace, 'Cascadia Code', Consolas, monospace;
+  --dvy-shadow: 0 2px 6px rgb(15 30 20 / 4%);
+  --dvy-space-1: 0.25rem;
+  --dvy-space-2: 0.5rem;
+  --dvy-space-3: 0.75rem;
+  --dvy-space-4: 1rem;
+  --dvy-space-6: 1.5rem;
+  --dvy-space-8: 2rem;
+}
+[data-devvy-theme='dark'] {
+  color-scheme: dark;
+  --dvy-background: #101713;
+  --dvy-glass-tint: 16 23 19;
+  --dvy-foreground: #ecf3ee;
+  --dvy-surface: #18221c;
+  --dvy-muted: #a6b9ad;
+  --dvy-border: #637d6c;
+  --dvy-brand: #65deba;
+  --dvy-on-brand: #10271f;
+  --dvy-danger: #ff96a5;
+  --dvy-on-danger: #350c16;
+  --dvy-focus: #65deba;
+  --dvy-shadow: 0 2px 6px rgb(0 0 0 / 14%);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-devvy-theme='light']):not([data-devvy-theme='dark']),
+  [data-devvy-theme='system'] {
+    color-scheme: dark;
+    --dvy-background: #101713;
+    --dvy-glass-tint: 16 23 19;
+    --dvy-foreground: #ecf3ee;
+    --dvy-surface: #18221c;
+    --dvy-muted: #a6b9ad;
+    --dvy-border: #637d6c;
+    --dvy-brand: #65deba;
+    --dvy-on-brand: #10271f;
+    --dvy-danger: #ff96a5;
+    --dvy-on-danger: #350c16;
+    --dvy-focus: #65deba;
+    --dvy-shadow: 0 2px 6px rgb(0 0 0 / 14%);
+  }
+}
+[data-devvy-density='compact'] {
+  --dvy-control-height: 2rem;
+}
+[data-devvy-density='comfortable'] {
+  --dvy-control-height: 3rem;
+}
+[data-devvy-typography='mono'] {
+  --dvy-font: var(--dvy-font-mono);
+}
+[data-devvy-contrast='high'] {
+  --dvy-border: currentColor;
+  --dvy-shadow: none;
+}

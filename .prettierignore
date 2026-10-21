@@ -1,0 +1,10 @@
+node_modules
+dist
+.next
+.turbo
+.artifacts
+pnpm-lock.yaml
+playwright-report
+test-results
+benchmarks/results.json
+apps/docs/next-env.d.ts

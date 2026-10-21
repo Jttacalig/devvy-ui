@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en" data-devvy-theme="system">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DEVVY UI · Vanilla CSS</title>
+    <link rel="stylesheet" href="../../packages/tokens/src/theme.css" />
+    <link rel="stylesheet" href="../../packages/styles/components.css" />
+    <style>
+      body {
+        font: 1rem/1.6 var(--dvy-font);
+        background: var(--dvy-background);
+        color: var(--dvy-foreground);
+        margin: 2rem auto;
+        padding: 1rem;
+        max-width: 32rem;
+      }
+      label {
+        display: block;
+        margin-block: 1rem 0.5rem;
+      }
+      .dvy-button {
+        margin-top: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Ordinary HTML. DEVVY CSS.</h1>
+      <p>No framework and no JavaScript.</p>
+      <section class="dvy-card">
+        <div class="dvy-card-content">
+          <h2>Project settings</h2>
+          <span class="dvy-badge" data-tone="brand">CSS only</span>
+          <form method="get">
+            <label class="dvy-label" for="project">Project name</label
+            ><input
+              class="dvy-input"
+              id="project"
+              name="project"
+              placeholder="Your next idea"
+              required
+            />
+            <label class="dvy-label"
+              ><input class="dvy-checkbox" type="checkbox" name="docs" checked /> Include
+              documentation</label
+            >
+            <button class="dvy-button" type="submit">Preview query</button>
+          </form>
+        </div>
+      </section>
+      <p>
+        Form submission uses a local GET query. Interactive tabs require a framework adapter; CSS
+        alone does not implement ARIA keyboard behavior.
+      </p>
+    </main>
+  </body>
+</html>

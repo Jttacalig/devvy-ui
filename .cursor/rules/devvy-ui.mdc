@@ -1,0 +1,12 @@
+---
+description: DEVVY UI repository structure, component changes and source updates
+alwaysApply: true
+---
+
+Read @AGENTS.md for the repository's shared rules before editing.
+For component additions, customization or upgrades, read
+@.agents/skills/devvy-ui/SKILL.md and the reference relevant to the task.
+
+Edit canonical source, preserve native accessibility and optional Glass styling, and keep
+exports, registry, docs and Changesets aligned. Use the declared pnpm toolchain and report
+actual validation. Maintain detailed rules in AGENTS.md rather than duplicating them here.

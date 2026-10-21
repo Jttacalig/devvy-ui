@@ -1,0 +1,135 @@
+{
+  "name": "@devvy-ui/react",
+  "version": "0.1.0-alpha.0",
+  "description": "Lightweight React components for Devvy UI",
+  "license": "MIT",
+  "type": "module",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./styles.css": "./styles.css",
+    "./button": {
+      "types": "./dist/button.d.ts",
+      "import": "./dist/button.js"
+    },
+    "./input": {
+      "types": "./dist/input.d.ts",
+      "import": "./dist/input.js"
+    },
+    "./textarea": {
+      "types": "./dist/textarea.d.ts",
+      "import": "./dist/textarea.js"
+    },
+    "./label": {
+      "types": "./dist/label.d.ts",
+      "import": "./dist/label.js"
+    },
+    "./badge": {
+      "types": "./dist/badge.d.ts",
+      "import": "./dist/badge.js"
+    },
+    "./card": {
+      "types": "./dist/card.d.ts",
+      "import": "./dist/card.js"
+    },
+    "./separator": {
+      "types": "./dist/separator.d.ts",
+      "import": "./dist/separator.js"
+    },
+    "./checkbox": {
+      "types": "./dist/checkbox.d.ts",
+      "import": "./dist/checkbox.js"
+    },
+    "./switch": {
+      "types": "./dist/switch.d.ts",
+      "import": "./dist/switch.js"
+    },
+    "./tabs": {
+      "types": "./dist/tabs.d.ts",
+      "import": "./dist/tabs.js"
+    },
+    "./glass": {
+      "import": "./dist/glass.js",
+      "types": "./dist/glass.d.ts"
+    },
+    "./dock": {
+      "import": "./dist/dock.js",
+      "types": "./dist/dock.d.ts"
+    },
+    "./dialog": {
+      "import": "./dist/dialog.js",
+      "types": "./dist/dialog.d.ts"
+    },
+    "./chart": {
+      "types": "./dist/chart.d.ts",
+      "import": "./dist/chart.js"
+    },
+    "./navbar": {
+      "types": "./dist/navbar.d.ts",
+      "import": "./dist/navbar.js"
+    },
+    "./sidebar": {
+      "types": "./dist/sidebar.d.ts",
+      "import": "./dist/sidebar.js"
+    },
+    "./breadcrumbs": {
+      "types": "./dist/breadcrumbs.d.ts",
+      "import": "./dist/breadcrumbs.js"
+    }
+  },
+  "files": [
+    "dist",
+    "styles.css",
+    "README.md",
+    "LICENSE"
+  ],
+  "sideEffects": [
+    "./styles.css"
+  ],
+  "peerDependencies": {
+    "react": "^18.2.0 || ^19.0.0",
+    "react-dom": "^18.2.0 || ^19.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "19.2.2",
+    "@types/react-dom": "19.2.2",
+    "@types/node": "22.19.0",
+    "@testing-library/react": "16.3.3",
+    "@testing-library/user-event": "14.6.8",
+    "axe-core": "4.14.0",
+    "jsdom": "26.1.0",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "tsup": "8.5.0",
+    "typescript": "5.9.3",
+    "vitest": "5.0.5",
+    "esbuild": "0.28.2"
+  },
+  "scripts": {
+    "build": "tsup",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "engines": {
+    "node": ">=22.12"
+  },
+  "dependencies": {
+    "@devvy-ui/core": "workspace:^",
+    "@devvy-ui/styles": "workspace:^"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "url": "https://github.com/Jttacalig/devvy-ui.git",
+    "directory": "packages/react",
+    "type": "git"
+  },
+  "homepage": "https://www.dev-station.dev/ui",
+  "bugs": {
+    "url": "https://github.com/Jttacalig/devvy-ui/issues"
+  }
+}

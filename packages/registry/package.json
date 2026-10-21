@@ -1,0 +1,31 @@
+{
+  "name": "@devvy-ui/registry",
+  "version": "0.1.0-alpha.0",
+  "type": "module",
+  "license": "MIT",
+  "description": "Source registry generated from the DEVVY UI package implementations",
+  "exports": {
+    "./registry.json": "./dist/registry.json"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "node build.mjs"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "url": "https://github.com/Jttacalig/devvy-ui.git",
+    "directory": "packages/registry",
+    "type": "git"
+  },
+  "homepage": "https://www.dev-station.dev/ui",
+  "bugs": {
+    "url": "https://github.com/Jttacalig/devvy-ui/issues"
+  }
+}

@@ -1,0 +1,24 @@
+name: Bug report
+description: Report a reproducible Devvy UI defect
+labels: [bug]
+body:
+  - type: textarea
+    id: issue
+    attributes:
+      label: What happened?
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+    validations:
+      required: true
+  - type: input
+    id: versions
+    attributes:
+      label: React, Node, browser and Devvy UI versions
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior

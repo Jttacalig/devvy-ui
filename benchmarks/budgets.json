@@ -1,0 +1,21 @@
+{
+  "gzip": {
+    "button": 600,
+    "tabs": 1400,
+    "all": 5500,
+    "glass": 1200,
+    "dialog": 1800,
+    "dock": 600,
+    "foundation": 4200,
+    "chart": 1800,
+    "navbar": 850,
+    "sidebar": 350,
+    "breadcrumbs": 500
+  },
+  "cssGzip": {
+    "tokens": 850,
+    "styles": 3600,
+    "glass": 1800,
+    "foundation": 2600
+  }
+}

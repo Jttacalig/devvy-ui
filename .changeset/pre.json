@@ -1,0 +1,13 @@
+{
+  "mode": "pre",
+  "tag": "alpha",
+  "initialVersions": {
+    "@devvy-ui/core": "0.1.0-alpha.0",
+    "@devvy-ui/react": "0.1.0-alpha.0",
+    "@devvy-ui/styles": "0.1.0-alpha.0",
+    "@devvy-ui/tokens": "0.1.0-alpha.0",
+    "@devvy-ui/registry": "0.1.0-alpha.0",
+    "@devvy-ui/cli": "0.1.0-alpha.0"
+  },
+  "changesets": []
+}

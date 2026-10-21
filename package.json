@@ -1,0 +1,42 @@
+{
+  "name": "devvy-ui-workspace",
+  "private": true,
+  "version": "0.1.0-alpha.0",
+  "packageManager": "pnpm@11.25.0",
+  "scripts": {
+    "build": "turbo run build",
+    "test": "turbo run test",
+    "typecheck": "turbo run typecheck",
+    "lint": "eslint .",
+    "dev": "turbo run dev --parallel",
+    "dev:docs": "pnpm --filter devvy-ui-docs dev",
+    "test:browser": "playwright test",
+    "check:packages": "node scripts/check-packages.mjs",
+    "pack:all": "node scripts/pack.mjs",
+    "test:consumer": "node scripts/consumer-test.mjs",
+    "bench": "node scripts/benchmark.mjs",
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "pnpm build && pnpm check:packages && changeset publish",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "preview:docs": "pnpm --filter devvy-ui-docs start"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.14.0",
+    "@changesets/cli": "3.0.3",
+    "@eslint/js": "9.39.1",
+    "@playwright/test": "1.64.1",
+    "@radix-ui/react-tabs": "1.2.1",
+    "esbuild": "0.28.2",
+    "eslint": "9.39.1",
+    "eslint-plugin-jsx-a11y": "6.10.2",
+    "turbo": "2.11.10",
+    "typescript-eslint": "8.72.0",
+    "prettier": "3.6.2"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "license": "MIT"
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: 'DEVVY UI'
+  short_description: 'Build, customize and update DEVVY UI consistently'
+  default_prompt: 'Use $devvy-ui to make this change while preserving its package structure, accessibility and source update rules.'

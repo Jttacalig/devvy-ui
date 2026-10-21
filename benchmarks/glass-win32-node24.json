@@ -1,0 +1,81 @@
+{
+  "generatedAt": "2026-10-21T11:10:48.345Z",
+  "node": "v24.19.0",
+  "platform": "win32/x64",
+  "react": "19.3.1",
+  "esbuild": "0.28.2",
+  "comparator": "@radix-ui/react-tabs@1.2.1",
+  "cpu": "AMD Ryzen 5 3600X 6-Core Processor             ",
+  "mode": "production",
+  "method": "esbuild browser ESM/es2020; React external; minify; compression defaults; SSR median of 5 runs after 100 warmups. Lower bytes does not prove faster interaction.",
+  "bundles": {
+    "button": {
+      "minified": 511,
+      "gzip": 334,
+      "brotli": 282
+    },
+    "tabs": {
+      "minified": 1917,
+      "gzip": 960,
+      "brotli": 825
+    },
+    "glass": {
+      "minified": 1080,
+      "gzip": 564,
+      "brotli": 487
+    },
+    "dialog": {
+      "minified": 2381,
+      "gzip": 1113,
+      "brotli": 990
+    },
+    "dock": {
+      "minified": 302,
+      "gzip": 227,
+      "brotli": 189
+    },
+    "all": {
+      "minified": 8420,
+      "gzip": 3027,
+      "brotli": 2695
+    },
+    "radixTabs": {
+      "minified": 28133,
+      "gzip": 9815,
+      "brotli": 8729
+    }
+  },
+  "css": {
+    "tokens": {
+      "minified": 1775,
+      "gzip": 613,
+      "brotli": 526
+    },
+    "styles": {
+      "minified": 7683,
+      "gzip": 2035,
+      "brotli": 1729
+    },
+    "glass": {
+      "minified": 4187,
+      "gzip": 998,
+      "brotli": 854
+    }
+  },
+  "ssr": {
+    "devvyTabs": {
+      "millisecondsPerRenderMedian": 0.012851499999999988,
+      "samples": [
+        0.021249299999999947, 0.014277799999999957, 0.012165300000000002, 0.012148900000000027,
+        0.012851499999999988
+      ]
+    },
+    "radixTabs": {
+      "millisecondsPerRenderMedian": 0.08283819999999992,
+      "samples": [
+        0.10054160000000002, 0.08283819999999992, 0.07832430000000011, 0.08151139999999998,
+        0.08772289999999998
+      ]
+    }
+  }
+}

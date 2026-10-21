@@ -1,0 +1,144 @@
+/* DEVVY GLASS: optional material layer. Import after tokens and components.css. */
+[data-devvy-material='glass'] :where(.dvy-card, .dvy-glass-surface, .dvy-button) {
+  position: relative;
+}
+[data-devvy-material='glass'] :where(.dvy-card, .dvy-dialog) .dvy-button {
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+:where([data-devvy-material='glass']) {
+  --dvy-glass-blur: 14px;
+  --dvy-glass-opacity: 0.86;
+  --dvy-glass-saturation: 1.2;
+  --dvy-glass-light-angle: 135deg;
+  --dvy-glass-radius: 1.25rem;
+  --dvy-glass-active-blur: var(--dvy-glass-blur);
+  --dvy-glass-active-opacity: var(--dvy-glass-opacity);
+  --dvy-glass-filter: blur(var(--dvy-glass-active-blur)) saturate(var(--dvy-glass-saturation));
+  --dvy-glass-light: 0.22;
+  --dvy-glass-duration: 180ms;
+  --dvy-glass-shadow: inset 0 1px 0 rgb(255 255 255 / 0.24), 0 8px 24px rgb(0 25 20 / 0.08);
+}
+:where([data-devvy-material='glass'][data-devvy-quality='reduced']) {
+  --dvy-glass-active-blur: 0px;
+  --dvy-glass-active-opacity: 1;
+  --dvy-glass-filter: none;
+  --dvy-glass-light: 0;
+  --dvy-glass-duration: 0ms;
+  --dvy-glass-shadow: none;
+}
+[data-devvy-material='glass']
+  :where(.dvy-card, .dvy-dialog, .dvy-dock, .dvy-floating-nav, .dvy-glass-surface, .dvy-button) {
+  color: var(--dvy-foreground);
+  background-color: var(--dvy-background);
+  background-image: linear-gradient(
+    var(--dvy-glass-light-angle),
+    rgb(255 255 255 / 0.12),
+    transparent 55%
+  );
+  border: 1px solid var(--dvy-border);
+  border-radius: var(--dvy-glass-radius);
+  box-shadow: var(--dvy-glass-shadow);
+}
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  [data-devvy-material='glass']
+    :where(.dvy-card, .dvy-dialog, .dvy-dock, .dvy-floating-nav, .dvy-glass-surface, .dvy-button) {
+    background-color: rgb(var(--dvy-glass-tint) / var(--dvy-glass-active-opacity));
+    -webkit-backdrop-filter: var(--dvy-glass-filter);
+    backdrop-filter: var(--dvy-glass-filter);
+  }
+}
+[data-devvy-material='glass'] :where(.dvy-card, .dvy-glass-surface, .dvy-button)::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(
+    var(--dvy-glass-light-angle),
+    rgb(255 255 255 / 0.4),
+    transparent 35%,
+    rgb(255 255 255 / 0.08)
+  );
+  opacity: 0;
+  transition: opacity var(--dvy-glass-duration) ease;
+}
+:where([data-devvy-material='glass']) .dvy-button {
+  border-radius: max(var(--dvy-radius-md), 0.75rem);
+  transition: transform var(--dvy-glass-duration) ease;
+}
+:where([data-devvy-material='glass']) .dvy-button[data-variant='solid'] {
+  background-color: var(--dvy-brand);
+  color: var(--dvy-on-brand);
+  border-color: transparent;
+}
+:where([data-devvy-material='glass']) .dvy-button[data-variant='solid'][data-tone='neutral'] {
+  background-color: var(--dvy-foreground);
+  color: var(--dvy-background);
+}
+:where([data-devvy-material='glass']) .dvy-button[data-variant='solid'][data-tone='danger'] {
+  background-color: var(--dvy-danger);
+  color: var(--dvy-on-danger);
+}
+:where([data-devvy-material='glass']) .dvy-button:hover:not(:disabled) {
+  filter: none;
+}
+:where([data-devvy-material='glass']) .dvy-dock[data-floating='true'] {
+  position: fixed;
+}
+@media (hover: hover) {
+  :where([data-devvy-material='glass']) .dvy-button:hover:not(:disabled) {
+    transform: translateY(-1px);
+  }
+  [data-devvy-material='glass'] :where(.dvy-card, .dvy-glass-surface):hover::before,
+  :where([data-devvy-material='glass']) .dvy-button:hover:not(:disabled)::before {
+    opacity: var(--dvy-glass-light);
+  }
+}
+:where([data-devvy-material='glass']) .dvy-dialog[open] {
+  animation: dvy-glass-enter var(--dvy-glass-duration) ease-out;
+}
+@keyframes dvy-glass-enter {
+  from {
+    opacity: 0;
+    transform: translateY(0.5rem) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (prefers-reduced-transparency: reduce), (prefers-contrast: more) {
+  :where([data-devvy-material='glass']) {
+    --dvy-glass-active-opacity: 1;
+    --dvy-glass-filter: none;
+    --dvy-glass-active-blur: 0px;
+    --dvy-glass-light: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  :where([data-devvy-material='glass']) {
+    --dvy-glass-duration: 0ms;
+    --dvy-glass-light: 0;
+  }
+  :where([data-devvy-material='glass']) .dvy-button:hover:not(:disabled) {
+    transform: none;
+  }
+  :where([data-devvy-material='glass']) .dvy-dialog[open] {
+    animation: none;
+  }
+}
+@media (forced-colors: active) {
+  [data-devvy-material='glass']
+    :where(.dvy-card, .dvy-dialog, .dvy-dock, .dvy-floating-nav, .dvy-glass-surface, .dvy-button) {
+    background: Canvas;
+    color: CanvasText;
+    border: 1px solid ButtonText;
+    box-shadow: none;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+  [data-devvy-material='glass'] :where(.dvy-card, .dvy-glass-surface, .dvy-button)::before {
+    display: none;
+  }
+}

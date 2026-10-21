@@ -1,0 +1,20 @@
+{
+  "$schema": "https://unpkg.com/@changesets/config/schema.json",
+  "changelog": "@changesets/cli/changelog",
+  "commit": false,
+  "fixed": [
+    [
+      "@devvy-ui/core",
+      "@devvy-ui/react",
+      "@devvy-ui/styles",
+      "@devvy-ui/tokens",
+      "@devvy-ui/registry",
+      "@devvy-ui/cli"
+    ]
+  ],
+  "linked": [],
+  "access": "public",
+  "baseBranch": "main",
+  "updateInternalDependencies": "patch",
+  "ignore": []
+}
