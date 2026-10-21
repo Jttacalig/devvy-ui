@@ -14,8 +14,11 @@
 - [x] Original bar/line/area/donut chart views with HTML data tables
 - [x] Responsive Navbar, composable Sidebar and Breadcrumbs
 - [x] Paper-and-ink docs theme and live component previews
+- [x] Tri-browser verification (Chromium, Firefox, WebKit: 135/135 tests passing)
+- [x] Documentation UI overhaul with native DEVVY UI components
+- [x] Pre-release version progression to beta (`0.1.0-beta.1`) via Changesets
 
-## Before a public alpha
+## Before a public beta release
 
 - [ ] Run public GitHub CI and review artifacts, including Linux Firefox results
 - [ ] Complete manual NVDA/VoiceOver, zoom, forced-colors and RTL review

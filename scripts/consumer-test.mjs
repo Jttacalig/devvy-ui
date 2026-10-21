@@ -7,12 +7,15 @@ if (!['18.3.1', '19.3.1'].includes(version))
   throw new Error('Tested fixture versions: 18.3.1 and 19.3.1.');
 if (!process.env.npm_execpath) throw new Error('Run with pnpm test:consumer <version>.');
 const dir = fileURLToPath(new URL(`../.artifacts/consumer-${version}/`, import.meta.url));
+const root = fileURLToPath(new URL('../', import.meta.url));
+const pkg = JSON.parse(await readFile(resolve(root, 'packages/react/package.json'), 'utf8'));
+const currentVersion = pkg.version;
 await mkdir(dir, { recursive: true });
 await writeFile(
   resolve(dir, 'pnpm-workspace.yaml'),
   'packages:\n  - "."\noverrides:\n' +
     ['tokens', 'styles', 'core', 'react']
-      .map((name) => `  "@devvy-ui/${name}": "file:../devvy-ui-${name}-0.1.0-alpha.0.tgz"`)
+      .map((name) => `  "@devvy-ui/${name}": "file:../devvy-ui-${name}-${currentVersion}.tgz"`)
       .join('\n') +
     '\n',
 );
@@ -30,7 +33,7 @@ await writeFile(
         ...Object.fromEntries(
           ['tokens', 'styles', 'core', 'react'].map((name) => [
             `@devvy-ui/${name}`,
-            `file:../devvy-ui-${name}-0.1.0-alpha.0.tgz`,
+            `file:../devvy-ui-${name}-${currentVersion}.tgz`,
           ]),
         ),
       },

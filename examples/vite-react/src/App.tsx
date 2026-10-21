@@ -24,7 +24,7 @@ export function App() {
         <br />
         Style freely.
       </h1>
-      <p className="lead">DEVVY UI · React foundation · v0.1.0-alpha.0</p>
+      <p className="lead">DEVVY UI · React foundation · v0.1.0-beta.1</p>
       <h2 className="sr-only">Component preview</h2>
       <Label className="example-glass-toggle">
         <Switch checked={glass} onChange={(event) => setGlass(event.target.checked)} />

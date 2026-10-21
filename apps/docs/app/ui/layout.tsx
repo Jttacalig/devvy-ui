@@ -20,7 +20,7 @@ export default function UILayout({ children }: { children: React.ReactNode }) {
             devvy<span className="wordmark-ui">ui</span>
           </span>
           <Badge tone="brand" className="alpha-tag">
-            alpha
+            beta
           </Badge>
         </Link>
         <HeaderNavigation />
@@ -60,7 +60,7 @@ export default function UILayout({ children }: { children: React.ReactNode }) {
               <span>Open source under MIT license</span>
             </div>
             <div className="footer-badge">
-              <Badge tone="neutral">v0.1.0-alpha.0</Badge>
+              <Badge tone="neutral">v0.1.0-beta.1</Badge>
             </div>
           </footer>
         </main>

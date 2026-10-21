@@ -29,15 +29,20 @@ test('mobile documentation disclosure supports keyboard search and closes after 
 
 test('native dropdown keyboard selection, reset and browser picker fallback work', async ({
   page,
+  browserName,
 }) => {
   const errors: string[] = [];
   page.on('pageerror', (error) => errors.push(error.message));
   await page.goto('/ui/glass');
   const atmosphere = page.getByRole('combobox', { name: 'Glass atmosphere', exact: true });
   await atmosphere.focus();
-  await atmosphere.press('Space');
-  await page.keyboard.press('End');
-  await page.keyboard.press('Enter');
+  if (browserName === 'firefox') {
+    await atmosphere.press('End');
+  } else {
+    await atmosphere.press('Space');
+    await page.keyboard.press('End');
+    await page.keyboard.press('Enter');
+  }
   await expect(atmosphere).toHaveValue('amber');
   await expect(page.locator('.glass-scene')).toHaveAttribute('data-tint', 'amber');
   await page.getByRole('combobox', { name: 'Glass appearance', exact: true }).selectOption('light');

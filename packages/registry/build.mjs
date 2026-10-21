@@ -2,6 +2,7 @@ import { readFile, mkdir, writeFile } from 'node:fs/promises';
 const root = new URL('../../', import.meta.url);
 const read = (path) => readFile(new URL(path, root), 'utf8');
 const license = await read('LICENSE');
+const pkg = JSON.parse(await read('packages/registry/package.json'));
 const common = [
   { path: 'lib/core.ts', content: await read('packages/core/src/index.ts') },
   { path: 'lib/glass.ts', content: await read('packages/core/src/glass.ts') },
@@ -64,7 +65,7 @@ await writeFile(
   JSON.stringify(
     {
       schemaVersion: 1,
-      version: '0.1.0-alpha.0',
+      version: pkg.version,
       license: 'MIT',
       items,
       styles:

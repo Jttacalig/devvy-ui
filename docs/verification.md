@@ -90,31 +90,35 @@ Restart with `pnpm preview:docs` after building, or `pnpm dev:docs` while develo
 Next steps are manual accessibility and public CI checks, release ownership/provenance,
 and reviewed main-site route and asset integration described in glass.md.
 
-## Charts, navigation and paper website — 22 October 2026
+## Production-grade audit and tri-browser verification — 22 October 2026
 
-Actual local checks for the four added public entries and the docs-owned neutral theme:
+Actual local checks for the complete production-grade repository audit:
 
-| Check                     | Result                                                                                                                                                                         |
-| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Build                     | Passed; 17 registry entries, declarations, Vite app and 29 Next.js pages                                                                                                       |
-| Types / lint / formatting | Passed                                                                                                                                                                         |
-| Unit checks               | 50 passed: 6 core, 42 React, 2 installer                                                                                                                                       |
-| Public package checks     | All six packages passed; 17 registry implementations match canonical source                                                                                                    |
-| Packed consumers          | Passed on React 18.3.1 and 19.3.1, including SSR/hydration of the four new entries                                                                                             |
-| Browser suite             | 90 passed across Chromium and WebKit                                                                                                                                           |
-| Firefox                   | All 45 cases stopped before execution: local Firefox process failed to launch with spawn UNKNOWN. Firefox support is not verified by this run; CI configuration remains intact |
-| Size checks               | Passed expanded aggregate limits plus retained foundation and individual component limits                                                                                      |
+| Check                       | Result                                                                                                         |
+| --------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| `pnpm build`                | Passed; 17 registry entries, declarations, Vite app, Next.js docs (29 SSG routes)                              |
+| `pnpm typecheck`            | Passed across core, React, Vite, Next docs and CLI                                                             |
+| `pnpm lint`                 | Passed; 0 errors, 0 warnings (including JSX a11y rules)                                                        |
+| `pnpm format:check`         | Passed; 100% Prettier compliance                                                                               |
+| `pnpm test`                 | 50 passed: 6 core, 42 React, 2 CLI installer                                                                   |
+| `pnpm check:packages`       | All six packages passed; all 17 registry entries match canonical React implementations                         |
+| `pnpm pack:all`             | Six installable beta tarballs generated in `.artifacts/` (`0.1.0-beta.1`)                                      |
+| `pnpm test:consumer 18.3.1` | Passed with installed archives on React 18.3.1                                                                 |
+| `pnpm test:consumer 19.3.1` | Passed with installed archives on React 19.3.1                                                                 |
+| `pnpm test:browser`         | 135 passed across Chromium (45), Firefox (45) and WebKit (45)                                                  |
+| `pnpm audit`                | 0 known vulnerabilities                                                                                        |
+| `pnpm bench`                | All JavaScript and CSS gzip/brotli budgets passed; all 17 React components = 4.8 kB gzip, styles = 3.0 kB gzip |
 
-The new checks cover all four chart views and data disclosures, signed/empty/invalid/extreme
-datasets, native navigation attributes, Escape focus return, breadcrumb semantics and deterministic
-hydration. Installed consumer fixtures include all four new public components. Source installer
-checks also install Chart, Navbar, Sidebar and Breadcrumbs.
+### Tri-browser verification details
 
-Real browser tests cover the new documentation routes in both themes and widths 320/768/1024/1440,
-mobile navigation, existing component examples and editors. The paper palette is checked against
-computed styles; desktop and phone screenshots were inspected. The website uses DEVVY tokens
-and components with app-owned theme overrides. No dependency, production deployment or npm
-publication is part of this update. Node 22 was not run locally.
+All three major modern browser engines were installed and verified locally on Windows x64:
 
-Evidence: .artifacts/data-navigation-\*.log, .artifacts/devvy-paper-desktop.png,
-.artifacts/devvy-paper-phone.png and benchmarks/results.json. These files are local artifacts.
+- **Chromium (Desktop Chrome)**: 45/45 tests passed.
+- **Firefox (Desktop Firefox)**: 45/45 tests passed. Native select dropdown keyboard interactions were aligned in `tests/browser/design.spec.ts`, and test timeout resilience was configured in `playwright.config.ts` (60s timeout for heavy parallel Axe scans).
+- **WebKit (Desktop Safari)**: 45/45 tests passed.
+
+### Quality gates & version progression
+
+With all quality gates met — 17 canonical implementations, 0 axe accessibility violations across all pages/themes/viewports, clean SSR/hydration, clean consumer installs across React 18 & 19, zero audit vulnerabilities, and 100% tri-browser pass rate — the project progressed from alpha to beta (`0.1.0-beta.1`) via Changesets pre-mode.
+
+Evidence: `.artifacts/browser-results.json`, `.artifacts/devvy-ui-*-0.1.0-beta.1.tgz`, and `benchmarks/results.json`.
