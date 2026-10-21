@@ -6,7 +6,7 @@
 
 An original, React-first UI foundation by [DEV STATION](https://www.dev-station.dev).
 Repository: [Jttacalig/devvy-ui](https://github.com/Jttacalig/devvy-ui). Local Git origin is configured; implementation changes have not been pushed.
-MIT licensed. Version **0.1.0-alpha.0**. Packages are **unpublished**; scope and CLI name
+MIT licensed. Version **v0.1.0-beta.1**. Packages are **unpublished**; scope and CLI name
 ownership have not been verified. This checkout is independent of the private Dev Station app.
 
 ## Run locally
