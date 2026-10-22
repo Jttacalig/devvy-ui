@@ -6,27 +6,27 @@
 
 An original, React-first UI foundation by [DEV STATION](https://www.dev-station.dev).
 Repository: [Jttacalig/devvy-ui](https://github.com/Jttacalig/devvy-ui).
-MIT licensed. Current repository candidate: **0.2.0**, with **100 primary components**.
-The latest registry check found **0.1.0-beta.2** under the npm `beta` tag; preparing
-0.2.0 does not publish it or change npm tags. The stable release will use `latest`.
+MIT licensed. **DEVVY UI v0.2.0 Stable** is publicly released with **100 React components**.
+All six packages are published at **0.2.0** on npm's `latest` tag. The historical `beta`
+tag remains at **0.1.0-beta.2**. TypeScript APIs, keyboard accessibility, custom themes,
+optional DEVVY GLASS and editable source are included.
 Official docs: https://devvy-ui.dev-station.dev/ui. The library is independent of the
 private Dev Station app.
 
-All six packages follow one fixed Changesets version. Website candidate labels read
-package metadata; installation hints distinguish the verified published beta from this
-checkout. See [release verification](docs/verification-100.md), [the changelog](CHANGELOG.md),
+All six packages follow one fixed Changesets version. Website version labels read
+package metadata; default installation commands resolve the published stable release. See [release verification](docs/verification-100.md), [the changelog](CHANGELOG.md),
 and [release instructions](docs/publish.md).
 
 ## Installation
 
 ```sh
-npm install @devvy-ui/react@beta
+npm install @devvy-ui/react
 # or
-pnpm add @devvy-ui/react@beta
+pnpm add @devvy-ui/react
 # or
-yarn add @devvy-ui/react@beta
+yarn add @devvy-ui/react
 # or
-bun add @devvy-ui/react@beta
+bun add @devvy-ui/react
 ```
 
 ## Run locally
@@ -92,18 +92,18 @@ All React entries retain client boundaries for Next.js; SSR is supported, but a 
 React Server Component-only rendering API is not shipped. The original
 `@devvy-ui/react/styles.css` import remains a compatibility alias.
 
-For external consumption without npm, `pnpm pack:all` writes installable candidate tarballs into
+For external consumption without npm, `pnpm pack:all` writes installable release tarballs into
 `.artifacts`. Install core, tokens, styles and react tarballs together. The companion packages
 `@devvy-ui/tokens`, `@devvy-ui/styles`, and `@devvy-ui/core` are also published on npm.
 
 ## Source ownership
 
-Build the workspace, then run the CLI from your React project's directory:
+Run the published CLI from your React project's directory:
 
 ```sh
-node /absolute/path/to/devvy-ui/packages/cli/src/cli.mjs init
-node /absolute/path/to/devvy-ui/packages/cli/src/cli.mjs add button tabs
-node /absolute/path/to/devvy-ui/packages/cli/src/cli.mjs doctor
+npx @devvy-ui/cli init
+npx @devvy-ui/cli add button tabs
+npx @devvy-ui/cli doctor
 ```
 
 Import `src/devvy.css` once and import the copied component files. This source installer

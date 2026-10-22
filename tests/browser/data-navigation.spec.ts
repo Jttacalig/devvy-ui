@@ -92,7 +92,7 @@ test('landing uses a paper-and-ink palette with DEVVY components', async ({ page
   await expect(page.locator('.release-note')).toContainText('v' + releaseVersion);
   await expect(page.locator('.release-note')).toContainText(inventory.length + ' components');
   await expect(page.locator('.sidebar-version-tag')).toContainText('v' + releaseVersion);
-  await expect(page.locator('.footer-badge')).toHaveText('v' + releaseVersion);
+  await expect(page.locator('.footer-badge')).toHaveText('v' + releaseVersion + ' Stable');
   await page.getByRole('combobox', { name: 'Site theme' }).selectOption('light');
   expect(
     await page.locator('body').evaluate((element) => getComputedStyle(element).backgroundColor),

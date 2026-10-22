@@ -173,8 +173,8 @@ export function LandingShowcase() {
             <span className="showcase-group-title">Status Alerts</span>
             <div className="showcase-stack">
               <Alert tone="brand">
-                A published beta is available on npm. This checkout contains {componentCount}{' '}
-                components with focused imports.
+                DEVVY UI v0.2.0 Stable is available on npm with {componentCount} components with
+                focused imports.
               </Alert>
               <Alert tone="neutral">
                 Ordinary CSS avoids runtime style injection. Measure the entries you ship in your

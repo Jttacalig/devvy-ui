@@ -4,17 +4,19 @@ Use feature branches and reviewable pull requests in
 [Jttacalig/devvy-ui](https://github.com/Jttacalig/devvy-ui). Review source, licenses,
 package contents and CI before merging; do not push directly to protected main.
 
-The local candidate is **0.2.0**, with 100 primary components in one fixed six-package
-Changesets group. Prerelease mode has been exited for this authorized stable candidate.
-The last registry check found **0.1.0-beta.2** under beta and beta.1 under latest.
-A local version advance does not change npm tags. Preserve historical changelogs.
+**DEVVY UI v0.2.0 Stable is published.** All six packages report version 0.2.0 and
+`latest: 0.2.0` in the live npm registry, verified on 23 October 2026. The historical
+`beta` tag remains at 0.1.0-beta.2. The 100-component library uses one fixed six-package
+Changesets group. Publication does not deploy the documentation website.
+
+The following workflow applies to future authorized releases. Preserve historical changelogs.
 
 ## Preflight
 
 Use Node 22.12+ and pnpm 11.25.0. Install with `pnpm install --frozen-lockfile`. Run the
 complete CI matrix: build, types, lint, formatting, unit tests, source/package parity,
 budgets, audit, all three browser engines and installed React 18/19 consumers. See
-[verification](verification-100.md) for actual candidate results.
+[verification](verification-100.md) for actual implementation results.
 
 `pnpm pack:all` produces six tarballs and rewrites workspace dependency ranges for npm.
 Review manifests, licenses, focused exports, declarations and package contents. Confirm
@@ -33,8 +35,8 @@ After review, merge and explicit release authorization, dispatch that workflow f
 The preflight workflow only uploads artifacts. Publication uses npm OIDC rather than a
 committed token. Never place credentials in files or logs.
 
-Verify all six names (tokens, styles, core, react, registry, cli) report 0.2.0 and latest
-points to 0.2.0. Interrupted releases skip existing versions; check every tag before
+Verify all six names (tokens, styles, core, react, registry, cli) report the authorized version
+and latest points to that version. Interrupted releases skip existing versions; check every tag before
 claiming success. Preserve the historical beta tag. Never overwrite an npm version.
 
 Only after live verification, update publishedNpmVersion and publishedNpmTag in

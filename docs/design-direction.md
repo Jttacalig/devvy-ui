@@ -14,9 +14,9 @@ overlays, feedback, data, media and application patterns. It is not a chart-only
 
 These are design judgments from the referenced documentation, not evidence that DEVVY has
 equivalent coverage, assistive-technology testing or performance. No implementation from
-these libraries is copied and none is added as a runtime dependency by this candidate.
+these libraries is copied and none is added as a runtime dependency by this release.
 
-## System-wide changes in this candidate
+## System-wide changes in this release
 
 - 100 primary components with focused imports, declarations, source ownership and explicit previews.
 - Shared namespaced tokens, logical spacing, visible focus, light/dark themes and optional Glass.

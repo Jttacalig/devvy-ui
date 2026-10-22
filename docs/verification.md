@@ -2,7 +2,7 @@
 
 This page records the earlier foundation/Glass snapshot. For the earlier 21-component
 foundation batch, see [its separate verification record](verification-foundations.md).
-The current 100-component 0.2.0 candidate is documented in
+The current 100-component 0.2.0 Stable release is documented in
 [completion verification](verification-100.md). The results below are historical snapshots
 and do not stand in for fresh candidate checks.
 

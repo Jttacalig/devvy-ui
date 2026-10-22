@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.2.0 — 100-component candidate
+## 0.2.0 Stable — 23 October 2026
 
 - Added the remaining 50 roadmap components: overlays, searchable selection, file/date
   controls, application navigation, data tables, media, Markdown editing and large collections.
@@ -9,14 +9,15 @@
   and optional chart inspection without a chart dependency.
 - Extended focused exports, types, registry dependency/helper closure and React consumers.
 - Rebuilt the landing page around an interactive project workspace using DEVVY components.
-- Prepared all six packages for stable 0.2.0 and the explicit npm latest publishing workflow.
+- Published all six packages at 0.2.0 on npm latest; beta remains at 0.1.0-beta.2.
 - Preserved existing focused bundle budgets and added a frozen first-50 baseline; full
   inventory growth is measured separately. No new runtime dependency was added.
 - Refreshed contributor, AI, customization and release guidance. Proposed optional AI
   interface compositions use DEVVY primitives and application-owned provider callbacks.
 
-See [completion verification](docs/verification-100.md). Publication and deployment are
-separate; historical notes below retain their status at the time they were written.
+See [completion verification](docs/verification-100.md). npm publication is verified;
+production documentation deployment is separate. Historical notes below retain their
+status at the time they were written.
 
 ## 0.1.0-beta.2 — unpublished 50-component milestone
 

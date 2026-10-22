@@ -2,7 +2,7 @@
 
 ## Supported versions
 
-The current repository candidate is `0.2.0`; published beta packages are prereleases.
+The current stable release is `0.2.0`; historical beta packages remain prereleases.
 Preparing a stable version does not establish a production security-support window.
 Maintainers must list supported versions after publication. No response-time SLA is promised.
 

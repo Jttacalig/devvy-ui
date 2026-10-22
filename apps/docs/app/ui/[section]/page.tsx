@@ -4,7 +4,8 @@ import { Separator } from '@devvy-ui/react';
 import { Workbench } from '../../../components/Workbench';
 import { CopyCode } from '../../../components/CopyCode';
 import { catalog } from '../../../lib/catalog';
-import { releaseVersion } from '../../../lib/release';
+import { releaseLabel, releaseVersion } from '../../../lib/release';
+import { docsMetadata } from '../../../lib/metadata';
 import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { ComponentDirectory } from '../../../components/ComponentDirectory';
@@ -21,6 +22,24 @@ const sections = [
 ];
 export function generateStaticParams() {
   return sections.map((section) => ({ section }));
+}
+export async function generateMetadata({ params }: { params: Promise<{ section: string }> }) {
+  const { section } = await params;
+  if (!sections.includes(section)) notFound();
+  const titles: Record<string, string> = {
+    docs: 'Documentation',
+    'getting-started': 'Getting started',
+    components: '100 React components',
+    themes: 'Themes and customization',
+    playground: 'Interactive playground',
+    changelog: 'Release notes',
+    contributing: 'Contributing',
+  };
+  return docsMetadata(
+    titles[section],
+    `${titles[section]} for DEVVY UI ${releaseLabel}. Explore 100 typed React components, stable installation, customizable themes and source ownership.`,
+    `/${section}`,
+  );
 }
 export default async function Section({ params }: { params: Promise<{ section: string }> }) {
   const { section } = await params;
@@ -39,6 +58,7 @@ export default async function Section({ params }: { params: Promise<{ section: s
       <div className="breadcrumb">
         The foundation / <span>{section.split('-').join(' ')}</span>
       </div>
+      <p className="docs-release-label">{releaseLabel}</p>
       {section === 'components' ? (
         <>
           <div className="section-intro">
@@ -77,19 +97,26 @@ export default async function Section({ params }: { params: Promise<{ section: s
         <>
           <h1>Start with a solid foundation.</h1>
           <p className="page-lead">
-            DEVVY UI is published on npm as <code>@devvy-ui/react@beta</code>. Install it with your
-            preferred package manager and build considered interfaces.
+            DEVVY UI {releaseLabel} is published on npm. Install <code>@devvy-ui/react</code> for
+            all {catalog.length} typed components with your preferred package manager.
           </p>
           <h2>1. Install the package</h2>
-          <p>Add the React package to your project:</p>
-          <CopyCode label="npm installation command" code={'npm install @devvy-ui/react@beta'} />
+          <p>
+            Add the package to an existing React project. React and React DOM (^18.2.0 or ^19.0.0)
+            are peer dependencies. Core, styles and tokens are installed transitively.
+          </p>
+          <CopyCode label="npm installation command" code={'npm install @devvy-ui/react'} />
           <p>Or using pnpm, yarn, or bun:</p>
           <CopyCode
             label="Package manager alternatives"
             code={
-              'pnpm add @devvy-ui/react@beta\n# or: yarn add @devvy-ui/react@beta\n# or: bun add @devvy-ui/react@beta'
+              'pnpm add @devvy-ui/react\n# or: yarn add @devvy-ui/react\n# or: bun add @devvy-ui/react'
             }
           />
+          <p>
+            These commands resolve npm&apos;s <code>latest</code> tag, currently {releaseVersion}.
+            To pin this release, use <code>@devvy-ui/react@{releaseVersion}</code>.
+          </p>
           <h2>2. Import stylesheets</h2>
           <p>
             DEVVY UI uses ordinary CSS custom properties and namespaced classes with zero runtime
@@ -105,8 +132,9 @@ export default async function Section({ params }: { params: Promise<{ section: s
           <h3>Next.js App Router</h3>
           <p>
             Add stylesheet imports at the top of <code>app/layout.tsx</code>. Interactive components
-            retain standard React client boundaries (<code>&apos;use client&apos;</code>).
-            Server-side rendering is fully supported with stable IDs and zero hydration mismatches.
+            retain standard React client boundaries (<code>&apos;use client&apos;</code>). Package
+            entries preserve client boundaries and stable IDs for server rendering and hydration.
+            Keep application event handlers in client components.
           </p>
           <h3>Vite + React</h3>
           <p>
@@ -115,8 +143,8 @@ export default async function Section({ params }: { params: Promise<{ section: s
           </p>
           <h2>4. Or own the source code</h2>
           <p>
-            Prefer having zero dependencies? Use the DEVVY UI CLI to vendor audited component
-            implementations directly into your project:
+            Prefer owning the implementation? Use the published scoped CLI in your React project to
+            copy canonical components, their dependencies and shared styles:
           </p>
           <CopyCode
             label="Source ownership commands"
@@ -184,8 +212,8 @@ export default async function Section({ params }: { params: Promise<{ section: s
         <>
           <h1>One hundred ways to start.</h1>
           <p className="page-lead">
-            v{releaseVersion} candidate · 23 October 2026. The published beta remains available
-            through <code>@devvy-ui/react@beta</code> until stable publication is verified.
+            {releaseLabel} · 23 October 2026. All six packages are publicly available on npm at
+            version {releaseVersion}, with <code>latest</code> pointing to the stable release.
           </p>
           <h2>The complete component inventory</h2>
           <p>
@@ -217,9 +245,9 @@ export default async function Section({ params }: { params: Promise<{ section: s
             <li>Build, type, unit, SSR, hydration, axe and browser verification tools.</li>
           </ul>
           <p>
-            This checkout prepares the stable 0.2.0 release. Publication and website deployment are
-            separate maintainer actions. See the repository verification record for checks actually
-            run; configured CI alone is not evidence that a candidate passed.
+            Install with <code>npm install @devvy-ui/react</code>. The historical <code>beta</code>
+            tag remains at 0.1.0-beta.2. See the repository verification record for checks actually
+            run and the remaining manual accessibility and device review.
           </p>
         </>
       ) : section === 'contributing' ? (
@@ -289,7 +317,10 @@ export default async function Section({ params }: { params: Promise<{ section: s
               </tr>
               <tr>
                 <td>Modern browsers</td>
-                <td>276 local checks passed across Chromium, Firefox and WebKit</td>
+                <td>
+                  498 cases have passing latest local results across the full run and targeted
+                  reruns
+                </td>
               </tr>
               <tr>
                 <td>React 16/17, Vue, Svelte, Elements</td>

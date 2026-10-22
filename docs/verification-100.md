@@ -1,7 +1,12 @@
-# 100-component candidate — 23 October 2026
+# 100-component release verification — 23 October 2026
 
-Candidate: **0.2.0**, preparing npm **latest**. The registry last verified beta.2 under
-beta and beta.1 under latest. No 0.2.0 publication or deployment is implied.
+Release: **v0.2.0 Stable**. The live npm registry was verified on 23 October 2026:
+all six scoped packages have version 0.2.0 and `latest: 0.2.0`; `beta` remains at
+0.1.0-beta.2. Their published manifests expose the documented React, CSS and CLI entries.
+This confirms package publication, not deployment of this documentation update.
+
+The implementation checks below were recorded before publication. Documentation release
+checks are tracked separately in [the stable docs verification record](verification-stable-docs.md).
 
 The canonical inventory contains exactly 100 primary components. The final 50 are:
 

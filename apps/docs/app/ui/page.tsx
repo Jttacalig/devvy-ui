@@ -2,17 +2,55 @@ import Link from 'next/link';
 import { Badge, Separator } from '@devvy-ui/react';
 import { LandingStudio, LandingDetails } from '../../components/LandingStudio';
 import { LandingInstall } from '../../components/LandingInstall';
+import { LandingHeroBar } from '../../components/LandingHeroBar';
 import { catalog } from '../../lib/catalog';
-import { releaseVersion, publishedNpmVersion } from '../../lib/release';
+import { docsMetadata } from '../../lib/metadata';
+import {
+  docsUrl,
+  releaseLabel,
+  releaseVersion,
+  githubRepoUrl,
+  npmPackageUrl,
+} from '../../lib/release';
+
+export const metadata = docsMetadata(
+  '100 React components. Every detail yours.',
+  'DEVVY UI v0.2.0 Stable is released. Build with 100 TypeScript React components, keyboard accessibility, custom themes, optional Glass and source you own.',
+);
 
 export default function Home() {
   return (
     <div className="landing-next">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'SoftwareSourceCode',
+            name: 'DEVVY UI',
+            version: releaseVersion,
+            description:
+              '100 typed React components with customizable themes and optional DEVVY GLASS.',
+            url: docsUrl,
+            codeRepository: githubRepoUrl,
+            downloadUrl: npmPackageUrl,
+            license: 'https://opensource.org/license/mit',
+            programmingLanguage: ['TypeScript', 'CSS'],
+            author: {
+              '@type': 'Organization',
+              name: 'DEV STATION',
+              url: 'https://www.dev-station.dev',
+            },
+          }),
+        }}
+      />
       <section className="landing-intro" aria-labelledby="hero-title">
         <div className="release-note">
           <span className="status-dot" aria-hidden="true" />
-          <span className="release-note-label">INDEPENDENT BY DESIGN</span>
-          <Badge tone="neutral">v{releaseVersion}</Badge>
+          <Link className="release-note-label" href="/ui/changelog">
+            OFFICIALLY RELEASED ↗
+          </Link>
+          <Badge tone="neutral">{releaseLabel}</Badge>
           <Badge tone="neutral">{catalog.length} components</Badge>
         </div>
         <div className="landing-hero-grid">
@@ -23,8 +61,8 @@ export default function Home() {
               <span>Own every detail.</span>
             </h1>
             <p className="landing-lead">
-              Thoughtful React components for interfaces that feel like you. Native behavior,
-              ordinary CSS, and source you can shape into something your own.
+              100 TypeScript React components, now stable. Keyboard-friendly interactions,
+              customizable themes, and source you can shape into something your own.
             </p>
             <div className="hero-actions">
               <Link
@@ -33,17 +71,27 @@ export default function Home() {
                 data-size="lg"
                 href="/ui/getting-started"
               >
-                Start building <span aria-hidden="true">↗</span>
+                Get started <span aria-hidden="true">↗</span>
               </Link>
               <Link className="landing-text-link" href="/ui/components">
                 Explore all {catalog.length} components <span aria-hidden="true">→</span>
               </Link>
             </div>
+            <LandingHeroBar />
             <div className="landing-quiet-facts">
               <span>React 18 &amp; 19</span>
               <span>MIT licensed</span>
               <span>Source included</span>
             </div>
+            <nav className="landing-resource-links" aria-label="Release resources">
+              <Link href="/ui/playground#code-playground">Playground ↗</Link>
+              <a href={githubRepoUrl} target="_blank" rel="noreferrer">
+                GitHub ↗
+              </a>
+              <a href={npmPackageUrl} target="_blank" rel="noreferrer">
+                npm ↗
+              </a>
+            </nav>
           </div>
           <aside className="landing-margin-note">
             <span className="landing-index">01 — 100</span>
@@ -103,9 +151,9 @@ export default function Home() {
       <Separator className="landing-rule" />
       <LandingInstall />
       <p className="landing-release-context">
-        This checkout: v{releaseVersion}, {catalog.length} implemented components. Published npm
-        package: v{publishedNpmVersion}. See the <Link href="/ui/changelog">release notes</Link> for
-        availability and verification.
+        {releaseLabel} is available on npm. All six packages share version {releaseVersion}, with{' '}
+        {catalog.length} React components in the library. Read the{' '}
+        <Link href="/ui/changelog">release notes</Link>.
       </p>
       <section className="landing-closing">
         <span className="landing-kicker">YOUR NEXT IDEA IS A GOOD PLACE TO START.</span>

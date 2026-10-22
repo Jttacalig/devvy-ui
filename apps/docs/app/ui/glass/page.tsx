@@ -1,12 +1,13 @@
-import type { Metadata } from 'next';
+import { docsMetadata } from '../../../lib/metadata';
+import { releaseLabel } from '../../../lib/release';
 import { GlassPreview } from '../../../components/GlassPreview';
 import { CopyCode } from '../../../components/CopyCode';
 import Link from 'next/link';
-export const metadata: Metadata = {
-  title: 'DEVVY GLASS',
-  description:
-    'An optional liquid glass material for DEVVY UI. Adaptive frost, quiet lighting and native interactions.',
-};
+export const metadata = docsMetadata(
+  'DEVVY GLASS',
+  'An optional liquid glass theme in DEVVY UI v0.2.0 Stable. Adaptive frost, light and dark modes, reduced effects and native interactions.',
+  '/glass',
+);
 export default function Page() {
   return (
     <article className="glass-page">
@@ -18,7 +19,7 @@ export default function Page() {
           <span className="glass-material-tag">
             <span className="status-dot" /> DEVVY GLASS
           </span>
-          <span>THE MATERIAL COLLECTION / 01</span>
+          <span>{releaseLabel}</span>
         </div>
         <h1>
           Clarity.
@@ -80,8 +81,8 @@ export default function Page() {
         <h2>One optional import.</h2>
         <p>
           Import the glass layer after the base styles. Scope it around the part of your interface
-          that needs depth. DEVVY UI is published on npm as <code>@devvy-ui/react@beta</code>; these
-          imports work across Next.js, Vite, and standard React applications.
+          that needs depth. Install the stable package with <code>npm install @devvy-ui/react</code>
+          ; these imports work across Next.js, Vite, and standard React applications.
         </p>
         <CopyCode
           label="Glass setup and usage"
