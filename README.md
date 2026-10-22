@@ -6,8 +6,9 @@
 
 An original, React-first UI foundation by [DEV STATION](https://www.dev-station.dev).
 Repository: [Jttacalig/devvy-ui](https://github.com/Jttacalig/devvy-ui).
-MIT licensed. Version **0.1.0-beta.2**. Packages are **unpublished**; scope and CLI name
-ownership have not been verified. This checkout is independent of the private Dev Station app.
+MIT licensed. Current repository version **0.1.0-beta.2**. Beta packages are available on npm;
+install the `beta` dist-tag for the newest beta release. The library is developed independently
+of the private Dev Station app. Official docs: https://devvy-ui.dev-station.dev/ui.
 
 This beta milestone contains **50 of the planned 100 components**. All six packages follow
 one fixed Changesets version; website release labels read the React package metadata.
