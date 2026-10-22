@@ -8,9 +8,21 @@ import { completionCatalog } from '../../../../lib/completion-catalog';
 import { ComponentPreview } from '../../../../components/ComponentPreview';
 import { CopyCode } from '../../../../components/CopyCode';
 import { SourceEditor } from '../../../../components/SourceEditor';
+import { releaseLabel } from '../../../../lib/release';
+import { docsMetadata } from '../../../../lib/metadata';
 
 export function generateStaticParams() {
   return catalog.map((item) => ({ slug: item.slug }));
+}
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const item = catalog.find((entry) => entry.slug === slug);
+  if (!item) notFound();
+  return docsMetadata(
+    item.name,
+    `${item.description} Typed React usage, API, interactive preview and editable source in DEVVY UI ${releaseLabel}.`,
+    `/components/${slug}`,
+  );
 }
 
 export default async function ComponentPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -33,6 +45,7 @@ export default async function ComponentPage({ params }: { params: Promise<{ slug
       </div>
       <div className="component-page-header">
         <div className="component-badges">
+          <Badge tone="neutral">{releaseLabel}</Badge>
           <Badge tone={isEnhancement ? 'brand' : 'neutral'}>
             {isEnhancement ? 'Optional Enhancement' : 'Foundation Component'}
           </Badge>
@@ -127,10 +140,12 @@ export default async function ComponentPage({ params }: { params: Promise<{ slug
 
       <section className="component-doc-section" aria-labelledby="ownership-heading">
         <h2 id="ownership-heading">Source ownership</h2>
-        <p>Add the audited implementation directly into your repository with the CLI:</p>
+        <p>
+          Run <code>npx @devvy-ui/cli init</code> once in your React project, then add the source:
+        </p>
         <CopyCode
           label={`${item.name} source installation`}
-          code={`node /path/to/devvy-ui/packages/cli/src/cli.mjs add ${item.slug}`}
+          code={`npx @devvy-ui/cli add ${item.slug}`}
         />
       </section>
 

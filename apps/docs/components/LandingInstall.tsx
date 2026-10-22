@@ -10,14 +10,14 @@ import {
   Badge,
   CopyButton,
 } from '@devvy-ui/react';
-import { publishedNpmTag, publishedNpmVersion } from '../lib/release';
+import { publishedNpmVersion, releaseLabel } from '../lib/release';
 
 export function LandingInstall() {
   const pkgManagers = [
-    { name: 'npm', cmd: `npm install @devvy-ui/react@${publishedNpmTag}` },
-    { name: 'pnpm', cmd: `pnpm add @devvy-ui/react@${publishedNpmTag}` },
-    { name: 'yarn', cmd: `yarn add @devvy-ui/react@${publishedNpmTag}` },
-    { name: 'bun', cmd: `bun add @devvy-ui/react@${publishedNpmTag}` },
+    { name: 'npm', cmd: 'npm install @devvy-ui/react' },
+    { name: 'pnpm', cmd: 'pnpm add @devvy-ui/react' },
+    { name: 'Yarn', cmd: 'yarn add @devvy-ui/react' },
+    { name: 'Bun', cmd: 'bun add @devvy-ui/react' },
   ] as const;
 
   const pkgTabs = pkgManagers.map(({ name, cmd }) => ({
@@ -132,8 +132,8 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       content: (
         <div className="framework-guide-content">
           <p>
-            Want complete source control with zero runtime dependencies? Use the DEVVY UI CLI to
-            copy audited canonical implementations directly into your project:
+            Want to own the implementation? Use the DEVVY UI CLI in your React project to copy
+            canonical components and their source dependencies into your repository:
           </p>
           <div className="install-terminal-box">
             <pre tabIndex={0} role="region" aria-label="CLI vendor commands">
@@ -158,7 +158,7 @@ npx @devvy-ui/cli doctor`}</code>
   const packages = [
     {
       name: '@devvy-ui/react',
-      desc: '100 typed React components in this checkout with individual entry points',
+      desc: '100 typed React components with individual entry points',
       role: 'Core Component Library',
       url: 'https://www.npmjs.com/package/@devvy-ui/react',
     },
@@ -180,6 +180,18 @@ npx @devvy-ui/cli doctor`}</code>
       role: 'DOM-Free Logic',
       url: 'https://www.npmjs.com/package/@devvy-ui/core',
     },
+    {
+      name: '@devvy-ui/registry',
+      desc: 'Canonical source snapshots with component and helper dependencies',
+      role: 'Source Registry',
+      url: 'https://www.npmjs.com/package/@devvy-ui/registry',
+    },
+    {
+      name: '@devvy-ui/cli',
+      desc: 'Install source, check your setup, and protect local edits',
+      role: 'Source Installer',
+      url: 'https://www.npmjs.com/package/@devvy-ui/cli',
+    },
   ];
 
   return (
@@ -193,7 +205,7 @@ npx @devvy-ui/cli doctor`}</code>
             start building considered interfaces.
           </p>
         </div>
-        <Badge tone="brand">NPM BETA RELEASE</Badge>
+        <Badge tone="brand">{releaseLabel}</Badge>
       </div>
 
       <div className="install-grid">
@@ -205,7 +217,8 @@ npx @devvy-ui/cli doctor`}</code>
             </div>
             <CardTitle>Choose your package manager</CardTitle>
             <CardDescription>
-              Install <code>@devvy-ui/react</code> with peer dependencies React 18 or 19.
+              For an existing React 18 or 19 project. React and React DOM are peers; core, styles
+              and tokens are installed through the package dependencies.
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -269,7 +282,8 @@ npx @devvy-ui/cli doctor`}</code>
         <div className="packages-header">
           <h3>Published npm packages</h3>
           <p className="packages-subtext">
-            All packages are published under the <code>@devvy-ui</code> npm scope by DEV STATION.
+            All six packages are published at v{publishedNpmVersion} on <code>latest</code> under
+            the <code>@devvy-ui</code> npm scope by DEV STATION.
           </p>
         </div>
         <div className="packages-grid">

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { releaseLabel } from '../lib/release';
 import '@devvy-ui/tokens/theme.css';
 import '@devvy-ui/styles';
 import './site.css';
@@ -7,9 +8,13 @@ import './editors.css';
 import './paper.css';
 
 export const metadata: Metadata = {
-  title: { default: 'DEVVY UI — Build once. Style freely.', template: '%s · DEVVY UI' },
+  metadataBase: new URL('https://devvy-ui.dev-station.dev'),
+  title: {
+    default: `DEVVY UI ${releaseLabel} — 100 React components`,
+    template: `%s · DEVVY UI ${releaseLabel}`,
+  },
   description:
-    'A small, accessible React foundation by DEV STATION. Open source. Ordinary CSS. Every detail yours.',
+    'DEVVY UI v0.2.0 Stable: 100 typed React components, keyboard accessibility, customizable themes, optional DEVVY GLASS and MIT source ownership.',
   icons: { icon: '/devvy-logo.png', apple: '/devvy-logo.png' },
 };
 export default function Layout({ children }: { children: React.ReactNode }) {

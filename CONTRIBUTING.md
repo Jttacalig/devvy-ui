@@ -1,6 +1,6 @@
 # Contributing to Devvy UI
 
-The current 0.2.0 candidate contains 100 primary components. Read
+The current v0.2.0 Stable release contains 100 primary components. Read
 [architecture](docs/architecture.md), [compatibility](docs/compatibility.md) and
 [current verification](docs/verification-100.md) before changing a public contract.
 

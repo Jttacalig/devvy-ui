@@ -45,7 +45,7 @@ including composed dependencies. No new dependency was added. Full CSS is shared
 focused JavaScript import does not imply its own isolated CSS bundle. Timing samples were
 collected during development workloads and support no comparative performance claim.
 
-## 100-component candidate
+## 100-component release
 
 benchmarks/first50.js freezes the previous runtime surface. Its 10,500-byte JavaScript and
 6,200-byte CSS ceilings remain unchanged, alongside every older focused-import budget.

@@ -4,5 +4,5 @@ Framework-independent, DOM-free utilities. `getNavigationIndex` implements enabl
 navigation with Home, End, wrapping, vertical orientation and RTL. Adapters own rendering,
 focus and state. `cx` joins optional class names. No global events or browser globals.
 
-Part of the fixed 0.2.0 candidate. React-local hooks and DOM effects belong to the React
+Part of the fixed 0.2.0 Stable release. React-local hooks and DOM effects belong to the React
 adapter, not this package. See repository docs/compatibility.md for tested targets.

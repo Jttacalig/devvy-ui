@@ -4,7 +4,7 @@ import { usePathname } from 'next/navigation';
 import { useId, useState } from 'react';
 import { Input, Badge } from '@devvy-ui/react';
 import { InterfaceIcon } from './InterfaceIcon';
-import { releaseVersion } from '../lib/release';
+import { releaseLabel } from '../lib/release';
 
 export function Navigation({
   items: catalog,
@@ -104,7 +104,7 @@ export function Navigation({
             <span className="status-dot" />
             <span>Independent MIT Foundation</span>
           </div>
-          <span className="sidebar-version-tag">v{releaseVersion} · DEV STATION</span>
+          <span className="sidebar-version-tag">{releaseLabel} · DEV STATION</span>
         </div>
       </div>
     </aside>

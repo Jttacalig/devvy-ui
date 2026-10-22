@@ -5,7 +5,7 @@ import { Navigation } from '../../components/Navigation';
 import { ThemeControl } from '../../components/ThemeControl';
 import { HeaderNavigation } from '../../components/HeaderNavigation';
 import { catalog } from '../../lib/catalog';
-import { releaseChannel, releaseVersion } from '../../lib/release';
+import { releaseLabel } from '../../lib/release';
 
 export default function UILayout({ children }: { children: React.ReactNode }) {
   return (
@@ -21,8 +21,8 @@ export default function UILayout({ children }: { children: React.ReactNode }) {
           <span className="wordmark-title">
             devvy<span className="wordmark-ui">ui</span>
           </span>
-          <Badge tone="brand" className="alpha-tag">
-            {releaseChannel}
+          <Badge tone="brand" className="release-tag">
+            {releaseLabel}
           </Badge>
         </Link>
         <HeaderNavigation />
@@ -84,7 +84,7 @@ export default function UILayout({ children }: { children: React.ReactNode }) {
               <span>Open source under MIT license</span>
             </div>
             <div className="footer-badge">
-              <Badge tone="neutral">v{releaseVersion}</Badge>
+              <Badge tone="neutral">{releaseLabel}</Badge>
             </div>
           </footer>
         </main>

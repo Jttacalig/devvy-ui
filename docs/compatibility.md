@@ -2,7 +2,7 @@
 
 Framework, tooling and browser compatibility are separate promises.
 
-The current candidate is **0.2.0** with 100 components. See
+The current stable release is **0.2.0** with 100 components. See
 [completion verification](verification-100.md) for local results and remaining manual gates.
 
 | Target                                            | Scope                                                                                  |
@@ -23,7 +23,7 @@ Browser CSS targets modern evergreen engines: custom properties, logical propert
 color-scheme, focus-visible and appearance. Docs also use color-mix and dynamic viewport
 units. Older browsers require separate validation and are not promised by framework support.
 Chromium, WebKit and Firefox have Playwright projects. Results are recorded per candidate
-in the verification records; historical pass counts do not validate this candidate.
+in the verification records; historical pass counts do not validate this release.
 Keyboard and screen-reader checks remain a separate manual gate.
 
 React package entry points are ESM and have client boundaries. Do not import event handlers

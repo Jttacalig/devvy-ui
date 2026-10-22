@@ -36,7 +36,7 @@ Future adapters must implement labeling, refs/focus, SSR IDs and lifecycle clean
 own framework while reusing core navigation and token CSS. Do not ship empty framework
 packages or promise adapters before testing actual applications.
 
-## 100-component candidate
+## 100-component release
 
 The inventory is exactly 100 primary names at 0.2.0. Card helpers, variants and composed
 application/AI examples do not inflate that count. `completion-catalog.ts` and

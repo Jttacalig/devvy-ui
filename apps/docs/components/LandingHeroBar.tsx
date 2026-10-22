@@ -1,10 +1,10 @@
 'use client';
 
 import { CopyButton, Badge } from '@devvy-ui/react';
-import { publishedNpmTag } from '../lib/release';
+import { installCommand } from '../lib/release';
 
 export function LandingHeroBar() {
-  const installCmd = `npm install @devvy-ui/react@${publishedNpmTag}`;
+  const installCmd = installCommand;
 
   return (
     <div className="hero-install-bar" role="region" aria-label="Quick installation">

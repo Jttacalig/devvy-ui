@@ -8,6 +8,6 @@ DEVVY GLASS is optional: import `@devvy-ui/styles/glass.css` after the base styl
 scope it with `<Glass>` or `data-devvy-material="glass"`. It is not included in the default
 entry. See docs/glass.md for material tokens and opaque/accessibility fallbacks.
 
-The 0.2.0 candidate styles all 100 primary components, including overlays, data and media.
+The 0.2.0 Stable release styles all 100 primary components, including overlays, data and media.
 Focused JavaScript imports share this stylesheet. Override scoped --dvy- variables and
 dvy- classes after the base import; retain visible focus and reduced-effects fallbacks.

@@ -1,12 +1,12 @@
 # @devvy-ui/react
 
-Original MIT React foundation by DEV STATION. This checkout prepares 0.2.0 with 100 primary components.
-The verified published beta is 0.1.0-beta.2; stable publication is a separate maintainer step.
+Original MIT React foundation by DEV STATION. DEVVY UI v0.2.0 Stable is published on npm with 100 primary components.
+The latest tag points to 0.2.0; the historical beta tag remains at 0.1.0-beta.2.
 Package: https://www.npmjs.com/package/@devvy-ui/react.
 Requires react/react-dom ^18.2.0 or ^19.0.0; exact tested versions are in docs/compatibility.md.
 
 ```sh
-npm install @devvy-ui/react@beta
+npm install @devvy-ui/react
 ```
 
 Import tokens/theme.css, then @devvy-ui/styles once. Import components from
