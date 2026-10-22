@@ -94,6 +94,23 @@ SSR timing samples during development are not comparative claims.
 
 ## Remaining release gates
 
+### Linux CI follow-up
+
+The [initial public CI browser job](https://github.com/Jttacalig/devvy-ui/actions/runs/39790946539/job/119866492529)
+for `d131ba9` passed 270 checks and failed six: the SegmentedControl and CircularProgress
+pages overflowed at 320px in Chromium, Firefox and WebKit. Wider Linux system-font metrics
+exposed unbreakable component headings; the earlier Windows results remain historical evidence.
+The Node 22/24 verification jobs and both installed React consumer jobs passed in that run.
+
+Component-page headings now allow emergency wrapping without changing their text, font size
+or component implementations. A regression check forces a wider monospace fallback at 320px
+and checks the actual text bounds and document width in light/dark and LTR/RTL. It failed
+in all three local engines before the fix. After the fix, all 33 targeted browser checks
+passed (11 per engine), including the fallback-font cases; build, lint and formatting also
+passed. The fresh Linux CI result is available on [PR #9](https://github.com/Jttacalig/devvy-ui/pull/9).
+
+### Manual and release checks
+
 Manual NVDA/VoiceOver, zoom, touch/native-picker, forced-color and target-device review remains
 required. Real browser axe checks do not certify WCAG compliance. Custom palettes need their
 own contrast review. Public CI and Node 22/Linux results are separate evidence. Complex overlay,

@@ -174,6 +174,40 @@ test('copy action reports successful copying and exposes a focused manual fallba
   await expect(fallback).toHaveValue('--dvy-brand: #087565;');
 });
 
+test('long component headings fit narrow screens with wider fallback fonts', async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 900 });
+  for (const slug of ['segmented-control', 'circular-progress']) {
+    await page.goto('/ui/components/' + slug);
+    const heading = page.getByRole('heading', { level: 1 });
+    // System font metrics differ between Windows and the Linux CI runner.
+    await heading.evaluate((element) => {
+      element.style.fontFamily = 'monospace';
+    });
+    for (const dir of ['ltr', 'rtl']) {
+      await page
+        .locator('html')
+        .evaluate((element, direction) => element.setAttribute('dir', direction), dir);
+      for (const theme of ['light', 'dark']) {
+        await page.getByRole('combobox', { name: 'Site theme' }).selectOption(theme);
+        expect(
+          await heading.evaluate((element) => {
+            const bounds = element.getBoundingClientRect();
+            const range = document.createRange();
+            range.selectNodeContents(element);
+            return [...range.getClientRects()].every(
+              (line) => line.left >= bounds.left - 1 && line.right <= bounds.right + 1,
+            );
+          }),
+          slug + ' heading in ' + dir + '/' + theme,
+        ).toBe(true);
+        expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
+          true,
+        );
+      }
+    }
+  }
+});
+
 for (let start = 0; start < midpointCatalog.length; start += 10) {
   const group = midpointCatalog.slice(start, start + 10);
   test(
