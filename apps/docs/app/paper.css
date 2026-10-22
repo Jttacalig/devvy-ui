@@ -202,6 +202,33 @@ body {
 .principles-cards {
   gap: 2rem;
 }
+.principles-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+  gap: 2rem;
+}
+.hero-install-bar {
+  background: var(--dvy-surface);
+  border-radius: 0.25rem;
+  border-color: color-mix(in srgb, var(--dvy-border) 60%, transparent);
+}
+.install-card,
+.framework-card,
+.package-card,
+.showcase-card {
+  background: var(--dvy-surface);
+  border-radius: 0.25rem;
+  border-color: color-mix(in srgb, var(--dvy-border) 60%, transparent);
+}
+.install-terminal-box {
+  background: color-mix(in srgb, var(--dvy-surface) 75%, var(--dvy-background));
+  border-radius: 0.25rem;
+  border-color: color-mix(in srgb, var(--dvy-border) 50%, transparent);
+}
+.hero-npm-badge {
+  font-family: var(--dvy-font-mono);
+  font-size: 0.6875rem;
+}
 .principle-card,
 .principle-card:hover {
   background: transparent;

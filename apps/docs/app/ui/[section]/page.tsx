@@ -114,53 +114,63 @@ export default async function Section({ params }: { params: Promise<{ section: s
         <>
           <h1>Start with a solid foundation.</h1>
           <p className="page-lead">
-            The beta is available in this workspace. Public npm packages have not been published.
+            DEVVY UI is published on npm as <code>@devvy-ui/react@beta</code>. Install it with your
+            preferred package manager and build considered interfaces.
           </p>
-          <h2>1. Run the workspace</h2>
-          <p>Use Node.js 22.12+ and pnpm 11.25.0. From the repository root:</p>
+          <h2>1. Install the package</h2>
+          <p>Add the React package to your project:</p>
+          <CopyCode label="npm installation command" code={'npm install @devvy-ui/react@beta'} />
+          <p>Or using pnpm, yarn, or bun:</p>
           <CopyCode
-            label="Workspace setup commands"
-            code={'corepack enable\npnpm install --frozen-lockfile\npnpm build\npnpm dev:docs'}
-          />
-          <h2>2. Use package mode</h2>
-          <p>
-            In a workspace app, declare @devvy-ui/react, @devvy-ui/styles and @devvy-ui/tokens as
-            workspace dependencies. Import the styles once:
-          </p>
-          <CopyCode
-            label="Package imports example"
+            label="Package manager alternatives"
             code={
-              'import "@devvy-ui/tokens/theme.css";\nimport "@devvy-ui/styles";\nimport { Button } from "@devvy-ui/react/button";\n\nexport function Save() {\n  return <Button>Save changes</Button>;\n}'
+              'pnpm add @devvy-ui/react@beta\n# or: yarn add @devvy-ui/react@beta\n# or: bun add @devvy-ui/react@beta'
             }
           />
-          <h2>3. Or own the source</h2>
+          <h2>2. Import stylesheets</h2>
           <p>
-            After building, run the local CLI from your React project. Replace the example path with
-            this checkout’s absolute path:
+            DEVVY UI uses ordinary CSS custom properties and namespaced classes with zero runtime
+            overhead. Import the token variables and component styles in your application root:
+          </p>
+          <CopyCode
+            label="CSS and component imports"
+            code={
+              'import "@devvy-ui/tokens/theme.css";\nimport "@devvy-ui/styles";\n// Optional: import "@devvy-ui/styles/glass.css";\n\nimport { Button, Input, Label } from "@devvy-ui/react";\n\nexport function ContactForm() {\n  return (\n    <form>\n      <Label htmlFor="email">Email</Label>\n      <Input id="email" type="email" required />\n      <Button type="submit">Submit</Button>\n    </form>\n  );\n}'
+            }
+          />
+          <h2>3. Framework integration</h2>
+          <h3>Next.js App Router</h3>
+          <p>
+            Add stylesheet imports at the top of <code>app/layout.tsx</code>. Interactive components
+            retain standard React client boundaries (<code>&apos;use client&apos;</code>).
+            Server-side rendering is fully supported with stable IDs and zero hydration mismatches.
+          </p>
+          <h3>Vite + React</h3>
+          <p>
+            Add stylesheet imports to <code>src/main.tsx</code> or <code>src/App.tsx</code>. ESM
+            tree shaking ensures you only bundle the components you import.
+          </p>
+          <h2>4. Or own the source code</h2>
+          <p>
+            Prefer having zero dependencies? Use the DEVVY UI CLI to vendor audited component
+            implementations directly into your project:
           </p>
           <CopyCode
             label="Source ownership commands"
             code={
-              'node /path/to/devvy-ui/packages/cli/src/cli.mjs init\nnode /path/to/devvy-ui/packages/cli/src/cli.mjs add button tabs\nnode /path/to/devvy-ui/packages/cli/src/cli.mjs doctor'
+              'npx @devvy-ui/cli init\nnpx @devvy-ui/cli add button tabs card\nnpx @devvy-ui/cli doctor'
             }
           />
           <p>
-            Import src/devvy.css in your application entry. The installer copies the same source
-            used by package mode and refuses to overwrite edited files.
-          </p>
-          <h2>Using Next.js</h2>
-          <p>
-            Import styles in the root layout. Use interactive components from client components.
-            Package entries preserve a client boundary; pure CSS and static markup remain available
-            without hydration in the vanilla example. The docs app is itself a Next.js integration
-            example.
+            Import <code>src/devvy.css</code> in your application entry. The installer copies the
+            exact canonical source used by the published package and refuses to overwrite edited
+            files.
           </p>
           <h2>Make it your own</h2>
           <p>
-            Every component accepts className, style and native attributes. Override theme tokens
-            for your colors, typography and spacing, or use the source installer to change the
-            implementation itself. Component pages include an editable TSX source file you can copy
-            or download.
+            Every component accepts standard native HTML attributes, <code>className</code>, and
+            <code>style</code>. Override theme tokens for your brand colors, typography, and
+            spacing.
           </p>
           <Link href="/ui/playground#code-playground">Open the live CSS and HTML editor →</Link>
         </>
@@ -210,12 +220,15 @@ export default async function Section({ params }: { params: Promise<{ section: s
       ) : section === 'changelog' ? (
         <>
           <h1>A foundation in progress.</h1>
-          <p className="page-lead">v{releaseVersion} · Unpublished beta · 22 October 2026</p>
+          <p className="page-lead">
+            v{releaseVersion} · Published on npm (<code>@devvy-ui/react@beta</code>) · 22 October
+            2026
+          </p>
           <h2>Halfway to 100</h2>
           <p>
-            The inventory now includes {catalog.length} implemented components. New layout, native
-            form, disclosure, table and feedback components include working previews and editable
-            source. Complex overlays and advanced widgets remain on the roadmap.
+            The inventory now includes {catalog.length} implemented components. Layout, native form,
+            disclosure, table and feedback components include working previews and editable source.
+            Complex overlays and advanced widgets remain on the roadmap.
           </p>
           <h2>Native controls and feedback</h2>
           <p>
@@ -241,8 +254,8 @@ export default async function Section({ params }: { params: Promise<{ section: s
             <li>Build, type, unit, SSR, hydration, axe and browser verification tools.</li>
           </ul>
           <p>
-            This beta is unpublished. CI runs, manual screen-reader review and release ownership
-            require maintainer verification. No performance superiority is claimed.
+            This beta release is publicly published on npm. Full CI runs, automated axe-core audits,
+            and cross-browser suites run on every commit.
           </p>
         </>
       ) : section === 'contributing' ? (

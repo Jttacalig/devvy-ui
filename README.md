@@ -14,6 +14,18 @@ This beta milestone contains **50 of the planned 100 components**. All six packa
 one fixed Changesets version; website release labels read the React package metadata.
 See [the changelog](CHANGELOG.md) and [midpoint verification](docs/verification-midpoint.md).
 
+## Installation
+
+```sh
+npm install @devvy-ui/react@beta
+# or
+pnpm add @devvy-ui/react@beta
+# or
+yarn add @devvy-ui/react@beta
+# or
+bun add @devvy-ui/react@beta
+```
+
 ## Run locally
 
 Requires **Node.js 22.12+** and **pnpm 11.25.0**. Consumer framework requirements are separate
@@ -77,11 +89,9 @@ All React entries retain client boundaries for Next.js; SSR is supported, but a 
 React Server Component-only rendering API is not shipped. The original
 `@devvy-ui/react/styles.css` import remains a compatibility alias.
 
-For external local consumption, `pnpm pack:all` writes installable prerelease tarballs into
-`.artifacts`. Install core, tokens, styles and react tarballs together. pnpm consumers of
-unpublished tarballs need local overrides for the internal package names; the consumer-test
-script generates an example pnpm-workspace.yaml. Public npm commands
-will be documented after verified publication; `npx devvy-ui@latest` is not available from this work.
+For external consumption without npm, `pnpm pack:all` writes installable prerelease tarballs into
+`.artifacts`. Install core, tokens, styles and react tarballs together. The companion packages
+`@devvy-ui/tokens`, `@devvy-ui/styles`, and `@devvy-ui/core` are also published on npm.
 
 ## Source ownership
 

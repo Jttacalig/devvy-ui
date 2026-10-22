@@ -80,8 +80,8 @@ export default function Page() {
         <h2>One optional import.</h2>
         <p>
           Import the glass layer after the base styles. Scope it around the part of your interface
-          that needs depth. The beta packages remain unpublished; these imports work in the
-          workspace or installed beta archives.
+          that needs depth. DEVVY UI is published on npm as <code>@devvy-ui/react@beta</code>; these
+          imports work across Next.js, Vite, and standard React applications.
         </p>
         <CopyCode
           label="Glass setup and usage"

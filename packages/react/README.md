@@ -3,6 +3,10 @@
 Original MIT React foundation by DEV STATION. Public beta available on npm: https://www.npmjs.com/package/@devvy-ui/react.
 Requires react/react-dom ^18.2.0 or ^19.0.0; exact tested versions are in docs/compatibility.md.
 
+```sh
+npm install @devvy-ui/react@beta
+```
+
 Import tokens/theme.css, then @devvy-ui/styles once. Import components from
 @devvy-ui/react or individual entries such as @devvy-ui/react/button.
 All native attributes and forwarded refs are supported; tokens and className customize CSS.
