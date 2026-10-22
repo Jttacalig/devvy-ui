@@ -1330,3 +1330,321 @@ td {
     padding-inline: 0.625rem;
   }
 }
+
+/* Landing Page: npm hero install bar, quickstart & showcase */
+.hero-install-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  max-width: 42rem;
+  margin-block: 1.25rem 1rem;
+  padding: 0.5rem 0.75rem 0.5rem 1rem;
+  background: var(--dvy-surface);
+  border: 1px solid color-mix(in srgb, var(--dvy-border) 60%, transparent);
+  border-radius: var(--dvy-radius-md);
+  box-shadow: 0 1px 3px rgb(0 0 0 / 4%);
+}
+.hero-install-snippet {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+.hero-install-prompt {
+  color: var(--dvy-muted);
+  font-family: var(--dvy-font-mono);
+  font-size: 0.8125rem;
+  user-select: none;
+}
+.hero-install-code {
+  font-family: var(--dvy-font-mono);
+  font-size: 0.8125rem;
+  color: var(--dvy-foreground);
+  overflow-wrap: anywhere;
+}
+.hero-install-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+.hero-npm-status-dot {
+  display: inline-block;
+  width: 0.375rem;
+  height: 0.375rem;
+  border-radius: 9999px;
+  background: #10b981;
+  margin-inline-end: 0.375rem;
+}
+.hero-npm-status-link {
+  text-decoration: none;
+}
+.hero-npm-status-link:hover {
+  text-decoration: none;
+}
+.home-install-section {
+  padding-block: 2rem 1rem;
+}
+.install-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 26rem), 1fr));
+  gap: 1.5rem;
+  margin-block-start: 1.5rem;
+}
+.install-card {
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--dvy-radius-md);
+  border: 1px solid color-mix(in srgb, var(--dvy-border) 60%, transparent);
+  background: var(--dvy-surface);
+}
+.install-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+.install-step-badge {
+  font-family: var(--dvy-font-mono);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--dvy-muted);
+}
+.install-terminal-box {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: color-mix(in srgb, var(--dvy-surface) 60%, var(--dvy-background));
+  border: 1px solid color-mix(in srgb, var(--dvy-border) 40%, transparent);
+  border-radius: var(--dvy-radius-md);
+  min-width: 0;
+}
+.install-terminal-box pre {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  font-family: var(--dvy-font-mono);
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  overflow-x: auto;
+  width: 100%;
+}
+.install-terminal-content {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+.install-terminal-prompt {
+  color: var(--dvy-muted);
+  font-family: var(--dvy-font-mono);
+  user-select: none;
+}
+.install-terminal-code {
+  font-family: var(--dvy-font-mono);
+  font-size: 0.8125rem;
+  overflow-wrap: anywhere;
+}
+.framework-integration-box {
+  margin-top: 1.5rem;
+}
+.framework-card {
+  border-radius: var(--dvy-radius-md);
+  border: 1px solid color-mix(in srgb, var(--dvy-border) 60%, transparent);
+  background: var(--dvy-surface);
+}
+.framework-guide-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+.framework-guide-content p {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--dvy-foreground);
+}
+.framework-guide-content code {
+  font-family: var(--dvy-font-mono);
+  font-size: 0.8125rem;
+  padding: 0.125rem 0.375rem;
+  background: color-mix(in srgb, var(--dvy-border) 20%, transparent);
+  border-radius: 0.25rem;
+}
+.published-packages-section {
+  margin-top: 2rem;
+}
+.packages-header h3 {
+  margin: 0 0 0.25rem;
+  font-size: 1.125rem;
+  letter-spacing: -0.02em;
+}
+.packages-subtext {
+  margin: 0 0 1rem;
+  font-size: 0.8125rem;
+  color: var(--dvy-muted);
+}
+.packages-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+  gap: 1rem;
+}
+.package-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+.package-card {
+  height: 100%;
+  border: 1px solid color-mix(in srgb, var(--dvy-border) 45%, transparent);
+  background: var(--dvy-surface);
+  border-radius: var(--dvy-radius-md);
+}
+.package-card:hover {
+  border-color: var(--dvy-brand);
+}
+.package-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.25rem;
+}
+.package-role {
+  font-family: var(--dvy-font-mono);
+  font-size: 0.625rem;
+  color: var(--dvy-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.package-name {
+  font-family: var(--dvy-font-mono);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+.home-showcase-section {
+  padding-block: 2rem 1rem;
+}
+.showcase-card {
+  margin-top: 1.5rem;
+  border-radius: var(--dvy-radius-md);
+  border: 1px solid color-mix(in srgb, var(--dvy-border) 60%, transparent);
+  background: var(--dvy-surface);
+  padding: 1.5rem;
+}
+.showcase-panel {
+  padding-top: 1rem;
+}
+.showcase-forms-grid,
+.showcase-feedback-grid,
+.showcase-layout-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+  gap: 1.5rem;
+}
+.showcase-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: color-mix(in srgb, var(--dvy-surface) 40%, var(--dvy-background));
+  border: 1px solid color-mix(in srgb, var(--dvy-border) 30%, transparent);
+  border-radius: var(--dvy-radius-md);
+}
+.showcase-group-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--dvy-muted);
+  text-transform: uppercase;
+}
+.showcase-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+.showcase-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.showcase-sublabel {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--dvy-muted);
+  margin-bottom: 0.375rem;
+}
+.showcase-glass-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.glass-showcase-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.glass-showcase-canvas {
+  padding: 2rem;
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--dvy-brand) 12%, transparent),
+    color-mix(in srgb, var(--dvy-surface) 80%, transparent)
+  );
+  border-radius: var(--dvy-radius-md);
+  display: grid;
+  place-items: center;
+}
+.glass-showcase-card {
+  max-width: 32rem;
+  width: 100%;
+}
+.glass-card-header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+.glass-card-status {
+  font-family: var(--dvy-font-mono);
+  font-size: 0.6875rem;
+  color: var(--dvy-muted);
+}
+.glass-card-inner-actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+.principles-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+.npm-release-callout {
+  margin-top: 1.5rem;
+}
+@media (max-width: 480px) {
+  .hero-install-bar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+  .hero-install-actions {
+    justify-content: flex-end;
+  }
+  .showcase-card {
+    padding: 1rem 0.75rem;
+  }
+}

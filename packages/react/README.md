@@ -1,7 +1,11 @@
 # @devvy-ui/react
 
-Original MIT React foundation by DEV STATION. Beta and unpublished.
+Original MIT React foundation by DEV STATION. Published on npm as `@devvy-ui/react@beta`.
 Requires react/react-dom ^18.2.0 or ^19.0.0; exact tested versions are in docs/compatibility.md.
+
+```sh
+npm install @devvy-ui/react@beta
+```
 
 Import tokens/theme.css, then @devvy-ui/styles once. Import components from
 @devvy-ui/react or individual entries such as @devvy-ui/react/button.

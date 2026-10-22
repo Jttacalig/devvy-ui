@@ -6,12 +6,24 @@
 
 An original, React-first UI foundation by [DEV STATION](https://www.dev-station.dev).
 Repository: [Jttacalig/devvy-ui](https://github.com/Jttacalig/devvy-ui).
-MIT licensed. Version **0.1.0-beta.2**. Packages are **unpublished**; scope and CLI name
-ownership have not been verified. This checkout is independent of the private Dev Station app.
+MIT licensed. Published on npm: [`@devvy-ui/react`](https://www.npmjs.com/package/@devvy-ui/react) (`beta`).
+This checkout is independent of the private Dev Station app.
 
 This beta milestone contains **50 of the planned 100 components**. All six packages follow
 one fixed Changesets version; website release labels read the React package metadata.
 See [the changelog](CHANGELOG.md) and [midpoint verification](docs/verification-midpoint.md).
+
+## Installation
+
+```sh
+npm install @devvy-ui/react@beta
+# or
+pnpm add @devvy-ui/react@beta
+# or
+yarn add @devvy-ui/react@beta
+# or
+bun add @devvy-ui/react@beta
+```
 
 ## Run locally
 
@@ -76,11 +88,9 @@ All React entries retain client boundaries for Next.js; SSR is supported, but a 
 React Server Component-only rendering API is not shipped. The original
 `@devvy-ui/react/styles.css` import remains a compatibility alias.
 
-For external local consumption, `pnpm pack:all` writes installable prerelease tarballs into
-`.artifacts`. Install core, tokens, styles and react tarballs together. pnpm consumers of
-unpublished tarballs need local overrides for the internal package names; the consumer-test
-script generates an example pnpm-workspace.yaml. Public npm commands
-will be documented after verified publication; `npx devvy-ui@latest` is not available from this work.
+For external consumption without npm, `pnpm pack:all` writes installable prerelease tarballs into
+`.artifacts`. Install core, tokens, styles and react tarballs together. The companion packages
+`@devvy-ui/tokens`, `@devvy-ui/styles`, and `@devvy-ui/core` are also published on npm.
 
 ## Source ownership
 
