@@ -1,56 +1,31 @@
 # DEVVY UI roadmap
 
-The unpublished `0.1.0-beta.2` milestone implements 29 more layout, form, disclosure and feedback components.
-See [midpoint verification](docs/verification-midpoint.md) for the exact inventory, checks and
-remaining manual release gates. Complex overlays and application widgets remain on the plan.
+The **0.2.0 candidate** implements the full [100-component inventory](docs/roadmap-100.md).
+Each primary name has typed canonical source, focused package exports, source installation
+and an interactive docs preview. See [verification](docs/verification-100.md) for actual results.
 
-The [100-component architecture and phased plan](docs/roadmap-100.md) preserves the existing
-17 components and allocates 83 additions. Select, Alert, Progress and Skeleton plus the
-29 midpoint additions bring the source inventory to 50. The remaining 50 are planned;
-they are not shipped implementations. Release verification and manual review remain separate gates.
+## Delivered
 
-## Delivered foundation and beta milestones
+- Original core, token, CSS and React package boundaries; optional DEVVY GLASS.
+- 100 primary components across forms, overlays, navigation, data, media and application UI.
+- Source ownership, conflict-safe CLI installation and dependency/helper registry closure.
+- Light/dark themes, responsive docs, sandboxed code customization and AI contributor guidance.
+- Interactive landing workspace with table filtering, project creation, menus and a board.
+- Fixed six-package 0.2.0 version preparation and an explicit latest release workflow.
 
-- [x] pnpm/Turbo workspace, exact dependencies, lockfile, strict types and package exports
-- [x] Shared core, tokens, scoped themes and ordinary CSS
-- [x] All ten first-release React components
-- [x] Keyboard, axe, SSR, hydration and local installer checks
-- [x] Next.js documentation, playground, Vite and vanilla CSS examples
-- [x] Generated source registry and local init/add/doctor CLI
-- [x] Size/SSR harness, bundle budgets and external comparator fixture
-- [x] Changesets, CI configuration, release preflight and contributor files
+## Release gates
 
-- [x] Original bar/line/area/donut chart views with HTML data tables
-- [x] Responsive Navbar, composable Sidebar and Breadcrumbs
-- [x] Paper-and-ink docs theme and live component previews
-- [x] Tri-browser verification (Chromium, Firefox, WebKit: 135/135 tests passing)
-- [x] Documentation UI overhaul with native DEVVY UI components
-- [x] Pre-release version progression to beta (`0.1.0-beta.1`) via Changesets
-- [x] 50-component milestone and fixed six-package version advance to `0.1.0-beta.2`
-- [x] 84 unit/installer tests and 276 local browser checks; installed React 18/19 consumers
+- Run and review the complete CI matrix for this candidate; keep local and public CI evidence separate.
+- Complete manual NVDA/VoiceOver, touch, zoom, forced-colors and target-device checks.
+- Review npm scope, package provenance, license/brand rights and release contacts.
+- Use maintainer-approved publishing on main; confirm all six npm versions and latest tags.
+- Verify production docs separately from a local build and preview.
 
-## Before a public beta release
+## Next work
 
-- [ ] Run public GitHub CI and review artifacts, including Linux Firefox results
-- [ ] Complete manual NVDA/VoiceOver, zoom, forced-colors and RTL review
-- [ ] Verify namespace ownership, logo rights, release contacts and dependency licenses
-- [ ] Configure protected branches, private reporting, secret scanning and npm-alpha reviewers
-- [ ] Record idle-hardware benchmark baselines with browser timing experiments
-- [ ] Publish signed/provenance-backed beta packages and confirm clean consumer installs
-- [ ] Integrate /ui into Dev Station hosting with separate Next asset routing
-
-## Next component cycle
-
-DEVVY GLASS, Dialog and Dock are implemented as optional beta enhancements. Complete their
-manual assistive-technology and target-device checks before promoting them to stable.
-
-Dropdown Menu, Tooltip, Popover, Toast, Drawer and Navigation Menu.
-Each needs an interaction specification, focus/overlay review and browser/assistive-tech tests
-before shipping. Proven accessible primitives can be evaluated for complex overlays.
-
-## Later work
-
-Data Table, Combobox, Date Picker, Calendar, Command Palette, Virtualized List, File Upload
-and richer forms. Vue, Svelte and Web Components adapters follow demonstrated core reuse.
-Investigate older React only if demand justifies explicit IDs and extra compatibility costs.
-Add versioned documentation channels when multiple releases exist. Stable release dates are not promised.
+- Optional AI interface compositions: conversation, prompt composer, tool activity, sources
+  and explicit tool approval. See [AI interface direction](docs/ai-interfaces.md).
+- Additional framework adapters only after working implementations and consumer validation.
+- Richer content parsing, variable-height virtualization or scheduling features only as
+  deliberate API extensions; the current documented contracts remain narrow.
+- Measure real applications on representative hardware before making performance rankings.

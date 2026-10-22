@@ -1,5 +1,13 @@
 'use client';
-import { forwardRef, useId, type HTMLAttributes } from 'react';
+import {
+  forwardRef,
+  useId,
+  useState,
+  type HTMLAttributes,
+  type PointerEvent,
+  type ReactNode,
+  type CSSProperties,
+} from 'react';
 import { cx } from '../lib/cx';
 
 export interface ChartDatum {
@@ -12,6 +20,12 @@ export interface ChartProps extends Omit<HTMLAttributes<HTMLElement>, 'title' | 
   data: readonly ChartDatum[];
   type?: 'bar' | 'line' | 'area' | 'donut';
   valueFormatter?: (value: number) => string;
+  axisFormatter?: (value: number) => string;
+  curve?: 'linear' | 'smooth' | 'step';
+  /** Optional externally selected point; ChartInspector supplies this automatically. */
+  activeIndex?: number;
+  /** Optional native SVG definitions for application-owned fills. */
+  definitions?: ReactNode;
   /** Localize the native disclosure for the complete data table. */
   dataLabel?: string;
   emptyLabel?: string;
@@ -26,6 +40,10 @@ export const Chart = forwardRef<HTMLElement, ChartProps>(function Chart(
     data,
     type = 'bar',
     valueFormatter = formatNumber,
+    axisFormatter = valueFormatter,
+    curve = 'linear',
+    activeIndex,
+    definitions,
     dataLabel = 'View data',
     emptyLabel = 'No data to display.',
     className,
@@ -40,14 +58,36 @@ export const Chart = forwardRef<HTMLElement, ChartProps>(function Chart(
     valid.length > 0 &&
     (type !== 'donut' ||
       (valid.every((item) => item.value >= 0) && total > 0 && Number.isFinite(total)));
-  const magnitude = Math.max(...valid.map((item) => Math.abs(item.value)), 1);
+  let minimum = 0,
+    maximum = 0;
+  for (const { value } of valid) {
+    minimum = Math.min(minimum, value);
+    maximum = Math.max(maximum, value);
+  }
+  const magnitude = Math.max(-minimum, maximum, 1);
   // Normalize before subtraction so very large finite values cannot overflow the scale.
-  const low = Math.min(0, ...valid.map((item) => item.value / magnitude));
-  const high = Math.max(0, ...valid.map((item) => item.value / magnitude));
+  const low = minimum / magnitude;
+  const high = maximum / magnitude;
   const span = high - low || 1;
   const y = (value: number) => 204 - ((value / magnitude - low) / span) * 172;
-  const x = (index: number) => (valid.length === 1 ? 288 : 64 + index * (448 / (valid.length - 1)));
-  const points = valid.map((item, index) => `${x(index)},${y(item.value)}`).join(' ');
+  const x = (index: number) =>
+    type === 'bar'
+      ? 56 + (index + 0.5) * (480 / valid.length)
+      : valid.length === 1
+        ? 288
+        : 64 + index * (448 / (valid.length - 1));
+  const path = valid
+    .map((item, index) => {
+      const point = `${x(index)},${y(item.value)}`;
+      if (!index) return 'M' + point;
+      const middle = (x(index - 1) + x(index)) / 2;
+      return curve === 'smooth'
+        ? `C${middle},${y(valid[index - 1].value)} ${middle},${y(item.value)} ${point}`
+        : curve === 'step'
+          ? `H${middle}V${y(item.value)}H${x(index)}`
+          : 'L' + point;
+    })
+    .join(' ');
   let offset = 0;
   return (
     <figure {...props} ref={ref} className={cx('dvy-chart', className)} data-type={type}>
@@ -67,6 +107,8 @@ export const Chart = forwardRef<HTMLElement, ChartProps>(function Chart(
             aria-describedby={description ? `${id}-description` : undefined}
           >
             <title>{title}</title>
+            {definitions}
+
             {type === 'donut' ? (
               <g transform="translate(280 124) rotate(-90)">
                 <circle r="82" fill="none" className="dvy-chart-track" strokeWidth="28" />
@@ -100,7 +142,7 @@ export const Chart = forwardRef<HTMLElement, ChartProps>(function Chart(
                     <g key={tick} className="dvy-chart-grid">
                       <line x1="56" x2="536" y1={position} y2={position} />
                       <text x="48" y={position + 4} textAnchor="end">
-                        {valueFormatter(value)}
+                        {axisFormatter(value)}
                       </text>
                     </g>
                   );
@@ -113,6 +155,7 @@ export const Chart = forwardRef<HTMLElement, ChartProps>(function Chart(
                       <rect
                         key={index}
                         className="dvy-chart-bar"
+                        data-active={activeIndex === index || undefined}
                         x={56 + index * slot + slot * 0.2}
                         width={slot * 0.6}
                         y={Math.min(y(0), y(item.value))}
@@ -126,16 +169,17 @@ export const Chart = forwardRef<HTMLElement, ChartProps>(function Chart(
                 ) : (
                   <>
                     {type === 'area' && (
-                      <polygon
+                      <path
                         className="dvy-chart-area"
-                        points={`64,${y(0)} ${points} ${valid.length === 1 ? 288 : 512},${y(0)}`}
+                        d={`${path} L${x(valid.length - 1)},${y(0)} L${x(0)},${y(0)} Z`}
                       />
                     )}
-                    <polyline className="dvy-chart-line" points={points} />
+                    <path className="dvy-chart-line" d={path} />
                     {valid.map((item, index) => (
                       <circle
                         key={index}
                         className="dvy-chart-point"
+                        data-active={activeIndex === index || undefined}
                         cx={x(index)}
                         cy={y(item.value)}
                         r="4"
@@ -145,6 +189,9 @@ export const Chart = forwardRef<HTMLElement, ChartProps>(function Chart(
                     ))}
                   </>
                 )}
+                {activeIndex !== undefined && valid[activeIndex] && (
+                  <path className="dvy-chart-cursor" d={`M${x(activeIndex)},24V208`} />
+                )}
                 {valid.map((item, index) => {
                   const stride = Math.max(1, Math.ceil(valid.length / 6));
                   if (index % stride !== 0 && index !== valid.length - 1) return null;
@@ -152,7 +199,7 @@ export const Chart = forwardRef<HTMLElement, ChartProps>(function Chart(
                     <text
                       key={index}
                       className="dvy-chart-axis"
-                      x={type === 'bar' ? 56 + (index + 0.5) * (480 / valid.length) : x(index)}
+                      x={x(index)}
                       y="232"
                       textAnchor="middle"
                     >
@@ -201,3 +248,82 @@ export const Chart = forwardRef<HTMLElement, ChartProps>(function Chart(
     </figure>
   );
 });
+
+export interface ChartInspectorProps extends Omit<ChartProps, 'activeIndex' | 'definitions'> {
+  defaultIndex?: number;
+  inspectionLabel?: string;
+}
+
+/** Optional inspection composition. Chart alone does not subscribe to pointer events. */
+export function ChartInspector({
+  data,
+  defaultIndex = 0,
+  inspectionLabel = 'Inspect data',
+  valueFormatter = formatNumber,
+  ...props
+}: ChartInspectorProps) {
+  const valid = data.filter((item) => Number.isFinite(item.value));
+  const [selected, setSelected] = useState(defaultIndex);
+  const index = Math.max(
+    0,
+    Math.min(valid.length - 1, Number.isFinite(selected) ? Math.round(selected) : 0),
+  );
+  const point = valid[index];
+  const id = useId();
+  const inspect = (event: PointerEvent<HTMLDivElement>) => {
+    if (props.type === 'donut' || !valid.length) return;
+    const svg = (event.target as Element).closest('svg');
+    if (!svg) return;
+    const bounds = svg.getBoundingClientRect();
+    const position = (((event.clientX - bounds.left) / bounds.width) * 560 - 64) / 448;
+    const next = Math.max(0, Math.min(valid.length - 1, Math.round(position * (valid.length - 1))));
+    if (next !== index) setSelected(next);
+  };
+  return (
+    <div className="dvy-chart-inspector" onPointerMove={inspect} onPointerDown={inspect}>
+      <Chart
+        {...props}
+        data={data}
+        valueFormatter={valueFormatter}
+        activeIndex={index}
+        style={{ '--dvy-chart-fill': `url(#${id}-gradient)`, ...props.style } as CSSProperties}
+        definitions={
+          <defs>
+            <linearGradient id={id + '-gradient'} x1="0" y1="0" x2="0" y2="1">
+              <stop
+                offset="0%"
+                stopColor="var(--dvy-chart-color, var(--dvy-brand))"
+                stopOpacity="0.32"
+              />
+              <stop
+                offset="100%"
+                stopColor="var(--dvy-chart-color, var(--dvy-brand))"
+                stopOpacity="0.02"
+              />
+            </linearGradient>
+          </defs>
+        }
+      />
+      {point && (
+        <div className="dvy-chart-inspection">
+          <label htmlFor={id}>{inspectionLabel}</label>
+          <input
+            id={id}
+            type="range"
+            min={0}
+            max={valid.length - 1}
+            step={1}
+            value={index}
+            disabled={valid.length < 2}
+            aria-valuetext={point.label + ': ' + valueFormatter(point.value)}
+            onChange={(event) => setSelected(event.target.valueAsNumber)}
+          />
+          <output htmlFor={id}>
+            <span>{point.label}</span>
+            <strong>{valueFormatter(point.value)}</strong>
+          </output>
+        </div>
+      )}
+    </div>
+  );
+}

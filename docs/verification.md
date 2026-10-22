@@ -2,8 +2,9 @@
 
 This page records the earlier foundation/Glass snapshot. For the earlier 21-component
 foundation batch, see [its separate verification record](verification-foundations.md).
-The current unpublished `0.1.0-beta.2` milestone is documented in
-[50-component verification](verification-midpoint.md). Version references below are historical.
+The current 100-component 0.2.0 candidate is documented in
+[completion verification](verification-100.md). The results below are historical snapshots
+and do not stand in for fresh candidate checks.
 
 Environment: Windows x64, Node 24.19.0, pnpm 11.25.0, React 19.3.1,
 TypeScript 5.9.3. These are actual local results, not public CI results.

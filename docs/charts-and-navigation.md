@@ -22,9 +22,9 @@ formatting for axes via `valueFormatter` (the same formatter applies to the tabl
 Labels of the disclosure and empty state can be localized with `dataLabel` and
 `emptyLabel`. The built-in column headings are English.
 
-The chart is intentionally a single-series presentation primitive: no time parser,
-zoom, multiseries stacking or tooltip plugin. Use its native data table on touch,
-keyboard or assistive technology. Set `--dvy-chart-color` or `--dvy-chart-series-1`
+The chart remains single-series: no time parser, zoom or multiseries stacking. The optional
+ChartInspector composition adds pointer/touch inspection and one native keyboard slider.
+Its readout complements the native data table; no hover-only tooltip is required. Set `--dvy-chart-color` or `--dvy-chart-series-1`
 through `--dvy-chart-series-4` to customize the marks.
 
 ## Navigation
@@ -45,8 +45,7 @@ omit its href for a noninteractive current location. Customize the nav name with
 
 All four entries forward refs, native attributes, className and style. They inherit
 light/dark tokens, use visible keyboard focus and include forced-color fallbacks.
-Docs preview data is fictional and labelled as sample data. The landing page now
-demonstrates these components without replacing the existing design.
+Docs preview data is fictional and labelled as sample data. The landing workspace includes an Insights view alongside table and board views.
 
 ## Size accounting
 
@@ -64,3 +63,17 @@ The docs application uses its own paper-and-ink token overrides in paper.css.
 Warm off-white, charcoal and neutral grays replace green in the landing page and
 standard previews; a matching dark mode remains available. Components still come
 from DEVVY UI. The default palette shipped to library consumers is unchanged.
+
+## 0.2.0 chart refinement
+
+Import ChartInspector from the same /chart entry for a gradient area and optional point
+inspection. Chart itself remains an event-free SVG presentation. Choose curve="linear",
+"smooth" or "step"; smooth cubic segments stay inside adjacent endpoint values.
+axisFormatter shortens axis ticks independently of valueFormatter and the full data table.
+Chart accepts native SVG definitions through its definitions slot; --dvy-chart-fill can
+reference a custom paint server or solid color. Give gradient ids stable unique values.
+There is no chart engine, data fetch, autoplay or continuous animation.
+
+The docs period selector filters actual sample data. Its totals and inspection values
+follow the selected period; this is fictional data, not a backend metric. See
+[design direction](design-direction.md) for the wider library review and measured tradeoffs.

@@ -1,20 +1,13 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import {
-  Badge,
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardFooter,
-  Separator,
-} from '@devvy-ui/react';
+import { Separator } from '@devvy-ui/react';
 import { Workbench } from '../../../components/Workbench';
 import { CopyCode } from '../../../components/CopyCode';
 import { catalog } from '../../../lib/catalog';
 import { releaseVersion } from '../../../lib/release';
 import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
+import { ComponentDirectory } from '../../../components/ComponentDirectory';
 import { CodePlayground } from '../../../components/CodePlayground';
 
 const sections = [
@@ -57,39 +50,9 @@ export default async function Section({ params }: { params: Promise<{ section: s
             </p>
           </div>
           <Separator className="section-divider" />
-          <div className="component-directory component-grid">
-            {catalog.map((item, index) => {
-              const isEnhancement = ['glass', 'dialog', 'dock'].includes(item.slug);
-              return (
-                <Link
-                  href={`/ui/components/${item.slug}`}
-                  key={item.slug}
-                  className="component-card-link"
-                >
-                  <Card className="component-catalog-card">
-                    <CardHeader>
-                      <div className="component-card-top">
-                        <span className="component-index">
-                          {String(index + 1).padStart(2, '0')}
-                        </span>
-                        <Badge tone={isEnhancement ? 'brand' : 'neutral'}>
-                          {isEnhancement ? 'Enhancement' : 'Foundation'}
-                        </Badge>
-                      </div>
-                      <CardTitle>{item.name}</CardTitle>
-                      <CardDescription>{item.description}</CardDescription>
-                    </CardHeader>
-                    <CardFooter className="component-card-footer">
-                      <span className="inspect-label">View component</span>
-                      <span className="inspect-arrow" aria-hidden="true">
-                        →
-                      </span>
-                    </CardFooter>
-                  </Card>
-                </Link>
-              );
-            })}
-          </div>
+          <ComponentDirectory
+            items={catalog.map(({ name, slug, description }) => ({ name, slug, description }))}
+          />
         </>
       ) : section === 'playground' ? (
         <>
@@ -219,16 +182,16 @@ export default async function Section({ params }: { params: Promise<{ section: s
         </>
       ) : section === 'changelog' ? (
         <>
-          <h1>A foundation in progress.</h1>
+          <h1>One hundred ways to start.</h1>
           <p className="page-lead">
-            v{releaseVersion} · Published on npm (<code>@devvy-ui/react@beta</code>) · 22 October
-            2026
+            v{releaseVersion} candidate · 23 October 2026. The published beta remains available
+            through <code>@devvy-ui/react@beta</code> until stable publication is verified.
           </p>
-          <h2>Halfway to 100</h2>
+          <h2>The complete component inventory</h2>
           <p>
-            The inventory now includes {catalog.length} implemented components. Layout, native form,
-            disclosure, table and feedback components include working previews and editable source.
-            Complex overlays and advanced widgets remain on the roadmap.
+            The inventory now includes {catalog.length} implemented components with focused imports,
+            typed APIs, source installation and working previews. New overlays, selection controls,
+            date and file inputs, data tables, media and application widgets complete the roadmap.
           </p>
           <h2>Native controls and feedback</h2>
           <p>
@@ -254,8 +217,9 @@ export default async function Section({ params }: { params: Promise<{ section: s
             <li>Build, type, unit, SSR, hydration, axe and browser verification tools.</li>
           </ul>
           <p>
-            This beta release is publicly published on npm. Full CI runs, automated axe-core audits,
-            and cross-browser suites run on every commit.
+            This checkout prepares the stable 0.2.0 release. Publication and website deployment are
+            separate maintainer actions. See the repository verification record for checks actually
+            run; configured CI alone is not evidence that a candidate passed.
           </p>
         </>
       ) : section === 'contributing' ? (

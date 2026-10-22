@@ -1,3 +1,4 @@
+import { createCompletionFixture } from './completion-fixture.mjs';
 // This file is copied into an isolated installed-tarball consumer before execution.
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
@@ -49,6 +50,14 @@ const tree = h(
   h('h2', null, 'Foundation'),
   h(Material),
   h(UI.Chart, { title: 'Activity', data: [{ label: 'Mon', value: 2 }] }),
+  h(UI.ChartInspector, {
+    title: 'Inspected activity',
+    type: 'area',
+    data: [
+      { label: 'Mon', value: 2 },
+      { label: 'Tue', value: 4 },
+    ],
+  }),
   h(UI.Navbar, { label: 'Product', brand: 'Orbit' }, h('a', { href: '/' }, 'Home')),
   h(UI.Sidebar, { label: 'Routes' }, h('a', { href: '/projects' }, 'Projects')),
   h(UI.Breadcrumbs, { items: [{ label: 'Home', href: '/' }, { label: 'Projects' }] }),
@@ -141,6 +150,7 @@ const tree = h(
   h(UI.DescriptionList, { items: [{ term: 'Plan', description: 'Team' }] }),
   h(UI.Meter, { label: 'Storage', value: 0.4 }),
   h(UI.CopyButton, { text: 'theme token' }),
+  createCompletionFixture(UI, h),
   h(Button, null, 'Save'),
   h(UI.Tabs, {
     label: 'Views',
@@ -198,5 +208,5 @@ assert.equal(root.querySelector('[role="tabpanel"]:not([hidden])').textContent, 
 await act(async () => hydrated.unmount());
 dom.window.close();
 console.log(
-  `Installed package consumer passed: React ${React.version}; foundation plus Glass/Dialog/Dock, public exports, SSR, hydration, mixed state, dialog fallback and keyboard interaction.`,
+  `Installed package consumer passed: React ${React.version}; all 100 primary exports and optional chart inspection, public exports, SSR, hydration, mixed state, dialog fallback and keyboard interaction.`,
 );

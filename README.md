@@ -6,13 +6,16 @@
 
 An original, React-first UI foundation by [DEV STATION](https://www.dev-station.dev).
 Repository: [Jttacalig/devvy-ui](https://github.com/Jttacalig/devvy-ui).
-MIT licensed. Current repository version **0.1.0-beta.2**. Beta packages are available on npm;
-install the `beta` dist-tag for the newest beta release. The library is developed independently
-of the private Dev Station app. Official docs: https://devvy-ui.dev-station.dev/ui.
+MIT licensed. Current repository candidate: **0.2.0**, with **100 primary components**.
+The latest registry check found **0.1.0-beta.2** under the npm `beta` tag; preparing
+0.2.0 does not publish it or change npm tags. The stable release will use `latest`.
+Official docs: https://devvy-ui.dev-station.dev/ui. The library is independent of the
+private Dev Station app.
 
-This beta milestone contains **50 of the planned 100 components**. All six packages follow
-one fixed Changesets version; website release labels read the React package metadata.
-See [the changelog](CHANGELOG.md) and [midpoint verification](docs/verification-midpoint.md).
+All six packages follow one fixed Changesets version. Website candidate labels read
+package metadata; installation hints distinguish the verified published beta from this
+checkout. See [release verification](docs/verification-100.md), [the changelog](CHANGELOG.md),
+and [release instructions](docs/publish.md).
 
 ## Installation
 
@@ -50,14 +53,14 @@ example. `examples/vanilla/index.html` demonstrates native HTML with shared CSS 
 
 ## The foundation
 
-| Package              | Delivered                                                                     |
-| -------------------- | ----------------------------------------------------------------------------- |
-| `@devvy-ui/core`     | DOM-free class, keyboard navigation and material capability utilities         |
-| `@devvy-ui/react`    | 50 components: layout, forms, feedback, charts, navigation and optional Glass |
-| `@devvy-ui/tokens`   | Scoped light, dark, system, density, typography and contrast tokens           |
-| `@devvy-ui/styles`   | Namespaced CSS, focus styles, RTL, reduced motion and forced colors           |
-| `@devvy-ui/registry` | Source snapshots generated from those exact implementations                   |
-| `@devvy-ui/cli`      | Local `init`, `add` and `doctor`; protects edited source files                |
+| Package              | Delivered                                                                             |
+| -------------------- | ------------------------------------------------------------------------------------- |
+| `@devvy-ui/core`     | DOM-free class, keyboard navigation and material capability utilities                 |
+| `@devvy-ui/react`    | 100 components: forms, overlays, data, media, application patterns and optional Glass |
+| `@devvy-ui/tokens`   | Scoped light, dark, system, density, typography and contrast tokens                   |
+| `@devvy-ui/styles`   | Namespaced CSS, focus styles, RTL, reduced motion and forced colors                   |
+| `@devvy-ui/registry` | Source snapshots generated from those exact implementations                           |
+| `@devvy-ui/cli`      | Local `init`, `add` and `doctor`; protects edited source files                        |
 
 No runtime styling engine. No Tailwind requirement. React and React DOM are peer dependencies.
 Vue, Svelte and Web Components packages are intentionally absent until adapters work.
@@ -89,7 +92,7 @@ All React entries retain client boundaries for Next.js; SSR is supported, but a 
 React Server Component-only rendering API is not shipped. The original
 `@devvy-ui/react/styles.css` import remains a compatibility alias.
 
-For external consumption without npm, `pnpm pack:all` writes installable prerelease tarballs into
+For external consumption without npm, `pnpm pack:all` writes installable candidate tarballs into
 `.artifacts`. Install core, tokens, styles and react tarballs together. The companion packages
 `@devvy-ui/tokens`, `@devvy-ui/styles`, and `@devvy-ui/core` are also published on npm.
 
@@ -178,3 +181,10 @@ then follow [release instructions](docs/publish.md). Do not publish a stable tag
 
 This project is not affiliated with shadcn/ui, Base UI, Radix UI or React maintainers.
 Radix Tabs is a development-only benchmark comparator, not an implementation dependency.
+
+## Design and AI interface direction
+
+See [design direction](docs/design-direction.md) for the library-wide review of forms,
+menus, navigation, overlays, data and media, and [AI interface compositions](docs/ai-interfaces.md)
+for patterns built from existing DEVVY primitives. No AI service or third-party chart
+runtime is included. These comparisons do not establish a performance ranking.

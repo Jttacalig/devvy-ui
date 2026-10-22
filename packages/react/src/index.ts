@@ -19,7 +19,13 @@ export { Glass, type GlassProps } from './components/Glass';
 export { Dock, type DockProps } from './components/Dock';
 export { Dialog, type DialogProps } from './components/Dialog';
 
-export { Chart, type ChartProps, type ChartDatum } from './components/Chart';
+export {
+  Chart,
+  ChartInspector,
+  type ChartProps,
+  type ChartDatum,
+  type ChartInspectorProps,
+} from './components/Chart';
 export { Navbar, type NavbarProps } from './components/Navbar';
 export { Sidebar, type SidebarProps } from './components/Sidebar';
 export { Breadcrumbs, type BreadcrumbsProps, type BreadcrumbItem } from './components/Breadcrumbs';
@@ -60,3 +66,68 @@ export type { AccordionItem } from './components/Accordion';
 export type { RadioItem } from './components/RadioGroup';
 export type { FieldControlProps } from './components/FormField';
 export type { DescriptionItem } from './components/DescriptionList';
+
+export { Tooltip, type TooltipProps } from './components/Tooltip';
+export { Popover, type PopoverProps } from './components/Popover';
+export { DropdownMenu, type DropdownMenuProps } from './components/DropdownMenu';
+export { Combobox, type ComboboxProps } from './components/Combobox';
+export { Toast, type ToastProps } from './components/Toast';
+export { MultiSelect, type MultiSelectProps } from './components/MultiSelect';
+export { Autocomplete, type AutocompleteProps } from './components/Autocomplete';
+export { RangeSlider, type RangeSliderProps } from './components/RangeSlider';
+export { OTPInput, type OTPInputProps } from './components/OTPInput';
+export { Rating, type RatingProps } from './components/Rating';
+export { TagInput, type TagInputProps } from './components/TagInput';
+export { ToggleGroup, type ToggleGroupProps } from './components/ToggleGroup';
+export { FileUpload, type FileUploadProps } from './components/FileUpload';
+export { Dropzone, type DropzoneProps } from './components/Dropzone';
+export { Calendar, type CalendarProps } from './components/Calendar';
+export { DatePicker, type DatePickerProps } from './components/DatePicker';
+export { DateRangePicker, type DateRangePickerProps } from './components/DateRangePicker';
+export { TimePicker, type TimePickerProps } from './components/TimePicker';
+export { Stepper, type StepperProps } from './components/Stepper';
+export { Menubar, type MenubarProps } from './components/Menubar';
+export { ContextMenu, type ContextMenuProps } from './components/ContextMenu';
+export { CommandPalette, type CommandPaletteProps } from './components/CommandPalette';
+export { NavigationMenu, type NavigationMenuProps } from './components/NavigationMenu';
+export { TreeView, type TreeViewProps } from './components/TreeView';
+export { ScrollArea, type ScrollAreaProps } from './components/ScrollArea';
+export { ResizablePanels, type ResizablePanelsProps } from './components/ResizablePanels';
+export { TableOfContents, type TableOfContentsProps } from './components/TableOfContents';
+export { HoverCard, type HoverCardProps } from './components/HoverCard';
+export { AlertDialog, type AlertDialogProps } from './components/AlertDialog';
+export { Drawer, type DrawerProps } from './components/Drawer';
+export {
+  FloatingActionButton,
+  type FloatingActionButtonProps,
+} from './components/FloatingActionButton';
+export { OnboardingTour, type OnboardingTourProps } from './components/OnboardingTour';
+export { LoadingOverlay, type LoadingOverlayProps } from './components/LoadingOverlay';
+export { DataTable, type DataTableProps } from './components/DataTable';
+export { Timeline, type TimelineProps } from './components/Timeline';
+export { Stat, type StatProps } from './components/Stat';
+export { CodeBlock, type CodeBlockProps } from './components/CodeBlock';
+export { Carousel, type CarouselProps } from './components/Carousel';
+export { Gallery, type GalleryProps } from './components/Gallery';
+export { ImageCropper, type ImageCropperProps } from './components/ImageCropper';
+export { VideoPlayer, type VideoPlayerProps } from './components/VideoPlayer';
+export { AudioPlayer, type AudioPlayerProps } from './components/AudioPlayer';
+export { MarkdownViewer, type MarkdownViewerProps } from './components/MarkdownViewer';
+export { RichTextEditor, type RichTextEditorProps } from './components/RichTextEditor';
+export { Lightbox, type LightboxProps } from './components/Lightbox';
+export { VirtualList, type VirtualListProps } from './components/VirtualList';
+export { InfiniteScroll, type InfiniteScrollProps } from './components/InfiniteScroll';
+export { KanbanBoard, type KanbanBoardProps } from './components/KanbanBoard';
+export { SortableList, type SortableListProps } from './components/SortableList';
+export { MentionsInput, type MentionsInputProps } from './components/MentionsInput';
+export type { MenuAction } from './components/DropdownMenu';
+export type { ComboboxOption } from './components/Combobox';
+export type { CommandItem } from './components/CommandPalette';
+export type { TreeNode } from './components/TreeView';
+export type { TourStep } from './components/OnboardingTour';
+export type { DataColumn } from './components/DataTable';
+export type { TimelineItem } from './components/Timeline';
+export type { GalleryImage } from './components/Lightbox';
+export type { SortableItem } from './components/SortableList';
+export type { KanbanItem } from './components/KanbanBoard';
+export type { MentionOption } from './components/MentionsInput';

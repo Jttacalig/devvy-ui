@@ -93,3 +93,8 @@ and structure; it cannot prove a model will always follow the instructions.
 These files guide assistants; they are not a security boundary or an automatic release
 system. Existing CI, code review and user authorization still apply. No hooks, auto-publishing,
 agent service or external data transmission is enabled by these files.
+
+## AI product interfaces
+
+See [AI interface direction](ai-interfaces.md) for optional provider-independent compositions
+using the existing 100 DEVVY components. AI contributor guidance does not add an AI backend.

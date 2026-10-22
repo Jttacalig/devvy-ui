@@ -30,11 +30,15 @@ belongs in the docs app until a reusable public component is deliberately being 
    `packages/react/components.json` and `packages/react/package.json` exports/types. Build entries derive from the inventory in tsup.config.ts. Keep
    React external/peer and retain client boundaries in built entries.
 4. Registry entries derive from the inventory. Declare composed component names in its `dependencies` array; the registry resolves their complete closure and rejects cycles/unknown names. Update `packages/registry/build.mjs` only for other required copied
-   dependencies. Its core import rewrite must stay compatible with the generated layout.
+   dependencies. List React-local shared files in the inventory helpers array (for example
+   widgets.tsx); generation copies them under lib/ across the complete dependency closure.
+   Helper names must be flat .ts/.tsx filenames. Its core import rewrite must stay compatible
+   with the generated layout.
    Rebuild; keep `scripts/check-packages.mjs`'s current inventory/parity checks accurate
    when adding an entry. Do not reduce parity coverage to make a new component pass.
 5. Add catalog API/usage data and a working `ComponentPreview` case. Keep source/install
-   instructions accurate. Verify standalone source installation for composed components. Browser route checks use the shared inventory; update relevant consumer
+   instructions accurate. Keep API/code catalogs server-side; pass only slim navigation
+   metadata and preview routing to client shells. Verify standalone source installation for composed components. Browser route checks use the shared inventory; update relevant consumer
    fixtures. Shared Vite `Showcase` changes also affect docs previews.
 6. Add focused behavior/SSR/hydration/keyboard tests where relevant. Cover new public
    interactions and regressions rather than duplicating the implementation in assertions.

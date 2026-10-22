@@ -4,6 +4,7 @@ import { Badge, Separator } from '@devvy-ui/react';
 import { Navigation } from '../../components/Navigation';
 import { ThemeControl } from '../../components/ThemeControl';
 import { HeaderNavigation } from '../../components/HeaderNavigation';
+import { catalog } from '../../lib/catalog';
 import { releaseChannel, releaseVersion } from '../../lib/release';
 
 export default function UILayout({ children }: { children: React.ReactNode }) {
@@ -57,7 +58,9 @@ export default function UILayout({ children }: { children: React.ReactNode }) {
         </div>
       </header>
       <div className="docs-shell">
-        <Navigation />
+        <Navigation
+          items={catalog.map(({ name, slug, description }) => ({ name, slug, description }))}
+        />
         <main id="content" className="main-content">
           {children}
           <Separator className="footer-separator" />

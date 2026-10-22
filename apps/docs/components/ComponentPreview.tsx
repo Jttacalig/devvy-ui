@@ -17,20 +17,31 @@ import {
   Dock,
 } from '@devvy-ui/react';
 import '@devvy-ui/styles/glass.css';
-import { useId, useState, useRef } from 'react';
+import { useEffect, useId, useState, useRef } from 'react';
 import { ChartPreview, NavigationPreview } from './DataNavigationPreview';
 import { FoundationPreview } from './FoundationPreview';
 import { MidpointPreview } from './MidpointPreview';
-import { midpointCatalog } from '../lib/midpoint-catalog';
+import { CompletionPreview } from './CompletionPreview';
+import type { CompletionName } from '../lib/completion-catalog';
 import type { ComponentName } from '../lib/catalog';
-export function ComponentPreview({ name }: { name: ComponentName }) {
+export function ComponentPreview({
+  name,
+  batch,
+}: {
+  name: ComponentName;
+  batch?: 'midpoint' | 'completion';
+}) {
   const id = useId();
   const [open, setOpen] = useState(false);
+  const [ready, setReady] = useState(false);
+  useEffect(() => setReady(true), []);
   const invoker = useRef<HTMLButtonElement>(null);
   return (
-    <div className="component-preview">
+    <div className="component-preview" data-ready={ready} inert={!ready && batch === 'completion'}>
       <h2 className="sr-only">Interactive preview</h2>
-      {midpointCatalog.some((item) => item.slug === name) ? (
+      {batch === 'completion' ? (
+        <CompletionPreview name={name as CompletionName} />
+      ) : batch === 'midpoint' ? (
         <MidpointPreview name={name} />
       ) : ['select', 'alert', 'progress', 'skeleton'].includes(name) ? (
         <FoundationPreview name={name} />

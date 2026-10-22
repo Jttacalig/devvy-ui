@@ -1,4 +1,4 @@
-name: Beta release preflight
+name: Stable release preflight
 on:
   workflow_dispatch:
 permissions:
@@ -20,7 +20,7 @@ jobs:
       - run: pnpm pack:all
       - uses: actions/upload-artifact@v4
         with:
-          name: devvy-ui-beta-packages
+          name: devvy-ui-release-packages
           path: .artifacts/*.tgz
       # Publication is deliberately a separate maintainer step until scope ownership,
       # registry provenance and npm-alpha environment protections are configured.

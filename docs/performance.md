@@ -44,3 +44,19 @@ CSS slice measures 2,596 bytes; new focused imports range from 207 to 833 gzip b
 including composed dependencies. No new dependency was added. Full CSS is shared, so a
 focused JavaScript import does not imply its own isolated CSS bundle. Timing samples were
 collected during development workloads and support no comparative performance claim.
+
+## 100-component candidate
+
+benchmarks/first50.js freezes the previous runtime surface. Its 10,500-byte JavaScript and
+6,200-byte CSS ceilings remain unchanged, alongside every older focused-import budget.
+The full inventory is measured separately: the initial sample measured 26,252 gzip bytes
+for JavaScript and 8,399 for component CSS, versus 9,510 and 5,540 for the frozen first 50
+in the same run. New focused imports include composed dependencies. New ceilings account
+for added features; they do not mask regressions in the previous surface. No new runtime
+dependency was added. Concurrent development timings are not idle-hardware baselines.
+
+The final [100-component snapshot](../benchmarks/complete-win32-node24.json) records
+27,684 gzip JavaScript bytes for the full namespace and 8,641 for shared CSS. The original
+first-21 and first-50 ceilings still pass. The refined Chart is 1,649 bytes; optional
+ChartInspector is 2,168. See [verification](verification-100.md) for feature cost and the
+new-entry budget calibration, including viewport tooltips and keyboard-pinned hover cards.

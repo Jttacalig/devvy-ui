@@ -37,12 +37,15 @@ const results = {
   ssr: {},
 };
 const fixtures = {
+  first50: 'import * as UI from "./benchmarks/first50.js"; console.log(UI);',
   first21: 'import * as UI from "./benchmarks/first21.js"; console.log(UI);',
   button: 'import { Button } from "./packages/react/dist/button.js"; console.log(Button);',
   tabs: 'import { Tabs } from "./packages/react/dist/tabs.js"; console.log(Tabs);',
   glass: 'import { Glass } from "./packages/react/dist/glass.js"; console.log(Glass);',
   dialog: 'import { Dialog } from "./packages/react/dist/dialog.js"; console.log(Dialog);',
   dock: 'import { Dock } from "./packages/react/dist/dock.js"; console.log(Dock);',
+  chartInspector:
+    'import { ChartInspector } from "./packages/react/dist/chart.js"; console.log(ChartInspector);',
   chart: 'import { Chart } from "./packages/react/dist/chart.js"; console.log(Chart);',
   navbar: 'import { Navbar } from "./packages/react/dist/navbar.js"; console.log(Navbar);',
   sidebar: 'import { Sidebar } from "./packages/react/dist/sidebar.js"; console.log(Sidebar);',
@@ -91,6 +94,8 @@ for (const name of [
   'feedback',
   'first21',
   'midpoint',
+  'first50',
+  'completion',
 ]) {
   const path =
     name === 'tokens'
@@ -99,19 +104,31 @@ for (const name of [
         ? 'packages/styles/glass.css'
         : 'packages/styles/components.css';
   const result = await build({
-    ...(['foundation', 'existing17', 'feedback', 'first21', 'midpoint'].includes(name)
+    ...([
+      'foundation',
+      'existing17',
+      'feedback',
+      'first21',
+      'midpoint',
+      'first50',
+      'completion',
+    ].includes(name)
       ? {
           stdin: {
             contents:
-              name === 'first21' || name === 'midpoint'
-                ? (await readFile(resolve(root, path), 'utf8')).split('/* Midpoint components */')[
-                    name === 'first21' ? 0 : 1
-                  ]
-                : name === 'foundation'
-                  ? (await readFile(resolve(root, path), 'utf8')).split('/* Data display */')[0]
-                  : (await readFile(resolve(root, path), 'utf8'))
-                      .split('/* Midpoint components */')[0]
-                      .split('/* Native controls and feedback */')[name === 'existing17' ? 0 : 1],
+              name === 'first50' || name === 'completion'
+                ? (await readFile(resolve(root, path), 'utf8')).split(
+                    '/* Completion components */',
+                  )[name === 'first50' ? 0 : 1]
+                : name === 'first21' || name === 'midpoint'
+                  ? (await readFile(resolve(root, path), 'utf8'))
+                      .split('/* Completion components */')[0]
+                      .split('/* Midpoint components */')[name === 'first21' ? 0 : 1]
+                  : name === 'foundation'
+                    ? (await readFile(resolve(root, path), 'utf8')).split('/* Data display */')[0]
+                    : (await readFile(resolve(root, path), 'utf8'))
+                        .split('/* Midpoint components */')[0]
+                        .split('/* Native controls and feedback */')[name === 'existing17' ? 0 : 1],
             loader: 'css',
           },
         }

@@ -12,3 +12,7 @@ pnpm --filter devvy-ui-docs start
 Open /ui. See apps/docs/components/Workbench.tsx for the client boundary and
 apps/docs/app/layout.tsx for the global CSS imports. This independent app is not
 connected to the private Dev Station production application.
+
+The 0.2.0 candidate includes 100 component routes, a searchable directory, a project
+workspace landing, optional chart inspection and sandboxed code customization. The
+verification record distinguishes local builds from production publication/deployment.

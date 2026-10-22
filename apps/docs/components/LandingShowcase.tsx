@@ -1,6 +1,8 @@
 'use client';
 
 import { useState } from 'react';
+import inventory from '../../../packages/react/components.json';
+const componentCount = inventory.length;
 import {
   Tabs,
   Button,
@@ -89,10 +91,10 @@ export function LandingShowcase() {
                 <Label htmlFor="showcase-search">Search components</Label>
                 <SearchField
                   id="showcase-search"
-                  label="Filter 50 components"
+                  label={'Filter ' + componentCount + ' components'}
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Filter 50 components…"
+                  placeholder={'Filter ' + componentCount + ' components…'}
                 />
               </div>
             </div>
@@ -171,12 +173,12 @@ export function LandingShowcase() {
             <span className="showcase-group-title">Status Alerts</span>
             <div className="showcase-stack">
               <Alert tone="brand">
-                DEVVY UI is published on npm under the <code>beta</code> channel. All 50 components
-                are tree-shakable.
+                A published beta is available on npm. This checkout contains {componentCount}{' '}
+                components with focused imports.
               </Alert>
               <Alert tone="neutral">
-                Ordinary CSS without runtime style injection keeps your application lightweight and
-                fast.
+                Ordinary CSS avoids runtime style injection. Measure the entries you ship in your
+                own application.
               </Alert>
             </div>
           </div>
@@ -329,13 +331,13 @@ export function LandingShowcase() {
       <div className="section-label">
         <div>
           <span className="eyebrow">LIVE COMPONENT EXPLORER</span>
-          <h2 id="showcase-heading">50 components. Built for production.</h2>
+          <h2 id="showcase-heading">{componentCount} components. Ready to shape.</h2>
           <p className="section-subtext">
             Test real interactive components below. Platform controls, rich feedback, layout
             primitives, and optional Glass—all powered by DEVVY UI.
           </p>
         </div>
-        <Badge tone="neutral">50 CANONICAL COMPONENTS</Badge>
+        <Badge tone="neutral">{componentCount} CANONICAL COMPONENTS</Badge>
       </div>
 
       <Card className="showcase-card">

@@ -1,40 +1,51 @@
-# Repository and beta release workflow
+# Repository and stable release workflow
 
-DEVVY UI uses [Jttacalig/devvy-ui](https://github.com/Jttacalig/devvy-ui) and dedicated
-feature branches with reviewable pull requests. Keep the private Dev Station application
-independent of this repository. Review source, licenses, generated package contents and CI
-before merging. Do not push directly to protected main.
+Use feature branches and reviewable pull requests in
+[Jttacalig/devvy-ui](https://github.com/Jttacalig/devvy-ui). Review source, licenses,
+package contents and CI before merging; do not push directly to protected main.
 
-The current local package candidate is **0.1.0-beta.2**, with 50 implemented components.
-It remains unpublished. All six public packages follow the fixed Changesets group; root
-workspace metadata matches them. Website labels derive from the React package manifest.
-Historical changelogs and verification snapshots retain their original versions.
+The local candidate is **0.2.0**, with 100 primary components in one fixed six-package
+Changesets group. Prerelease mode has been exited for this authorized stable candidate.
+The last registry check found **0.1.0-beta.2** under beta and beta.1 under latest.
+A local version advance does not change npm tags. Preserve historical changelogs.
 
-## Beta release preflight
+## Preflight
 
-Use Node 22.12+ and pnpm 11.25.0. `pnpm install --frozen-lockfile` must pass.
-Run all README verification commands, including the installed-tarball React 18/19 consumers.
-`pnpm pack:all` prepares all six tarballs and rewrites workspace dependency ranges for npm.
-Review their contents and package manifests; never publish workspace-only references.
+Use Node 22.12+ and pnpm 11.25.0. Install with `pnpm install --frozen-lockfile`. Run the
+complete CI matrix: build, types, lint, formatting, unit tests, source/package parity,
+budgets, audit, all three browser engines and installed React 18/19 consumers. See
+[verification](verification-100.md) for actual candidate results.
 
-The release-preflight workflow runs only on main and references the legacy-named `npm-alpha`
-GitHub environment. Its name does not change the current beta package channel. The repository owner must configure required reviewers; this source file
-cannot enforce GitHub environment or branch protections by itself. It uploads packages
-for review and does not publish automatically.
+`pnpm pack:all` produces six tarballs and rewrites workspace dependency ranges for npm.
+Review manifests, licenses, focused exports, declarations and package contents. Confirm
+scope/binary ownership and provenance. Never publish workspace-only references.
 
-Use `pnpm changeset` for package changes. The checked-in prerelease state keeps the release
-channel beta. After reviewing the proposal with `pnpm changeset status` and obtaining
-authorization for a version advance, run `pnpm version-packages`. Align the private root
-version, README, root changelog and current release guidance; preserve historical records.
-Rebuild/retest and pack the new versions. Publication is a separate authorized maintainer
-action through configured trusted publishing or short-lived scoped credentials using
-`pnpm release`. Confirm the npm dist-tag is beta. Do not place tokens
-in files or logs. First check scope and binary-name ownership, package provenance,
-dependency licenses, logo rights, security reporting contacts and clean consumer installs.
+## Explicit publication
 
-Configure automatic secret scanning, dependency alerts and required CI checks in GitHub.
-Update dependencies through Dependabot review PRs; keep the lockfile committed and rerun
-browser, package-consumer and bundle checks for upgrades. Public CI and publishing remain
-maintainer actions; a local version bump does not publish packages.
+`.github/workflows/publish-beta.yml` retains its filename for configured npm Trusted
+Publishing identities. Its current behavior publishes **stable versions to latest** and
+refuses prerelease strings. It is manually dispatched, runs only on main, validates the
+candidate and publishes dependencies before dependents with provenance. Its npm-alpha
+environment name is legacy; maintainers must configure reviewers and branch protections
+in GitHub. Workflow text alone cannot enforce those account settings.
 
-Licensing and public repo visibility are different: the MIT LICENSE grants reuse permissions, while a public repository makes the source accessible. Both matter for an open-source release.
+After review, merge and explicit release authorization, dispatch that workflow from main.
+The preflight workflow only uploads artifacts. Publication uses npm OIDC rather than a
+committed token. Never place credentials in files or logs.
+
+Verify all six names (tokens, styles, core, react, registry, cli) report 0.2.0 and latest
+points to 0.2.0. Interrupted releases skip existing versions; check every tag before
+claiming success. Preserve the historical beta tag. Never overwrite an npm version.
+
+Only after live verification, update publishedNpmVersion and publishedNpmTag in
+`apps/docs/lib/release.ts`, installation hints and current notes. Confirm a clean external
+install using `npm install @devvy-ui/react`. Package publication does not deploy docs;
+verify production routing separately.
+
+## Future updates
+
+Add a Changeset for public changes. Review `pnpm changeset status` before an authorized
+`pnpm version-packages`; align root metadata and current guidance. Rebuild, test and pack.
+Do not re-enter prerelease mode for ordinary stable patches. Dependency updates require
+lockfile, peer/license, audit and consumer review. Configure required checks, dependency
+alerts, secret scanning and private reporting in the hosting services.

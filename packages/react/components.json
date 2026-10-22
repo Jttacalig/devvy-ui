@@ -1,52 +1,453 @@
 [
-  { "name": "Button", "slug": "button" },
-  { "name": "Input", "slug": "input" },
-  { "name": "Textarea", "slug": "textarea" },
-  { "name": "Label", "slug": "label" },
-  { "name": "Badge", "slug": "badge" },
-  { "name": "Card", "slug": "card" },
-  { "name": "Separator", "slug": "separator" },
-  { "name": "Checkbox", "slug": "checkbox" },
-  { "name": "Switch", "slug": "switch" },
-  { "name": "Tabs", "slug": "tabs" },
-  { "name": "Glass", "slug": "glass" },
-  { "name": "Dialog", "slug": "dialog", "dependencies": ["Button"] },
-  { "name": "Dock", "slug": "dock" },
-  { "name": "Chart", "slug": "chart" },
-  { "name": "Navbar", "slug": "navbar" },
-  { "name": "Sidebar", "slug": "sidebar" },
-  { "name": "Breadcrumbs", "slug": "breadcrumbs" },
-  { "name": "Select", "slug": "select" },
-  { "name": "Alert", "slug": "alert" },
-  { "name": "Progress", "slug": "progress" },
-  { "name": "Skeleton", "slug": "skeleton" },
-  { "name": "Avatar", "slug": "avatar" },
-  { "name": "AvatarGroup", "slug": "avatar-group" },
-  { "name": "AspectRatio", "slug": "aspect-ratio" },
-  { "name": "Container", "slug": "container" },
-  { "name": "Stack", "slug": "stack" },
-  { "name": "Grid", "slug": "grid" },
-  { "name": "Typography", "slug": "typography" },
-  { "name": "IconButton", "slug": "icon-button", "dependencies": ["Button"] },
-  { "name": "Accordion", "slug": "accordion" },
-  { "name": "Pagination", "slug": "pagination" },
-  { "name": "RadioGroup", "slug": "radio-group" },
-  { "name": "Slider", "slug": "slider" },
-  { "name": "Table", "slug": "table" },
-  { "name": "Form", "slug": "form" },
-  { "name": "FormField", "slug": "form-field" },
-  { "name": "Fieldset", "slug": "fieldset" },
-  { "name": "NumberInput", "slug": "number-input" },
-  { "name": "PasswordInput", "slug": "password-input" },
-  { "name": "SearchField", "slug": "search-field" },
-  { "name": "SegmentedControl", "slug": "segmented-control", "dependencies": ["RadioGroup"] },
-  { "name": "ColorPicker", "slug": "color-picker" },
-  { "name": "CircularProgress", "slug": "circular-progress" },
-  { "name": "Spinner", "slug": "spinner" },
-  { "name": "EmptyState", "slug": "empty-state" },
-  { "name": "StatusIndicator", "slug": "status-indicator" },
-  { "name": "Collapsible", "slug": "collapsible" },
-  { "name": "DescriptionList", "slug": "description-list" },
-  { "name": "Meter", "slug": "meter" },
-  { "name": "CopyButton", "slug": "copy-button", "dependencies": ["Button"] }
+  {
+    "name": "Button",
+    "slug": "button"
+  },
+  {
+    "name": "Input",
+    "slug": "input"
+  },
+  {
+    "name": "Textarea",
+    "slug": "textarea"
+  },
+  {
+    "name": "Label",
+    "slug": "label"
+  },
+  {
+    "name": "Badge",
+    "slug": "badge"
+  },
+  {
+    "name": "Card",
+    "slug": "card"
+  },
+  {
+    "name": "Separator",
+    "slug": "separator"
+  },
+  {
+    "name": "Checkbox",
+    "slug": "checkbox"
+  },
+  {
+    "name": "Switch",
+    "slug": "switch"
+  },
+  {
+    "name": "Tabs",
+    "slug": "tabs"
+  },
+  {
+    "name": "Glass",
+    "slug": "glass"
+  },
+  {
+    "name": "Dialog",
+    "slug": "dialog",
+    "dependencies": ["Button"]
+  },
+  {
+    "name": "Dock",
+    "slug": "dock"
+  },
+  {
+    "name": "Chart",
+    "slug": "chart"
+  },
+  {
+    "name": "Navbar",
+    "slug": "navbar"
+  },
+  {
+    "name": "Sidebar",
+    "slug": "sidebar"
+  },
+  {
+    "name": "Breadcrumbs",
+    "slug": "breadcrumbs"
+  },
+  {
+    "name": "Select",
+    "slug": "select"
+  },
+  {
+    "name": "Alert",
+    "slug": "alert"
+  },
+  {
+    "name": "Progress",
+    "slug": "progress"
+  },
+  {
+    "name": "Skeleton",
+    "slug": "skeleton"
+  },
+  {
+    "name": "Avatar",
+    "slug": "avatar"
+  },
+  {
+    "name": "AvatarGroup",
+    "slug": "avatar-group"
+  },
+  {
+    "name": "AspectRatio",
+    "slug": "aspect-ratio"
+  },
+  {
+    "name": "Container",
+    "slug": "container"
+  },
+  {
+    "name": "Stack",
+    "slug": "stack"
+  },
+  {
+    "name": "Grid",
+    "slug": "grid"
+  },
+  {
+    "name": "Typography",
+    "slug": "typography"
+  },
+  {
+    "name": "IconButton",
+    "slug": "icon-button",
+    "dependencies": ["Button"]
+  },
+  {
+    "name": "Accordion",
+    "slug": "accordion"
+  },
+  {
+    "name": "Pagination",
+    "slug": "pagination"
+  },
+  {
+    "name": "RadioGroup",
+    "slug": "radio-group"
+  },
+  {
+    "name": "Slider",
+    "slug": "slider"
+  },
+  {
+    "name": "Table",
+    "slug": "table"
+  },
+  {
+    "name": "Form",
+    "slug": "form"
+  },
+  {
+    "name": "FormField",
+    "slug": "form-field"
+  },
+  {
+    "name": "Fieldset",
+    "slug": "fieldset"
+  },
+  {
+    "name": "NumberInput",
+    "slug": "number-input"
+  },
+  {
+    "name": "PasswordInput",
+    "slug": "password-input"
+  },
+  {
+    "name": "SearchField",
+    "slug": "search-field"
+  },
+  {
+    "name": "SegmentedControl",
+    "slug": "segmented-control",
+    "dependencies": ["RadioGroup"]
+  },
+  {
+    "name": "ColorPicker",
+    "slug": "color-picker"
+  },
+  {
+    "name": "CircularProgress",
+    "slug": "circular-progress"
+  },
+  {
+    "name": "Spinner",
+    "slug": "spinner"
+  },
+  {
+    "name": "EmptyState",
+    "slug": "empty-state"
+  },
+  {
+    "name": "StatusIndicator",
+    "slug": "status-indicator"
+  },
+  {
+    "name": "Collapsible",
+    "slug": "collapsible"
+  },
+  {
+    "name": "DescriptionList",
+    "slug": "description-list"
+  },
+  {
+    "name": "Meter",
+    "slug": "meter"
+  },
+  {
+    "name": "CopyButton",
+    "slug": "copy-button",
+    "dependencies": ["Button"]
+  },
+  {
+    "name": "Tooltip",
+    "slug": "tooltip"
+  },
+  {
+    "name": "Popover",
+    "slug": "popover",
+    "helpers": ["widgets.tsx"]
+  },
+  {
+    "name": "DropdownMenu",
+    "slug": "dropdown-menu",
+    "dependencies": ["Popover"],
+    "helpers": ["widgets.tsx"]
+  },
+  {
+    "name": "Combobox",
+    "slug": "combobox",
+    "helpers": ["widgets.tsx"]
+  },
+  {
+    "name": "Toast",
+    "slug": "toast"
+  },
+  {
+    "name": "MultiSelect",
+    "slug": "multi-select",
+    "dependencies": ["Combobox"],
+    "helpers": ["widgets.tsx"]
+  },
+  {
+    "name": "Autocomplete",
+    "slug": "autocomplete",
+    "dependencies": ["Combobox"]
+  },
+  {
+    "name": "RangeSlider",
+    "slug": "range-slider",
+    "helpers": ["widgets.tsx"]
+  },
+  {
+    "name": "OTPInput",
+    "slug": "otp-input",
+    "helpers": ["widgets.tsx"]
+  },
+  {
+    "name": "Rating",
+    "slug": "rating",
+    "dependencies": ["RadioGroup"]
+  },
+  {
+    "name": "TagInput",
+    "slug": "tag-input",
+    "helpers": ["widgets.tsx"]
+  },
+  {
+    "name": "ToggleGroup",
+    "slug": "toggle-group",
+    "helpers": ["widgets.tsx"]
+  },
+  {
+    "name": "FileUpload",
+    "slug": "file-upload",
+    "helpers": ["widgets.tsx"]
+  },
+  {
+    "name": "Dropzone",
+    "slug": "dropzone",
+    "dependencies": ["FileUpload"]
+  },
+  {
+    "name": "Calendar",
+    "slug": "calendar",
+    "helpers": ["widgets.tsx"]
+  },
+  {
+    "name": "DatePicker",
+    "slug": "date-picker"
+  },
+  {
+    "name": "DateRangePicker",
+    "slug": "date-range-picker",
+    "dependencies": ["DatePicker"],
+    "helpers": ["widgets.tsx"]
+  },
+  {
+    "name": "TimePicker",
+    "slug": "time-picker"
+  },
+  {
+    "name": "Stepper",
+    "slug": "stepper",
+    "helpers": ["widgets.tsx"]
+  },
+  {
+    "name": "Menubar",
+    "slug": "menubar",
+    "dependencies": ["DropdownMenu"]
+  },
+  {
+    "name": "ContextMenu",
+    "slug": "context-menu",
+    "dependencies": ["DropdownMenu"],
+    "helpers": ["widgets.tsx"]
+  },
+  {
+    "name": "CommandPalette",
+    "slug": "command-palette",
+    "dependencies": ["Dialog"]
+  },
+  {
+    "name": "NavigationMenu",
+    "slug": "navigation-menu",
+    "helpers": ["widgets.tsx"]
+  },
+  {
+    "name": "TreeView",
+    "slug": "tree-view",
+    "helpers": ["widgets.tsx"]
+  },
+  {
+    "name": "ScrollArea",
+    "slug": "scroll-area"
+  },
+  {
+    "name": "ResizablePanels",
+    "slug": "resizable-panels",
+    "helpers": ["widgets.tsx"]
+  },
+  {
+    "name": "TableOfContents",
+    "slug": "table-of-contents"
+  },
+  {
+    "name": "HoverCard",
+    "slug": "hover-card",
+    "dependencies": ["Popover"],
+    "helpers": ["widgets.tsx"]
+  },
+  {
+    "name": "AlertDialog",
+    "slug": "alert-dialog",
+    "dependencies": ["Dialog"]
+  },
+  {
+    "name": "Drawer",
+    "slug": "drawer",
+    "dependencies": ["Dialog"]
+  },
+  {
+    "name": "FloatingActionButton",
+    "slug": "floating-action-button",
+    "dependencies": ["IconButton"]
+  },
+  {
+    "name": "OnboardingTour",
+    "slug": "onboarding-tour",
+    "dependencies": ["Dialog"]
+  },
+  {
+    "name": "LoadingOverlay",
+    "slug": "loading-overlay",
+    "dependencies": ["Spinner"]
+  },
+  {
+    "name": "DataTable",
+    "slug": "data-table",
+    "dependencies": ["Table", "Pagination"]
+  },
+  {
+    "name": "Timeline",
+    "slug": "timeline"
+  },
+  {
+    "name": "Stat",
+    "slug": "stat"
+  },
+  {
+    "name": "CodeBlock",
+    "slug": "code-block",
+    "dependencies": ["CopyButton"]
+  },
+  {
+    "name": "Carousel",
+    "slug": "carousel",
+    "helpers": ["widgets.tsx"]
+  },
+  {
+    "name": "Gallery",
+    "slug": "gallery",
+    "dependencies": ["Lightbox"],
+    "helpers": ["widgets.tsx"]
+  },
+  {
+    "name": "ImageCropper",
+    "slug": "image-cropper",
+    "helpers": ["widgets.tsx"]
+  },
+  {
+    "name": "VideoPlayer",
+    "slug": "video-player",
+    "helpers": ["widgets.tsx"]
+  },
+  {
+    "name": "AudioPlayer",
+    "slug": "audio-player",
+    "helpers": ["widgets.tsx"]
+  },
+  {
+    "name": "MarkdownViewer",
+    "slug": "markdown-viewer",
+    "helpers": ["widgets.tsx"]
+  },
+  {
+    "name": "RichTextEditor",
+    "slug": "rich-text-editor",
+    "dependencies": ["MarkdownViewer"],
+    "helpers": ["widgets.tsx"]
+  },
+  {
+    "name": "Lightbox",
+    "slug": "lightbox",
+    "dependencies": ["Dialog"],
+    "helpers": ["widgets.tsx"]
+  },
+  {
+    "name": "VirtualList",
+    "slug": "virtual-list"
+  },
+  {
+    "name": "InfiniteScroll",
+    "slug": "infinite-scroll"
+  },
+  {
+    "name": "KanbanBoard",
+    "slug": "kanban-board"
+  },
+  {
+    "name": "SortableList",
+    "slug": "sortable-list",
+    "helpers": ["widgets.tsx"]
+  },
+  {
+    "name": "MentionsInput",
+    "slug": "mentions-input",
+    "helpers": ["widgets.tsx"]
+  }
 ]

@@ -1,5 +1,8 @@
 # 50-component milestone — 22 October 2026
 
+Historical snapshot. See [current 100-component verification](verification-100.md) for the
+0.2.0 candidate. Version/publication statements below describe the original run.
+
 Current package candidate: **0.1.0-beta.2**, unpublished. The user approved this version
 advance after the component checks. Changesets applied the fixed six-package prerelease
 plan; root metadata, website labels, README and current release guidance match it.

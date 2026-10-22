@@ -1,6 +1,8 @@
 # Contributing to Devvy UI
 
-Thanks for helping build Devvy UI.
+The current 0.2.0 candidate contains 100 primary components. Read
+[architecture](docs/architecture.md), [compatibility](docs/compatibility.md) and
+[current verification](docs/verification-100.md) before changing a public contract.
 
 ## Before you start
 
@@ -54,3 +56,14 @@ instructions and relevant skill reference alongside the implementation.
 Maintainers review changes for correctness, readability, security, compatibility, documentation and bundle impact. Submitting a patch does not guarantee that it will be merged.
 
 By contributing, you agree to license your contribution under this repository's MIT license. You confirm you have the right to submit the work.
+
+## Inventory and composed components
+
+Use `packages/react/components.json` for primary names. Keep explicit barrel/package exports,
+API catalog examples, consumer fixtures and source snapshots aligned. Declare composed
+components in `dependencies` and React-local shared files in `helpers`; never edit registry
+JSON. Preserve the existing 50-component bundle baseline when measuring new additions.
+AI compositions and product-specific wrappers should use existing primitives first.
+
+The stable release uses npm `latest` after an explicit maintainer publication; the existing
+`beta` tag continues to identify historical prereleases. See [publishing](docs/publish.md).

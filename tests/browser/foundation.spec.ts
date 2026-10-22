@@ -5,6 +5,7 @@ import components from '../../packages/react/components.json';
 for (const { slug: name } of components) {
   test(`${name} documentation passes axe with real light and dark styles`, async ({ page }) => {
     await page.goto(`/ui/components/${name}`);
+    await expect(page.locator('.component-preview')).toHaveAttribute('data-ready', 'true');
     for (const theme of ['light', 'dark']) {
       await page.getByRole('combobox', { name: 'Site theme' }).selectOption(theme);
       const results = await new AxeBuilder({ page }).analyze();
@@ -21,7 +22,7 @@ for (const { slug: name } of components) {
 test('interactive preview, keyboard tabs and native form reset', async ({ page }) => {
   const errors: string[] = [];
   page.on('pageerror', (error) => errors.push(error.message));
-  await page.goto('/ui');
+  await page.goto('/ui/playground');
   await page.getByRole('tab', { name: 'General', exact: true }).focus();
   await page.keyboard.press('ArrowRight');
   await expect(page.getByRole('tab', { name: 'Members', exact: true })).toBeFocused();

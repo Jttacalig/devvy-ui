@@ -9,6 +9,9 @@ export function componentSources(inventory, name) {
     if (seen.has(current)) return;
     const item = byName.get(current);
     if (!item) throw new Error('Unknown component dependency: ' + current);
+    for (const helper of item.helpers ?? [])
+      if (!/^[A-Za-z][A-Za-z0-9-]*\.tsx?$/.test(helper))
+        throw new Error('Invalid React helper path: ' + helper);
     seen.add(current);
     sources.push(current);
     for (const dependency of item.dependencies ?? []) visit(dependency, [...path, current]);

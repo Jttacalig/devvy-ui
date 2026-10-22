@@ -62,7 +62,7 @@ import "@devvy-ui/styles/glass.css";`;
           <p>
             Add stylesheet imports to <code>app/layout.tsx</code>. Interactive components retain
             standard React client boundaries (<code>&apos;use client&apos;</code>). Server-side
-            rendering is fully supported with stable hydration IDs and zero layout shift.
+            rendering is fully supported with stable hydration IDs.
           </p>
           <div className="install-terminal-box">
             <pre tabIndex={0} role="region" aria-label="Next.js layout snippet">
@@ -158,7 +158,7 @@ npx @devvy-ui/cli doctor`}</code>
   const packages = [
     {
       name: '@devvy-ui/react',
-      desc: '50 production React components with individual entry points',
+      desc: '100 typed React components in this checkout with individual entry points',
       role: 'Core Component Library',
       url: 'https://www.npmjs.com/package/@devvy-ui/react',
     },

@@ -55,7 +55,19 @@ not execute edited TSX.
 First run the local source installer from your React project, as documented in the getting
 started guide. It copies shared helpers and dependencies alongside the component. Replace
 the corresponding copied component with your edited version, preserving its import paths,
-then build and test your application. The beta CLI refuses to overwrite edited files.
+then build and test your application. The CLI refuses to overwrite edited files.
 You own that source and can change its markup, behavior and styling under the MIT license.
 
 The editors keep drafts in memory. Copy or download before leaving or reloading the page.
+
+## Customize the completed inventory
+
+The 0.2.0 candidate contains 100 primary components. Composed controls expose typed options
+and callbacks; native wrappers preserve native props and refs. Source installation includes
+dependency closure and listed helpers such as lib/widgets.tsx. Preserve your edits when
+merging upstream helpers and CSS. Keep uploading, persistence and AI requests application-owned.
+See [AI interface ideas](ai-interfaces.md) for optional compositions.
+
+For copied source in Next.js App Router, import interactive components from a client
+module marked `use client`. Package builds supply client entry boundaries; source ownership
+uses your application’s boundary. Server rendering/hydration and RSC-only execution differ.
