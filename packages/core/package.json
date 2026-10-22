@@ -38,7 +38,7 @@
     "directory": "packages/core",
     "type": "git"
   },
-  "homepage": "https://www.dev-station.dev/ui",
+  "homepage": "https://devvy-ui.dev-station.dev/ui",
   "bugs": {
     "url": "https://github.com/Jttacalig/devvy-ui/issues"
   }
