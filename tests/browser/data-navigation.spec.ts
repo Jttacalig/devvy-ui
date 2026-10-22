@@ -1,4 +1,6 @@
 import { test, expect } from '@playwright/test';
+import { releaseVersion } from '../../apps/docs/lib/release';
+import inventory from '../../packages/react/components.json';
 import AxeBuilder from '@axe-core/playwright';
 
 test('chart variants keep exact values accessible', async ({ page }) => {
@@ -47,6 +49,10 @@ for (const name of ['chart', 'navbar', 'sidebar', 'breadcrumbs']) {
 
 test('landing uses a paper-and-ink palette with DEVVY components', async ({ page }) => {
   await page.goto('/ui');
+  await expect(page.locator('.release-note')).toContainText('v' + releaseVersion);
+  await expect(page.locator('.release-note')).toContainText(inventory.length + ' components');
+  await expect(page.locator('.sidebar-version-tag')).toContainText('v' + releaseVersion);
+  await expect(page.locator('.footer-badge')).toHaveText('v' + releaseVersion);
   await page.getByRole('combobox', { name: 'Site theme' }).selectOption('light');
   expect(
     await page.locator('body').evaluate((element) => getComputedStyle(element).backgroundColor),
@@ -59,6 +65,7 @@ test('landing uses a paper-and-ink palette with DEVVY components', async ({ page
   await expect(page.locator('.component-collection .dvy-chart')).toBeVisible();
   await expect(page.locator('.component-collection .dvy-navbar')).toBeVisible();
   await page.screenshot({ path: '.artifacts/devvy-paper-desktop.png', fullPage: true });
-  await page.setViewportSize({ width: 375, height: 900 });
+  await page.setViewportSize({ width: 320, height: 900 });
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await page.screenshot({ path: '.artifacts/devvy-paper-phone.png', fullPage: true });
 });

@@ -55,7 +55,7 @@ not execute edited TSX.
 First run the local source installer from your React project, as documented in the getting
 started guide. It copies shared helpers and dependencies alongside the component. Replace
 the corresponding copied component with your edited version, preserving its import paths,
-then build and test your application. The alpha CLI refuses to overwrite edited files.
+then build and test your application. The beta CLI refuses to overwrite edited files.
 You own that source and can change its markup, behavior and styling under the MIT license.
 
 The editors keep drafts in memory. Copy or download before leaving or reloading the page.

@@ -13,7 +13,7 @@ import { Workbench } from '../../components/Workbench';
 import { ComponentCollection } from '../../components/ComponentCollection';
 import { CopyCode } from '../../components/CopyCode';
 import { catalog } from '../../lib/catalog';
-import { version } from '../../../../package.json';
+import { releaseVersion } from '../../lib/release';
 
 export default function Home() {
   return (
@@ -25,7 +25,8 @@ export default function Home() {
         <div className="release-note">
           <span className="status-dot" />
           <span className="release-note-label">THE REACT FOUNDATION</span>
-          <Badge tone="brand">v{version}</Badge>
+          <Badge tone="brand">v{releaseVersion}</Badge>
+          <Badge tone="neutral">{catalog.length} components</Badge>
         </div>
         <h1 id="hero-title">
           <span>Small components.</span>
@@ -161,7 +162,7 @@ export default function Home() {
           </div>
           <CardTitle>Your next idea starts here.</CardTitle>
           <CardDescription>
-            Explore the unpublished beta from this workspace with Node 22+ and pnpm.
+            Explore v{releaseVersion} from this workspace with Node 22.12+ and pnpm.
           </CardDescription>
         </CardHeader>
         <CardContent>

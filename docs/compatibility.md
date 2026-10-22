@@ -2,6 +2,9 @@
 
 Framework, tooling and browser compatibility are separate promises.
 
+The current candidate is **0.1.0-beta.2** with 50 components. See
+[midpoint verification](verification-midpoint.md) for local results and remaining manual gates.
+
 | Target                                            | Scope                                                                                  |
 | ------------------------------------------------- | -------------------------------------------------------------------------------------- |
 | React 18.3.1                                      | Isolated installed-tarball SSR/hydration and keyboard smoke fixture; CI matrix         |

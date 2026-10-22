@@ -1,0 +1,341 @@
+{
+  "generatedAt": "2026-10-22T13:51:32.530Z",
+  "node": "v24.19.0",
+  "platform": "win32/x64",
+  "react": "19.3.1",
+  "esbuild": "0.28.2",
+  "comparator": "@radix-ui/react-tabs@1.2.1",
+  "cpu": "AMD Ryzen 5 3600X 6-Core Processor             ",
+  "mode": "production",
+  "method": "esbuild browser ESM/es2020; React external; minify; compression defaults; SSR median of 5 runs after 100 warmups. Lower bytes does not prove faster interaction.",
+  "bundles": {
+    "first21": {
+      "minified": 15389,
+      "gzip": 5261,
+      "brotli": 4721
+    },
+    "button": {
+      "minified": 511,
+      "gzip": 334,
+      "brotli": 282
+    },
+    "tabs": {
+      "minified": 1917,
+      "gzip": 960,
+      "brotli": 825
+    },
+    "glass": {
+      "minified": 1080,
+      "gzip": 564,
+      "brotli": 487
+    },
+    "dialog": {
+      "minified": 2381,
+      "gzip": 1113,
+      "brotli": 990
+    },
+    "dock": {
+      "minified": 302,
+      "gzip": 227,
+      "brotli": 189
+    },
+    "chart": {
+      "minified": 3500,
+      "gzip": 1455,
+      "brotli": 1326
+    },
+    "navbar": {
+      "minified": 1097,
+      "gzip": 634,
+      "brotli": 547
+    },
+    "sidebar": {
+      "minified": 265,
+      "gzip": 202,
+      "brotli": 178
+    },
+    "breadcrumbs": {
+      "minified": 616,
+      "gzip": 358,
+      "brotli": 311
+    },
+    "select": {
+      "minified": 314,
+      "gzip": 230,
+      "brotli": 186
+    },
+    "alert": {
+      "minified": 689,
+      "gzip": 429,
+      "brotli": 366
+    },
+    "progress": {
+      "minified": 460,
+      "gzip": 320,
+      "brotli": 270
+    },
+    "skeleton": {
+      "minified": 386,
+      "gzip": 266,
+      "brotli": 218
+    },
+    "foundation": {
+      "minified": 8088,
+      "gzip": 2860,
+      "brotli": 2540
+    },
+    "all": {
+      "minified": 30584,
+      "gzip": 9521,
+      "brotli": 8465
+    },
+    "radixTabs": {
+      "minified": 28133,
+      "gzip": 9815,
+      "brotli": 8729
+    },
+    "input": {
+      "minified": 263,
+      "gzip": 198,
+      "brotli": 164
+    },
+    "textarea": {
+      "minified": 274,
+      "gzip": 206,
+      "brotli": 179
+    },
+    "label": {
+      "minified": 284,
+      "gzip": 207,
+      "brotli": 170
+    },
+    "badge": {
+      "minified": 272,
+      "gzip": 209,
+      "brotli": 176
+    },
+    "card": {
+      "minified": 758,
+      "gzip": 269,
+      "brotli": 221
+    },
+    "separator": {
+      "minified": 390,
+      "gzip": 264,
+      "brotli": 220
+    },
+    "checkbox": {
+      "minified": 538,
+      "gzip": 341,
+      "brotli": 290
+    },
+    "switch": {
+      "minified": 273,
+      "gzip": 211,
+      "brotli": 178
+    },
+    "avatar": {
+      "minified": 671,
+      "gzip": 449,
+      "brotli": 378
+    },
+    "avatar-group": {
+      "minified": 559,
+      "gzip": 367,
+      "brotli": 309
+    },
+    "aspect-ratio": {
+      "minified": 417,
+      "gzip": 276,
+      "brotli": 234
+    },
+    "container": {
+      "minified": 270,
+      "gzip": 207,
+      "brotli": 188
+    },
+    "stack": {
+      "minified": 545,
+      "gzip": 335,
+      "brotli": 290
+    },
+    "grid": {
+      "minified": 475,
+      "gzip": 337,
+      "brotli": 288
+    },
+    "typography": {
+      "minified": 294,
+      "gzip": 224,
+      "brotli": 182
+    },
+    "icon-button": {
+      "minified": 772,
+      "gzip": 406,
+      "brotli": 349
+    },
+    "accordion": {
+      "minified": 950,
+      "gzip": 571,
+      "brotli": 480
+    },
+    "pagination": {
+      "minified": 1272,
+      "gzip": 676,
+      "brotli": 589
+    },
+    "radio-group": {
+      "minified": 1173,
+      "gzip": 605,
+      "brotli": 509
+    },
+    "slider": {
+      "minified": 325,
+      "gzip": 240,
+      "brotli": 197
+    },
+    "table": {
+      "minified": 494,
+      "gzip": 318,
+      "brotli": 261
+    },
+    "form": {
+      "minified": 355,
+      "gzip": 247,
+      "brotli": 207
+    },
+    "form-field": {
+      "minified": 747,
+      "gzip": 432,
+      "brotli": 370
+    },
+    "fieldset": {
+      "minified": 551,
+      "gzip": 325,
+      "brotli": 283
+    },
+    "number-input": {
+      "minified": 309,
+      "gzip": 221,
+      "brotli": 192
+    },
+    "password-input": {
+      "minified": 667,
+      "gzip": 405,
+      "brotli": 340
+    },
+    "search-field": {
+      "minified": 337,
+      "gzip": 238,
+      "brotli": 190
+    },
+    "segmented-control": {
+      "minified": 1378,
+      "gzip": 670,
+      "brotli": 565
+    },
+    "color-picker": {
+      "minified": 285,
+      "gzip": 217,
+      "brotli": 174
+    },
+    "circular-progress": {
+      "minified": 955,
+      "gzip": 562,
+      "brotli": 497
+    },
+    "spinner": {
+      "minified": 487,
+      "gzip": 315,
+      "brotli": 263
+    },
+    "empty-state": {
+      "minified": 553,
+      "gzip": 359,
+      "brotli": 296
+    },
+    "status-indicator": {
+      "minified": 374,
+      "gzip": 262,
+      "brotli": 218
+    },
+    "collapsible": {
+      "minified": 561,
+      "gzip": 378,
+      "brotli": 311
+    },
+    "description-list": {
+      "minified": 428,
+      "gzip": 284,
+      "brotli": 232
+    },
+    "meter": {
+      "minified": 647,
+      "gzip": 385,
+      "brotli": 337
+    },
+    "copy-button": {
+      "minified": 1579,
+      "gzip": 833,
+      "brotli": 719
+    }
+  },
+  "css": {
+    "tokens": {
+      "minified": 1775,
+      "gzip": 613,
+      "brotli": 526
+    },
+    "styles": {
+      "minified": 28182,
+      "gzip": 5540,
+      "brotli": 4894
+    },
+    "glass": {
+      "minified": 4187,
+      "gzip": 998,
+      "brotli": 854
+    },
+    "foundation": {
+      "minified": 7683,
+      "gzip": 2035,
+      "brotli": 1729
+    },
+    "existing17": {
+      "minified": 13722,
+      "gzip": 3078,
+      "brotli": 2669
+    },
+    "feedback": {
+      "minified": 3442,
+      "gzip": 1035,
+      "brotli": 870
+    },
+    "first21": {
+      "minified": 17163,
+      "gzip": 3656,
+      "brotli": 3182
+    },
+    "midpoint": {
+      "minified": 11020,
+      "gzip": 2596,
+      "brotli": 2226
+    }
+  },
+  "ssr": {
+    "devvyTabs": {
+      "millisecondsPerRenderMedian": 0.017224699999999985,
+      "samples": [
+        0.02620010000000002, 0.017224699999999985, 0.014661399999999958, 0.018574999999999817,
+        0.016069600000000038
+      ]
+    },
+    "radixTabs": {
+      "millisecondsPerRenderMedian": 0.11271550000000002,
+      "samples": [
+        0.12781500000000007, 0.11645620000000008, 0.11271550000000002, 0.09216110000000004,
+        0.08923609999999985
+      ]
+    }
+  }
+}

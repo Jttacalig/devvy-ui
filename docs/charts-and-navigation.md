@@ -1,6 +1,6 @@
 # Charts and navigation
 
-These original components extend the existing React alpha. No new runtime dependencies
+These original components extend the existing React foundation. No new runtime dependencies
 or backend requests are introduced. Import the existing token and base styles once.
 
 ## Charts

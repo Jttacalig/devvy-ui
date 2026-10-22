@@ -1,6 +1,6 @@
 {
   "name": "@devvy-ui/react",
-  "version": "0.1.0-beta.1",
+  "version": "0.1.0-beta.2",
   "description": "Lightweight React components for Devvy UI",
   "license": "MIT",
   "type": "module",
@@ -90,6 +90,122 @@
     "./skeleton": {
       "types": "./dist/skeleton.d.ts",
       "import": "./dist/skeleton.js"
+    },
+    "./avatar": {
+      "types": "./dist/avatar.d.ts",
+      "import": "./dist/avatar.js"
+    },
+    "./avatar-group": {
+      "types": "./dist/avatar-group.d.ts",
+      "import": "./dist/avatar-group.js"
+    },
+    "./aspect-ratio": {
+      "types": "./dist/aspect-ratio.d.ts",
+      "import": "./dist/aspect-ratio.js"
+    },
+    "./container": {
+      "types": "./dist/container.d.ts",
+      "import": "./dist/container.js"
+    },
+    "./stack": {
+      "types": "./dist/stack.d.ts",
+      "import": "./dist/stack.js"
+    },
+    "./grid": {
+      "types": "./dist/grid.d.ts",
+      "import": "./dist/grid.js"
+    },
+    "./typography": {
+      "types": "./dist/typography.d.ts",
+      "import": "./dist/typography.js"
+    },
+    "./icon-button": {
+      "types": "./dist/icon-button.d.ts",
+      "import": "./dist/icon-button.js"
+    },
+    "./accordion": {
+      "types": "./dist/accordion.d.ts",
+      "import": "./dist/accordion.js"
+    },
+    "./pagination": {
+      "types": "./dist/pagination.d.ts",
+      "import": "./dist/pagination.js"
+    },
+    "./radio-group": {
+      "types": "./dist/radio-group.d.ts",
+      "import": "./dist/radio-group.js"
+    },
+    "./slider": {
+      "types": "./dist/slider.d.ts",
+      "import": "./dist/slider.js"
+    },
+    "./table": {
+      "types": "./dist/table.d.ts",
+      "import": "./dist/table.js"
+    },
+    "./form": {
+      "types": "./dist/form.d.ts",
+      "import": "./dist/form.js"
+    },
+    "./form-field": {
+      "types": "./dist/form-field.d.ts",
+      "import": "./dist/form-field.js"
+    },
+    "./fieldset": {
+      "types": "./dist/fieldset.d.ts",
+      "import": "./dist/fieldset.js"
+    },
+    "./number-input": {
+      "types": "./dist/number-input.d.ts",
+      "import": "./dist/number-input.js"
+    },
+    "./password-input": {
+      "types": "./dist/password-input.d.ts",
+      "import": "./dist/password-input.js"
+    },
+    "./search-field": {
+      "types": "./dist/search-field.d.ts",
+      "import": "./dist/search-field.js"
+    },
+    "./segmented-control": {
+      "types": "./dist/segmented-control.d.ts",
+      "import": "./dist/segmented-control.js"
+    },
+    "./color-picker": {
+      "types": "./dist/color-picker.d.ts",
+      "import": "./dist/color-picker.js"
+    },
+    "./circular-progress": {
+      "types": "./dist/circular-progress.d.ts",
+      "import": "./dist/circular-progress.js"
+    },
+    "./spinner": {
+      "types": "./dist/spinner.d.ts",
+      "import": "./dist/spinner.js"
+    },
+    "./empty-state": {
+      "types": "./dist/empty-state.d.ts",
+      "import": "./dist/empty-state.js"
+    },
+    "./status-indicator": {
+      "types": "./dist/status-indicator.d.ts",
+      "import": "./dist/status-indicator.js"
+    },
+    "./collapsible": {
+      "types": "./dist/collapsible.d.ts",
+      "import": "./dist/collapsible.js"
+    },
+    "./description-list": {
+      "types": "./dist/description-list.d.ts",
+      "import": "./dist/description-list.js"
+    },
+    "./meter": {
+      "types": "./dist/meter.d.ts",
+      "import": "./dist/meter.js"
+    },
+    "./copy-button": {
+      "types": "./dist/copy-button.d.ts",
+      "import": "./dist/copy-button.js"
     },
     "./breadcrumbs": {
       "types": "./dist/breadcrumbs.d.ts",

@@ -4,6 +4,7 @@ import { mkdtemp, writeFile, readFile, mkdir } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { run } from '../src/cli.mjs';
+import { componentSources } from '../../registry/dependencies.mjs';
 
 test('source installation, repeat installs and doctor', async () => {
   const dir = await mkdtemp(join(tmpdir(), 'devvy-cli-'));
@@ -56,6 +57,30 @@ test('source installation, repeat installs and doctor', async () => {
   await writeFile(join(dir, 'src/components/devvy/components/Button.tsx'), '// my edits');
   await assert.rejects(run(['add', 'button'], dir), /Refusing to overwrite/);
 });
+
+test('source dependency closure deduplicates shared dependencies and rejects invalid graphs', () => {
+  const inventory = [
+    { name: 'Panel', dependencies: ['Action', 'Button'] },
+    { name: 'Action', dependencies: ['Button'] },
+    { name: 'Button' },
+  ];
+  assert.deepEqual(componentSources(inventory, 'Panel'), ['Panel', 'Action', 'Button']);
+  assert.throws(
+    () => componentSources([{ name: 'Panel', dependencies: ['Missing'] }], 'Panel'),
+    /Unknown component/,
+  );
+  assert.throws(
+    () =>
+      componentSources(
+        [
+          { name: 'Panel', dependencies: ['Action'] },
+          { name: 'Action', dependencies: ['Panel'] },
+        ],
+        'Panel',
+      ),
+    /Circular component/,
+  );
+});
 test('rejects path traversal and missing configuration', async () => {
   const dir = await mkdtemp(join(tmpdir(), 'devvy-cli-'));
   await assert.rejects(run(['add', 'button'], dir), /Run init/);
@@ -65,4 +90,34 @@ test('rejects path traversal and missing configuration', async () => {
     JSON.stringify({ schemaVersion: 1, components: '../escape', styles: 'src/devvy.css' }),
   );
   await assert.rejects(run(['add', 'button'], dir), /escapes project/);
+});
+
+test('installs the full canonical inventory and standalone composed dependencies', async () => {
+  const inventory = JSON.parse(
+    await readFile(new URL('../../react/components.json', import.meta.url), 'utf8'),
+  );
+  const dir = await mkdtemp(join(tmpdir(), 'devvy-midpoint-'));
+  await writeFile(
+    join(dir, 'package.json'),
+    JSON.stringify({ dependencies: { react: '^18.3.1' } }),
+  );
+  await run(['init'], dir);
+  await run(['add', 'segmented-control', 'copy-button', 'icon-button'], dir);
+  for (const name of ['RadioGroup', 'Button'])
+    assert.match(
+      await readFile(join(dir, 'src/components/devvy/components/' + name + '.tsx'), 'utf8'),
+      new RegExp('export const ' + name),
+    );
+  await run(['add', ...inventory.map((item) => item.slug)], dir);
+  for (const { name } of inventory) {
+    const canonical = await readFile(
+      new URL('../../react/src/components/' + name + '.tsx', import.meta.url),
+      'utf8',
+    );
+    assert.equal(
+      await readFile(join(dir, 'src/components/devvy/components/' + name + '.tsx'), 'utf8'),
+      canonical.replaceAll("'@devvy-ui/core'", "'../lib/core'"),
+    );
+  }
+  assert.match(await run(['doctor'], dir), /stylesheet found/);
 });

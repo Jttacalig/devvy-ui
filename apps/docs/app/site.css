@@ -312,6 +312,7 @@ select:focus-visible {
 }
 .release-note {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 0.5rem;
   font-size: 0.6875rem;
@@ -942,6 +943,40 @@ td {
 }
 .foundation-preview > p {
   margin-block: 0.25rem;
+}
+.midpoint-preview {
+  width: 100%;
+  min-width: 0;
+  max-width: 40rem;
+}
+.midpoint-preview .dvy-stack > .dvy-button,
+.midpoint-preview .dvy-form > .dvy-button {
+  justify-self: start;
+  align-self: flex-start;
+}
+.midpoint-preview .dvy-field-description,
+.midpoint-preview .dvy-field-error {
+  margin-block: 0;
+}
+.midpoint-layout-surface,
+.midpoint-ratio {
+  padding: 1rem;
+  border: 1px dashed var(--dvy-border);
+  border-radius: var(--dvy-radius-md);
+  background: var(--dvy-background);
+}
+.midpoint-ratio {
+  padding: 0;
+  text-align: center;
+}
+.midpoint-ratio .dvy-aspect-ratio-content {
+  padding: 1rem;
+}
+.midpoint-color-swatch {
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid var(--dvy-border);
+  border-radius: 0.25rem;
 }
 .button-row {
   display: flex;

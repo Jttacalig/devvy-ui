@@ -5,6 +5,7 @@ import { useId, useState } from 'react';
 import { Input, Badge } from '@devvy-ui/react';
 import { catalog } from '../lib/catalog';
 import { InterfaceIcon } from './InterfaceIcon';
+import { releaseVersion } from '../lib/release';
 
 export function Navigation() {
   const path = usePathname();
@@ -100,7 +101,7 @@ export function Navigation() {
             <span className="status-dot" />
             <span>Independent MIT Foundation</span>
           </div>
-          <span className="sidebar-version-tag">v0.1.0-beta.1 · DEV STATION</span>
+          <span className="sidebar-version-tag">v{releaseVersion} · DEV STATION</span>
         </div>
       </div>
     </aside>

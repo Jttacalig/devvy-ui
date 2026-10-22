@@ -12,6 +12,7 @@ import {
 import { Workbench } from '../../../components/Workbench';
 import { CopyCode } from '../../../components/CopyCode';
 import { catalog } from '../../../lib/catalog';
+import { releaseVersion } from '../../../lib/release';
 import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { CodePlayground } from '../../../components/CodePlayground';
@@ -209,7 +210,13 @@ export default async function Section({ params }: { params: Promise<{ section: s
       ) : section === 'changelog' ? (
         <>
           <h1>A foundation in progress.</h1>
-          <p className="page-lead">Unreleased development notes · 22 October 2026</p>
+          <p className="page-lead">v{releaseVersion} · Unpublished beta · 22 October 2026</p>
+          <h2>Halfway to 100</h2>
+          <p>
+            The inventory now includes {catalog.length} implemented components. New layout, native
+            form, disclosure, table and feedback components include working previews and editable
+            source. Complex overlays and advanced widgets remain on the roadmap.
+          </p>
           <h2>Native controls and feedback</h2>
           <p>
             Select, Alert, Progress and Skeleton add native form selection, composed messages, task
@@ -287,7 +294,7 @@ export default async function Section({ params }: { params: Promise<{ section: s
             <thead>
               <tr>
                 <th>Environment</th>
-                <th>Alpha scope</th>
+                <th>Tested scope</th>
               </tr>
             </thead>
             <tbody>
@@ -305,7 +312,7 @@ export default async function Section({ params }: { params: Promise<{ section: s
               </tr>
               <tr>
                 <td>Modern browsers</td>
-                <td>Chromium and WebKit checks pass locally; Firefox launch blocked here</td>
+                <td>276 local checks passed across Chromium, Firefox and WebKit</td>
               </tr>
               <tr>
                 <td>React 16/17, Vue, Svelte, Elements</td>

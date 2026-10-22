@@ -32,7 +32,7 @@ export default async function ComponentPage({ params }: { params: Promise<{ slug
       <div className="component-page-header">
         <div className="component-badges">
           <Badge tone={isEnhancement ? 'brand' : 'neutral'}>
-            {isEnhancement ? 'Alpha Enhancement' : 'Foundation Component'}
+            {isEnhancement ? 'Optional Enhancement' : 'Foundation Component'}
           </Badge>
           <Badge tone="neutral">React 18 & 19</Badge>
           <Badge tone="neutral">Zero Runtime CSS</Badge>
