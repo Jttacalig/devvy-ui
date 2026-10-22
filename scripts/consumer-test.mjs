@@ -50,6 +50,10 @@ await writeFile(
   resolve(dir, 'inventory.json'),
   await readFile(resolve(root, 'packages/react/components.json'), 'utf8'),
 );
+await writeFile(
+  resolve(dir, 'completion-fixture.mjs'),
+  await readFile(resolve(root, 'packages/react/src/components/completion-fixture.mjs'), 'utf8'),
+);
 execFileSync(
   process.execPath,
   [process.env.npm_execpath, 'install', '--ignore-scripts', '--force'],

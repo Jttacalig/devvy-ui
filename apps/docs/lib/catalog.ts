@@ -1,4 +1,5 @@
 import { midpointCatalog } from './midpoint-catalog';
+import { completionCatalog } from './completion-catalog';
 export const catalog = [
   {
     slug: 'button',
@@ -216,7 +217,31 @@ export const catalog = [
         'Visible chart caption and optional context.',
       ],
       ['type', 'bar | line | area | donut', 'bar', 'Single-series visualization.'],
-      ['valueFormatter', '(number) => string', 'compact number', 'Formats axes and values.'],
+      [
+        'valueFormatter',
+        '(number) => string',
+        'compact number',
+        'Formats values and the data table.',
+      ],
+      [
+        'axisFormatter',
+        '(number) => string',
+        'valueFormatter',
+        'Short axes without rounding table data.',
+      ],
+      [
+        'curve',
+        'linear | smooth | step',
+        'linear',
+        'Line interpolation; area fill can be customized with --dvy-chart-fill.',
+      ],
+      ['activeIndex', 'number', '—', 'Externally highlighted point. ChartInspector supplies this.'],
+      [
+        'ChartInspector',
+        'ChartProps + defaultIndex, inspectionLabel',
+        'optional composition',
+        'Pointer/touch and native keyboard inspection; exported from /chart.',
+      ],
       [
         'dataLabel / emptyLabel',
         'string',
@@ -225,7 +250,7 @@ export const catalog = [
       ],
     ],
     code: '<Chart title="Weekly activity" type="bar" data={[\n  { label: "Mon", value: 24 },\n  { label: "Tue", value: 38 },\n  { label: "Wed", value: 31 },\n]} />',
-    note: 'An accessible named SVG, visible caption and native data-table disclosure. Bar, line and area support signed values. Donuts require nonnegative values and a positive finite total. Nonfinite values are omitted; unsupported/empty data shows the empty state. Axis labels shorten visually; the table retains full labels. Single series; aggregate large datasets before rendering. Theme with --dvy-chart-color and --dvy-chart-series-1 through -4. No new dependency or animation.',
+    note: 'An accessible named SVG, visible caption and native data-table disclosure. Bar, line and area support signed values. Donuts require nonnegative values and a positive finite total. Nonfinite values are omitted; unsupported/empty data shows the empty state. Axis labels shorten visually; the table retains full labels. Single series; aggregate large datasets before rendering. Theme with --dvy-chart-color and --dvy-chart-series-1 through -4. ChartInspector optionally adds pointer/touch inspection and one native keyboard slider. Smooth segments stay within adjacent values. No new dependency or animation.',
   },
   {
     slug: 'navbar',
@@ -370,5 +395,6 @@ export const catalog = [
     note: 'Always decorative and aria-hidden. No children, focus or interaction API. Put aria-busy on the enclosing content region and provide one readable loading status outside it. Replace shapes with content when ready. Error and disabled states belong to that content, not to the skeleton. Supports span refs, className, style and theme variables.',
   },
   ...midpointCatalog,
+  ...completionCatalog,
 ] as const;
 export type ComponentName = (typeof catalog)[number]['slug'];

@@ -1,6 +1,6 @@
 {
   "name": "@devvy-ui/cli",
-  "version": "0.1.0-beta.2",
+  "version": "0.2.0",
   "type": "module",
   "license": "MIT",
   "description": "Local source-ownership installer for DEVVY UI",

@@ -2,11 +2,15 @@
 
 ## Supported versions
 
-Devvy UI is an unpublished beta (`0.1.0-beta.2`) and is **not yet security-supported for production usage**. After the first stable release, this policy will list supported versions.
+The current repository candidate is `0.2.0`; published beta packages are prereleases.
+Preparing a stable version does not establish a production security-support window.
+Maintainers must list supported versions after publication. No response-time SLA is promised.
 
 ## Reporting a vulnerability
 
-Once the repository is public, maintainers should enable **Settings → Security → Private vulnerability reporting**. Report vulnerabilities using GitHub's private vulnerability reporting workflow, not public issues.
+Use GitHub's private vulnerability reporting workflow when enabled for this repository,
+rather than disclosing vulnerabilities in public issues. Maintainers should enable
+**Settings → Security → Private vulnerability reporting** if it is unavailable.
 
 If the private reporting option is unavailable, privately contact a listed project maintainer via their GitHub profile before sharing sensitive details. Do not include secrets or live credentials in reports.
 

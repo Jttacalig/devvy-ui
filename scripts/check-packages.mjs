@@ -94,6 +94,14 @@ for (const item of registry.items) {
     'lib/glass.ts',
     'lib/cx.ts',
     ...componentSources(components, name).map((dependency) => `components/${dependency}.tsx`),
+    ...new Set(
+      componentSources(components, name)
+        .flatMap(
+          (dependency) =>
+            components.find((component) => component.name === dependency).helpers ?? [],
+        )
+        .map((helper) => 'lib/' + helper),
+    ),
     ...(name === 'Glass' ? ['glass.css'] : []),
   ];
   assert.deepEqual(
@@ -108,6 +116,11 @@ for (const item of registry.items) {
         await readFile(resolve(root, 'packages/react/src', file.path), 'utf8')
       ).replaceAll("'@devvy-ui/core'", "'../lib/core'");
     } else if (file.path === 'LICENSE') expected = license;
+    else if (
+      components.some((component) => component.helpers?.includes(file.path.slice(4))) &&
+      file.path.startsWith('lib/')
+    )
+      expected = await readFile(resolve(root, 'packages/react/src', file.path), 'utf8');
     else if (file.path === 'lib/cx.ts') expected = "export { cx } from './core';\n";
     else if (file.path === 'glass.css')
       expected =

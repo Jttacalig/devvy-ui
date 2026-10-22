@@ -1,4 +1,4 @@
-name: Publish DEVVY UI beta to npm
+name: Publish DEVVY UI stable release to npm
 
 # An npm publication is a deliberate maintainer action, never a side-effect of
 # pushing commits or deploying the documentation website.
@@ -10,7 +10,7 @@ permissions:
   id-token: write # npm Trusted Publishing / OIDC
 
 concurrency:
-  group: devvy-ui-npm-beta
+  group: devvy-ui-npm-latest
   cancel-in-progress: false
 
 jobs:
@@ -52,16 +52,16 @@ jobs:
           pnpm exec playwright install --with-deps
           pnpm test:browser
 
-      - name: Publish all six packages with beta dist-tag (OIDC)
+      - name: Publish all six packages with latest dist-tag (OIDC)
         shell: bash
         run: |
           set -euo pipefail
           VERSION="$(node -p "require('./package.json').version")"
-          if [[ ! "$VERSION" =~ -beta\.[0-9]+$ ]]; then
-            echo "Refusing non-beta version: $VERSION"
+          if [[ ! "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "Refusing non-stable version: $VERSION"
             exit 1
           fi
-          echo "Publishing DEVVY UI $VERSION under npm dist-tag 'beta'"
+          echo "Publishing DEVVY UI $VERSION under npm dist-tag 'latest'"
           # Publish dependencies before their dependents. Existing versions are
           # skipped so an interrupted six-package release can be retried.
           for PACKAGE in tokens styles core react registry cli; do
@@ -74,6 +74,6 @@ jobs:
             if npm view "$NAME@$VERSION" version --json >/dev/null 2>&1; then
               echo "Already published: $NAME@$VERSION"
             else
-              npm publish "$TARBALL" --access public --tag beta --provenance
+              npm publish "$TARBALL" --access public --tag latest --provenance
             fi
           done

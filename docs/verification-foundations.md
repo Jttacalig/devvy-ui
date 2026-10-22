@@ -1,5 +1,8 @@
 # Foundation batch — 22 October 2026
 
+Historical snapshot. See [current 100-component verification](verification-100.md) for the
+0.2.0 candidate. Version/publication statements below describe the original run.
+
 This batch preserves the existing 17 components and adds Select, Alert, Progress and Skeleton.
 The canonical inventory contains 21 primary components. The remaining 79 additions in the
 [100-component plan](roadmap-100.md) are planned, not implemented. Existing APIs and visual

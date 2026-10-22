@@ -46,3 +46,22 @@ context and announce milestones separately when appropriate.
 Skeleton is aria-hidden and has no interaction or children API. Put aria-busy on the content
 region, with one readable loading status outside it. Reduced motion and forced colors disable
 the opacity pulse. Match the expected content dimensions to reduce layout movement.
+
+## Completion component contracts
+
+Popover is nonmodal: Escape returns to its trigger; outside interaction dismisses it.
+Menus skip disabled actions and support arrows, Home/End and typeahead. HoverCard supports
+explicit keyboard/click activation. Tooltip content must remain noninteractive. Modal
+compositions reuse native Dialog and its explicit inline fallback.
+
+Calendar requires an explicit initial month and uses ISO civil dates with UTC formatting.
+PageUp/PageDown move months (Shift moves years); arrows move days/weeks. Native date/time
+input appearance depends on the browser. ResizablePanels follows the
+[ARIA window splitter pattern](https://www.w3.org/WAI/ARIA/apg/patterns/windowsplitter/).
+SortableList and KanbanBoard retain button/select alternatives to dragging. VirtualList
+offers Show all items and retains focused rows. MentionsInput remains a native multiline
+textbox with suggestions, avoiding an unsupported combobox role on textarea.
+
+Provide captions and readable transcripts for media. RichTextEditor is a Markdown source
+textarea with safe preview, not a full WYSIWYG editor. Review new patterns with actual
+assistive technology; automated results are not certification.

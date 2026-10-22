@@ -17,6 +17,18 @@ const items = await Promise.all(
     files: [
       ...common,
       ...(await Promise.all(
+        [
+          ...new Set(
+            componentSources(components, name).flatMap(
+              (dependency) => components.find((item) => item.name === dependency).helpers ?? [],
+            ),
+          ),
+        ].map(async (helper) => ({
+          path: 'lib/' + helper,
+          content: await read('packages/react/src/lib/' + helper),
+        })),
+      )),
+      ...(await Promise.all(
         componentSources(components, name).map(async (dependency) => ({
           path: `components/${dependency}.tsx`,
           content: (await read(`packages/react/src/components/${dependency}.tsx`)).replaceAll(

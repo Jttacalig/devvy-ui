@@ -1,6 +1,14 @@
 'use client';
-import { useState } from 'react';
-import { Chart, Navbar, Sidebar, Breadcrumbs, Button } from '@devvy-ui/react';
+import { useId, useState } from 'react';
+import {
+  ChartInspector,
+  Navbar,
+  Sidebar,
+  Breadcrumbs,
+  Button,
+  Select,
+  Badge,
+} from '@devvy-ui/react';
 import type { ComponentName } from '../lib/catalog';
 
 const activity = [
@@ -19,7 +27,12 @@ const sources = [
   { label: 'Other', value: 9 },
 ];
 export function ChartPreview() {
-  const [type, setType] = useState<'bar' | 'line' | 'area' | 'donut'>('bar');
+  const id = useId();
+  const [type, setType] = useState<'bar' | 'line' | 'area' | 'donut'>('area');
+  const [period, setPeriod] = useState('7');
+  const [curve, setCurve] = useState<'linear' | 'smooth' | 'step'>('smooth');
+  const visible = activity.slice(-Number(period));
+  const total = (type === 'donut' ? sources : visible).reduce((sum, point) => sum + point.value, 0);
   return (
     <div className="data-preview">
       <div className="data-preview-toolbar" role="group" aria-label="Chart type">
@@ -34,11 +47,52 @@ export function ChartPreview() {
           </button>
         ))}
       </div>
-      <Chart
-        title={type === 'donut' ? 'Where visitors arrive from' : 'A week in your workspace'}
-        description="Sample data · built with DEVVY UI"
-        data={type === 'donut' ? sources : activity}
+      <div className="chart-studio-controls">
+        <label htmlFor={id + '-period'}>
+          Period
+          <Select
+            id={id + '-period'}
+            aria-label="Chart period"
+            value={period}
+            onChange={(event) => setPeriod(event.target.value)}
+            disabled={type === 'donut'}
+          >
+            <option value="7">Last 7 days</option>
+            <option value="3">Last 3 days</option>
+          </Select>
+        </label>
+        <label htmlFor={id + '-curve'}>
+          Line style
+          <Select
+            id={id + '-curve'}
+            aria-label="Chart line style"
+            value={curve}
+            onChange={(event) => setCurve(event.target.value as typeof curve)}
+            disabled={type === 'bar' || type === 'donut'}
+          >
+            <option value="smooth">Smooth</option>
+            <option value="linear">Linear</option>
+            <option value="step">Step</option>
+          </Select>
+        </label>
+      </div>
+      <div className="chart-studio-summary">
+        <div>
+          <span>Sample workspace activity</span>
+          <strong>
+            {total.toLocaleString('en-US')}
+            <small> events</small>
+          </strong>
+        </div>
+        <Badge tone="neutral">Fictional data</Badge>
+      </div>
+      <ChartInspector
+        title={type === 'donut' ? 'Where visitors arrive from' : 'Activity over time'}
+        description="Inspect a point by pointer, touch, or the keyboard slider. Exact values remain in the data table."
+        data={type === 'donut' ? sources : visible}
         type={type}
+        curve={curve}
+        inspectionLabel="Inspect activity"
       />
     </div>
   );

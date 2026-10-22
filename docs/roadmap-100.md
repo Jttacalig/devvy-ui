@@ -1,12 +1,11 @@
 # Roadmap to exactly 100 components
 
-## Current milestone: 50 implemented components · 0.1.0-beta.2
+## Current milestone: 100 implemented components · 0.2.0 candidate
 
-The source inventory now contains 50 primary components: the first 21 plus 29 layout,
-native form, disclosure, table and feedback additions. See [midpoint verification](verification-midpoint.md)
-for their names and actual evidence. This reaches the requested halfway point. Phase 1's
-five complex overlay/collection components remain planned; selecting independent native
-components from Phase 2 does not declare all of Phase 1 complete.
+All 83 planned additions now have canonical source, focused exports, generated registry
+items and explicit docs previews, alongside the original 17. See
+[completion verification](verification-100.md) for actual checks and remaining manual gates.
+Implementation count is separate from publication, deployment and accessibility certification.
 
 ## Audit and counting policy
 
@@ -90,9 +89,8 @@ The following allocation contains all 83 requested additions exactly once.
 | 1C — disclosure and navigation    | Accordion, Pagination, RadioGroup, Slider, Table                                 | Native semantics first; roving focus/RTL only when needed; form/reset and pointer/keyboard slider parity                     |
 | 1D — overlays and collections     | Tooltip, Popover, DropdownMenu, Combobox, Toast                                  | Overlay/collection specifications first; focus return, Escape, outside interaction, typeahead and live announcement policies |
 
-After 1A the implementation inventory was 21. The midpoint also implements 1B and 1C,
-plus 16 independent components from Phase 2. The five 1D names remain planned.
-Do not call this phase complete until all 22 additions meet the gates below.
+After 1A the inventory was 21; the midpoint reached 50. The 0.2.0 candidate implements
+the five 1D names and all remaining Phase 2–4 names. The gates below continue to apply.
 
 ### Phase 2: 44 additions
 
@@ -143,8 +141,6 @@ MentionsInput must specify IME, selection/caret behavior, escaping and suggestio
 8. Include Changesets and accurate release notes. Keep work on a feature branch, prepare
    reviewable changes, and do not push protected main, merge or publish without authorization.
 
-The 100-component list is a plan, not a claim that the unimplemented components exist.
-
-The first implementation batch contains four candidates, bringing the current source count
-to 21. Its [verification record](verification-foundations.md) separates automated evidence
-from the manual release gates. Subsequent batches should use the same evidence standard.
+The phased list is now implemented in the 0.2.0 candidate. Historical foundation and
+midpoint records retain their original evidence; see [current verification](verification-100.md)
+for the complete inventory and manual gates.

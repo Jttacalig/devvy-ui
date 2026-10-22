@@ -3,11 +3,14 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useId, useState } from 'react';
 import { Input, Badge } from '@devvy-ui/react';
-import { catalog } from '../lib/catalog';
 import { InterfaceIcon } from './InterfaceIcon';
 import { releaseVersion } from '../lib/release';
 
-export function Navigation() {
+export function Navigation({
+  items: catalog,
+}: {
+  items: readonly { name: string; slug: string; description: string }[];
+}) {
   const path = usePathname();
   const [search, setSearch] = useState('');
   const [expanded, setExpanded] = useState(false);

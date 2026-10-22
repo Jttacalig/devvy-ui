@@ -53,12 +53,16 @@ test('source installation, repeat installs and doctor', async () => {
     );
   }
   await assert.rejects(run(['init'], dir), /already exists/);
-  await assert.rejects(run(['add', 'combobox'], dir), /Unknown component/);
+  await assert.rejects(run(['add', 'missing-widget'], dir), /Unknown component/);
   await writeFile(join(dir, 'src/components/devvy/components/Button.tsx'), '// my edits');
   await assert.rejects(run(['add', 'button'], dir), /Refusing to overwrite/);
 });
 
 test('source dependency closure deduplicates shared dependencies and rejects invalid graphs', () => {
+  assert.throws(
+    () => componentSources([{ name: 'Panel', helpers: ['../escape.ts'] }], 'Panel'),
+    /Invalid React helper path/,
+  );
   const inventory = [
     { name: 'Panel', dependencies: ['Action', 'Button'] },
     { name: 'Action', dependencies: ['Button'] },
@@ -102,12 +106,28 @@ test('installs the full canonical inventory and standalone composed dependencies
     JSON.stringify({ dependencies: { react: '^18.3.1' } }),
   );
   await run(['init'], dir);
-  await run(['add', 'segmented-control', 'copy-button', 'icon-button'], dir);
-  for (const name of ['RadioGroup', 'Button'])
+  await run(
+    [
+      'add',
+      'segmented-control',
+      'copy-button',
+      'icon-button',
+      'gallery',
+      'command-palette',
+      'hover-card',
+      'rich-text-editor',
+    ],
+    dir,
+  );
+  for (const name of ['RadioGroup', 'Button', 'Lightbox', 'Dialog', 'Popover', 'MarkdownViewer'])
     assert.match(
       await readFile(join(dir, 'src/components/devvy/components/' + name + '.tsx'), 'utf8'),
       new RegExp('export const ' + name),
     );
+  assert.equal(
+    await readFile(join(dir, 'src/components/devvy/lib/widgets.tsx'), 'utf8'),
+    await readFile(new URL('../../react/src/lib/widgets.tsx', import.meta.url), 'utf8'),
+  );
   await run(['add', ...inventory.map((item) => item.slug)], dir);
   for (const { name } of inventory) {
     const canonical = await readFile(

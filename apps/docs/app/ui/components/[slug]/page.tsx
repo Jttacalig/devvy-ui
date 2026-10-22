@@ -3,6 +3,8 @@ import { resolve } from 'node:path';
 import { notFound } from 'next/navigation';
 import { Badge, Card, CardHeader, CardTitle, CardDescription, Separator } from '@devvy-ui/react';
 import { catalog } from '../../../../lib/catalog';
+import { midpointCatalog } from '../../../../lib/midpoint-catalog';
+import { completionCatalog } from '../../../../lib/completion-catalog';
 import { ComponentPreview } from '../../../../components/ComponentPreview';
 import { CopyCode } from '../../../../components/CopyCode';
 import { SourceEditor } from '../../../../components/SourceEditor';
@@ -42,7 +44,16 @@ export default async function ComponentPage({ params }: { params: Promise<{ slug
       </div>
 
       <div className="preview-container">
-        <ComponentPreview name={item.slug} />
+        <ComponentPreview
+          name={item.slug}
+          batch={
+            completionCatalog.some((entry) => entry.slug === item.slug)
+              ? 'completion'
+              : midpointCatalog.some((entry) => entry.slug === item.slug)
+                ? 'midpoint'
+                : undefined
+          }
+        />
       </div>
 
       <Separator className="section-divider" />

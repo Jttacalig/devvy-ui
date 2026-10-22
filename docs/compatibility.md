@@ -2,8 +2,8 @@
 
 Framework, tooling and browser compatibility are separate promises.
 
-The current candidate is **0.1.0-beta.2** with 50 components. See
-[midpoint verification](verification-midpoint.md) for local results and remaining manual gates.
+The current candidate is **0.2.0** with 100 components. See
+[completion verification](verification-100.md) for local results and remaining manual gates.
 
 | Target                                            | Scope                                                                                  |
 | ------------------------------------------------- | -------------------------------------------------------------------------------------- |
@@ -22,9 +22,9 @@ The current candidate is **0.1.0-beta.2** with 50 components. See
 Browser CSS targets modern evergreen engines: custom properties, logical properties,
 color-scheme, focus-visible and appearance. Docs also use color-mix and dynamic viewport
 units. Older browsers require separate validation and are not promised by framework support.
-Chromium, WebKit and Firefox have Playwright projects; all three engines passed
-100% locally (135/135 tests) and are configured in Linux CI. Keyboard and screen-reader
-checks remain a separate manual gate.
+Chromium, WebKit and Firefox have Playwright projects. Results are recorded per candidate
+in the verification records; historical pass counts do not validate this candidate.
+Keyboard and screen-reader checks remain a separate manual gate.
 
 React package entry points are ESM and have client boundaries. Do not import event handlers
 from server-only components. Global CSS belongs in the application root. Multiple React
@@ -36,3 +36,9 @@ to reduced motion/transparency, higher contrast and forced colors. Native modal 
 requires showModal; unsupported browsers receive a named nonmodal inline panel. Use
 returnFocusRef for reliable return to pointer-activated buttons in Safari. See glass.md
 for the full fallback policy. React version support does not imply support for older browsers.
+
+New capabilities use native date/time inputs, dialog, pointer capture, File/DataTransfer,
+Canvas and optional IntersectionObserver. Unsupported observers retain manual Load more
+and ordinary section links. Image exports require decoded, origin-clean images; remote
+servers must allow CORS. Media codec support depends on the browser and supplied source.
+VirtualList requires fixed row heights and includes Show all items for full document access.

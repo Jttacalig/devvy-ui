@@ -1,12 +1,51 @@
 import { describe, it, expect, vi } from 'vitest';
 import { act, createRef } from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { renderToString } from 'react-dom/server';
 import { hydrateRoot } from 'react-dom/client';
-import { Chart, Navbar, Sidebar, Breadcrumbs } from '../index';
+import { Chart, ChartInspector, Navbar, Sidebar, Breadcrumbs } from '../index';
 
 describe('data and navigation', () => {
+  it('supports smooth/step paths, unique gradient ids and separate axis formatting', () => {
+    const data = [
+      { label: 'Monday', value: 1234.56 },
+      { label: 'Tuesday', value: -35 },
+    ];
+    const { container } = render(
+      <>
+        <ChartInspector
+          title="Smooth"
+          type="area"
+          curve="smooth"
+          data={data}
+          axisFormatter={() => 'compact'}
+        />
+        <ChartInspector title="Steps" type="line" curve="step" data={data} />
+      </>,
+    );
+    const gradients = [...container.querySelectorAll('linearGradient')].map((node) => node.id);
+    expect(new Set(gradients).size).toBe(2);
+    expect(container.querySelector('.dvy-chart-area')?.getAttribute('d')).toContain('C');
+    expect(container.querySelectorAll('.dvy-chart-line')[1].getAttribute('d')).toContain('H');
+    expect(container.querySelector('.dvy-chart-grid text')?.textContent).toBe('compact');
+    expect(container.querySelector('.dvy-chart-table')?.textContent).toContain('1234.56');
+  });
+  it('inspects exact values with one native keyboard control and clamps changing data', async () => {
+    const data = [
+      { label: 'Monday', value: 12 },
+      { label: 'Tuesday', value: 19 },
+    ];
+    const { rerender } = render(
+      <ChartInspector title="Activity" type="area" data={data} defaultIndex={40} />,
+    );
+    const slider = screen.getByRole('slider', { name: 'Inspect data' });
+    expect(slider.getAttribute('aria-valuetext')).toBe('Tuesday: 19');
+    fireEvent.change(slider, { target: { value: '0' } });
+    expect(slider.getAttribute('aria-valuetext')).toBe('Monday: 12');
+    rerender(<ChartInspector title="Activity" data={[]} />);
+    expect(screen.queryByRole('slider')).toBeNull();
+  });
   it.each(['bar', 'line', 'area', 'donut'] as const)(
     '%s provides the full data independently of color',
     async (type) => {
@@ -37,7 +76,9 @@ describe('data and navigation', () => {
             data={values.map((value, i) => ({ label: String(i), value }))}
           />,
         );
-        const geometry = [...container.querySelectorAll('rect, circle, line, polyline, polygon')]
+        const geometry = [
+          ...container.querySelectorAll('rect, circle, line, polyline, polygon, path'),
+        ]
           .map((element) => element.outerHTML)
           .join('');
         expect(geometry).not.toMatch(/NaN|Infinity/);

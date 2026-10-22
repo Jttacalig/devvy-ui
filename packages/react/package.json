@@ -1,6 +1,6 @@
 {
   "name": "@devvy-ui/react",
-  "version": "0.1.0-beta.2",
+  "version": "0.2.0",
   "description": "Lightweight React components for Devvy UI",
   "license": "MIT",
   "type": "module",
@@ -210,6 +210,206 @@
     "./breadcrumbs": {
       "types": "./dist/breadcrumbs.d.ts",
       "import": "./dist/breadcrumbs.js"
+    },
+    "./tooltip": {
+      "types": "./dist/tooltip.d.ts",
+      "import": "./dist/tooltip.js"
+    },
+    "./popover": {
+      "types": "./dist/popover.d.ts",
+      "import": "./dist/popover.js"
+    },
+    "./dropdown-menu": {
+      "types": "./dist/dropdown-menu.d.ts",
+      "import": "./dist/dropdown-menu.js"
+    },
+    "./combobox": {
+      "types": "./dist/combobox.d.ts",
+      "import": "./dist/combobox.js"
+    },
+    "./toast": {
+      "types": "./dist/toast.d.ts",
+      "import": "./dist/toast.js"
+    },
+    "./multi-select": {
+      "types": "./dist/multi-select.d.ts",
+      "import": "./dist/multi-select.js"
+    },
+    "./autocomplete": {
+      "types": "./dist/autocomplete.d.ts",
+      "import": "./dist/autocomplete.js"
+    },
+    "./range-slider": {
+      "types": "./dist/range-slider.d.ts",
+      "import": "./dist/range-slider.js"
+    },
+    "./otp-input": {
+      "types": "./dist/otp-input.d.ts",
+      "import": "./dist/otp-input.js"
+    },
+    "./rating": {
+      "types": "./dist/rating.d.ts",
+      "import": "./dist/rating.js"
+    },
+    "./tag-input": {
+      "types": "./dist/tag-input.d.ts",
+      "import": "./dist/tag-input.js"
+    },
+    "./toggle-group": {
+      "types": "./dist/toggle-group.d.ts",
+      "import": "./dist/toggle-group.js"
+    },
+    "./file-upload": {
+      "types": "./dist/file-upload.d.ts",
+      "import": "./dist/file-upload.js"
+    },
+    "./dropzone": {
+      "types": "./dist/dropzone.d.ts",
+      "import": "./dist/dropzone.js"
+    },
+    "./calendar": {
+      "types": "./dist/calendar.d.ts",
+      "import": "./dist/calendar.js"
+    },
+    "./date-picker": {
+      "types": "./dist/date-picker.d.ts",
+      "import": "./dist/date-picker.js"
+    },
+    "./date-range-picker": {
+      "types": "./dist/date-range-picker.d.ts",
+      "import": "./dist/date-range-picker.js"
+    },
+    "./time-picker": {
+      "types": "./dist/time-picker.d.ts",
+      "import": "./dist/time-picker.js"
+    },
+    "./stepper": {
+      "types": "./dist/stepper.d.ts",
+      "import": "./dist/stepper.js"
+    },
+    "./menubar": {
+      "types": "./dist/menubar.d.ts",
+      "import": "./dist/menubar.js"
+    },
+    "./context-menu": {
+      "types": "./dist/context-menu.d.ts",
+      "import": "./dist/context-menu.js"
+    },
+    "./command-palette": {
+      "types": "./dist/command-palette.d.ts",
+      "import": "./dist/command-palette.js"
+    },
+    "./navigation-menu": {
+      "types": "./dist/navigation-menu.d.ts",
+      "import": "./dist/navigation-menu.js"
+    },
+    "./tree-view": {
+      "types": "./dist/tree-view.d.ts",
+      "import": "./dist/tree-view.js"
+    },
+    "./scroll-area": {
+      "types": "./dist/scroll-area.d.ts",
+      "import": "./dist/scroll-area.js"
+    },
+    "./resizable-panels": {
+      "types": "./dist/resizable-panels.d.ts",
+      "import": "./dist/resizable-panels.js"
+    },
+    "./table-of-contents": {
+      "types": "./dist/table-of-contents.d.ts",
+      "import": "./dist/table-of-contents.js"
+    },
+    "./hover-card": {
+      "types": "./dist/hover-card.d.ts",
+      "import": "./dist/hover-card.js"
+    },
+    "./alert-dialog": {
+      "types": "./dist/alert-dialog.d.ts",
+      "import": "./dist/alert-dialog.js"
+    },
+    "./drawer": {
+      "types": "./dist/drawer.d.ts",
+      "import": "./dist/drawer.js"
+    },
+    "./floating-action-button": {
+      "types": "./dist/floating-action-button.d.ts",
+      "import": "./dist/floating-action-button.js"
+    },
+    "./onboarding-tour": {
+      "types": "./dist/onboarding-tour.d.ts",
+      "import": "./dist/onboarding-tour.js"
+    },
+    "./loading-overlay": {
+      "types": "./dist/loading-overlay.d.ts",
+      "import": "./dist/loading-overlay.js"
+    },
+    "./data-table": {
+      "types": "./dist/data-table.d.ts",
+      "import": "./dist/data-table.js"
+    },
+    "./timeline": {
+      "types": "./dist/timeline.d.ts",
+      "import": "./dist/timeline.js"
+    },
+    "./stat": {
+      "types": "./dist/stat.d.ts",
+      "import": "./dist/stat.js"
+    },
+    "./code-block": {
+      "types": "./dist/code-block.d.ts",
+      "import": "./dist/code-block.js"
+    },
+    "./carousel": {
+      "types": "./dist/carousel.d.ts",
+      "import": "./dist/carousel.js"
+    },
+    "./gallery": {
+      "types": "./dist/gallery.d.ts",
+      "import": "./dist/gallery.js"
+    },
+    "./image-cropper": {
+      "types": "./dist/image-cropper.d.ts",
+      "import": "./dist/image-cropper.js"
+    },
+    "./video-player": {
+      "types": "./dist/video-player.d.ts",
+      "import": "./dist/video-player.js"
+    },
+    "./audio-player": {
+      "types": "./dist/audio-player.d.ts",
+      "import": "./dist/audio-player.js"
+    },
+    "./markdown-viewer": {
+      "types": "./dist/markdown-viewer.d.ts",
+      "import": "./dist/markdown-viewer.js"
+    },
+    "./rich-text-editor": {
+      "types": "./dist/rich-text-editor.d.ts",
+      "import": "./dist/rich-text-editor.js"
+    },
+    "./lightbox": {
+      "types": "./dist/lightbox.d.ts",
+      "import": "./dist/lightbox.js"
+    },
+    "./virtual-list": {
+      "types": "./dist/virtual-list.d.ts",
+      "import": "./dist/virtual-list.js"
+    },
+    "./infinite-scroll": {
+      "types": "./dist/infinite-scroll.d.ts",
+      "import": "./dist/infinite-scroll.js"
+    },
+    "./kanban-board": {
+      "types": "./dist/kanban-board.d.ts",
+      "import": "./dist/kanban-board.js"
+    },
+    "./sortable-list": {
+      "types": "./dist/sortable-list.d.ts",
+      "import": "./dist/sortable-list.js"
+    },
+    "./mentions-input": {
+      "types": "./dist/mentions-input.d.ts",
+      "import": "./dist/mentions-input.js"
     }
   },
   "files": [
