@@ -30,3 +30,17 @@ keeps its 3,600-byte limit; the new slice has a 1,250-byte limit. The combined 2
 stylesheet limit is 3,900 bytes to account for the additions (measured 3,656 bytes, versus
 3,078 for the existing slice). Compression shares dictionaries, so slice sizes do not add.
 See the batch verification record for exact fixtures, environment and remaining manual gates.
+
+The 50-component milestone adds 29 implementations. It freezes the previous public surface
+in `benchmarks/first21.js` and the previous CSS slice, retaining their 5,500/3,900-byte
+ceilings along with older focused-import and stylesheet limits. The expanded namespace has
+a 10,500-byte gzip ceiling and the expanded CSS a 6,200-byte ceiling; the added CSS slice
+has its own 2,900-byte limit. These account for additional features, not a claimed reduction.
+
+The [Windows Node 24 midpoint snapshot](../benchmarks/midpoint-win32-node24.json) measures
+9,521 bytes for all 50 JavaScript entries, 5,540 bytes for component CSS, 5,261 bytes for the
+frozen 21-component JavaScript fixture and the unchanged 3,656 bytes for its CSS. The new
+CSS slice measures 2,596 bytes; new focused imports range from 207 to 833 gzip bytes,
+including composed dependencies. No new dependency was added. Full CSS is shared, so a
+focused JavaScript import does not imply its own isolated CSS bundle. Timing samples were
+collected during development workloads and support no comparative performance claim.

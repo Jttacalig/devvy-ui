@@ -1,3 +1,4 @@
+import { midpointCatalog } from './midpoint-catalog';
 export const catalog = [
   {
     slug: 'button',
@@ -58,7 +59,7 @@ export const catalog = [
     name: 'Badge',
     description: 'Quiet context for status, categories and the details that matter.',
     props: [['tone', 'neutral | brand | danger', 'neutral', 'Text and border tone.']],
-    code: '<Badge tone="brand">Alpha</Badge>',
+    code: '<Badge tone="brand">Beta</Badge>',
     note: 'A noninteractive span. Include readable status text and avoid relying on color alone. Use a live region separately for changing status.',
   },
   {
@@ -368,5 +369,6 @@ export const catalog = [
     code: '<section aria-busy={loading} aria-label="Profile">\n  {loading ? <Skeleton variant="rect" height={120} /> : <p>Profile loaded.</p>}\n</section>',
     note: 'Always decorative and aria-hidden. No children, focus or interaction API. Put aria-busy on the enclosing content region and provide one readable loading status outside it. Replace shapes with content when ready. Error and disabled states belong to that content, not to the skeleton. Supports span refs, className, style and theme variables.',
   },
+  ...midpointCatalog,
 ] as const;
 export type ComponentName = (typeof catalog)[number]['slug'];

@@ -1,5 +1,19 @@
 # @devvy-ui/react
 
+## 0.1.0-beta.2
+
+### Minor Changes
+
+- Add 29 typed components for layout, native forms, disclosure, tables, measurements and feedback, bringing the primary inventory to 50. Include focused exports, theme styles, interactive documentation, SSR/hydration and native interaction coverage. Resolve complete copied-source dependency closures with unknown/cycle checks so composed components install independently. Existing component APIs and optional Glass remain intact; no new runtime dependency is added.
+- 525cfe3: Add native Select, Alert, Progress and Skeleton with focused exports, copied-source installation, theme styles and interactive documentation. Preserve native selection/form semantics, normalize progress values and respect reduced-motion preferences. Centralize component inventory and verify every registry helper and stylesheet against canonical sources.
+
+### Patch Changes
+
+- Updated dependencies
+- Updated dependencies [525cfe3]
+  - @devvy-ui/styles@0.1.0-beta.2
+  - @devvy-ui/core@0.1.0-beta.2
+
 ## 0.1.0-beta.1
 
 ### Minor Changes

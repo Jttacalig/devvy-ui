@@ -14,6 +14,9 @@ CSS is explicitly marked as having side effects; component JS is tree-shakable.
 build entries, registry generation and documentation route checks. Public package exports
 and the React barrel remain explicit; `check:packages` verifies their parity with that
 inventory, including copied helpers, dependent component sources, licenses and styles.
+Optional `dependencies` in the inventory name composed component sources. The registry
+resolves their full dependency closure, deduplicates shared sources and rejects unknown
+names/cycles. CLI tests cover standalone composed installs as well as the complete inventory.
 Add docs catalog entries and consumer fixtures with each new component; helpers and variants
 do not count as separate primary components. See the [100-component roadmap](roadmap-100.md)
 for the phased plan and acceptance gates.

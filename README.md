@@ -6,8 +6,12 @@
 
 An original, React-first UI foundation by [DEV STATION](https://www.dev-station.dev).
 Repository: [Jttacalig/devvy-ui](https://github.com/Jttacalig/devvy-ui).
-MIT licensed. Version **0.1.0-beta.1**. Packages are **unpublished**; scope and CLI name
+MIT licensed. Version **0.1.0-beta.2**. Packages are **unpublished**; scope and CLI name
 ownership have not been verified. This checkout is independent of the private Dev Station app.
+
+This beta milestone contains **50 of the planned 100 components**. All six packages follow
+one fixed Changesets version; website release labels read the React package metadata.
+See [the changelog](CHANGELOG.md) and [midpoint verification](docs/verification-midpoint.md).
 
 ## Run locally
 
@@ -33,14 +37,14 @@ example. `examples/vanilla/index.html` demonstrates native HTML with shared CSS 
 
 ## The foundation
 
-| Package              | Delivered                                                                       |
-| -------------------- | ------------------------------------------------------------------------------- |
-| `@devvy-ui/core`     | DOM-free class, keyboard navigation and material capability utilities           |
-| `@devvy-ui/react`    | 21 components: native controls, feedback, charts, navigation and optional Glass |
-| `@devvy-ui/tokens`   | Scoped light, dark, system, density, typography and contrast tokens             |
-| `@devvy-ui/styles`   | Namespaced CSS, focus styles, RTL, reduced motion and forced colors             |
-| `@devvy-ui/registry` | Source snapshots generated from those exact implementations                     |
-| `@devvy-ui/cli`      | Local `init`, `add` and `doctor`; protects edited source files                  |
+| Package              | Delivered                                                                     |
+| -------------------- | ----------------------------------------------------------------------------- |
+| `@devvy-ui/core`     | DOM-free class, keyboard navigation and material capability utilities         |
+| `@devvy-ui/react`    | 50 components: layout, forms, feedback, charts, navigation and optional Glass |
+| `@devvy-ui/tokens`   | Scoped light, dark, system, density, typography and contrast tokens           |
+| `@devvy-ui/styles`   | Namespaced CSS, focus styles, RTL, reduced motion and forced colors           |
+| `@devvy-ui/registry` | Source snapshots generated from those exact implementations                   |
+| `@devvy-ui/cli`      | Local `init`, `add` and `doctor`; protects edited source files                |
 
 No runtime styling engine. No Tailwind requirement. React and React DOM are peer dependencies.
 Vue, Svelte and Web Components packages are intentionally absent until adapters work.

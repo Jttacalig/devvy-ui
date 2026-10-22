@@ -1,4 +1,4 @@
-# DEVVY UI CLI (alpha, unpublished)
+# DEVVY UI CLI (beta, unpublished)
 
 From the workspace, after `pnpm build`:
 

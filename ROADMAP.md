@@ -1,11 +1,15 @@
 # DEVVY UI roadmap
 
+The unpublished `0.1.0-beta.2` milestone implements 29 more layout, form, disclosure and feedback components.
+See [midpoint verification](docs/verification-midpoint.md) for the exact inventory, checks and
+remaining manual release gates. Complex overlays and application widgets remain on the plan.
+
 The [100-component architecture and phased plan](docs/roadmap-100.md) preserves the existing
-17 components and allocates 83 additions. The current foundation batch adds Select, Alert,
-Progress and Skeleton, bringing the source inventory to 21. The remaining 79 are planned;
+17 components and allocates 83 additions. Select, Alert, Progress and Skeleton plus the
+29 midpoint additions bring the source inventory to 50. The remaining 50 are planned;
 they are not shipped implementations. Release verification and manual review remain separate gates.
 
-## Delivered alpha foundation
+## Delivered foundation and beta milestones
 
 - [x] pnpm/Turbo workspace, exact dependencies, lockfile, strict types and package exports
 - [x] Shared core, tokens, scoped themes and ordinary CSS
@@ -22,6 +26,8 @@ they are not shipped implementations. Release verification and manual review rem
 - [x] Tri-browser verification (Chromium, Firefox, WebKit: 135/135 tests passing)
 - [x] Documentation UI overhaul with native DEVVY UI components
 - [x] Pre-release version progression to beta (`0.1.0-beta.1`) via Changesets
+- [x] 50-component milestone and fixed six-package version advance to `0.1.0-beta.2`
+- [x] 84 unit/installer tests and 276 local browser checks; installed React 18/19 consumers
 
 ## Before a public beta release
 
@@ -30,15 +36,15 @@ they are not shipped implementations. Release verification and manual review rem
 - [ ] Verify namespace ownership, logo rights, release contacts and dependency licenses
 - [ ] Configure protected branches, private reporting, secret scanning and npm-alpha reviewers
 - [ ] Record idle-hardware benchmark baselines with browser timing experiments
-- [ ] Publish signed/provenance-backed alpha packages and confirm clean consumer installs
+- [ ] Publish signed/provenance-backed beta packages and confirm clean consumer installs
 - [ ] Integrate /ui into Dev Station hosting with separate Next asset routing
 
 ## Next component cycle
 
-DEVVY GLASS, Dialog and Dock are implemented as alpha enhancements. Complete their
+DEVVY GLASS, Dialog and Dock are implemented as optional beta enhancements. Complete their
 manual assistive-technology and target-device checks before promoting them to stable.
 
-Dropdown Menu, Tooltip, Popover, Accordion, Toast, Drawer and Navigation Menu.
+Dropdown Menu, Tooltip, Popover, Toast, Drawer and Navigation Menu.
 Each needs an interaction specification, focus/overlay review and browser/assistive-tech tests
 before shipping. Proven accessible primitives can be evaluated for complex overlays.
 

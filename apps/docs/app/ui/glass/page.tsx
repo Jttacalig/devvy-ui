@@ -80,8 +80,8 @@ export default function Page() {
         <h2>One optional import.</h2>
         <p>
           Import the glass layer after the base styles. Scope it around the part of your interface
-          that needs depth. The alpha packages remain unpublished; these imports work in the
-          workspace or installed alpha archives.
+          that needs depth. The beta packages remain unpublished; these imports work in the
+          workspace or installed beta archives.
         </p>
         <CopyCode
           label="Glass setup and usage"

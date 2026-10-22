@@ -2,7 +2,7 @@
 
 ## Supported versions
 
-Devvy UI is in alpha and is **not yet security-supported for production usage**. After the first stable release, this policy will list supported versions.
+Devvy UI is an unpublished beta (`0.1.0-beta.2`) and is **not yet security-supported for production usage**. After the first stable release, this policy will list supported versions.
 
 ## Reporting a vulnerability
 

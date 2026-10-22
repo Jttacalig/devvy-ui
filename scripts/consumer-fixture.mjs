@@ -1,5 +1,6 @@
 // This file is copied into an isolated installed-tarball consumer before execution.
 import assert from 'node:assert/strict';
+import { readFile } from 'node:fs/promises';
 import { JSDOM } from 'jsdom';
 import React, { act } from 'react';
 import { renderToString } from 'react-dom/server';
@@ -13,6 +14,9 @@ import { Skeleton } from '@devvy-ui/react/skeleton';
 
 for (const [name, entry] of Object.entries({ Select, Alert, Progress, Skeleton }))
   assert.equal(entry, UI[name]);
+const inventory = JSON.parse(await readFile(new URL('./inventory.json', import.meta.url), 'utf8'));
+for (const { name, slug } of inventory)
+  assert.equal((await import('@devvy-ui/react/' + slug))[name], UI[name], 'Focused entry: ' + slug);
 
 const dom = new JSDOM('<!doctype html><html lang="en"><body><div id="root"></div></body></html>', {
   url: 'http://localhost',
@@ -64,6 +68,79 @@ const tree = h(
   h(Progress, { label: 'Upload', value: 42 }),
   h(Progress, { label: 'Connecting' }),
   h(Skeleton, { animated: false }),
+  h(
+    UI.Container,
+    null,
+    h(
+      UI.Stack,
+      null,
+      h(
+        UI.Grid,
+        null,
+        h(UI.Avatar, { name: 'Ada Rivera' }),
+        h(
+          UI.AvatarGroup,
+          { label: 'Contributors', max: 1 },
+          h(UI.Avatar, { name: 'Bea Cruz' }),
+          h(UI.Avatar, { name: 'Cal Lee' }),
+        ),
+        h(UI.AspectRatio, null, h('span', null, 'Media')),
+      ),
+      h(UI.Typography, { as: 'h3', variant: 'heading' }, 'Workspace'),
+      h(UI.IconButton, { label: 'Star' }, '★'),
+    ),
+  ),
+  h(UI.Accordion, { items: [{ value: 'ownership', title: 'Ownership', content: 'Your code.' }] }),
+  h(UI.Pagination, { page: 1, count: 3, getHref: (page) => '?page=' + page }),
+  h(
+    UI.Form,
+    null,
+    h(
+      UI.Fieldset,
+      { legend: 'Profile' },
+      h(UI.FormField, {
+        label: 'Workspace email',
+        description: 'Used for updates',
+        children: (props) => h(UI.Input, { ...props, type: 'email' }),
+      }),
+      h(UI.RadioGroup, {
+        label: 'Plan',
+        name: 'plan',
+        defaultValue: 'team',
+        items: [
+          { value: 'solo', label: 'Solo' },
+          { value: 'team', label: 'Team' },
+        ],
+      }),
+      h(UI.SegmentedControl, {
+        label: 'Billing',
+        name: 'billing',
+        defaultValue: 'monthly',
+        items: [
+          { value: 'monthly', label: 'Monthly' },
+          { value: 'yearly', label: 'Yearly' },
+        ],
+      }),
+      h(UI.Slider, { label: 'Volume', defaultValue: 35 }),
+      h(UI.NumberInput, { 'aria-label': 'Seats', defaultValue: 3 }),
+      h(UI.PasswordInput, { 'aria-label': 'Password', defaultValue: 'demo' }),
+      h(UI.SearchField, { label: 'Projects' }),
+      h(UI.ColorPicker, { label: 'Accent' }),
+    ),
+  ),
+  h(
+    UI.Table,
+    { caption: 'Activity' },
+    h('tbody', null, h('tr', null, h('th', { scope: 'row' }, 'Orbit'), h('td', null, 'Ready'))),
+  ),
+  h(UI.CircularProgress, { label: 'Export', value: 35 }),
+  h(UI.Spinner, { label: 'Loading profile' }),
+  h(UI.EmptyState, { title: 'No projects' }),
+  h(UI.StatusIndicator, { label: 'Connected' }),
+  h(UI.Collapsible, { summary: 'Advanced settings' }, 'Settings'),
+  h(UI.DescriptionList, { items: [{ term: 'Plan', description: 'Team' }] }),
+  h(UI.Meter, { label: 'Storage', value: 0.4 }),
+  h(UI.CopyButton, { text: 'theme token' }),
   h(Button, null, 'Save'),
   h(UI.Tabs, {
     label: 'Views',
@@ -92,6 +169,13 @@ assert.equal(root.querySelector('select').value, 'team');
 assert.equal(root.querySelector('progress').position, 0.42);
 assert.equal(root.querySelectorAll('progress')[1].position, -1);
 assert.equal(root.querySelector('.dvy-skeleton').getAttribute('aria-hidden'), 'true');
+await act(async () => root.querySelector('.dvy-accordion summary').click());
+assert.equal(root.querySelector('.dvy-accordion details').open, true);
+await act(async () => root.querySelector('.dvy-collapsible summary').click());
+assert.equal(root.querySelector('.dvy-collapsible').open, true);
+await act(async () => root.querySelector('.dvy-password-toggle').click());
+assert.equal(root.querySelector('.dvy-password-input').type, 'text');
+assert.equal(root.querySelector('input[name="plan"]:checked').value, 'team');
 const materialTrigger = [...root.querySelectorAll('button')].find(
   (button) => button.textContent === 'Open consumer dialog',
 );

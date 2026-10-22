@@ -37,6 +37,7 @@ const results = {
   ssr: {},
 };
 const fixtures = {
+  first21: 'import * as UI from "./benchmarks/first21.js"; console.log(UI);',
   button: 'import { Button } from "./packages/react/dist/button.js"; console.log(Button);',
   tabs: 'import { Tabs } from "./packages/react/dist/tabs.js"; console.log(Tabs);',
   glass: 'import { Glass } from "./packages/react/dist/glass.js"; console.log(Glass);',
@@ -57,6 +58,12 @@ const fixtures = {
   radixTabs:
     'import { Root, List, Trigger, Content } from "@radix-ui/react-tabs"; console.log(Root, List, Trigger, Content);',
 };
+const inventory = JSON.parse(
+  await readFile(resolve(root, 'packages/react/components.json'), 'utf8'),
+);
+for (const { name, slug } of inventory)
+  fixtures[slug] ??=
+    `import { ${name} } from "./packages/react/dist/${slug}.js"; console.log(${name});`;
 for (const [name, contents] of Object.entries(fixtures)) {
   const result = await build({
     stdin: { contents, resolveDir: root, loader: 'js' },
@@ -75,7 +82,16 @@ for (const [name, contents] of Object.entries(fixtures)) {
     for (const unused of ['dvy-tab-list', 'showModal', 'data-devvy-material'])
       assert.ok(!new TextDecoder().decode(bytes).includes(unused), `Button pulled in ${unused}`);
 }
-for (const name of ['tokens', 'styles', 'glass', 'foundation', 'existing17', 'feedback']) {
+for (const name of [
+  'tokens',
+  'styles',
+  'glass',
+  'foundation',
+  'existing17',
+  'feedback',
+  'first21',
+  'midpoint',
+]) {
   const path =
     name === 'tokens'
       ? 'packages/tokens/src/theme.css'
@@ -83,15 +99,19 @@ for (const name of ['tokens', 'styles', 'glass', 'foundation', 'existing17', 'fe
         ? 'packages/styles/glass.css'
         : 'packages/styles/components.css';
   const result = await build({
-    ...(['foundation', 'existing17', 'feedback'].includes(name)
+    ...(['foundation', 'existing17', 'feedback', 'first21', 'midpoint'].includes(name)
       ? {
           stdin: {
             contents:
-              name === 'foundation'
-                ? (await readFile(resolve(root, path), 'utf8')).split('/* Data display */')[0]
-                : (await readFile(resolve(root, path), 'utf8')).split(
-                    '/* Native controls and feedback */',
-                  )[name === 'existing17' ? 0 : 1],
+              name === 'first21' || name === 'midpoint'
+                ? (await readFile(resolve(root, path), 'utf8')).split('/* Midpoint components */')[
+                    name === 'first21' ? 0 : 1
+                  ]
+                : name === 'foundation'
+                  ? (await readFile(resolve(root, path), 'utf8')).split('/* Data display */')[0]
+                  : (await readFile(resolve(root, path), 'utf8'))
+                      .split('/* Midpoint components */')[0]
+                      .split('/* Native controls and feedback */')[name === 'existing17' ? 0 : 1],
             loader: 'css',
           },
         }

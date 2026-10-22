@@ -34,7 +34,7 @@ export async function run(args, directory = process.cwd()) {
   const root = await realpath(directory);
   const [command, ...names] = args;
   if (!command || command === '--help')
-    return 'Usage: devvy-ui init | add <component...> | doctor\nAlpha: local bundled registry; packages are not published.';
+    return 'Usage: devvy-ui init | add <component...> | doctor\nBeta: local bundled registry; packages are not published.';
   const configPath = await safePath(root, 'devvy.json');
   const registry = JSON.parse(
     await readFile(

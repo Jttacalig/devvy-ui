@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.1.0-beta.2 — unpublished 50-component milestone
+
+- Added Select, Alert, Progress and Skeleton, followed by 29 layout, native form, disclosure,
+  table and feedback components. The canonical inventory now contains 50 of the planned 100.
+- Added focused exports, typed APIs, interactive documentation and editable source for every addition.
+- Source installation resolves complete component dependency graphs and protects edited files.
+- Local verification: 84 unit/installer tests and 276 production browser checks; installed React
+  18.3.1 and 19.3.1 consumers, build, types, lint, registry parity and bundle budgets passed.
+- Advanced all six packages to `0.1.0-beta.2` using the fixed Changesets prerelease group.
+  Landing, sidebar, header channel and footer labels now derive from package metadata.
+
+See [midpoint verification](docs/verification-midpoint.md) for measurement scope and remaining
+manual review. Packages remain unpublished; no stable release or production deployment is implied.
+
 ## 0.1.0-beta.1 — unreleased beta milestone
 
 Production-grade audit and verified quality gates milestone:

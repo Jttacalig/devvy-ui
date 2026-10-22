@@ -1,10 +1,18 @@
 # Roadmap to exactly 100 components
 
+## Current milestone: 50 implemented components · 0.1.0-beta.2
+
+The source inventory now contains 50 primary components: the first 21 plus 29 layout,
+native form, disclosure, table and feedback additions. See [midpoint verification](verification-midpoint.md)
+for their names and actual evidence. This reaches the requested halfway point. Phase 1's
+five complex overlay/collection components remain planned; selecting independent native
+components from Phase 2 does not declare all of Phase 1 complete.
+
 ## Audit and counting policy
 
 The audited starting point is commit `7800494`: 17 primary components at
 `0.1.0-beta.1`, six library/tooling packages, Next docs, Vite and vanilla examples.
-The current branch is `feat/component-foundations`. Existing APIs and the paper-and-ink
+The first batch used `feat/component-foundations`; the midpoint uses `feat/component-midpoint`. Existing APIs and the paper-and-ink
 docs design are preserved. No stable release, push, merge or npm publication is implied.
 
 One named primary component counts once. Compound helpers such as CardTitle and variants
@@ -82,7 +90,8 @@ The following allocation contains all 83 requested additions exactly once.
 | 1C — disclosure and navigation    | Accordion, Pagination, RadioGroup, Slider, Table                                 | Native semantics first; roving focus/RTL only when needed; form/reset and pointer/keyboard slider parity                     |
 | 1D — overlays and collections     | Tooltip, Popover, DropdownMenu, Combobox, Toast                                  | Overlay/collection specifications first; focus return, Escape, outside interaction, typeahead and live announcement policies |
 
-After 1A, the implementation inventory is 21; the other phase-one names remain planned.
+After 1A the implementation inventory was 21. The midpoint also implements 1B and 1C,
+plus 16 independent components from Phase 2. The five 1D names remain planned.
 Do not call this phase complete until all 22 additions meet the gates below.
 
 ### Phase 2: 44 additions

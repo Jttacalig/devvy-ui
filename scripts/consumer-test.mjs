@@ -46,6 +46,10 @@ await writeFile(
   resolve(dir, 'test.mjs'),
   await readFile(new URL('./consumer-fixture.mjs', import.meta.url), 'utf8'),
 );
+await writeFile(
+  resolve(dir, 'inventory.json'),
+  await readFile(resolve(root, 'packages/react/components.json'), 'utf8'),
+);
 execFileSync(
   process.execPath,
   [process.env.npm_execpath, 'install', '--ignore-scripts', '--force'],

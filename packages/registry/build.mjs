@@ -1,4 +1,5 @@
 import { readFile, mkdir, writeFile } from 'node:fs/promises';
+import { componentSources } from './dependencies.mjs';
 const root = new URL('../../', import.meta.url);
 const read = (path) => readFile(new URL(path, root), 'utf8');
 const license = await read('LICENSE');
@@ -15,21 +16,15 @@ const items = await Promise.all(
     name: slug,
     files: [
       ...common,
-      {
-        path: `components/${name}.tsx`,
-        content: (await read(`packages/react/src/components/${name}.tsx`)).replaceAll(
-          "'@devvy-ui/core'",
-          "'../lib/core'",
-        ),
-      },
-      ...(name === 'Dialog'
-        ? [
-            {
-              path: 'components/Button.tsx',
-              content: await read('packages/react/src/components/Button.tsx'),
-            },
-          ]
-        : []),
+      ...(await Promise.all(
+        componentSources(components, name).map(async (dependency) => ({
+          path: `components/${dependency}.tsx`,
+          content: (await read(`packages/react/src/components/${dependency}.tsx`)).replaceAll(
+            "'@devvy-ui/core'",
+            "'../lib/core'",
+          ),
+        })),
+      )),
       ...(name === 'Glass'
         ? [
             {

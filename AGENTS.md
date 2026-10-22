@@ -27,6 +27,9 @@ Change source inputs, not `dist`, `.next`, `.turbo`, `.artifacts` or generated r
 The primary component inventory is `packages/react/components.json`; build entries and registry
 items derive from it. Keep explicit package/barrel exports, docs catalog entries and consumer
 fixtures aligned. `check:packages` checks every copied source/helper and stylesheet for drift.
+Declare composed source dependencies in the inventory's `dependencies` array; registry
+generation resolves their full closure and rejects unknown names/cycles. Verify standalone
+installation when introducing a component that uses another component.
 This repository is independent of the private Dev Station application and its hosting.
 
 ## Component and styling contracts

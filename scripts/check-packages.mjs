@@ -2,11 +2,18 @@ import { readFile, access } from 'node:fs/promises';
 import { pathToFileURL, fileURLToPath } from 'node:url';
 import { resolve } from 'node:path';
 import assert from 'node:assert/strict';
+import { componentSources } from '../packages/registry/dependencies.mjs';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
+const workspacePackage = JSON.parse(await readFile(resolve(root, 'package.json'), 'utf8'));
 for (const name of ['core', 'react', 'styles', 'tokens', 'registry', 'cli']) {
   const dir = resolve(root, 'packages', name);
   const pkg = JSON.parse(await readFile(resolve(dir, 'package.json'), 'utf8'));
+  assert.equal(
+    pkg.version,
+    workspacePackage.version,
+    `${pkg.name} differs from fixed workspace version`,
+  );
   await access(resolve(dir, 'LICENSE'));
   for (const [key, target] of Object.entries(pkg.exports ?? {})) {
     if (typeof target === 'string') await access(resolve(dir, target));
@@ -74,14 +81,19 @@ assert.equal(
     (await readFile(resolve(root, 'packages/styles/components.css'), 'utf8')),
 );
 for (const item of registry.items) {
-  const { name } = components.find((component) => component.slug === item.name);
+  const { name, dependencies = [] } = components.find((component) => component.slug === item.name);
+  assert.equal(new Set(dependencies).size, dependencies.length, `Duplicate dependencies: ${name}`);
+  for (const dependency of dependencies)
+    assert.ok(
+      components.some((component) => component.name === dependency),
+      `Unknown dependency: ${name}/${dependency}`,
+    );
   const expectedPaths = [
     'LICENSE',
     'lib/core.ts',
     'lib/glass.ts',
     'lib/cx.ts',
-    `components/${name}.tsx`,
-    ...(name === 'Dialog' ? ['components/Button.tsx'] : []),
+    ...componentSources(components, name).map((dependency) => `components/${dependency}.tsx`),
     ...(name === 'Glass' ? ['glass.css'] : []),
   ];
   assert.deepEqual(
