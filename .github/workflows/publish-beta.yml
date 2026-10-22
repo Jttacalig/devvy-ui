@@ -1,0 +1,79 @@
+name: Publish DEVVY UI beta to npm
+
+# An npm publication is a deliberate maintainer action, never a side-effect of
+# pushing commits or deploying the documentation website.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write # npm Trusted Publishing / OIDC
+
+concurrency:
+  group: devvy-ui-npm-beta
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment: npm-alpha
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org
+          package-manager-cache: false
+
+      # npm 11.5.1+ (rather than pnpm publish) performs OIDC publishing.
+      - name: Install supported npm CLI
+        run: npm install --global npm@11
+
+      - name: Install and validate release candidate
+        run: |
+          pnpm install --frozen-lockfile
+          pnpm build
+          pnpm typecheck
+          pnpm lint
+          pnpm format:check
+          pnpm test
+          pnpm check:packages
+          pnpm bench
+          pnpm pack:all
+          pnpm test:consumer 18.3.1
+          pnpm test:consumer 19.3.1
+
+      - name: Run production browser tests
+        run: |
+          pnpm exec playwright install --with-deps
+          pnpm test:browser
+
+      - name: Publish all six packages with beta dist-tag (OIDC)
+        shell: bash
+        run: |
+          set -euo pipefail
+          VERSION="$(node -p "require('./package.json').version")"
+          if [[ ! "$VERSION" =~ -beta\.[0-9]+$ ]]; then
+            echo "Refusing non-beta version: $VERSION"
+            exit 1
+          fi
+          echo "Publishing DEVVY UI $VERSION under npm dist-tag 'beta'"
+          # Publish dependencies before their dependents. Existing versions are
+          # skipped so an interrupted six-package release can be retried.
+          for PACKAGE in tokens styles core react registry cli; do
+            NAME="@devvy-ui/$PACKAGE"
+            TARBALL=".artifacts/devvy-ui-$PACKAGE-$VERSION.tgz"
+            if [[ ! -f "$TARBALL" ]]; then
+              echo "Missing tarball: $TARBALL"
+              exit 1
+            fi
+            if npm view "$NAME@$VERSION" version --json >/dev/null 2>&1; then
+              echo "Already published: $NAME@$VERSION"
+            else
+              npm publish "$TARBALL" --access public --tag beta --provenance
+            fi
+          done
