@@ -4,6 +4,14 @@ import AxeBuilder from '@axe-core/playwright';
 test('theme changes apply readable foreground and background colors together', async ({ page }) => {
   await page.goto('/ui/components/button');
   await expect(page.locator('.component-preview')).toHaveAttribute('data-ready', 'true');
+  const download = page.getByRole('button', { name: 'Download TSX', exact: true });
+  await expect(download).toBeEnabled();
+  const editorStyle = await download.evaluate((node) => {
+    const style = getComputedStyle(node);
+    return { opacity: style.opacity, transition: style.transitionProperty };
+  });
+  expect(editorStyle.opacity).toBe('1');
+  expect(editorStyle.transition.split(/,\s*/)).not.toContain('opacity');
   for (const theme of ['dark', 'light', 'dark', 'light']) {
     await page.getByRole('combobox', { name: 'Site theme', exact: true }).selectOption(theme);
     await expect(page.locator('html')).toHaveAttribute('data-devvy-theme', theme);

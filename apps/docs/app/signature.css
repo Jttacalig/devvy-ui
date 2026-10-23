@@ -48,12 +48,16 @@
 }
 /* Apply a complete theme palette together. Interpolating foreground/background colors
    independently creates unreadable intermediate states, especially in WebKit. */
-.site-theme-scope .dvy-button,
 .site-theme-scope .sidebar-overview-btn,
 .site-theme-scope .sidebar-nav-item,
 .site-theme-scope .header-icon-link,
 .site-theme-scope .site-header .site-navigation a {
   transition-property: transform, opacity, box-shadow;
+}
+/* SSR-disabled editor actions become enabled during hydration. A faded enabled
+   button can be unreadable even though its final palette has sufficient contrast. */
+.site-theme-scope .dvy-button {
+  transition-property: transform, box-shadow;
 }
 .theme-control {
   display: flex;

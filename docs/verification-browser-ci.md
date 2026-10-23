@@ -12,6 +12,9 @@ The browser suites took about 32 minutes each; publication stopped before the np
 - WebKit observed independently animated theme colors with inadequate intermediate contrast
   on buttons and sidebar links. Documentation now changes those palette colors together,
   retaining opacity/transform feedback. Accessibility checks and iframe isolation are intact.
+- Linux traces also exposed editor buttons fading from their SSR-disabled state after
+  hydration. Enabled documentation buttons now become fully opaque immediately; transform
+  feedback remains. The regression check covers this state as well as theme palettes.
 - All three engines previously ran sequentially in one job, retrying failures twice. CI now
   runs each engine across two parallel shards, retains one retry and bounds each shard to
   twelve minutes of Playwright execution / fifteen minutes for the job. Coverage is unchanged
