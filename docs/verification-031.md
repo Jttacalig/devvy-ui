@@ -37,6 +37,9 @@ Component implementations, base styles and dependency versions are unchanged.
   version with npm latest. Updated the existing landing/onboarding/100-page SEO checks
   to distinguish published labels from versioned source documentation; no tests were
   removed or skipped.
+- A subsequent Firefox trace showed a responsive test blocked in a navigation barrier
+  after repeated same-URL reloads. It now resizes one loaded page through the same six
+  widths, retaining layout assertions and screenshots without extra retries/timeouts.
 
 Publication and deployment are separate maintainer actions. This candidate record does
 not itself claim either has completed. The GitHub Actions run, release and live registry
