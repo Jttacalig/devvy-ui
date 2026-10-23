@@ -563,6 +563,7 @@ export function CompletionPreview({ name }: { name: CompletionName }) {
     case 'data-table':
       preview = (
         <UI.DataTable
+          rowSelection={{ getRowLabel: (row) => row.name }}
           label="Project directory"
           rows={projects}
           getRowId={(row) => row.id}

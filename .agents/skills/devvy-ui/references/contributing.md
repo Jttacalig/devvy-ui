@@ -78,3 +78,16 @@ dependencies or relax budgets merely to silence an unrelated failure.
 For a textual instruction change, verify formatting and referenced paths/commands instead
 of rebuilding all applications. A blocked local browser is a reported limit, not permission
 to remove its CI project. Keep actual evidence separate from future support or release plans.
+
+## Optional developer tools and fonts
+
+`packages/mcp` is a private, local stdio developer tool. Keep it read-only and separate
+from runtime packages. Its default source is the pinned published 0.2.0 registry alias;
+workspace source must be explicitly identified as unreleased, with build provenance.
+Never add arbitrary file/URL reads, shell execution or automatic editor configuration.
+Rebuild the snapshot after guide/catalog/source changes. Validate recipe types/imports against each canonical version closure; keep token data version-matched and output structured/bounded. Run real stdio, Inspector and isolated artifact tests from docs/mcp.md.
+
+`packages/styles/fonts` holds optional self-hosted font files and individual CSS entries.
+Keep base styles free of font imports, preserve all upstream OFL/FONTLOG notices and
+record asset sources/coverage. An unreleased entry is not a published install recipe.
+The docs HTML/CSS playground blocks font assets; do not weaken its policy to load them.

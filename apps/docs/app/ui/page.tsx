@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { Badge, Separator } from '@devvy-ui/react';
-import { LandingStudio, LandingDetails } from '../../components/LandingStudio';
+import { LandingDetails } from '../../components/LandingStudio';
+import { LandingExamples } from '../../components/LandingExamples';
 import { LandingInstall } from '../../components/LandingInstall';
 import { LandingHeroBar } from '../../components/LandingHeroBar';
 import { catalog } from '../../lib/catalog';
@@ -15,7 +16,7 @@ import {
 
 export const metadata = docsMetadata(
   '100 React components. Every detail yours.',
-  'DEVVY UI v0.2.0 Stable is released. Build with 100 TypeScript React components, keyboard accessibility, custom themes, optional Glass and source you own.',
+  `DEVVY UI ${releaseLabel}: 100 TypeScript React components, keyboard accessibility, custom themes, optional Glass and source you own. npm currently serves v0.2.0.`,
 );
 
 export default function Home() {
@@ -54,35 +55,34 @@ export default function Home() {
           <Badge tone="neutral">{catalog.length} components</Badge>
         </div>
         <div className="landing-hero-grid">
-          <div>
+          <div className="landing-hero-main">
             <h1 id="hero-title">
-              Build the interface.
-              <br />
-              <span>Own every detail.</span>
+              Build the interface. <span>Make it your own.</span>
             </h1>
             <p className="landing-lead">
-              100 TypeScript React components, now stable. Keyboard-friendly interactions,
-              customizable themes, and source you can shape into something your own.
+              100 TypeScript React components. Thoughtful defaults, native behavior, and source you
+              own. Build a product that feels like you.
             </p>
             <div className="hero-actions">
               <Link
-                className="dvy-button"
+                className="dvy-button hero-primary-btn"
                 data-variant="solid"
+                data-tone="brand"
                 data-size="lg"
                 href="/ui/getting-started"
               >
                 Get started <span aria-hidden="true">↗</span>
               </Link>
-              <Link className="landing-text-link" href="/ui/components">
+              <Link
+                className="dvy-button"
+                data-variant="outline"
+                data-size="lg"
+                href="/ui/components"
+              >
                 Explore all {catalog.length} components <span aria-hidden="true">→</span>
               </Link>
             </div>
             <LandingHeroBar />
-            <div className="landing-quiet-facts">
-              <span>React 18 &amp; 19</span>
-              <span>MIT licensed</span>
-              <span>Source included</span>
-            </div>
             <nav className="landing-resource-links" aria-label="Release resources">
               <Link href="/ui/playground#code-playground">Playground ↗</Link>
               <a href={githubRepoUrl} target="_blank" rel="noreferrer">
@@ -93,34 +93,16 @@ export default function Home() {
               </a>
             </nav>
           </div>
-          <aside className="landing-margin-note">
-            <span className="landing-index">01 — 100</span>
-            <p>
-              A coherent foundation.
-              <br />
-              An open-ended canvas.
-            </p>
-            <Link href="/ui/glass">Meet DEVVY GLASS ↗</Link>
-            <small>
-              Depth when you want it.
-              <br />
-              Optional, always.
-            </small>
-          </aside>
         </div>
       </section>
       <section className="landing-workspace-section" aria-labelledby="workspace-heading">
         <div className="landing-section-heading">
           <div>
-            <span className="landing-kicker">LESS SETUP. MORE POSSIBILITY.</span>
-            <h2 id="workspace-heading">Small pieces. A complete picture.</h2>
+            <h2 id="workspace-heading">The components. In their element.</h2>
           </div>
-          <p>
-            A working interface, assembled from the same components you get. Go ahead—make yourself
-            at home.
-          </p>
+          <p>Real components you can try, adapt, and take with you.</p>
         </div>
-        <LandingStudio />
+        <LandingExamples />
       </section>
       <section className="landing-foundation-section" aria-labelledby="foundation-heading">
         <div className="landing-section-heading">

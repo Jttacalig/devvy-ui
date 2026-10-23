@@ -5,8 +5,11 @@ project needs: theme tokens, ordinary CSS, native props or the component impleme
 
 ## Edit and export a design
 
-Open `/ui/playground#code-playground`. Edit `theme.css` and `index.html`, then choose
-**Apply changes**. The preview uses the actual token, component and optional Glass styles.
+Open the dedicated full-width workspace at `/ui/playground#code-playground`. Edit
+`theme.css` and `index.html`; Auto preview updates the isolated canvas 350 ms after typing.
+Pause Auto preview to apply larger edits manually with **Apply changes** or Ctrl/⌘ + Enter.
+Use Code, Split view or Preview, resize the divider with pointer/arrow keys, and choose
+a mobile, tablet or fitted canvas. The preview uses actual token, component and optional Glass styles.
 Download your CSS separately, or download a standalone HTML file with the styles included.
 The HTML export includes the original MIT license notice. No editor service or new dependency
 is required; drafts stay in the current page and are lost on reload unless exported.
@@ -16,6 +19,22 @@ submissions are blocked there. It does not compile React/TSX. The standalone HTM
 design example; use the React components for their React behavior.
 
 ## Use your theme with React
+
+### Optional modern fonts
+
+Preview Geist, Manrope and Geist Mono at `/ui/fonts`. The new workspace styles entries
+`@devvy-ui/styles/fonts/geist.css`, `fonts/manrope.css` and `fonts/geist-mono.css` declare
+self-hosted variable Latin WOFF2 fonts. Import only the family you use, after the tokens,
+then apply `data-devvy-font="geist"` (or `manrope` / `geist-mono`) to your theme container.
+These entries are unreleased and are not available in npm 0.2.0 yet. System fonts remain
+the base default. Keep the OFL notices with copied font assets; see
+`packages/styles/fonts/README.md` for sources and coverage.
+
+Published 0.2.0 already supports your own fonts: load a licensed font in your application,
+then set `--dvy-font` and `--dvy-font-mono` on the theme container. The isolated HTML/CSS
+playground intentionally blocks font files; use the font specimens or your app to test them.
+
+### Theme scope
 
 Import your CSS after the DEVVY styles. Scope custom properties and selectors with a class
 so your design affects the intended part of your application:
@@ -71,3 +90,11 @@ See [AI interface ideas](ai-interfaces.md) for optional compositions.
 For copied source in Next.js App Router, import interactive components from a client
 module marked `use client`. Package builds supply client entry boundaries; source ownership
 uses your application’s boundary. Server rendering/hydration and RSC-only execution differ.
+
+## Signature website styles
+
+The documentation offers DEVVY Minimal (default), Modern (dark-first) and Glass through
+the palette button in the header. Appearance remains a separate light/dark/system choice.
+Choices persist locally when browser storage is available. Glass uses the existing adaptive
+material and accessibility fallbacks. These website compositions do not change the library
+defaults or require a new UI dependency.

@@ -6,14 +6,19 @@
 
 An original, React-first UI foundation by [DEV STATION](https://www.dev-station.dev).
 Repository: [Jttacalig/devvy-ui](https://github.com/Jttacalig/devvy-ui).
-MIT licensed. **DEVVY UI v0.2.0 Stable** is publicly released with **100 React components**.
-All six packages are published at **0.2.0** on npm's `latest` tag. The historical `beta`
+MIT licensed. **DEVVY UI v0.3.0** contains **100 React components** and the updated documentation experience.
+The GitHub source release adds optional fonts, table selection and a separate MCP developer preview.
+All six packages currently remain published at **0.2.0** on npm's `latest` tag. The historical `beta`
 tag remains at **0.1.0-beta.2**. TypeScript APIs, keyboard accessibility, custom themes,
 optional DEVVY GLASS and editable source are included.
 Official docs: https://devvy-ui.dev-station.dev/ui. The library is independent of the
 private Dev Station app.
 
-All six packages follow one fixed Changesets version. Website version labels read
+The workspace also previews an optional [modern font collection](packages/styles/fonts/README.md)
+at `/ui/fonts`: self-hosted Geist, Manrope and Geist Mono with live specimens and scoped tokens.
+These new font entries are not in npm 0.2.0 yet; base styles keep the system font default.
+
+All six workspace packages are versioned at **0.3.0** in one fixed Changesets group. Website version labels read
 package metadata; default installation commands resolve the published stable release. See [release verification](docs/verification-100.md), [the changelog](CHANGELOG.md),
 and [release instructions](docs/publish.md).
 
@@ -120,8 +125,8 @@ in `<Glass quality="auto">`. Glass, Dialog and Dock have independent React entri
 ordinary Button imports exclude their logic. No new runtime dependency was added.
 See [the glass guide](docs/glass.md) for APIs, fallbacks and main-site hosting requirements.
 
-Customize the actual code at `/ui/playground#code-playground`: edit CSS and HTML, apply it
-in an isolated preview, and export a theme or standalone design. Component pages also offer
+Customize the actual code at `/ui/playground#code-playground`: edit CSS and HTML with automatic updates
+in a full-width isolated preview, and export a theme or standalone design. Component pages also offer
 editable TSX source with copy/download actions. See [customization](docs/customization.md)
 for using those edits with React or owning the implementation through the CLI.
 
@@ -132,6 +137,14 @@ Override `--dvy-brand`, `--dvy-on-brand`, `--dvy-font` and radius tokens after t
 Tabs requires an explicit `dir="rtl"` prop for RTL arrow navigation.
 
 ## Working with AI
+
+An optional local MCP developer preview is available in `packages/mcp`. Connect your coding
+assistant to discover components, read version-specific APIs/source and request installation
+plans, version-matched design tokens, verified examples and UI recipes. Discover resources
+and reusable prompts without introducing AI into the production UI bundle. It defaults to
+published 0.2.0 and labels workspace additions as unreleased. See [editor setup and boundaries](docs/mcp.md).
+The optional standalone artifact is prepared but private; the tool is not published on npm and does
+not add an AI runtime to your application.
 
 Start with [AGENTS.md](AGENTS.md) and the [DEVVY UI skill](.agents/skills/devvy-ui/SKILL.md).
 The skill covers component creation, theming, package integration and updates that preserve

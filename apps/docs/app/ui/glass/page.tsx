@@ -5,7 +5,7 @@ import { CopyCode } from '../../../components/CopyCode';
 import Link from 'next/link';
 export const metadata = docsMetadata(
   'DEVVY GLASS',
-  'An optional liquid glass theme in DEVVY UI v0.2.0 Stable. Adaptive frost, light and dark modes, reduced effects and native interactions.',
+  'An optional liquid glass theme in DEVVY UI. Adaptive frost, light and dark modes, reduced effects and native interactions.',
   '/glass',
 );
 export default function Page() {

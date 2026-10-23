@@ -2,6 +2,68 @@ import { test, expect } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
 import AxeBuilder from '@axe-core/playwright';
 
+test('dedicated playground previews edits automatically, pauses safely and resizes its workspace', async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.goto('/ui/playground');
+  await expect(page.locator('.sidebar')).toHaveCount(0);
+  const shell = await page.locator('.docs-shell').boundingBox();
+  expect(shell?.width).toBe(1440);
+  await page.screenshot({ path: '.artifacts/playground-wide.png' });
+  const preview = page.frameLocator('iframe[title="Your customized DEVVY UI preview"]');
+  const css = page.getByRole('textbox', { name: 'Edit theme CSS', exact: true });
+  await css.fill('.custom-card h1 { color: rgb(25, 90, 65); }');
+  await expect(preview.getByRole('heading', { name: 'Your next idea starts here.' })).toHaveCSS(
+    'color',
+    'rgb(25, 90, 65)',
+  );
+  await page.getByRole('switch', { name: 'Auto preview' }).uncheck();
+  await css.fill('.custom-card h1 { color: rgb(110, 50, 30); }');
+  await expect(page.locator('.editor-run')).toContainText('Unapplied changes');
+  await expect(preview.getByRole('heading', { name: 'Your next idea starts here.' })).toHaveCSS(
+    'color',
+    'rgb(25, 90, 65)',
+  );
+  await css.press('Control+Enter');
+  await expect(preview.getByRole('heading', { name: 'Your next idea starts here.' })).toHaveCSS(
+    'color',
+    'rgb(110, 50, 30)',
+  );
+  const divider = page.getByRole('separator', { name: 'Resize code and preview' });
+  await divider.focus();
+  await divider.press('ArrowRight');
+  await expect(divider).toHaveAttribute('aria-valuenow', '51');
+  await page.getByRole('combobox', { name: 'Preview size' }).selectOption('mobile');
+  await expect(page.locator('iframe[title="Your customized DEVVY UI preview"]')).toHaveCSS(
+    'width',
+    '375px',
+  );
+  await page
+    .getByRole('group', { name: 'Workspace layout' })
+    .getByRole('button', { name: 'Preview', exact: true })
+    .click();
+  await expect(css).not.toBeVisible();
+  await page
+    .getByRole('group', { name: 'Workspace layout' })
+    .getByRole('button', { name: 'Split view', exact: true })
+    .click();
+  await expect(css).toBeVisible();
+  await page.getByRole('switch', { name: 'Auto preview' }).check();
+  await page.getByRole('button', { name: 'index.html', exact: true }).click();
+  await page
+    .getByRole('textbox', { name: 'Edit preview HTML' })
+    .fill('<main><h1>Automatic HTML works</h1><script>window.badPreview = true</script></main>');
+  await expect(preview.getByRole('heading', { name: 'Automatic HTML works' })).toBeVisible();
+  expect(await preview.locator('body').evaluate(() => 'badPreview' in window)).toBe(false);
+  await expect(page.locator('iframe[title="Your customized DEVVY UI preview"]')).toHaveAttribute(
+    'sandbox',
+    '',
+  );
+  await page.setViewportSize({ width: 320, height: 900 });
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+});
+
 test('custom HTML and CSS update an isolated preview and export the edited design', async ({
   page,
 }) => {

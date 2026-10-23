@@ -1,6 +1,6 @@
 {
   "name": "@devvy-ui/registry",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "type": "module",
   "license": "MIT",
   "description": "Source registry generated from the DEVVY UI package implementations",

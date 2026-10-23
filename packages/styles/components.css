@@ -2179,6 +2179,19 @@
   display: grid;
   gap: 1rem;
 }
+.dvy-data-table-selection {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  font-size: 0.8125rem;
+}
+.dvy-data-table-check {
+  inline-size: 3rem;
+}
+.dvy-data-table tr[data-selected] {
+  background: var(--dvy-surface);
+}
 .dvy-data-table th button {
   background: none;
   border: 0;

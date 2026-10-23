@@ -1,18 +1,49 @@
 {
   "name": "@devvy-ui/styles",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Ordinary CSS for DEVVY UI",
   "license": "MIT",
+  "types": "./index.d.ts",
   "exports": {
-    ".": "./components.css",
-    "./components.css": "./components.css",
-    "./glass.css": "./glass.css"
+    ".": {
+      "types": "./index.d.ts",
+      "default": "./components.css"
+    },
+    "./components.css": {
+      "types": "./index.d.ts",
+      "default": "./components.css"
+    },
+    "./fonts.css": {
+      "types": "./fonts.d.ts",
+      "default": "./fonts.css"
+    },
+    "./fonts/geist.css": {
+      "types": "./fonts.d.ts",
+      "default": "./fonts/geist.css"
+    },
+    "./fonts/manrope.css": {
+      "types": "./fonts.d.ts",
+      "default": "./fonts/manrope.css"
+    },
+    "./fonts/geist-mono.css": {
+      "types": "./fonts.d.ts",
+      "default": "./fonts/geist-mono.css"
+    },
+    "./glass.css": {
+      "types": "./glass.d.ts",
+      "default": "./glass.css"
+    }
   },
   "files": [
     "components.css",
     "LICENSE",
     "README.md",
-    "glass.css"
+    "glass.css",
+    "index.d.ts",
+    "glass.d.ts",
+    "fonts.css",
+    "fonts.d.ts",
+    "fonts"
   ],
   "sideEffects": [
     "**/*.css"

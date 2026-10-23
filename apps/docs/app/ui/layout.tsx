@@ -1,32 +1,40 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Badge, Separator } from '@devvy-ui/react';
-import { Navigation } from '../../components/Navigation';
+import { DocsShell } from '../../components/DocsShell';
+import { SiteSearch } from '../../components/SiteSearch';
 import { ThemeControl } from '../../components/ThemeControl';
 import { HeaderNavigation } from '../../components/HeaderNavigation';
 import { catalog } from '../../lib/catalog';
 import { releaseLabel } from '../../lib/release';
 
 export default function UILayout({ children }: { children: React.ReactNode }) {
+  const navigationItems = catalog.map(({ name, slug, description }) => ({
+    name,
+    slug,
+    description,
+  }));
   return (
     <>
       <a className="skip-link" href="#content">
         Skip to content
       </a>
-      <header className="site-header">
+      <header className="site-header dvy-glass-surface">
         <Link className="wordmark" href="/ui">
           <span className="brand-symbol">
-            <Image src="/devvy-logo.png" alt="" width={32} height={32} priority />
+            <Image src="/devvy-logo.png" alt="DEVVY UI" width={32} height={32} priority />
           </span>
           <span className="wordmark-title">
             devvy<span className="wordmark-ui">ui</span>
           </span>
-          <Badge tone="brand" className="release-tag">
+          <Badge tone="neutral" className="release-tag">
             {releaseLabel}
           </Badge>
+          <span className="sr-only"> home</span>
         </Link>
         <HeaderNavigation />
         <div className="header-actions">
+          <SiteSearch items={navigationItems} />
           <a
             className="header-icon-link"
             href="https://www.npmjs.com/package/@devvy-ui/react"
@@ -57,38 +65,41 @@ export default function UILayout({ children }: { children: React.ReactNode }) {
           <ThemeControl />
         </div>
       </header>
-      <div className="docs-shell">
-        <Navigation
-          items={catalog.map(({ name, slug, description }) => ({ name, slug, description }))}
-        />
-        <main id="content" className="main-content">
-          {children}
-          <Separator className="footer-separator" />
-          <footer className="site-footer">
-            <div className="footer-meta">
-              <span>
-                Made with intention by{' '}
-                <a href="https://www.dev-station.dev" target="_blank" rel="noreferrer">
-                  DEV STATION ↗
-                </a>
-              </span>
-              <span className="footer-sep">·</span>
-              <a
-                href="https://www.npmjs.com/package/@devvy-ui/react"
-                target="_blank"
-                rel="noreferrer"
-              >
-                npm package ↗
+      <DocsShell items={navigationItems}>
+        {children}
+        <Separator className="footer-separator" />
+        <footer className="site-footer">
+          <div className="footer-meta">
+            <span>
+              Made with intention by{' '}
+              <a href="https://www.dev-station.dev" target="_blank" rel="noreferrer">
+                DEV STATION ↗
               </a>
-              <span className="footer-sep">·</span>
-              <span>Open source under MIT license</span>
-            </div>
-            <div className="footer-badge">
-              <Badge tone="neutral">{releaseLabel}</Badge>
-            </div>
-          </footer>
-        </main>
-      </div>
+            </span>
+            <span className="footer-sep">·</span>
+            <a href="https://github.com/Jttacalig" target="_blank" rel="noreferrer">
+              Built by @Jttacalig ↗
+            </a>
+            <span className="footer-sep">·</span>
+            <a href="https://github.com/Jttacalig/devvy-ui" target="_blank" rel="noreferrer">
+              Source on GitHub ↗
+            </a>
+            <span className="footer-sep">·</span>
+            <a
+              href="https://www.npmjs.com/package/@devvy-ui/react"
+              target="_blank"
+              rel="noreferrer"
+            >
+              npm package ↗
+            </a>
+            <span className="footer-sep">·</span>
+            <span>Open source under MIT license</span>
+          </div>
+          <div className="footer-badge">
+            <Badge tone="neutral">{releaseLabel}</Badge>
+          </div>
+        </footer>
+      </DocsShell>
     </>
   );
 }

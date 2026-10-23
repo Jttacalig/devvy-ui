@@ -81,6 +81,13 @@ body {
 .sidebar {
   top: 4.75rem;
   height: calc(100dvh - 4.75rem);
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.sidebar::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
 }
 .sidebar nav a {
   border-radius: 0.1875rem;
@@ -303,4 +310,86 @@ body {
   .component-collection-example {
     padding: 1.25rem 0.5rem;
   }
+}
+
+/* DEVVY UI New Layout & Glass Card Paper Overrides */
+.hero-glass-card {
+  background: var(--dvy-surface);
+  border-color: color-mix(in srgb, var(--dvy-border) 60%, transparent);
+  box-shadow: none;
+  border-radius: 0.5rem;
+}
+.hero-glass-card:hover {
+  box-shadow: none;
+}
+.hero-glass-stage {
+  border-radius: 0.375rem;
+  background: color-mix(in srgb, var(--dvy-surface) 80%, var(--dvy-background));
+}
+.hero-glass-layer-brand,
+.hero-glass-layer-controls {
+  background: var(--dvy-background);
+  border-color: color-mix(in srgb, var(--dvy-border) 50%, transparent);
+  box-shadow: none;
+}
+.hero-glass-logo {
+  background: #242321;
+}
+.hero-glass-logo img {
+  filter: grayscale(1);
+}
+.sidebar-overview-btn {
+  border-radius: 0.25rem;
+}
+.sidebar-overview-btn[aria-current='page'] {
+  background: var(--dvy-surface);
+  box-shadow: inset 2px 0 var(--dvy-foreground);
+}
+.sidebar-nav-item {
+  border-radius: 0.25rem;
+}
+.sidebar-nav-item[aria-current='page'] {
+  background: var(--dvy-surface);
+  box-shadow: inset 2px 0 var(--dvy-foreground);
+}
+
+/* Sidebar Detailed Paper-and-Ink Match */
+.sidebar-overview-btn[aria-current='page'] {
+  background: #eae6dd;
+  border-left: 3px solid #242321;
+  color: #242321;
+  box-shadow: none;
+}
+[data-devvy-theme='dark'] .sidebar-overview-btn[aria-current='page'] {
+  background: #282724;
+  border-left: 3px solid #eeeae2;
+  color: #eeeae2;
+}
+.sidebar-item-label {
+  color: #2e2c28;
+}
+[data-devvy-theme='dark'] .sidebar-item-label {
+  color: #eeeae2;
+}
+.sidebar-item-icon {
+  color: #6b685f;
+}
+[data-devvy-theme='dark'] .sidebar-item-icon {
+  color: #a39f95;
+}
+.sidebar-all-pill {
+  background: #e2ded5;
+  color: #383631;
+}
+[data-devvy-theme='dark'] .sidebar-all-pill {
+  background: #2b2824;
+  color: #eeeae2;
+}
+.sidebar-all-count {
+  border-color: #78756d;
+  color: #383631;
+}
+[data-devvy-theme='dark'] .sidebar-all-count {
+  border-color: #8c887e;
+  color: #eeeae2;
 }

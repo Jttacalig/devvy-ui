@@ -2,7 +2,7 @@
 
 Framework, tooling and browser compatibility are separate promises.
 
-The current stable release is **0.2.0** with 100 components. See
+The **0.3.0** GitHub source release contains 100 components; the current npm stable release remains **0.2.0**. See
 [completion verification](verification-100.md) for local results and remaining manual gates.
 
 | Target                                            | Scope                                                                                  |

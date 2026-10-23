@@ -1,0 +1,4 @@
+/* Optional collection. Never imported by the base component stylesheet. */
+@import './fonts/geist.css';
+@import './fonts/manrope.css';
+@import './fonts/geist-mono.css';

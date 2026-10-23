@@ -4,7 +4,11 @@ Use feature branches and reviewable pull requests in
 [Jttacalig/devvy-ui](https://github.com/Jttacalig/devvy-ui). Review source, licenses,
 package contents and CI before merging; do not push directly to protected main.
 
-**DEVVY UI v0.2.0 Stable is published.** All six packages report version 0.2.0 and
+**DEVVY UI v0.3.0 is the current GitHub source release.** Its six workspace packages are
+versioned together. npm publication is a separate, explicitly authorized action; the
+optional MCP developer package remains private and is excluded from the six-package publication.
+
+**DEVVY UI v0.2.0 Stable is published on npm.** All six published packages report version 0.2.0 and
 `latest: 0.2.0` in the live npm registry, verified on 23 October 2026. The historical
 `beta` tag remains at 0.1.0-beta.2. The 100-component library uses one fixed six-package
 Changesets group. Publication does not deploy the documentation website.

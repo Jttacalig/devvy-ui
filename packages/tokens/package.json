@@ -1,6 +1,6 @@
 {
   "name": "@devvy-ui/tokens",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Framework-agnostic CSS design tokens for Devvy UI",
   "license": "MIT",
   "sideEffects": [
@@ -8,11 +8,15 @@
   ],
   "files": [
     "src/theme.css",
+    "src/theme.d.ts",
     "README.md",
     "LICENSE"
   ],
   "exports": {
-    "./theme.css": "./src/theme.css"
+    "./theme.css": {
+      "types": "./src/theme.d.ts",
+      "default": "./src/theme.css"
+    }
   },
   "engines": {
     "node": ">=20"

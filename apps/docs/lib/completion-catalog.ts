@@ -442,12 +442,18 @@ export const completionCatalog = [
     slug: 'data-table',
     description: 'A semantic table with filtering, sorting and pagination.',
     code: '<DataTable label="Projects" rows={rows} columns={columns} getRowId={row => row.id} filterText={row => row.name} />',
-    note: 'Typed renderers preserve native table structure. Sortable columns supply sortValue; row ids must be stable. Filtering and pagination remain client side; use bounded datasets.',
+    note: 'Typed renderers preserve native table structure. Sortable columns supply sortValue; row ids must be stable. Filtering and pagination remain client side; use bounded datasets. Optional rowSelection is an unreleased workspace addition, not part of npm 0.2.0. Select-all affects eligible rows on the current page; selection persists across filtering and pages. Bulk actions receive only existing, selectable rows.',
     props: [
       ['rows / columns', 'T[] / DataColumn<T>[]', 'required', 'Records and typed cell renderers.'],
       ['getRowId', '(row: T) => string', 'required', 'Stable identity.'],
       ['filterText', '(row: T) => string', '—', 'Enables text filtering.'],
       ['pageSize', 'number', '10', 'Visible records per page.'],
+      [
+        'rowSelection',
+        'DataTableSelection<T>',
+        '—',
+        'Workspace addition: getRowLabel, selectedIds/defaultSelectedIds, onSelectedIdsChange, isRowSelectable and renderActions(rows, clear). Omit for the existing table behavior.',
+      ],
     ],
   },
   {

@@ -1,5 +1,15 @@
 # @devvy-ui/registry
 
+## 0.3.0
+
+### Patch Changes
+
+- Add optional DataTable row selection with controlled/uncontrolled ids, eligible page-level
+  select-all, mixed states and application-owned bulk actions. Existing tables remain unchanged
+  when rowSelection is omitted. Selection uses native checkboxes without a new runtime dependency.
+- Use a generic dialog heading container so dialogs placed inside a site header do not
+  introduce a nested banner landmark. Native modal behavior and heading labels are unchanged.
+
 ## 0.2.0
 
 ### Minor Changes

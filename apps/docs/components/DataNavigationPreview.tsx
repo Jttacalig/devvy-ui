@@ -1,15 +1,8 @@
 'use client';
 import { useId, useState } from 'react';
-import {
-  ChartInspector,
-  Navbar,
-  Sidebar,
-  Breadcrumbs,
-  Button,
-  Select,
-  Badge,
-} from '@devvy-ui/react';
+import { ChartInspector, Navbar, Sidebar, Breadcrumbs, Button, Badge } from '@devvy-ui/react';
 import type { ComponentName } from '../lib/catalog';
+import { SelectControl } from './SelectControl';
 
 const activity = [
   { label: 'Mon', value: 24 },
@@ -48,33 +41,29 @@ export function ChartPreview() {
         ))}
       </div>
       <div className="chart-studio-controls">
-        <label htmlFor={id + '-period'}>
-          Period
-          <Select
-            id={id + '-period'}
-            aria-label="Chart period"
-            value={period}
-            onChange={(event) => setPeriod(event.target.value)}
-            disabled={type === 'donut'}
-          >
-            <option value="7">Last 7 days</option>
-            <option value="3">Last 3 days</option>
-          </Select>
-        </label>
-        <label htmlFor={id + '-curve'}>
-          Line style
-          <Select
-            id={id + '-curve'}
-            aria-label="Chart line style"
-            value={curve}
-            onChange={(event) => setCurve(event.target.value as typeof curve)}
-            disabled={type === 'bar' || type === 'donut'}
-          >
-            <option value="smooth">Smooth</option>
-            <option value="linear">Linear</option>
-            <option value="step">Step</option>
-          </Select>
-        </label>
+        <SelectControl
+          label="Period"
+          id={id + '-period'}
+          aria-label="Chart period"
+          value={period}
+          onChange={(event) => setPeriod(event.target.value)}
+          disabled={type === 'donut'}
+        >
+          <option value="7">Last 7 days</option>
+          <option value="3">Last 3 days</option>
+        </SelectControl>
+        <SelectControl
+          label="Line style"
+          id={id + '-curve'}
+          aria-label="Chart line style"
+          value={curve}
+          onChange={(event) => setCurve(event.target.value as typeof curve)}
+          disabled={type === 'bar' || type === 'donut'}
+        >
+          <option value="smooth">Smooth</option>
+          <option value="linear">Linear</option>
+          <option value="step">Step</option>
+        </SelectControl>
       </div>
       <div className="chart-studio-summary">
         <div>

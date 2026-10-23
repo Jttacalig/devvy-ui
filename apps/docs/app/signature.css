@@ -1,0 +1,176 @@
+/* Optional website styles compose the existing theme and Glass contracts. */
+:root[data-devvy-style='modern'] {
+  --dvy-background: #f3f6f4;
+  --dvy-surface: #e8eeeb;
+  --dvy-brand: #12694d;
+  --dvy-focus: #12694d;
+  --dvy-radius-md: 0.625rem;
+}
+:root[data-devvy-style='modern'][data-devvy-theme='dark'] {
+  --dvy-background: #111516;
+  --dvy-surface: #1c2425;
+  --dvy-foreground: #eef4f1;
+  --dvy-muted: #b3c1ba;
+  --dvy-border: #697a73;
+  --dvy-brand: #93d6ad;
+  --dvy-on-brand: #10261a;
+  --dvy-focus: #93d6ad;
+}
+:root[data-devvy-style='glass'] {
+  --dvy-background: #f0f7f2;
+  --dvy-surface: #e2eee6;
+  --dvy-glass-tint: 240 247 242;
+}
+:root[data-devvy-style='glass'][data-devvy-theme='dark'] {
+  --dvy-background: #0d1b15;
+  --dvy-surface: #172b21;
+  --dvy-glass-tint: 13 27 21;
+}
+@media (prefers-color-scheme: dark) {
+  :root[data-devvy-style='modern'][data-devvy-theme='system'] {
+    --dvy-background: #111516;
+    --dvy-surface: #1c2425;
+    --dvy-foreground: #eef4f1;
+    --dvy-muted: #b3c1ba;
+    --dvy-border: #697a73;
+    --dvy-brand: #93d6ad;
+    --dvy-on-brand: #10261a;
+    --dvy-focus: #93d6ad;
+  }
+  :root[data-devvy-style='glass'][data-devvy-theme='system'] {
+    --dvy-background: #0d1b15;
+    --dvy-surface: #172b21;
+    --dvy-glass-tint: 13 27 21;
+  }
+}
+.site-theme-scope {
+  min-height: 100dvh;
+}
+.theme-control {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  width: auto;
+}
+.theme-control > .select-field {
+  width: 8rem;
+  flex-shrink: 0;
+}
+.site-style-trigger {
+  display: grid;
+  place-items: center;
+  min-width: 2.5rem;
+  min-height: 2.5rem;
+  padding: 0.5rem;
+  border: 1px solid var(--dvy-border);
+  border-radius: var(--dvy-radius-md);
+  background: var(--dvy-background);
+  color: var(--dvy-foreground);
+  cursor: pointer;
+}
+.site-style-trigger svg {
+  width: 1rem;
+  height: 1rem;
+}
+.site-style-panel {
+  width: min(22rem, calc(100vw - 2rem));
+}
+.site-style-panel .dvy-radio-group {
+  margin: 0;
+}
+.site-style-panel .dvy-radio-option {
+  padding: 0.75rem;
+  border: 1px solid var(--dvy-border);
+  border-radius: var(--dvy-radius-md);
+}
+.site-style-panel .dvy-radio-option:has(:checked) {
+  border-color: var(--dvy-brand);
+  background: var(--dvy-surface);
+}
+.site-style-panel > p {
+  font-size: 0.6875rem;
+  line-height: 1.7;
+  color: var(--dvy-muted);
+  margin-bottom: 0;
+}
+.site-theme-scope[data-devvy-material='glass'] {
+  --dvy-glass-opacity: 0.94;
+  --dvy-glass-radius: 0.625rem;
+  --dvy-glass-blur: 12px;
+}
+.site-theme-scope[data-devvy-material='glass'][data-devvy-quality='reduced'] {
+  --dvy-glass-filter: none;
+  --dvy-glass-active-blur: 0px;
+  --dvy-glass-active-opacity: 1;
+}
+.site-theme-scope[data-devvy-material='glass']
+  :where(
+    .site-header,
+    .landing-card,
+    .landing-studio,
+    .workspace-preferences,
+    .hero-glass-card,
+    .code-playground-editor,
+    .code-playground-preview
+  ) {
+  background-color: var(--dvy-background);
+  border-color: var(--dvy-border);
+  box-shadow: var(--dvy-glass-shadow);
+}
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .site-theme-scope[data-devvy-material='glass']
+    :where(
+      .site-header,
+      .landing-card,
+      .landing-studio,
+      .workspace-preferences,
+      .hero-glass-card,
+      .code-playground-editor,
+      .code-playground-preview
+    ) {
+    background-color: rgb(var(--dvy-glass-tint) / var(--dvy-glass-active-opacity));
+    -webkit-backdrop-filter: var(--dvy-glass-filter);
+    backdrop-filter: var(--dvy-glass-filter);
+  }
+}
+@media (max-width: 768px) {
+  .theme-control > .select-field {
+    width: 5.75rem;
+  }
+  .theme-control .select-leading {
+    display: none;
+  }
+  .theme-control .select-shell[data-has-icon] .docs-select {
+    padding-inline: 0.625rem 1.75rem;
+  }
+  .theme-control {
+    gap: 0.25rem;
+  }
+  .site-style-trigger {
+    min-width: 2.25rem;
+    padding: 0.375rem;
+  }
+}
+@media (forced-colors: active) {
+  .site-theme-scope[data-devvy-material='glass'] {
+    --dvy-glass-filter: none;
+    --dvy-glass-active-opacity: 1;
+  }
+  .site-theme-scope[data-devvy-material='glass']
+    :where(
+      .site-header,
+      .landing-card,
+      .landing-studio,
+      .workspace-preferences,
+      .hero-glass-card,
+      .code-playground-editor,
+      .code-playground-preview
+    ) {
+    background: Canvas;
+    color: CanvasText;
+    border-color: CanvasText;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    box-shadow: none;
+  }
+}
