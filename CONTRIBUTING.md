@@ -1,6 +1,6 @@
 # Contributing to Devvy UI
 
-The current v0.2.0 Stable release contains 100 primary components. Read
+The v0.3.0 source release contains 100 primary components; npm currently serves v0.2.0. Read
 [architecture](docs/architecture.md), [compatibility](docs/compatibility.md) and
 [current verification](docs/verification-100.md) before changing a public contract.
 

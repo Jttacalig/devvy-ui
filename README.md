@@ -20,7 +20,8 @@ These new font entries are not in npm 0.2.0 yet; base styles keep the system fon
 
 All six workspace packages are versioned at **0.3.0** in one fixed Changesets group. Website version labels read
 package metadata; default installation commands resolve the published stable release. See [release verification](docs/verification-100.md), [the changelog](CHANGELOG.md),
-and [release instructions](docs/publish.md).
+and [release instructions](docs/publish.md). The current source candidate's checks are recorded
+in [0.3.0 verification](docs/verification-030.md).
 
 ## Installation
 

@@ -1,6 +1,6 @@
 # Roadmap to exactly 100 components
 
-## Current milestone: 100 implemented components · 0.2.0 Stable release
+## Current milestone: 100 components · 0.3.0 source / 0.2.0 npm
 
 All 83 planned additions now have canonical source, focused exports, generated registry
 items and explicit docs previews, alongside the original 17. See

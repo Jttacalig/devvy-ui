@@ -38,7 +38,7 @@ packages or promise adapters before testing actual applications.
 
 ## 100-component release
 
-The inventory is exactly 100 primary names at 0.2.0. Card helpers, variants and composed
+The inventory is exactly 100 primary names in 0.3.0 source and published npm 0.2.0. Card helpers, variants and composed
 application/AI examples do not inflate that count. `completion-catalog.ts` and
 `CompletionPreview.tsx` provide explicit API examples for the final 50. Installed consumers
 share the canonical completion fixture to exercise all additions on React 18 and 19.

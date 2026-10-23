@@ -26,7 +26,7 @@ Preview Geist, Manrope and Geist Mono at `/ui/fonts`. The new workspace styles e
 `@devvy-ui/styles/fonts/geist.css`, `fonts/manrope.css` and `fonts/geist-mono.css` declare
 self-hosted variable Latin WOFF2 fonts. Import only the family you use, after the tokens,
 then apply `data-devvy-font="geist"` (or `manrope` / `geist-mono`) to your theme container.
-These entries are unreleased and are not available in npm 0.2.0 yet. System fonts remain
+These entries are included in 0.3.0 source and are not available in npm 0.2.0 yet. System fonts remain
 the base default. Keep the OFL notices with copied font assets; see
 `packages/styles/fonts/README.md` for sources and coverage.
 
@@ -81,7 +81,7 @@ The editors keep drafts in memory. Copy or download before leaving or reloading 
 
 ## Customize the completed inventory
 
-The 0.2.0 Stable release contains 100 primary components. Composed controls expose typed options
+The 0.3.0 source release and npm 0.2.0 contain 100 primary components. Composed controls expose typed options
 and callbacks; native wrappers preserve native props and refs. Source installation includes
 dependency closure and listed helpers such as lib/widgets.tsx. Preserve your edits when
 merging upstream helpers and CSS. Keep uploading, persistence and AI requests application-owned.

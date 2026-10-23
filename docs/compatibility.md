@@ -3,7 +3,8 @@
 Framework, tooling and browser compatibility are separate promises.
 
 The **0.3.0** GitHub source release contains 100 components; the current npm stable release remains **0.2.0**. See
-[completion verification](verification-100.md) for local results and remaining manual gates.
+[0.3.0 verification](verification-030.md) for current results and remaining manual gates;
+[completion verification](verification-100.md) records the earlier npm 0.2.0 release.
 
 | Target                                            | Scope                                                                                  |
 | ------------------------------------------------- | -------------------------------------------------------------------------------------- |

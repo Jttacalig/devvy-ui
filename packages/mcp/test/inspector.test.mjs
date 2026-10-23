@@ -27,6 +27,24 @@ await writeFile(
     },
   }),
 );
+function filterBenignWarnings(stderr) {
+  if (!stderr) return '';
+  return stderr
+    .split('\n')
+    .filter((line) => {
+      const trimmed = line.trim();
+      if (!trimmed) return false;
+      if (/^\[mcp-inspector\]/i.test(trimmed) && /(?:keychain|secret|storage)/i.test(trimmed)) {
+        return false;
+      }
+      if (/^\(node:\d+\)\s+ExperimentalWarning:/i.test(trimmed)) {
+        return false;
+      }
+      return true;
+    })
+    .join('\n');
+}
+
 async function inspect(name, args) {
   const { stdout, stderr } = await run(
     process.execPath,
@@ -41,10 +59,19 @@ async function inspect(name, args) {
       'modern',
       ...args,
     ],
-    { timeout: 30000, maxBuffer: 1024 * 1024, windowsHide: true },
+    {
+      timeout: 30000,
+      maxBuffer: 1024 * 1024,
+      windowsHide: true,
+      env: {
+        ...process.env,
+        MCP_INSPECTOR_SECRET_STORE: 'memory',
+      },
+    },
   );
   await writeFile(resolve(directory, `mcp-inspector-${name}.json`), stdout);
-  assert.doesNotMatch(stderr, /Warning:|Error:|"error"|failed/i);
+  const relevantStderr = filterBenignWarnings(stderr);
+  assert.doesNotMatch(relevantStderr, /Warning:|Error:|"error"|failed/i);
   return JSON.parse(stdout);
 }
 function payload(value) {
