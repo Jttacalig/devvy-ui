@@ -39,6 +39,12 @@ jobs:
           path: benchmarks/results.json
   browser:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        project: [chromium, firefox, webkit]
+        shard: [1, 2]
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
@@ -48,13 +54,41 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm build
-      - run: pnpm exec playwright install --with-deps
-      - run: pnpm test:browser
+      - run: pnpm exec playwright install --with-deps ${{ matrix.project }}
+      - run: pnpm test:browser --project=${{ matrix.project }} --shard=${{ matrix.shard }}/2
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: browser-blob-${{ matrix.project }}-${{ matrix.shard }}
+          path: blob-report
+          retention-days: 7
+  browser-report:
+    if: ${{ !cancelled() }}
+    needs: browser
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: browser-blob-*
+          path: all-blob-reports
+          merge-multiple: true
+      - run: pnpm exec playwright merge-reports --reporter=html ./all-blob-reports
+        env:
+          PLAYWRIGHT_HTML_OPEN: never
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: browser-report
           path: playwright-report
+          retention-days: 7
   consumer:
     runs-on: ubuntu-latest
     strategy:

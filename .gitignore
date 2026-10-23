@@ -12,6 +12,8 @@ pnpm-debug.log
 .next/
 next-env.d.ts
 playwright-report/
+blob-report/
+all-blob-reports/
 test-results/
 benchmarks/results.json
 *.tgz

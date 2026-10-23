@@ -35,6 +35,13 @@ candidate and publishes dependencies before dependents with provenance. Its npm-
 environment name is legacy; maintainers must configure reviewers and branch protections
 in GitHub. Workflow text alone cannot enforce those account settings.
 
+Publishing first requires a successful `CI` workflow for the **exact main commit**. If CI
+is pending, missing or failed, publishing stops immediately with a clear error; finish CI
+and dispatch publishing again. The three browser engines run in two shards each in CI,
+with one retry and a twelve-minute Playwright limit per shard. The publish job reuses that
+successful browser gate instead of repeating all browser tests. Every existing test remains
+covered, and the shard reports are merged into the `browser-report` artifact.
+
 After review, merge and explicit release authorization, dispatch that workflow from main.
 The preflight workflow only uploads artifacts. Publication uses npm OIDC rather than a
 committed token. Never place credentials in files or logs.

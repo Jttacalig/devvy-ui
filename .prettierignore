@@ -5,6 +5,8 @@ dist
 .artifacts
 pnpm-lock.yaml
 playwright-report
+blob-report
+all-blob-reports
 test-results
 benchmarks/results.json
 apps/docs/next-env.d.ts

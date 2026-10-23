@@ -46,6 +46,15 @@
 .site-theme-scope {
   min-height: 100dvh;
 }
+/* Apply a complete theme palette together. Interpolating foreground/background colors
+   independently creates unreadable intermediate states, especially in WebKit. */
+.site-theme-scope .dvy-button,
+.site-theme-scope .sidebar-overview-btn,
+.site-theme-scope .sidebar-nav-item,
+.site-theme-scope .header-icon-link,
+.site-theme-scope .site-header .site-navigation a {
+  transition-property: transform, opacity, box-shadow;
+}
 .theme-control {
   display: flex;
   align-items: center;

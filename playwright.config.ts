@@ -6,16 +6,21 @@ const baseURL = `http://127.0.0.1:${port}`;
 export default defineConfig({
   testDir: './tests/browser',
   timeout: 60000,
+  globalTimeout: process.env.CI ? 12 * 60 * 1000 : undefined,
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
-  retries: process.env.CI ? 2 : 0,
+  retries: process.env.CI ? 1 : 0,
   workers: 2,
   reporter: [
     ['list'],
-    ['html', { open: 'never' }],
+    process.env.CI ? ['blob'] : ['html', { open: 'never' }],
     ['json', { outputFile: '.artifacts/browser-results.json' }],
   ],
-  use: { baseURL, trace: 'retain-on-failure' },
+  use: {
+    baseURL,
+    trace: process.env.CI ? 'on-first-retry' : 'retain-on-failure',
+    screenshot: 'only-on-failure',
+  },
   projects: [
     { name: 'chromium', use: { ...devices['Desktop Chrome'] } },
     { name: 'firefox', use: { ...devices['Desktop Firefox'] } },

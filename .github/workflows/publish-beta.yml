@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: read
+  actions: read
   id-token: write # npm Trusted Publishing / OIDC
 
 concurrency:
@@ -17,8 +18,23 @@ jobs:
   publish:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     environment: npm-alpha
     steps:
+      - name: Require successful CI on this exact main commit
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          CI_RESULT=$(gh api --method GET \
+            "repos/$GITHUB_REPOSITORY/actions/workflows/ci.yml/runs" \
+            -f head_sha="$GITHUB_SHA" -f branch=main -f per_page=20 \
+            --jq '[.workflow_runs[] | select(.event == "push" or .event == "workflow_dispatch")] | max_by(.run_number) | .conclusion // "not completed"')
+          if [[ "$CI_RESULT" != "success" ]]; then
+            echo "::error::CI for $GITHUB_SHA is $CI_RESULT. Wait for all verification, consumer and browser shards to pass, then run publishing again."
+            exit 1
+          fi
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
@@ -46,11 +62,6 @@ jobs:
           pnpm pack:all
           pnpm test:consumer 18.3.1
           pnpm test:consumer 19.3.1
-
-      - name: Run production browser tests
-        run: |
-          pnpm exec playwright install --with-deps
-          pnpm test:browser
 
       - name: Publish all six packages with latest dist-tag (OIDC)
         shell: bash
