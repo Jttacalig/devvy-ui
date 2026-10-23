@@ -6,9 +6,12 @@ import { SiteSearch } from '../../components/SiteSearch';
 import { ThemeControl } from '../../components/ThemeControl';
 import { HeaderNavigation } from '../../components/HeaderNavigation';
 import { catalog } from '../../lib/catalog';
-import { releaseLabel } from '../../lib/release';
+import { getPublishedRelease } from '../../lib/published-release';
 
-export default function UILayout({ children }: { children: React.ReactNode }) {
+export const revalidate = 300;
+
+export default async function UILayout({ children }: { children: React.ReactNode }) {
+  const { label: releaseLabel } = await getPublishedRelease();
   const navigationItems = catalog.map(({ name, slug, description }) => ({
     name,
     slug,
@@ -65,7 +68,7 @@ export default function UILayout({ children }: { children: React.ReactNode }) {
           <ThemeControl />
         </div>
       </header>
-      <DocsShell items={navigationItems}>
+      <DocsShell items={navigationItems} releaseLabel={releaseLabel}>
         {children}
         <Separator className="footer-separator" />
         <footer className="site-footer">

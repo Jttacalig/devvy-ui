@@ -6,20 +6,21 @@ import { LandingInstall } from '../../components/LandingInstall';
 import { LandingHeroBar } from '../../components/LandingHeroBar';
 import { catalog } from '../../lib/catalog';
 import { docsMetadata } from '../../lib/metadata';
-import {
-  docsUrl,
-  releaseLabel,
-  releaseVersion,
-  githubRepoUrl,
-  npmPackageUrl,
-} from '../../lib/release';
+import { docsUrl, githubRepoUrl, npmPackageUrl } from '../../lib/release';
+import { getPublishedRelease } from '../../lib/published-release';
 
-export const metadata = docsMetadata(
-  '100 React components. Every detail yours.',
-  `DEVVY UI ${releaseLabel}: 100 TypeScript React components, keyboard accessibility, custom themes, optional Glass and source you own. npm currently serves v0.2.0.`,
-);
+export async function generateMetadata() {
+  const { label } = await getPublishedRelease();
+  return docsMetadata(
+    '100 React components. Every detail yours.',
+    `DEVVY UI ${label}: 100 TypeScript React components, keyboard accessibility, custom themes, optional Glass and source you own.`,
+    '',
+    label,
+  );
+}
 
-export default function Home() {
+export default async function Home() {
+  const { version: releaseVersion, label: releaseLabel } = await getPublishedRelease();
   return (
     <div className="landing-next">
       <script
@@ -82,7 +83,7 @@ export default function Home() {
                 Explore all {catalog.length} components <span aria-hidden="true">→</span>
               </Link>
             </div>
-            <LandingHeroBar />
+            <LandingHeroBar version={releaseVersion} />
             <nav className="landing-resource-links" aria-label="Release resources">
               <Link href="/ui/playground#code-playground">Playground ↗</Link>
               <a href={githubRepoUrl} target="_blank" rel="noreferrer">
@@ -131,7 +132,7 @@ export default function Home() {
         </div>
       </section>
       <Separator className="landing-rule" />
-      <LandingInstall />
+      <LandingInstall version={releaseVersion} />
       <p className="landing-release-context">
         {releaseLabel} is available on npm. All six packages share version {releaseVersion}, with{' '}
         {catalog.length} React components in the library. Read the{' '}

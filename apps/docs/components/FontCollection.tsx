@@ -102,7 +102,7 @@ export function FontCollection() {
               </a>
             </div>
             <CopyCode
-              label={`Import ${item.name} (unreleased workspace entry)`}
+              label={`Import ${item.name} (available since v0.3.0)`}
               code={`import '@devvy-ui/styles/fonts/${item.id}.css';\n\n// Apply to the same container as your theme:\n<div data-devvy-theme="light" data-devvy-font="${item.id}">\n  {/* Your DEVVY UI components */}\n</div>`}
             />
           </CardContent>

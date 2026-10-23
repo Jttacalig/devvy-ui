@@ -1,13 +1,29 @@
 # @devvy-ui/react
 
-Original MIT React foundation by DEV STATION. DEVVY UI v0.2.0 Stable is published on npm with 100 primary components.
-The latest tag points to 0.2.0; the historical beta tag remains at 0.1.0-beta.2.
+Original MIT React foundation by DEV STATION. DEVVY UI provides 100 typed React components,
+theme customization, optional DEVVY GLASS and source you own. Install the stable release
+using the default npm `latest` tag; `beta` is a separate historical release channel.
 Package: https://www.npmjs.com/package/@devvy-ui/react.
 Requires react/react-dom ^18.2.0 or ^19.0.0; exact tested versions are in docs/compatibility.md.
 
 ```sh
 npm install @devvy-ui/react
 ```
+
+```tsx
+import '@devvy-ui/tokens/theme.css';
+import '@devvy-ui/styles';
+import { Button } from '@devvy-ui/react';
+
+export function Example() {
+  return <Button>Build something</Button>;
+}
+```
+
+Since v0.3.0, optional DataTable row selection and self-hosted fonts are included.
+Import `@devvy-ui/styles/fonts/geist.css` after the tokens and set
+`data-devvy-font="geist"` on your theme container to opt in. Base styles keep system fonts.
+Font assets retain their own SIL OFL 1.1 notices.
 
 Import tokens/theme.css, then @devvy-ui/styles once. Import components from
 @devvy-ui/react or individual entries such as @devvy-ui/react/button.

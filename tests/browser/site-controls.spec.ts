@@ -1,6 +1,27 @@
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
+test('published version is rendered consistently without browser requests to npm', async ({
+  page,
+}) => {
+  const registryRequests: string[] = [];
+  page.on('request', (request) => {
+    if (new URL(request.url()).hostname === 'registry.npmjs.org')
+      registryRequests.push(request.url());
+  });
+  await page.goto('/ui');
+  const versionText = await page.locator('.hero-install-version').innerText();
+  const version = versionText.match(/v(\d+\.\d+\.\d+)$/)?.[1];
+  expect(version).toBeTruthy();
+  await expect(page.locator('.site-header .release-tag')).toHaveText(`v${version} Stable`);
+  await expect(page.locator('.release-note .dvy-badge').first()).toHaveText(`v${version} Stable`);
+  await expect(page.locator('.footer-badge')).toHaveText(`v${version} Stable`);
+  await expect(page).toHaveTitle(new RegExp(`DEVVY UI v${version!.replaceAll('.', '\\.')} Stable`));
+  const schema = await page.locator('script[type="application/ld+json"]').textContent();
+  expect(JSON.parse(schema!).version).toBe(version);
+  expect(registryRequests).toEqual([]);
+});
+
 test('theme changes apply readable foreground and background colors together', async ({ page }) => {
   await page.goto('/ui/components/button');
   await expect(page.locator('.component-preview')).toHaveAttribute('data-ready', 'true');

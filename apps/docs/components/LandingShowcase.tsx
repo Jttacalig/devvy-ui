@@ -34,7 +34,7 @@ import {
   Glass,
 } from '@devvy-ui/react';
 
-export function LandingShowcase() {
+export function LandingShowcase({ version: publishedNpmVersion }: { version: string }) {
   const [btnLoading, setBtnLoading] = useState(false);
   const [switchChecked, setSwitchChecked] = useState(true);
   const [checkboxChecked, setCheckboxChecked] = useState(true);
@@ -173,8 +173,8 @@ export function LandingShowcase() {
             <span className="showcase-group-title">Status Alerts</span>
             <div className="showcase-stack">
               <Alert tone="brand">
-                DEVVY UI v0.2.0 Stable is available on npm with {componentCount} components with
-                focused imports.
+                DEVVY UI v{publishedNpmVersion} Stable is available on npm with {componentCount}{' '}
+                components with focused imports.
               </Alert>
               <Alert tone="neutral">
                 Ordinary CSS avoids runtime style injection. Measure the entries you ship in your

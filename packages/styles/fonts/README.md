@@ -1,6 +1,6 @@
 # Optional font assets
 
-Included in the 0.3.0 GitHub source release. These files are not included in npm 0.2.0.
+Included in the published `@devvy-ui/styles` package since v0.3.0.
 
 Import `@devvy-ui/styles/fonts/geist.css`, `fonts/manrope.css` or `fonts/geist-mono.css`
 after the theme tokens. `@devvy-ui/styles/fonts.css` declares all three. Apply

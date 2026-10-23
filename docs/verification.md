@@ -2,8 +2,10 @@
 
 This page records the earlier foundation/Glass snapshot. For the earlier 21-component
 foundation batch, see [its separate verification record](verification-foundations.md).
-The current 100-component 0.2.0 Stable release is documented in
-[completion verification](verification-100.md). The results below are historical snapshots
+The earlier 100-component 0.2.0 Stable release is documented in
+[completion verification](verification-100.md). See [0.3.0 source verification](verification-030.md)
+and [npm release verification](verification-npm-030.md) for the subsequent release.
+The results below are historical snapshots
 and do not stand in for fresh candidate checks.
 
 Environment: Windows x64, Node 24.19.0, pnpm 11.25.0, React 19.3.1,

@@ -6,22 +6,28 @@
 
 An original, React-first UI foundation by [DEV STATION](https://www.dev-station.dev).
 Repository: [Jttacalig/devvy-ui](https://github.com/Jttacalig/devvy-ui).
-MIT licensed. **DEVVY UI v0.3.0** contains **100 React components** and the updated documentation experience.
-The GitHub source release adds optional fonts, table selection and a separate MCP developer preview.
-All six packages currently remain published at **0.2.0** on npm's `latest` tag. The historical `beta`
+MIT licensed. **DEVVY UI v0.3.1** contains **100 React components** and the updated documentation experience.
+The release adds optional fonts, table selection and a separate MCP developer preview.
+All six public UI packages use npm's `latest` tag for stable releases. The historical `beta`
 tag remains at **0.1.0-beta.2**. TypeScript APIs, keyboard accessibility, custom themes,
 optional DEVVY GLASS and editable source are included.
 Official docs: https://devvy-ui.dev-station.dev/ui. The library is independent of the
 private Dev Station app.
 
-The workspace also previews an optional [modern font collection](packages/styles/fonts/README.md)
+The optional [modern font collection](packages/styles/fonts/README.md) is available
 at `/ui/fonts`: self-hosted Geist, Manrope and Geist Mono with live specimens and scoped tokens.
-These new font entries are not in npm 0.2.0 yet; base styles keep the system font default.
+These font entries ship in npm 0.3.0; base styles keep the system font default.
 
-All six workspace packages are versioned at **0.3.0** in one fixed Changesets group. Website version labels read
-package metadata; default installation commands resolve the published stable release. See [release verification](docs/verification-100.md), [the changelog](CHANGELOG.md),
-and [release instructions](docs/publish.md). The current source candidate's checks are recorded
-in [0.3.0 verification](docs/verification-030.md).
+All six workspace packages are versioned at **0.3.1** in one fixed Changesets group.
+The landing page automatically reads npm's stable tag on the documentation server, with
+a five-minute cache and a verified fallback. API/source documentation remains tied to the
+checkout; a live version label does not update its component examples. Default installation
+commands resolve the published stable release. See [release verification](docs/verification-100.md), [the changelog](CHANGELOG.md),
+and [release instructions](docs/publish.md). Source checks are recorded
+in [0.3.0 verification](docs/verification-030.md); see [npm release verification](docs/verification-npm-030.md)
+for the later publication and documentation correction.
+The [0.3.1 verification record](docs/verification-031.md) covers the README correction and
+automatic npm version display.
 
 ## Installation
 

@@ -91,3 +91,10 @@ Rebuild the snapshot after guide/catalog/source changes. Validate recipe types/i
 Keep base styles free of font imports, preserve all upstream OFL/FONTLOG notices and
 record asset sources/coverage. An unreleased entry is not a published install recipe.
 The docs HTML/CSS playground blocks font assets; do not weaken its policy to load them.
+
+## Published release labels
+
+The docs server reads validated npm tags independently of workspace package metadata.
+Preserve five-minute caching, strict six-package agreement, bounded reads and outage fallback.
+Run pnpm --filter devvy-ui-docs test and the published-version browser regression after
+changing this behavior. Labels do not upgrade versioned API examples or MCP snapshots.

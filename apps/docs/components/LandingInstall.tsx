@@ -10,9 +10,10 @@ import {
   Badge,
   CopyButton,
 } from '@devvy-ui/react';
-import { publishedNpmVersion, releaseLabel } from '../lib/release';
 
-export function LandingInstall() {
+export function LandingInstall({ version }: { version: string }) {
+  const publishedNpmVersion = version;
+  const releaseLabel = `v${version} Stable`;
   const pkgManagers = [
     { name: 'npm', cmd: 'npm install @devvy-ui/react' },
     { name: 'pnpm', cmd: 'pnpm add @devvy-ui/react' },

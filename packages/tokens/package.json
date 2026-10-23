@@ -1,6 +1,6 @@
 {
   "name": "@devvy-ui/tokens",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Framework-agnostic CSS design tokens for Devvy UI",
   "license": "MIT",
   "sideEffects": [
