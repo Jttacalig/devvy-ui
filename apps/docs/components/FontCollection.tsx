@@ -1,6 +1,6 @@
 'use client';
 
-import { useId, useState } from 'react';
+import { useEffect, useId, useState } from 'react';
 import { Badge, Button, Card, CardContent, Input, Slider } from '@devvy-ui/react';
 import { CopyCode } from './CopyCode';
 import { useSiteTheme } from './SiteTheme';
@@ -34,11 +34,17 @@ const fonts = [
 
 export function FontCollection() {
   const id = useId();
+  const [ready, setReady] = useState(false);
+  useEffect(() => setReady(true), []);
   const [text, setText] = useState('Make something yours.');
   const [weight, setWeight] = useState(400);
   const { font, setFont } = useSiteTheme();
   return (
-    <section aria-label="Interactive font collection" className="font-collection">
+    <section
+      aria-label="Interactive font collection"
+      aria-busy={!ready}
+      className="font-collection"
+    >
       <div className="font-controls">
         <label htmlFor={`${id}-sample`}>
           Your preview text
@@ -46,6 +52,7 @@ export function FontCollection() {
             id={`${id}-sample`}
             value={text}
             maxLength={160}
+            disabled={!ready}
             onChange={(event) => setText(event.target.value)}
           />
         </label>
@@ -57,6 +64,7 @@ export function FontCollection() {
             min={200}
             max={800}
             step={100}
+            disabled={!ready}
             value={weight}
             onChange={(event) => setWeight(Number(event.target.value))}
           />
@@ -83,6 +91,7 @@ export function FontCollection() {
                 variant={font === item.id ? 'solid' : 'outline'}
                 size="sm"
                 aria-pressed={font === item.id}
+                disabled={!ready}
                 onClick={() => setFont(item.id)}
               >
                 {font === item.id ? `Using ${item.name}` : `Try ${item.name} on this site`}
@@ -99,7 +108,7 @@ export function FontCollection() {
           </CardContent>
         </Card>
       ))}
-      <Button variant="ghost" onClick={() => setFont('system')}>
+      <Button variant="ghost" disabled={!ready} onClick={() => setFont('system')}>
         Restore system font
       </Button>
     </section>

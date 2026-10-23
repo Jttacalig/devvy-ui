@@ -42,3 +42,10 @@ retries in 21 seconds. Formatting and shard coverage are checked before pushing.
 Linux browser results are available on the fix pull request's CI checks. Local Windows
 checks cannot substitute for the Linux WebKit result that originally failed; all six shards
 and the merged report must pass before merging. No npm workflow is dispatched by this fix.
+
+The [corrected 543-case CI run](https://github.com/Jttacalig/devvy-ui/actions/runs/39972412559)
+passed in about 5 minutes 24 seconds, including one font-preview retry. Its trace showed
+early typing before hydration could be lost when the weight control rerendered. Font
+controls now remain disabled until their handlers are ready, and a delayed-script regression
+test covers the first edit in all three engines. The suite now contains 546 browser cases;
+current results are recorded in the repository's CI checks.

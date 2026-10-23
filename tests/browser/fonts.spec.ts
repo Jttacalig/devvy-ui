@@ -1,6 +1,35 @@
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
+test('font controls wait for hydration so the first edit is retained', async ({ page }) => {
+  let releaseScripts!: () => void;
+  const scriptsReady = new Promise<void>((resolve) => {
+    releaseScripts = resolve;
+  });
+  await page.route('**/_next/static/**/*.js', async (route) => {
+    await scriptsReady;
+    await route.continue();
+  });
+  await page.goto('/ui/fonts', { waitUntil: 'commit' });
+  const input = page.getByRole('textbox', { name: 'Your preview text', exact: true });
+  const weight = page.getByRole('slider', { name: /Weight/ });
+  try {
+    await expect(input).toBeDisabled();
+    await expect(weight).toBeDisabled();
+  } finally {
+    releaseScripts();
+  }
+  await expect(input).toBeEnabled();
+  await input.fill('Keep my first edit');
+  await weight.fill('700');
+  await expect(page.locator('.font-sample')).toHaveText([
+    'Keep my first edit',
+    'Keep my first edit',
+    'Keep my first edit',
+  ]);
+  await expect(input).toHaveValue('Keep my first edit');
+});
+
 test('optional fonts load on use, preview weights, persist choices and keep base system fonts', async ({
   page,
 }) => {
