@@ -39,6 +39,9 @@ jobs:
           path: benchmarks/results.json
   browser:
     runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.64.0-noble@sha256:06a9939e57531807f8d5fd76ce44b53165ffb7d7501d87ab10e285c20b1e971f
+      options: --ipc=host --init
     timeout-minutes: 15
     strategy:
       fail-fast: false
@@ -54,7 +57,9 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm build
-      - run: pnpm exec playwright install --with-deps ${{ matrix.project }}
+      # The image supplies OS dependencies. Install only the browser revision required
+      # by our pinned SDK (1.64.1); do not repeat apt installs on every runner.
+      - run: pnpm exec playwright install ${{ matrix.project }}
       - run: pnpm test:browser --project=${{ matrix.project }} --shard=${{ matrix.shard }}/2
       - uses: actions/upload-artifact@v4
         if: always()

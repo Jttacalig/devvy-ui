@@ -21,6 +21,15 @@ The browser suites took about 32 minutes each; publication stopped before the np
   apart from a new immediate theme-palette regression test.
 - Blob reports from each shard are merged into one HTML report. Publishing checks successful
   CI for the exact main SHA and no longer duplicates the complete browser suite.
+- Two runners spent over ten minutes downloading system packages from a slow Ubuntu mirror.
+  Browser jobs now use the digest-pinned official Playwright Noble image for OS dependencies.
+  The published image tag is 1.64.0; the installed SDK remains 1.64.1, and `playwright install`
+  ensures each required browser revision matches that SDK without running apt. The 1.64.1
+  image tag was checked and was unavailable; no dependency or lockfile version was changed.
+
+The container setup follows [Playwright's CI](https://playwright.dev/docs/ci) and
+[Docker guidance](https://playwright.dev/docs/docker). The image manifest was verified
+before pinning its digest.
 
 ## Verification
 
