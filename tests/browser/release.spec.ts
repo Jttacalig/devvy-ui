@@ -1,12 +1,15 @@
 import { test, expect } from '@playwright/test';
 import inventory from '../../packages/react/components.json';
-import { docsUrl, releaseLabel, releaseVersion } from '../../apps/docs/lib/release';
+import { docsUrl, releaseLabel } from '../../apps/docs/lib/release';
 
 test('stable onboarding exposes the real installation and release destinations', async ({
   page,
 }) => {
   await page.goto('/ui');
-  await expect(page.locator('.release-note')).toContainText(releaseLabel);
+  const publishedLabel = await page.locator('.site-header .release-tag').innerText();
+  const publishedVersion = publishedLabel.match(/^v(\d+\.\d+\.\d+) Stable$/)?.[1];
+  expect(publishedVersion).toBeTruthy();
+  await expect(page.locator('.release-note')).toContainText(publishedLabel);
   await expect(page.locator('.hero-install-code')).toHaveText('npm install @devvy-ui/react');
   const hero = page.locator('.landing-intro');
   await expect(hero.getByRole('link', { name: /Get started/ })).toHaveAttribute(
@@ -41,7 +44,7 @@ test('stable onboarding exposes the real installation and release destinations',
   }
   await expect(page.locator('.packages-grid a')).toHaveCount(6);
   const schema = JSON.parse(await page.locator('script[type="application/ld+json"]').innerText());
-  expect(schema.version).toBe(releaseVersion);
+  expect(schema.version).toBe(publishedVersion);
   expect(schema.url).toBe(docsUrl);
   await page.goto('/ui/getting-started');
   await expect(page.locator('main')).toContainText('npm install @devvy-ui/react');
@@ -62,7 +65,11 @@ test('all 100 component pages expose stable imports, published CLI usage and uni
     expect(response.status(), slug).toBe(200);
     const html = await response.text();
     expect(html, slug).toContain(releaseLabel);
-    expect(html, slug).toContain(`<title>${name} · DEVVY UI ${releaseLabel}</title>`);
+    const publishedLabel = html.match(
+      /class="[^"]*\brelease-tag\b[^"]*"[^>]*>(v\d+\.\d+\.\d+ Stable)</,
+    )?.[1];
+    expect(publishedLabel, slug).toBeTruthy();
+    expect(html, slug).toContain(`<title>${name} · DEVVY UI ${publishedLabel}</title>`);
     expect(html, slug).toContain(`${docsUrl}/components/${slug}`);
     expect(html, slug).toContain(`npx @devvy-ui/cli add ${slug}`);
     expect(html, slug).toContain('@devvy-ui/react');

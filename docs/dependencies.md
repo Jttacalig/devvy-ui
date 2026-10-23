@@ -3,7 +3,7 @@
 The six distributable DEVVY packages depend only on other DEVVY packages, with React
 and React DOM as external peers for the React adapter. Their tarballs contain original
 source/build output and an MIT LICENSE. No third-party primitive implementation is embedded.
-The unreleased optional styles font entries also bundle unmodified Geist, Geist Mono and
+The optional styles font entries, published since v0.3.0, also bundle unmodified Geist, Geist Mono and
 Manrope variable Latin WOFF2 assets under SIL OFL 1.1. Their copyright/license files and
 Manrope FONTLOG are included in `packages/styles/fonts`, with source URLs and sizes in its
 README. These fonts are independently licensed and never imported by the base stylesheet.

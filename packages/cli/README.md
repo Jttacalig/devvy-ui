@@ -1,6 +1,6 @@
 # DEVVY UI CLI
 
-Run the published v0.2.0 Stable CLI from your React project:
+Run the stable CLI from your React project:
 
 ```sh
 npx @devvy-ui/cli init
@@ -21,10 +21,10 @@ Import the copied `src/components/devvy/glass.css` after `src/devvy.css`; check 
 for the actual destination if your configuration changes the component directory. Glass includes
 its shared capability policy and stylesheet; Dialog includes its Button dependency.
 
-The 0.2.0 Stable CLI installs all 100 inventory entries. Composed controls include their
+The stable CLI installs all 100 inventory entries. Composed controls include their
 component dependencies and shared React helpers. For example, add gallery installs
 Lightbox and Dialog too; add rich-text-editor includes MarkdownViewer. Package name is
-@devvy-ui/cli; its binary is devvy-ui. All six scoped packages are published at 0.2.0 on latest.
+@devvy-ui/cli; its binary is devvy-ui. Default installation resolves npm's stable latest tag.
 
 For copied source in Next.js App Router, import interactive components from a client
 module marked `use client`. Package builds supply client entry boundaries; source ownership

@@ -39,6 +39,11 @@ Keep documentation API/code catalogs server-side; pass slim navigation and previ
 to client shells. This repository is independent of the private Dev Station application
 and its hosting.
 
+Documentation release labels read validated npm tags on the server with a five-minute cache.
+Keep the verified fallback separate from workspace versions, retain request/response bounds,
+and run the docs app's test task for metadata changes. API examples and MCP source pins
+remain versioned independently; live labels must not imply an implementation upgrade.
+
 MCP stays optional and read-only. Published responses use the pinned immutable registry;
 workspace APIs remain explicitly unreleased. Validate recipe imports/types against each
 canonical source closure, preserve structured schemas/response caps, and keep Inspector,

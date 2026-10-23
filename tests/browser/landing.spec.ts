@@ -135,9 +135,12 @@ test('live showcase themes, density, form values and Glass controls change real 
 test('landing uses the available canvas at wide widths and fits compact screens', async ({
   page,
 }) => {
+  // Resize one loaded page: repeated same-URL reloads can leave Firefox's
+  // navigation barrier pending even after goto's load event has completed.
+  await page.goto('/ui');
+  await expect(page.locator('.docs-shell')).toBeVisible();
   for (const width of [320, 375, 768, 1024, 1440, 1920]) {
     await page.setViewportSize({ width, height: 1000 });
-    await page.goto('/ui');
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(
       true,
     );

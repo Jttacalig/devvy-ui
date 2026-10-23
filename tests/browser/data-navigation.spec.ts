@@ -1,5 +1,4 @@
 import { test, expect } from '@playwright/test';
-import { releaseVersion } from '../../apps/docs/lib/release';
 import inventory from '../../packages/react/components.json';
 import AxeBuilder from '@axe-core/playwright';
 
@@ -89,10 +88,12 @@ for (const name of ['chart', 'navbar', 'sidebar', 'breadcrumbs']) {
 
 test('landing uses a full-width forest palette with DEVVY components', async ({ page }) => {
   await page.goto('/ui');
-  await expect(page.locator('.release-note')).toContainText('v' + releaseVersion);
+  const publishedLabel = await page.locator('.site-header .release-tag').innerText();
+  expect(publishedLabel).toMatch(/^v\d+\.\d+\.\d+ Stable$/);
+  await expect(page.locator('.release-note')).toContainText(publishedLabel);
   await expect(page.locator('.release-note')).toContainText(inventory.length + ' components');
   await expect(page.locator('.sidebar')).toHaveCount(0);
-  await expect(page.locator('.footer-badge')).toHaveText('v' + releaseVersion + ' Stable');
+  await expect(page.locator('.footer-badge')).toHaveText(publishedLabel);
   await page.getByRole('combobox', { name: 'Site theme' }).selectOption('light');
   expect(
     await page.locator('body').evaluate((element) => getComputedStyle(element).backgroundColor),

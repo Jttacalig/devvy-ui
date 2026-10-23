@@ -1,7 +1,9 @@
 # DEVVY UI 0.3.0 release verification — 23 October 2026
 
 This record covers the GitHub source release, not npm publication or a website deployment.
-The six UI packages and root workspace are versioned at 0.3.0. npm `latest` remains 0.2.0;
+At the time of these source checks, the six UI packages and root workspace were versioned at
+0.3.0 while npm `latest` remained 0.2.0. See [later npm verification](verification-npm-030.md)
+for the subsequent 0.3.0 publication;
 the MCP preview is independently versioned at 0.1.0 and remains `private: true`.
 
 Environment: Windows x64, Node 24.19.0, pnpm 11.25.0, React 19.3.1 and TypeScript 5.9.3.

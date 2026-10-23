@@ -1,9 +1,9 @@
 'use client';
 
 import { CopyButton, Badge } from '@devvy-ui/react';
-import { installCommand, npmPackageUrl, publishedNpmVersion } from '../lib/release';
+import { installCommand, npmPackageUrl } from '../lib/release';
 
-export function LandingHeroBar() {
+export function LandingHeroBar({ version }: { version: string }) {
   const installCmd = installCommand;
 
   return (
@@ -39,7 +39,7 @@ export function LandingHeroBar() {
           </a>
         </div>
       </div>
-      <p className="hero-install-version">npm latest · v{publishedNpmVersion}</p>
+      <p className="hero-install-version">npm latest · v{version}</p>
     </div>
   );
 }

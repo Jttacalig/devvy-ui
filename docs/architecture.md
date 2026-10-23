@@ -29,6 +29,10 @@ copies source with exclusive writes. It does not download or execute third-party
 
 The Next.js docs app serves /ui and shares the Vite Showcase fixture. It builds in its own
 directory and does not modify the private Dev Station app, DNS, hosting, databases or auth.
+Its server-only published-release loader validates all six npm stable tags and caches the
+result for five minutes. ISR refreshes release labels without a build. The verified fallback
+is independent of workspace metadata; API examples and MCP source pins remain versioned.
+The loader's bounded input, timeout and fallback tests run under the docs app's `test` task.
 Production reverse-proxy integration must route /ui and Next assets without colliding with
 the main site's assets; that deployment is not performed here.
 
@@ -38,7 +42,7 @@ packages or promise adapters before testing actual applications.
 
 ## 100-component release
 
-The inventory is exactly 100 primary names in 0.3.0 source and published npm 0.2.0. Card helpers, variants and composed
+The inventory is exactly 100 primary names in the 0.3.0 source and npm releases. Card helpers, variants and composed
 application/AI examples do not inflate that count. `completion-catalog.ts` and
 `CompletionPreview.tsx` provide explicit API examples for the final 50. Installed consumers
 share the canonical completion fixture to exercise all additions on React 18 and 19.

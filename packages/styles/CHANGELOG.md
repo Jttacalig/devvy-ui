@@ -1,5 +1,15 @@
 # @devvy-ui/styles
 
+## 0.3.1
+
+### Patch Changes
+
+- Correct stable installation and font availability in package documentation after the
+  verified 0.3.0 npm release. Remove stale current-version claims from package READMEs
+  so published documentation does not recommend an older release. No runtime APIs change.
+- Updated dependencies
+  - @devvy-ui/tokens@0.3.1
+
 ## 0.3.0
 
 ### Minor Changes

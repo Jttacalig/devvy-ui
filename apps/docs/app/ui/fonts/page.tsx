@@ -16,15 +16,15 @@ export default function FontsPage() {
       <div className="breadcrumb">
         Foundations / <span>Typography</span>
       </div>
-      <Badge tone="neutral">v0.3.0 source · optional</Badge>
+      <Badge tone="neutral">Available since v0.3.0 · optional</Badge>
       <h1>A different voice for your interface.</h1>
       <p className="page-lead">
         Three modern, open-source typefaces. Preview your words, find your weight, and keep complete
         control over how your product feels.
       </p>
       <p>
-        These new font entries are available in this checkout and are not included in npm 0.2.0 yet.
-        Base DEVVY styles continue to use system fonts. Nothing is fetched from a third-party font
+        These optional font entries are included in the published npm package since v0.3.0. Base
+        DEVVY styles continue to use system fonts. Nothing is fetched from a third-party font
         service at runtime.
       </p>
       <FontCollection />
@@ -36,8 +36,8 @@ export default function FontsPage() {
       </p>
       <h2>Your font, your choice</h2>
       <p>
-        You can already use any licensed font with published DEVVY UI 0.2.0. Load it using your
-        application’s normal font setup and override the tokens on your theme container:
+        You can also use any licensed font with DEVVY UI. Load it using your application’s normal
+        font setup and override the tokens on your theme container:
       </p>
       <CopyCode
         label="Use your own font with DEVVY UI"

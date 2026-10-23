@@ -5,12 +5,13 @@ import { usePathname } from 'next/navigation';
 import { useId, useState } from 'react';
 import { Input, Badge } from '@devvy-ui/react';
 import { InterfaceIcon } from './InterfaceIcon';
-import { releaseLabel } from '../lib/release';
 
 export function Navigation({
   items: catalog,
+  releaseLabel,
 }: {
   items: readonly { name: string; slug: string; description: string }[];
+  releaseLabel: string;
 }) {
   const path = usePathname();
   const [search, setSearch] = useState('');

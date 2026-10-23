@@ -4,7 +4,8 @@ import { Separator } from '@devvy-ui/react';
 import { Workbench } from '../../../components/Workbench';
 import { CopyCode } from '../../../components/CopyCode';
 import { catalog } from '../../../lib/catalog';
-import { publishedNpmVersion, releaseLabel } from '../../../lib/release';
+import { releaseLabel } from '../../../lib/release';
+import { getPublishedRelease } from '../../../lib/published-release';
 import { docsMetadata } from '../../../lib/metadata';
 import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
@@ -42,6 +43,7 @@ export async function generateMetadata({ params }: { params: Promise<{ section: 
   );
 }
 export default async function Section({ params }: { params: Promise<{ section: string }> }) {
+  const { version: publishedNpmVersion } = await getPublishedRelease();
   const { section } = await params;
   if (!sections.includes(section)) notFound();
   const playgroundFiles =
@@ -123,9 +125,9 @@ export default async function Section({ params }: { params: Promise<{ section: s
           <p>
             These commands resolve npm&apos;s <code>latest</code> tag, currently{' '}
             {publishedNpmVersion}. To pin this release, use{' '}
-            <code>@devvy-ui/react@{publishedNpmVersion}</code>. The {releaseLabel} source release on
-            GitHub also includes optional fonts and table selection; these additions are not
-            published on npm yet.
+            <code>@devvy-ui/react@{publishedNpmVersion}</code>. Optional fonts and table selection
+            are included in the published 0.3.0 packages. The separate MCP developer preview remains
+            private.
           </p>
           <h2>2. Import stylesheets</h2>
           <p>
@@ -222,9 +224,10 @@ export default async function Section({ params }: { params: Promise<{ section: s
         <>
           <h1>One hundred ways to start.</h1>
           <p className="page-lead">
-            {releaseLabel} · 23 October 2026. The GitHub source release improves the landing page,
-            search, dropdowns and playground, adds optional fonts and table selection, and extends
-            the separate MCP preview. npm <code>latest</code> remains v{publishedNpmVersion}.
+            {releaseLabel} · 23 October 2026. This release improves the landing page, search,
+            dropdowns and playground, adds optional fonts and table selection, and extends the
+            separate MCP preview. All six UI packages are published on npm with <code>latest</code>{' '}
+            pointing to v{publishedNpmVersion}.
           </p>
           <h2>The complete component inventory</h2>
           <p>

@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.3.1 — release documentation correction
+
+- Corrected package READMEs that still described the previous stable release.
+- Updated installation, optional font and DataTable selection availability guidance.
+- Added server-side npm release discovery for the landing page, header, footer,
+  installation labels and metadata. The site checks all six stable tags, caches successful
+  results for five minutes and falls back safely during registry failures.
+- No component implementations, public APIs, styles or runtime dependencies changed.
+
 ## 0.3.0 — GitHub source release
 
 - Refined the full-width landing page with consistent DEVVY cards, restrained green accents,
