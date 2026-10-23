@@ -42,6 +42,9 @@ jobs:
     container:
       image: mcr.microsoft.com/playwright:v1.64.0-noble@sha256:06a9939e57531807f8d5fd76ce44b53165ffb7d7501d87ab10e285c20b1e971f
       options: --ipc=host --init
+    env:
+      # Firefox requires HOME to belong to the effective container user (root).
+      HOME: /root
     timeout-minutes: 15
     strategy:
       fail-fast: false
@@ -60,6 +63,11 @@ jobs:
       # The image supplies OS dependencies. Install only the browser revision required
       # by our pinned SDK (1.64.1); do not repeat apt installs on every runner.
       - run: pnpm exec playwright install ${{ matrix.project }}
+      - name: Verify browser launches before running the suite
+        env:
+          BROWSER: ${{ matrix.project }}
+        run: |
+          node --input-type=module -e 'import { chromium, firefox, webkit } from "@playwright/test"; const browser = await ({chromium, firefox, webkit})[process.env.BROWSER].launch(); await browser.close();'
       - run: pnpm test:browser --project=${{ matrix.project }} --shard=${{ matrix.shard }}/2
       - uses: actions/upload-artifact@v4
         if: always()

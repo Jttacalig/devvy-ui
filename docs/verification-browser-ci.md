@@ -26,6 +26,8 @@ The browser suites took about 32 minutes each; publication stopped before the np
   The published image tag is 1.64.0; the installed SDK remains 1.64.1, and `playwright install`
   ensures each required browser revision matches that SDK without running apt. The 1.64.1
   image tag was checked and was unavailable; no dependency or lockfile version was changed.
+- The container uses a home directory owned by its effective user so Firefox can launch.
+  A launch check catches environment failures once before starting the full shard.
 
 The container setup follows [Playwright's CI](https://playwright.dev/docs/ci) and
 [Docker guidance](https://playwright.dev/docs/docker). The image manifest was verified
