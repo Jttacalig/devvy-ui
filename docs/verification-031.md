@@ -33,6 +33,10 @@ Component implementations, base styles and dependency versions are unchanged.
   WebKit (three cases).
 - All 100 canonical source/package parity checks passed. Bundle budgets passed; the
   React namespace remains 28,143 gzip bytes, unchanged by the docs-only feature.
+- The first CI browser run caught old assertions equating the unpublished checkout
+  version with npm latest. Updated the existing landing/onboarding/100-page SEO checks
+  to distinguish published labels from versioned source documentation; no tests were
+  removed or skipped.
 
 Publication and deployment are separate maintainer actions. This candidate record does
 not itself claim either has completed. The GitHub Actions run, release and live registry
