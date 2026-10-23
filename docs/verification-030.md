@@ -47,8 +47,10 @@ Optional fonts and the MCP server are separate from the production React JavaScr
 | Dependency audit                              | No known vulnerabilities at moderate threshold                                 |
 | Focused UI browser checks before version bump | 51 passed across Chromium, Firefox and WebKit                                  |
 
-The complete 540-case production browser suite is running against the 0.3.0 build. Its final
-result and remote CI must be checked before the GitHub release is created.
+The later [browser CI repair](verification-browser-ci.md) records the Linux failures,
+their fixes and the passing 543-case run. It also adds a font-hydration regression check,
+bringing the current suite to 546 cases. Check the exact release commit's CI result;
+the earlier local snapshot alone does not establish release readiness.
 
 ## Limits
 
