@@ -39,6 +39,18 @@ jobs:
           path: benchmarks/results.json
   browser:
     runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.64.0-noble@sha256:06a9939e57531807f8d5fd76ce44b53165ffb7d7501d87ab10e285c20b1e971f
+      options: --ipc=host --init
+    env:
+      # Firefox requires HOME to belong to the effective container user (root).
+      HOME: /root
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        project: [chromium, firefox, webkit]
+        shard: [1, 2]
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
@@ -48,13 +60,48 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm build
-      - run: pnpm exec playwright install --with-deps
-      - run: pnpm test:browser
+      # The image supplies OS dependencies. Install only the browser revision required
+      # by our pinned SDK (1.64.1); do not repeat apt installs on every runner.
+      - run: pnpm exec playwright install ${{ matrix.project }}
+      - name: Verify browser launches before running the suite
+        env:
+          BROWSER: ${{ matrix.project }}
+        run: |
+          node --input-type=module -e 'import { chromium, firefox, webkit } from "@playwright/test"; const browser = await ({chromium, firefox, webkit})[process.env.BROWSER].launch(); await browser.close();'
+      - run: pnpm test:browser --project=${{ matrix.project }} --shard=${{ matrix.shard }}/2
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: browser-blob-${{ matrix.project }}-${{ matrix.shard }}
+          path: blob-report
+          retention-days: 7
+  browser-report:
+    if: ${{ !cancelled() }}
+    needs: browser
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: browser-blob-*
+          path: all-blob-reports
+          merge-multiple: true
+      - run: pnpm exec playwright merge-reports --reporter=html ./all-blob-reports
+        env:
+          PLAYWRIGHT_HTML_OPEN: never
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: browser-report
           path: playwright-report
+          retention-days: 7
   consumer:
     runs-on: ubuntu-latest
     strategy:

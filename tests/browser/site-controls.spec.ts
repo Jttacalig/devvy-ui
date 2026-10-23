@@ -1,6 +1,45 @@
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
+test('theme changes apply readable foreground and background colors together', async ({ page }) => {
+  await page.goto('/ui/components/button');
+  await expect(page.locator('.component-preview')).toHaveAttribute('data-ready', 'true');
+  const download = page.getByRole('button', { name: 'Download TSX', exact: true });
+  await expect(download).toBeEnabled();
+  const editorStyle = await download.evaluate((node) => {
+    const style = getComputedStyle(node);
+    return { opacity: style.opacity, transition: style.transitionProperty };
+  });
+  expect(editorStyle.opacity).toBe('1');
+  expect(editorStyle.transition.split(/,\s*/)).not.toContain('opacity');
+  for (const theme of ['dark', 'light', 'dark', 'light']) {
+    await page.getByRole('combobox', { name: 'Site theme', exact: true }).selectOption(theme);
+    await expect(page.locator('html')).toHaveAttribute('data-devvy-theme', theme);
+    const colors = await page.evaluate(() => {
+      const button = getComputedStyle(document.querySelector('.component-preview .dvy-button')!);
+      const overview = getComputedStyle(document.querySelector('.sidebar-overview-btn')!);
+      return {
+        foreground: button.color,
+        background: button.backgroundColor,
+        overview: overview.color,
+      };
+    });
+    expect(colors).toEqual(
+      theme === 'dark'
+        ? {
+            foreground: 'rgb(16, 38, 26)',
+            background: 'rgb(139, 212, 172)',
+            overview: 'rgb(177, 189, 178)',
+          }
+        : {
+            foreground: 'rgb(255, 255, 255)',
+            background: 'rgb(23, 107, 75)',
+            overview: 'rgb(89, 100, 92)',
+          },
+    );
+  }
+});
+
 test('search keeps its input fixed, bounds results, retains a query and ranks exact names first', async ({
   page,
 }) => {

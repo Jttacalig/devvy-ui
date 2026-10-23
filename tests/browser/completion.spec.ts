@@ -242,8 +242,11 @@ test('data table filters, sorts, paginates and shows empty feedback', async ({ p
   await page.getByRole('searchbox', { name: 'Filter Project directory' }).fill('nothing matches');
   await expect(table).toContainText('No matching records.');
   await page.getByRole('searchbox', { name: 'Filter Project directory' }).fill('');
-  await page.getByRole('button', { name: /Project/ }).click();
-  await expect(table.locator('th').first()).toHaveAttribute('aria-sort', 'ascending');
+  const projectColumn = table.getByRole('columnheader', { name: 'Project', exact: true });
+  await projectColumn.getByRole('button', { name: 'Project', exact: true }).click();
+  await expect(projectColumn).toHaveAttribute('aria-sort', 'ascending');
+  await expect(table.getByRole('row').nth(1)).toContainText('Atlas design');
+  await expect(table.getByRole('row').nth(2)).toContainText('Dev Station studio');
 });
 
 test('media, gallery, canvas export and manual carousel work with local assets', async ({
