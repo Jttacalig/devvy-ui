@@ -71,6 +71,7 @@ export function createCompletionFixture(UI, h) {
     DataTable: {
       label: 'Fixture records',
       rows: [{ id: 'one', name: 'Orbit' }],
+      rowSelection: { getRowLabel: (row) => row.name, defaultSelectedIds: ['one'] },
       getRowId: (r) => r.id,
       columns: [{ key: 'name', label: 'Name', render: (r) => r.name, sortValue: (r) => r.name }],
     },

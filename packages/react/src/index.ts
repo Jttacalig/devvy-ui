@@ -125,7 +125,7 @@ export type { ComboboxOption } from './components/Combobox';
 export type { CommandItem } from './components/CommandPalette';
 export type { TreeNode } from './components/TreeView';
 export type { TourStep } from './components/OnboardingTour';
-export type { DataColumn } from './components/DataTable';
+export type { DataColumn, DataTableSelection } from './components/DataTable';
 export type { TimelineItem } from './components/Timeline';
 export type { GalleryImage } from './components/Lightbox';
 export type { SortableItem } from './components/SortableList';

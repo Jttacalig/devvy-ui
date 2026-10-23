@@ -1,5 +1,29 @@
 # Changelog
 
+## 0.3.0 — GitHub source release
+
+- Refined the full-width landing page with consistent DEVVY cards, restrained green accents,
+  live component examples, responsive navigation and creator/repository links in the footer.
+- Added Minimal, Modern and optional Glass styles independently of light/dark appearance,
+  a dedicated auto-preview playground, consistent select controls and compact keyboard search.
+- Added optional self-hosted Geist, Manrope and Geist Mono font entries with original OFL notices.
+  Base component styles continue to use system fonts and do not download font assets.
+- Added optional DataTable selection, eligible page-level select-all, controlled/uncontrolled
+  state and application-owned bulk actions using native checkboxes. Corrected nested dialog
+  heading landmarks without changing native modal behavior.
+- Extended the separate, private MCP preview with eight read-only tools, version-matched
+  tokens/examples/recipes, discoverable resources and reusable prompts. Published source remains
+  pinned to npm 0.2.0; workspace requests are explicitly separate.
+- Added protocol, malformed-input, response-bound, Inspector and standalone archive checks,
+  plus setup guides for Codex, Claude Code, Cursor and VS Code.
+- Recorded the selection feature's measured DataTable cost (about 1.97 KB gzip) and deliberately
+  changed its focused limit from 1.8 KB to 2 KB. The overall 29 KB JavaScript cap is unchanged.
+- Applied mechanical formatting to resolve existing CI formatting drift.
+
+This release is GitHub source only. npm `latest` remains 0.2.0 and the MCP package remains
+private; no npm publication or production deployment is implied. See
+[release verification](docs/verification-030.md) for actual results and limits.
+
 ## 0.2.0 Stable — 23 October 2026
 
 - Added the remaining 50 roadmap components: overlays, searchable selection, file/date

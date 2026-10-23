@@ -1,13 +1,15 @@
 'use client';
 
-import { useId, type ReactNode, type SelectHTMLAttributes } from 'react';
+import { useId, type ReactNode } from 'react';
+import { Select, type SelectProps } from '@devvy-ui/react/select';
 import { InterfaceIcon } from './InterfaceIcon';
 
-interface SelectControlProps extends SelectHTMLAttributes<HTMLSelectElement> {
+interface SelectControlProps extends SelectProps {
   label: string;
   hideLabel?: boolean;
   icon?: ReactNode;
   description?: string;
+  layout?: 'stacked' | 'inline';
 }
 
 /** Native semantics and keyboard behavior, with progressive CSS picker styling. */
@@ -16,6 +18,7 @@ export function SelectControl({
   hideLabel,
   icon,
   description,
+  layout = 'stacked',
   id,
   className,
   children,
@@ -25,13 +28,17 @@ export function SelectControl({
   const controlId = id ?? generatedId;
   const descriptionId = description ? `${controlId}-help` : undefined;
   return (
-    <div className="select-field">
+    <div className="select-field" data-layout={layout}>
       <label className={hideLabel ? 'sr-only' : 'select-label'} htmlFor={controlId}>
         {label}
       </label>
       <div className="select-shell" data-has-icon={icon ? '' : undefined}>
-        {icon ? <span className="select-leading">{icon}</span> : null}
-        <select
+        {icon ? (
+          <span className="select-leading" aria-hidden="true">
+            {icon}
+          </span>
+        ) : null}
+        <Select
           {...props}
           id={controlId}
           aria-describedby={
@@ -40,8 +47,8 @@ export function SelectControl({
           className={['docs-select', className].filter(Boolean).join(' ')}
         >
           {children}
-        </select>
-        <span className="select-chevron">
+        </Select>
+        <span className="select-chevron" aria-hidden="true">
           <InterfaceIcon name="chevron" />
         </span>
       </div>

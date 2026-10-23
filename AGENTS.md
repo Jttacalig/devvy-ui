@@ -11,17 +11,19 @@ Read versions and commands from `package.json`, package manifests, `pnpm-lock.ya
 `docs/verification.md` for actual results. Configured CI is not evidence that CI ran.
 Do not infer npm publication or a deployed website from repository/package metadata.
 
-| Location                        | Responsibility                                                                |
-| ------------------------------- | ----------------------------------------------------------------------------- |
-| `packages/core/src`             | DOM-free, framework-independent behavior; no React, browser globals or styles |
-| `packages/react/src/components` | Canonical typed React components and colocated behavior/SSR tests             |
-| `packages/tokens/src/theme.css` | Scoped light/dark/system design tokens                                        |
-| `packages/styles`               | Shared component CSS and the separately imported optional `glass.css`         |
-| `packages/registry/build.mjs`   | Generates source snapshots from canonical implementations                     |
-| `packages/cli/src`              | Bundled-source installer; validates paths and protects edited files           |
-| `apps/docs`                     | Next.js docs at `/ui`, including Glass and code customization                 |
-| `examples`                      | Vite/React and vanilla integration examples                                   |
-| `tests/browser`, `scripts`      | Browser flows, package/consumer checks and reproducible measurements          |
+| Location                        | Responsibility                                                                    |
+| ------------------------------- | --------------------------------------------------------------------------------- |
+| `packages/core/src`             | DOM-free, framework-independent behavior; no React, browser globals or styles     |
+| `packages/react/src/components` | Canonical typed React components and colocated behavior/SSR tests                 |
+| `packages/tokens/src/theme.css` | Scoped light/dark/system design tokens                                            |
+| `packages/styles`               | Shared component CSS and the separately imported optional `glass.css`             |
+| `packages/styles/fonts`         | Optional self-hosted font assets, individual CSS entries and original OFL notices |
+| `packages/registry/build.mjs`   | Generates source snapshots from canonical implementations                         |
+| `packages/cli/src`              | Bundled-source installer; validates paths and protects edited files               |
+| `packages/mcp`                  | Optional private local stdio tools; versioned, read-only bundled context          |
+| `apps/docs`                     | Next.js docs at `/ui`, including Glass and code customization                     |
+| `examples`                      | Vite/React and vanilla integration examples                                       |
+| `tests/browser`, `scripts`      | Browser flows, package/consumer checks and reproducible measurements              |
 
 Change source inputs, not `dist`, `.next`, `.turbo`, `.artifacts` or generated registry JSON.
 The primary component inventory is `packages/react/components.json`; build entries and registry
@@ -36,6 +38,11 @@ installation when introducing a component that uses another component.
 Keep documentation API/code catalogs server-side; pass slim navigation and preview metadata
 to client shells. This repository is independent of the private Dev Station application
 and its hosting.
+
+MCP stays optional and read-only. Published responses use the pinned immutable registry;
+workspace APIs remain explicitly unreleased. Validate recipe imports/types against each
+canonical source closure, preserve structured schemas/response caps, and keep Inspector,
+registry build inputs and MCP dependencies out of production UI packages. See `docs/mcp.md`.
 
 ## Component and styling contracts
 

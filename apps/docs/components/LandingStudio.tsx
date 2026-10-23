@@ -51,7 +51,7 @@ export function LandingStudio() {
     ]);
   const invoker = useRef<HTMLButtonElement>(null);
   return (
-    <div className="landing-studio">
+    <Card className="landing-studio landing-card">
       <div className="studio-toolbar">
         <div className="studio-identity">
           <span className="studio-mark" aria-hidden="true">
@@ -123,6 +123,27 @@ export function LandingStudio() {
               label: 'Projects',
               content: (
                 <DataTable
+                  rowSelection={{
+                    getRowLabel: (row) => row.name,
+                    renderActions: (selectedRows, clear) => (
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        onClick={() => {
+                          const ids = new Set(selectedRows.map((row) => row.id));
+                          setProjects((list) =>
+                            list.map((project) =>
+                              ids.has(project.id) ? { ...project, status: 'In review' } : project,
+                            ),
+                          );
+                          setMessage(`${selectedRows.length} projects are ready for review.`);
+                          clear();
+                        }}
+                      >
+                        Send selected for review
+                      </Button>
+                    ),
+                  }}
                   label="Your projects"
                   rows={projects}
                   getRowId={(row) => row.id}
@@ -266,14 +287,14 @@ export function LandingStudio() {
           <Button type="submit">Create project</Button>
         </Form>
       </Drawer>
-    </div>
+    </Card>
   );
 }
 
 export function LandingDetails() {
   return (
     <div className="landing-detail-grid">
-      <Card>
+      <Card className="landing-card">
         <CardHeader>
           <Badge tone="neutral">01 / A LITTLE STRUCTURE</Badge>
           <CardTitle>Good defaults, open doors.</CardTitle>
@@ -301,13 +322,21 @@ export function LandingDetails() {
           />
         </CardContent>
       </Card>
-      <CodeBlock
-        label="Your design language"
-        language="css"
-        code={
-          '/* Ordinary CSS. Every detail yours. */\n[data-devvy-theme="light"] {\n  --dvy-brand: #282724;\n  --dvy-radius-md: 0.5rem;\n  --dvy-font: "Your font", sans-serif;\n}\n\n/* Glass is an optional import. */\n/* Your components keep their behavior. */'
-        }
-      />
+      <Card className="landing-card landing-source-card">
+        <CardHeader>
+          <Badge tone="neutral">Source ownership</Badge>
+          <CardTitle>A small change. A different feel.</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <CodeBlock
+            label="Your design language"
+            language="css"
+            code={
+              '/* Ordinary CSS. Every detail yours. */\n[data-devvy-theme="light"] {\n  --dvy-brand: #282724;\n  --dvy-radius-md: 0.5rem;\n  --dvy-font: "Your font", sans-serif;\n}\n\n/* Glass is an optional import. */\n/* Your components keep their behavior. */'
+            }
+          />
+        </CardContent>
+      </Card>
     </div>
   );
 }

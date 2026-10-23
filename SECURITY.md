@@ -2,7 +2,9 @@
 
 ## Supported versions
 
-The current stable release is `0.2.0`; historical beta packages remain prereleases.
+The current GitHub source release is `0.3.0`; npm stable remains `0.2.0`.
+Historical beta packages remain prereleases. The optional MCP preview is private and
+read-only; it is not a hosted service or a production React dependency.
 Preparing a stable version does not establish a production security-support window.
 Maintainers must list supported versions after publication. No response-time SLA is promised.
 

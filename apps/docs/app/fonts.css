@@ -1,0 +1,67 @@
+.font-collection {
+  margin-block: 2.5rem;
+}
+.font-controls {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+.font-controls label {
+  display: grid;
+  gap: 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+.font-specimen {
+  margin-bottom: 1.5rem;
+}
+.font-specimen .dvy-card-content {
+  padding: clamp(1.25rem, 3vw, 2rem);
+}
+.font-specimen-heading,
+.font-specimen-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.article .font-specimen h2 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+.font-specimen-heading p,
+.font-specimen-actions {
+  color: var(--dvy-muted);
+  font-size: 0.875rem;
+}
+.article .font-sample {
+  font-family: var(--dvy-font);
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 400;
+  line-height: 1.25;
+  letter-spacing: -0.04em;
+  overflow-wrap: anywhere;
+  margin-block: 2rem 1rem;
+  color: var(--dvy-foreground);
+}
+.font-alphabet {
+  font-family: var(--dvy-font);
+  color: var(--dvy-muted);
+  letter-spacing: 0.08em;
+  overflow-wrap: anywhere;
+}
+.font-specimen-actions {
+  margin-block: 1.5rem;
+  justify-content: flex-start;
+}
+.font-specimen pre {
+  max-width: 100%;
+}
+@media (max-width: 600px) {
+  .font-controls {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}

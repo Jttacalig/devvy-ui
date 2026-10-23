@@ -96,5 +96,15 @@ agent service or external data transmission is enabled by these files.
 
 ## AI product interfaces
 
+The optional local MCP server is now implemented in `packages/mcp`. See
+[its setup and version policy](../packages/mcp/README.md) or `/ui/mcp` for component search,
+canonical API/source lookup, guides and installation plans. This is a private developer
+preview with version-matched tokens, verified examples/recipes, discoverable resources and
+reusable prompts. See [MCP editor setup and response contracts](mcp.md) for Codex, Claude
+Code, Cursor and VS Code. Standalone packaging is prepared; publishing stays disabled.
+It is not a published MCP package or hosted service. Calls are read-only; project updates
+still use reviewed assistant edits and the CLI's conflict protection. The published 0.2.0
+registry and unreleased workspace snapshot are separate, explicitly selectable sources.
+
 See [AI interface direction](ai-interfaces.md) for optional provider-independent compositions
 using the existing 100 DEVVY components. AI contributor guidance does not add an AI backend.

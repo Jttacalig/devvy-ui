@@ -1,5 +1,18 @@
 # @devvy-ui/styles
 
+## 0.3.0
+
+### Minor Changes
+
+- Add optional, individually importable self-hosted Geist, Manrope and Geist Mono variable Latin fonts with scoped font tokens and original SIL OFL notices. Base styles retain system fonts and never import the collection.
+
+### Patch Changes
+
+- Add optional DataTable row selection with controlled/uncontrolled ids, eligible page-level
+  select-all, mixed states and application-owned bulk actions. Existing tables remain unchanged
+  when rowSelection is omitted. Selection uses native checkboxes without a new runtime dependency.
+- @devvy-ui/tokens@0.3.0
+
 ## 0.2.0
 
 ### Minor Changes

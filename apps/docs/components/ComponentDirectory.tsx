@@ -10,8 +10,8 @@ import {
   CardDescription,
   CardFooter,
   Input,
-  Select,
 } from '@devvy-ui/react';
+import { SelectControl } from './SelectControl';
 
 const families: Record<string, readonly string[]> = {
   'Layout and identity': [
@@ -156,22 +156,20 @@ export function ComponentDirectory({ items }: { items: readonly DirectoryItem[] 
             onChange={(event) => setQuery(event.target.value)}
           />
         </label>
-        <label htmlFor={id + '-category'}>
-          Category
-          <Select
-            disabled={!ready}
-            id={id + '-category'}
-            value={family}
-            onChange={(event) => setFamily(event.target.value)}
-          >
-            <option value="all">All components ({items.length})</option>
-            {Object.keys(families).map((name) => (
-              <option key={name} value={name}>
-                {name} ({items.filter((item) => familyOf(item.slug) === name).length})
-              </option>
-            ))}
-          </Select>
-        </label>
+        <SelectControl
+          label="Category"
+          disabled={!ready}
+          id={id + '-category'}
+          value={family}
+          onChange={(event) => setFamily(event.target.value)}
+        >
+          <option value="all">All components ({items.length})</option>
+          {Object.keys(families).map((name) => (
+            <option key={name} value={name}>
+              {name} ({items.filter((item) => familyOf(item.slug) === name).length})
+            </option>
+          ))}
+        </SelectControl>
         <Button
           variant="outline"
           disabled={!ready || (!query && family === 'all')}

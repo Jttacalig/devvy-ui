@@ -2,18 +2,26 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { Navbar } from '@devvy-ui/react';
 
 const links = [
-  ['Documentation', '/ui/docs'],
+  ['Docs', '/ui/docs'],
   ['Components', '/ui/components'],
-  ['Glass', '/ui/glass'],
   ['Playground', '/ui/playground'],
+  ['Glass', '/ui/glass'],
+  ['MCP', '/ui/mcp'],
 ] as const;
 
 export function HeaderNavigation() {
   const pathname = usePathname();
   return (
-    <nav aria-label="Main navigation">
+    <Navbar
+      key={pathname}
+      label="Main navigation"
+      brand={null}
+      menuLabel="Menu"
+      className="site-navigation"
+    >
       {links.map(([label, href]) => (
         <Link
           key={href}
@@ -23,6 +31,6 @@ export function HeaderNavigation() {
           {label}
         </Link>
       ))}
-    </nav>
+    </Navbar>
   );
 }

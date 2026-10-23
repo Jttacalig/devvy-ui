@@ -64,11 +64,9 @@ for (const width of [320, 677, 768, 1024, 1440]) {
 
 test('documentation search, component API and theme controls work', async ({ page }) => {
   await page.goto('/ui');
-  await page.getByRole('searchbox', { name: 'Search documentation' }).fill('checkbox');
-  await page
-    .getByRole('navigation', { name: 'Documentation' })
-    .getByRole('link', { name: 'Checkbox', exact: true })
-    .click();
+  await page.getByRole('button', { name: /^Search documentation/ }).click();
+  await page.getByRole('combobox', { name: 'Search commands' }).fill('checkbox');
+  await page.getByRole('combobox', { name: 'Search commands' }).press('Enter');
   await expect(page.getByRole('heading', { level: 1, name: 'Checkbox' })).toBeVisible();
   await expect(page.getByRole('table')).toContainText('indeterminate');
   const results = await new AxeBuilder({ page }).analyze();
@@ -78,7 +76,10 @@ test('documentation search, component API and theme controls work', async ({ pag
   await expect(page.locator('.preview-canvas')).toHaveAttribute('data-devvy-theme', 'dark');
   await page.getByRole('button', { name: 'Toggle preview width' }).click();
   await expect(page.locator('.preview-canvas')).toHaveClass(/preview-mobile/);
-  await page.getByRole('button', { name: 'Code', exact: true }).click();
+  await page
+    .locator('.playground-component-lab')
+    .getByRole('button', { name: 'Code', exact: true })
+    .click();
   await expect(page.locator('.workbench-code')).toContainText('@devvy-ui/react');
 });
 

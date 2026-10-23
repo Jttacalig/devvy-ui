@@ -1,8 +1,12 @@
 'use client';
 
-import { useEffect, useId, useState } from 'react';
+import { useEffect, useId, useMemo, useState } from 'react';
 import { Button } from '@devvy-ui/react/button';
+import { ResizablePanels } from '@devvy-ui/react/resizable-panels';
+import { Switch } from '@devvy-ui/react/switch';
+import { SelectControl } from './SelectControl';
 import { downloadText } from '../lib/download';
+import Link from 'next/link';
 
 const initialHTML = `<main class="my-workspace" data-devvy-theme="light" data-devvy-material="glass" data-devvy-quality="full">
   <section class="dvy-card custom-card">
@@ -58,90 +62,168 @@ export function CodePlayground({ baseStyles, license }: { baseStyles: string; li
   const [html, setHTML] = useState(initialHTML);
   const [preview, setPreview] = useState(() => ({ css: initialCSS, html: initialHTML }));
   const [status, setStatus] = useState('');
+  const [automatic, setAutomatic] = useState(true);
+  const [viewport, setViewport] = useState('responsive');
+  const [view, setView] = useState('split');
   const changed = css !== preview.css || html !== preview.html;
-  const licensedStyles = `/*!\n${license}*/\n${baseStyles}`;
+  const licensedStyles = useMemo(() => `/*!\n${license}*/\n${baseStyles}`, [baseStyles, license]);
+  const previewDocument = useMemo(
+    () => documentFor(preview.html, preview.css, licensedStyles, true),
+    [preview.html, preview.css, licensedStyles],
+  );
+  useEffect(() => {
+    if (!ready || !automatic || !changed) return;
+    const timer = window.setTimeout(() => setPreview({ css, html }), 350);
+    return () => window.clearTimeout(timer);
+  }, [ready, automatic, changed, css, html]);
   return (
-    <section id="code-playground" className="code-playground" aria-labelledby={`${id}-title`}>
-      <div className="customize-heading">
-        <div>
-          <span className="eyebrow">YOUR CODE. YOUR DESIGN.</span>
-          <h2 id={`${id}-title`}>Take it beyond the defaults.</h2>
-          <p>Edit the CSS and HTML, apply your changes, then take the result into your project.</p>
-        </div>
-      </div>
-      <div className="code-playground-grid">
-        <div className="code-playground-editor">
-          <div className="editor-heading">
-            <div className="editor-files">
-              <button
-                type="button"
-                disabled={!ready}
-                aria-pressed={file === 'css'}
-                onClick={() => setFile('css')}
-              >
-                theme.css
-              </button>
-              <button
-                type="button"
-                disabled={!ready}
-                aria-pressed={file === 'html'}
-                onClick={() => setFile('html')}
-              >
-                index.html
-              </button>
-            </div>
-            <span className="editor-language">{file.toUpperCase()}</span>
-          </div>
-          <label className="sr-only" htmlFor={`${id}-code`}>
-            {file === 'css' ? 'Edit theme CSS' : 'Edit preview HTML'}
-          </label>
-          <textarea
-            id={`${id}-code`}
-            key={file}
-            aria-describedby={`${id}-help`}
-            className="code-input"
-            disabled={!ready}
-            value={file === 'css' ? css : html}
-            onChange={(event) =>
-              file === 'css' ? setCSS(event.target.value) : setHTML(event.target.value)
-            }
-            spellCheck={false}
-            autoCapitalize="off"
-            autoCorrect="off"
-          />
-          <div className="editor-run">
-            <span>{changed ? 'Unapplied changes' : 'Preview is up to date'}</span>
+    <section
+      id="code-playground"
+      className="code-playground"
+      data-panel-view={view}
+      aria-labelledby={`${id}-title`}
+    >
+      <h2 id={`${id}-title`} className="sr-only">
+        Code editor and live preview
+      </h2>
+      <div className="playground-toolbar">
+        <div className="playground-view-controls" role="group" aria-label="Workspace layout">
+          {['editor', 'split', 'preview'].map((mode) => (
             <Button
+              key={mode}
               size="sm"
+              variant="ghost"
               disabled={!ready}
-              onClick={() => {
-                setPreview({ css, html });
-                setStatus('Your changes are now in the preview.');
-              }}
+              aria-pressed={view === mode}
+              onClick={() => setView(mode)}
             >
-              Apply changes
+              {mode === 'editor' ? 'Code' : mode === 'split' ? 'Split view' : 'Preview'}
             </Button>
-          </div>
+          ))}
         </div>
-        <div className="code-playground-preview">
-          <div className="editor-heading">
-            <span>
-              <span className="status-dot" /> Live preview
-            </span>
-            <span className="editor-language">ISOLATED CANVAS</span>
-          </div>
-          <iframe
-            title="Your customized DEVVY UI preview"
-            sandbox=""
-            referrerPolicy="no-referrer"
-            srcDoc={documentFor(preview.html, preview.css, licensedStyles, true)}
+        <label className="playground-auto" htmlFor={`${id}-auto`}>
+          <Switch
+            id={`${id}-auto`}
+            disabled={!ready}
+            checked={automatic}
+            onChange={(event) => setAutomatic(event.target.checked)}
           />
+          Auto preview
+        </label>
+        <div className="playground-size">
+          <SelectControl
+            label="Preview size"
+            layout="inline"
+            id={`${id}-size`}
+            controlSize="sm"
+            disabled={!ready}
+            value={viewport}
+            onChange={(event) => setViewport(event.target.value)}
+          >
+            <option value="responsive">Fit canvas</option>
+            <option value="tablet">Tablet · 768px</option>
+            <option value="mobile">Mobile · 375px</option>
+          </SelectControl>
         </div>
       </div>
+      <ResizablePanels
+        className="code-playground-grid"
+        label="Resize code and preview"
+        defaultValue={50}
+        min={25}
+        max={75}
+      >
+        {[
+          <div key="editor" className="code-playground-editor">
+            <div className="editor-heading">
+              <div className="editor-files">
+                <button
+                  type="button"
+                  disabled={!ready}
+                  aria-pressed={file === 'css'}
+                  onClick={() => setFile('css')}
+                >
+                  theme.css
+                </button>
+                <button
+                  type="button"
+                  disabled={!ready}
+                  aria-pressed={file === 'html'}
+                  onClick={() => setFile('html')}
+                >
+                  index.html
+                </button>
+              </div>
+              <span className="editor-language">{file.toUpperCase()}</span>
+            </div>
+            <label className="sr-only" htmlFor={`${id}-code`}>
+              {file === 'css' ? 'Edit theme CSS' : 'Edit preview HTML'}
+            </label>
+            <textarea
+              id={`${id}-code`}
+              key={file}
+              aria-describedby={`${id}-help`}
+              className="code-input"
+              disabled={!ready}
+              value={file === 'css' ? css : html}
+              onChange={(event) =>
+                file === 'css' ? setCSS(event.target.value) : setHTML(event.target.value)
+              }
+              onKeyDown={(event) => {
+                if ((event.ctrlKey || event.metaKey) && event.key === 'Enter') {
+                  event.preventDefault();
+                  setPreview({ css, html });
+                  setStatus('Your changes are now in the preview.');
+                }
+              }}
+              spellCheck={false}
+              autoCapitalize="off"
+              autoCorrect="off"
+            />
+            <div className="editor-run">
+              <span>
+                {changed
+                  ? automatic
+                    ? 'Updating preview…'
+                    : 'Unapplied changes'
+                  : 'Preview is up to date'}
+              </span>
+              <Button
+                size="sm"
+                disabled={!ready}
+                onClick={() => {
+                  setPreview({ css, html });
+                  setStatus('Your changes are now in the preview.');
+                }}
+              >
+                Apply changes
+              </Button>
+            </div>
+          </div>,
+          <div key="preview" className="code-playground-preview" data-viewport={viewport}>
+            <div className="editor-heading">
+              <span>
+                <span className="status-dot" /> Live preview
+              </span>
+              <span className="editor-language">ISOLATED CANVAS</span>
+            </div>
+            <div className="playground-viewport">
+              <iframe
+                title="Your customized DEVVY UI preview"
+                sandbox=""
+                referrerPolicy="no-referrer"
+                srcDoc={previewDocument}
+              />
+            </div>
+          </div>,
+        ]}
+      </ResizablePanels>
       <p id={`${id}-help`} className="editor-help">
         Uses real DEVVY styles. HTML and CSS run in an isolated preview; scripts, form submissions
         and external assets are blocked. For React logic, edit and download the TSX source on any
-        component page.
+        component page. Auto preview waits briefly after typing; pause it for larger edits, or use
+        Ctrl/⌘ + Enter to apply immediately. Drag the divider or use its arrow keys to resize. For
+        self-hosted typefaces, explore the <Link href="/ui/fonts">font collection</Link>.
       </p>
       <div className="editor-actions">
         <Button

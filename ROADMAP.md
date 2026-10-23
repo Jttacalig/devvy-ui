@@ -1,6 +1,8 @@
 # DEVVY UI roadmap
 
-The **0.2.0 candidate** implements the full [100-component inventory](docs/roadmap-100.md).
+The **0.3.0 source release** retains the full [100-component inventory](docs/roadmap-100.md)
+and improves the documentation experience, customization and optional developer tooling.
+npm's latest published version remains 0.2.0.
 Each primary name has typed canonical source, focused package exports, source installation
 and an interactive docs preview. See [verification](docs/verification-100.md) for actual results.
 

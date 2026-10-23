@@ -1,0 +1,182 @@
+/* Shared landing composition of DEVVY Card primitives. No library API overrides. */
+.landing-next {
+  --dvy-landing-card-radius: 0.875rem;
+  --dvy-landing-card-padding: clamp(1.25rem, 2vw, 1.5rem);
+}
+.landing-next .landing-card,
+.landing-next .landing-card:hover {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid color-mix(in srgb, var(--dvy-border) 65%, transparent);
+  border-radius: var(--dvy-landing-card-radius);
+  background: var(--dvy-background);
+  color: var(--dvy-foreground);
+  box-shadow: none;
+  overflow: hidden;
+}
+.landing-next .landing-card > .dvy-card-header {
+  display: grid;
+  justify-items: start;
+  gap: 0.625rem;
+  padding: var(--dvy-landing-card-padding);
+  padding-bottom: 1.25rem;
+}
+.landing-next .landing-card > .dvy-card-header > .dvy-badge {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--dvy-muted);
+  font: 500 0.6875rem/1.4 var(--dvy-font);
+  letter-spacing: 0.02em;
+}
+.landing-next .landing-card .dvy-card-title {
+  margin: 0;
+  color: var(--dvy-foreground);
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -0.03em;
+}
+.landing-next .landing-card .dvy-card-description {
+  margin: 0;
+  color: var(--dvy-muted);
+  font-size: 0.75rem;
+  line-height: 1.7;
+}
+.landing-next .landing-card > .dvy-card-content {
+  flex: 1;
+  min-width: 0;
+  padding: 0 var(--dvy-landing-card-padding) var(--dvy-landing-card-padding);
+}
+.landing-next .landing-card > .dvy-card-footer {
+  min-height: 4.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 1rem var(--dvy-landing-card-padding);
+  border-top: 1px solid color-mix(in srgb, var(--dvy-border) 50%, transparent);
+}
+.landing-card .dvy-card-footer .component-example-link {
+  flex: 1;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-height: 2.5rem;
+  font-size: 0.75rem;
+  line-height: 1.4;
+}
+.component-note .dvy-card-footer .component-example-link {
+  flex: 0 0 auto;
+}
+.landing-next .landing-card :where(.dvy-input, .dvy-textarea, .dvy-select, .docs-select) {
+  border-color: color-mix(in srgb, var(--dvy-foreground) 50%, var(--dvy-background));
+  border-radius: 0.5rem;
+  background: var(--dvy-background);
+  font-size: 0.8125rem;
+}
+.landing-card .docs-select {
+  min-height: var(--dvy-control-height);
+}
+.landing-card .dvy-input {
+  min-height: var(--dvy-control-height);
+}
+.landing-component-grid > .landing-card {
+  height: 100%;
+}
+.component-note form {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  gap: 1.25rem;
+}
+.component-note .component-demo-status {
+  margin-top: auto;
+  padding-top: 0.5rem;
+}
+.component-chart-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.component-chart-summary > span {
+  display: grid;
+  gap: 0.25rem;
+}
+.component-chart-summary strong {
+  font-size: 1.875rem;
+  font-weight: 600;
+  letter-spacing: -0.045em;
+  line-height: 1.1;
+}
+.component-chart-summary small {
+  color: var(--dvy-muted);
+  font-size: 0.6875rem;
+}
+.component-activity .gallery-chart {
+  --dvy-chart-color: var(--dvy-brand);
+}
+.component-activity .gallery-chart > figcaption {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.component-activity .dvy-chart-inspection {
+  gap: 0.5rem;
+  padding-top: 1rem;
+}
+.component-activity .dvy-chart-inspection label,
+.component-activity .dvy-chart-inspection output {
+  font-size: 0.6875rem;
+}
+.component-signature .signature-specimen {
+  min-height: 8.5rem;
+  justify-content: space-between;
+  border: 0;
+  padding: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+.component-signature .signature-specimen > span:first-child {
+  font-size: 4rem;
+}
+.landing-next .landing-card.hero-glass-card .hero-glass-stage {
+  border-radius: 0.625rem;
+  min-height: 12rem;
+  padding: 1rem;
+}
+.landing-source-card .dvy-code-block {
+  margin: 0;
+  box-shadow: none;
+  border: 0;
+  background: var(--dvy-surface);
+  border-radius: 0.625rem;
+}
+.landing-next .landing-detail-grid .dvy-card-title {
+  margin: 0;
+}
+@media (max-width: 1100px) {
+  .component-signature .dvy-card-footer {
+    grid-column: 1 / -1;
+  }
+}
+@media (forced-colors: active) {
+  .landing-next .landing-card,
+  .landing-next .landing-card:hover {
+    border-color: CanvasText;
+    background: Canvas;
+  }
+  .landing-next .landing-card > .dvy-card-footer {
+    border-color: CanvasText;
+  }
+}

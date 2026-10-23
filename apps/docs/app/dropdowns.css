@@ -1,0 +1,197 @@
+/* Documentation controls compose DEVVY Select; native semantics remain intact. */
+.select-field[data-layout='inline'] {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+.select-field[data-layout='inline'] > .select-label {
+  flex-shrink: 0;
+  margin: 0;
+  font-weight: 500;
+}
+.select-shell .docs-select {
+  border: 1px solid color-mix(in srgb, var(--dvy-foreground) 50%, var(--dvy-background));
+  border-radius: 0.5rem;
+  background: var(--dvy-background);
+  color: var(--dvy-foreground);
+  box-shadow: none;
+  padding-inline-end: 2rem;
+  text-overflow: ellipsis;
+}
+.select-shell .docs-select[data-size='sm'] {
+  min-height: 2.25rem;
+  padding-block: 0.5rem;
+  font-size: 0.75rem;
+}
+.select-shell .docs-select:hover:not(:disabled) {
+  border-color: var(--dvy-foreground);
+}
+.select-shell .docs-select:focus-visible {
+  outline: 2px solid var(--dvy-focus);
+  outline-offset: 3px;
+}
+.select-shell .docs-select:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+.select-shell:has(.docs-select:disabled) .select-leading,
+.select-shell:has(.docs-select:disabled) .select-chevron {
+  opacity: 0.5;
+}
+.select-leading svg,
+.select-chevron svg {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+.select-chevron {
+  inset-inline-end: 0.625rem;
+}
+.select-shell[data-has-icon] .docs-select {
+  padding-inline-start: 2.125rem;
+}
+.select-leading {
+  inset-inline-start: 0.75rem;
+}
+.accent-picker-dot {
+  display: block;
+  width: 0.625rem;
+  height: 0.625rem;
+  border-radius: 50%;
+  background: var(--dvy-brand);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--dvy-brand) 12%, transparent);
+}
+.examples-controls .select-shell {
+  width: 9rem;
+}
+.examples-controls .select-label {
+  font-size: 0.6875rem;
+}
+.examples-controls .select-field:last-of-type .select-shell {
+  width: 10rem;
+}
+.examples-controls .docs-select {
+  width: 100%;
+  background: var(--dvy-background);
+}
+.playground-size .select-shell {
+  width: 10.5rem;
+}
+.playground-size .select-shell .docs-select {
+  width: 100%;
+}
+.directory-controls > .select-field {
+  align-content: start;
+}
+.directory-controls > .select-field > .select-label {
+  color: var(--dvy-foreground);
+  font: inherit;
+}
+.workspace-preferences .select-label {
+  color: var(--dvy-foreground);
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+.dvy-popover[role='menu'] {
+  width: 14rem;
+  max-width: calc(100vw - 1rem);
+  padding: 0.375rem;
+  border-radius: 0.75rem;
+  border-color: var(--dvy-border);
+  box-shadow: 0 8px 24px rgb(0 0 0 / 12%);
+}
+.dvy-popover[role='menu'] .dvy-menu-item {
+  min-height: 2.5rem;
+  padding: 0.625rem 0.75rem;
+  border-radius: 0.375rem;
+  font: 500 0.8125rem/1.4 var(--dvy-font);
+}
+.dvy-popover[role='menu'] .dvy-menu-item:hover:not(:disabled) {
+  background: var(--dvy-surface);
+}
+.dvy-popover[role='menu'] .dvy-menu-item:focus-visible {
+  outline: 2px solid var(--dvy-focus);
+  outline-offset: -2px;
+}
+@media (hover: hover) and (pointer: fine) and (min-width: 600px) {
+  @supports (appearance: base-select) and selector(::picker(select)) {
+    .select-shell .docs-select::picker(select) {
+      margin-block-start: 0.375rem;
+      padding: 0.375rem;
+      border: 1px solid var(--dvy-border);
+      border-radius: 0.75rem;
+      background: var(--dvy-background);
+      color: var(--dvy-foreground);
+      box-shadow: 0 10px 28px rgb(0 0 0 / 14%);
+      max-block-size: min(20rem, 70dvh);
+      overflow: auto;
+    }
+    .select-shell .docs-select option {
+      min-height: 2.375rem;
+      gap: 1.25rem;
+      padding: 0.625rem 0.75rem;
+      border-radius: 0.375rem;
+      font: 400 0.8125rem/1.4 var(--dvy-font);
+    }
+    .select-shell .docs-select option:hover {
+      outline: none;
+      background: var(--dvy-surface);
+    }
+    .select-shell .docs-select option:focus-visible {
+      outline: 2px solid var(--dvy-focus);
+      outline-offset: -2px;
+    }
+    .select-shell .docs-select option:checked {
+      color: var(--dvy-brand);
+      background: color-mix(in srgb, var(--dvy-brand) 10%, var(--dvy-background));
+      font-weight: 600;
+    }
+    .select-shell .docs-select option::checkmark {
+      order: 1;
+      margin-inline-start: auto;
+      font-size: 0.75rem;
+      color: var(--dvy-brand);
+    }
+    .select-shell .docs-select option:disabled {
+      color: var(--dvy-muted);
+      cursor: not-allowed;
+    }
+  }
+}
+@media (max-width: 900px) {
+  .examples-controls > .select-field {
+    flex: 1;
+  }
+  .examples-controls .select-field[data-layout='inline'] {
+    display: grid;
+    gap: 0.375rem;
+  }
+  .examples-controls .select-field .select-label {
+    display: block;
+  }
+  .examples-controls .select-shell,
+  .examples-controls .select-field:last-of-type .select-shell {
+    width: 100%;
+  }
+}
+@media (max-width: 600px) {
+  .playground-size > .select-field {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+@media (forced-colors: active) {
+  .select-shell .docs-select {
+    background: Field;
+    color: FieldText;
+    border-color: ButtonText;
+  }
+  .accent-picker-dot {
+    background: Highlight;
+    box-shadow: none;
+  }
+  .dvy-popover[role='menu'] {
+    border-color: CanvasText;
+    background: Canvas;
+    box-shadow: none;
+  }
+}

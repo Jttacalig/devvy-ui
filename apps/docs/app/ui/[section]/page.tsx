@@ -4,7 +4,7 @@ import { Separator } from '@devvy-ui/react';
 import { Workbench } from '../../../components/Workbench';
 import { CopyCode } from '../../../components/CopyCode';
 import { catalog } from '../../../lib/catalog';
-import { releaseLabel, releaseVersion } from '../../../lib/release';
+import { publishedNpmVersion, releaseLabel } from '../../../lib/release';
 import { docsMetadata } from '../../../lib/metadata';
 import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
@@ -54,7 +54,7 @@ export default async function Section({ params }: { params: Promise<{ section: s
         ])
       : null;
   return (
-    <article className="article">
+    <article className={section === 'playground' ? 'article playground-page' : 'article'}>
       <div className="breadcrumb">
         The foundation / <span>{section.split('-').join(' ')}</span>
       </div>
@@ -76,19 +76,25 @@ export default async function Section({ params }: { params: Promise<{ section: s
         </>
       ) : section === 'playground' ? (
         <>
-          <h1>A space to try things.</h1>
+          <h1>Your code. Your canvas.</h1>
           <p className="page-lead">
-            Change the preview theme and width. Move through the tabs with your keyboard. Submit the
-            form to see local feedback.
+            A full-size workspace for your next interface. Edit HTML and CSS and watch the preview
+            update as you type. Use DEVVY styles, or make them completely your own.
           </p>
-          <h2 className="sr-only">Component preview</h2>
-          <Workbench />
           {playgroundFiles ? (
             <CodePlayground
               baseStyles={playgroundFiles.slice(0, 3).join('\n')}
               license={playgroundFiles[3]}
             />
           ) : null}
+          <section className="playground-component-lab" aria-labelledby="component-lab-title">
+            <h2 id="component-lab-title">Explore the component behavior.</h2>
+            <p>
+              Try native form controls, theme switching and keyboard navigation in this React
+              example.
+            </p>
+            <Workbench />
+          </section>
           <h2>Keep exploring</h2>
           <p>Each component page has a focused live example, prop reference and complete source.</p>
           <Link href="/ui/components">Browse the component foundation →</Link>
@@ -97,8 +103,9 @@ export default async function Section({ params }: { params: Promise<{ section: s
         <>
           <h1>Start with a solid foundation.</h1>
           <p className="page-lead">
-            DEVVY UI {releaseLabel} is published on npm. Install <code>@devvy-ui/react</code> for
-            all {catalog.length} typed components with your preferred package manager.
+            DEVVY UI v{publishedNpmVersion} is published on npm. Install{' '}
+            <code>@devvy-ui/react</code> for all {catalog.length} typed components with your
+            preferred package manager.
           </p>
           <h2>1. Install the package</h2>
           <p>
@@ -114,8 +121,11 @@ export default async function Section({ params }: { params: Promise<{ section: s
             }
           />
           <p>
-            These commands resolve npm&apos;s <code>latest</code> tag, currently {releaseVersion}.
-            To pin this release, use <code>@devvy-ui/react@{releaseVersion}</code>.
+            These commands resolve npm&apos;s <code>latest</code> tag, currently{' '}
+            {publishedNpmVersion}. To pin this release, use{' '}
+            <code>@devvy-ui/react@{publishedNpmVersion}</code>. The {releaseLabel} source release on
+            GitHub also includes optional fonts and table selection; these additions are not
+            published on npm yet.
           </p>
           <h2>2. Import stylesheets</h2>
           <p>
@@ -212,8 +222,9 @@ export default async function Section({ params }: { params: Promise<{ section: s
         <>
           <h1>One hundred ways to start.</h1>
           <p className="page-lead">
-            {releaseLabel} · 23 October 2026. All six packages are publicly available on npm at
-            version {releaseVersion}, with <code>latest</code> pointing to the stable release.
+            {releaseLabel} · 23 October 2026. The GitHub source release improves the landing page,
+            search, dropdowns and playground, adds optional fonts and table selection, and extends
+            the separate MCP preview. npm <code>latest</code> remains v{publishedNpmVersion}.
           </p>
           <h2>The complete component inventory</h2>
           <p>

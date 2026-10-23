@@ -87,29 +87,29 @@ for (const name of ['chart', 'navbar', 'sidebar', 'breadcrumbs']) {
   });
 }
 
-test('landing uses a paper-and-ink palette with DEVVY components', async ({ page }) => {
+test('landing uses a full-width forest palette with DEVVY components', async ({ page }) => {
   await page.goto('/ui');
   await expect(page.locator('.release-note')).toContainText('v' + releaseVersion);
   await expect(page.locator('.release-note')).toContainText(inventory.length + ' components');
-  await expect(page.locator('.sidebar-version-tag')).toContainText('v' + releaseVersion);
+  await expect(page.locator('.sidebar')).toHaveCount(0);
   await expect(page.locator('.footer-badge')).toHaveText('v' + releaseVersion + ' Stable');
   await page.getByRole('combobox', { name: 'Site theme' }).selectOption('light');
   expect(
     await page.locator('body').evaluate((element) => getComputedStyle(element).backgroundColor),
-  ).toBe('rgb(245, 243, 238)');
+  ).toBe('rgb(250, 251, 249)');
   expect(
     await page
       .locator('html')
       .evaluate((element) => getComputedStyle(element).getPropertyValue('--dvy-brand').trim()),
-  ).toBe('#282724');
+  ).toBe('#176b4b');
   await expect(page.locator('.landing-studio .dvy-data-table')).toBeVisible();
   await page.getByRole('tab', { name: 'Board', exact: true }).click();
   await expect(page.locator('.landing-studio .dvy-kanban')).toBeVisible();
   await page.getByRole('tab', { name: 'Projects', exact: true }).click();
   await page.evaluate(() => scrollTo(0, 0));
-  await page.screenshot({ path: '.artifacts/devvy-paper-desktop.png', fullPage: true });
+  await page.screenshot({ path: '.artifacts/devvy-landing-desktop.png', fullPage: true });
   await page.setViewportSize({ width: 320, height: 900 });
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await page.evaluate(() => scrollTo(0, 0));
-  await page.screenshot({ path: '.artifacts/devvy-paper-phone.png', fullPage: true });
+  await page.screenshot({ path: '.artifacts/devvy-landing-phone.png', fullPage: true });
 });

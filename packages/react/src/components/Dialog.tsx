@@ -103,7 +103,7 @@ export const Dialog = forwardRef<HTMLDialogElement, DialogProps>(function Dialog
 
   const content = (
     <>
-      <header className="dvy-dialog-header">
+      <div className="dvy-dialog-header">
         <div>
           <h2 id={`${id}-title`} className="dvy-dialog-title">
             {title}
@@ -122,7 +122,7 @@ export const Dialog = forwardRef<HTMLDialogElement, DialogProps>(function Dialog
         >
           ×
         </Button>
-      </header>
+      </div>
       <div className="dvy-dialog-content">{children}</div>
     </>
   );

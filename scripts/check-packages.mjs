@@ -35,12 +35,29 @@ const registry = JSON.parse(
   await readFile(resolve(root, 'packages/registry/dist/registry.json'), 'utf8'),
 );
 const components = JSON.parse(
+  // Primary inventory remains independent of optional font assets.
   await readFile(resolve(root, 'packages/react/components.json'), 'utf8'),
 );
 const reactPackage = JSON.parse(
   await readFile(resolve(root, 'packages/react/package.json'), 'utf8'),
 );
 const barrel = await import(pathToFileURL(resolve(root, 'packages/react/dist/index.js')).href);
+assert.doesNotMatch(
+  await readFile(resolve(root, 'packages/styles/components.css'), 'utf8'),
+  /@font-face|fonts\.css/,
+);
+for (const [font, notice] of [
+  ['geist', 'Geist'],
+  ['geist-mono', 'Geist-Mono'],
+  ['manrope', 'Manrope'],
+]) {
+  const file = await readFile(resolve(root, `packages/styles/fonts/${font}-latin.woff2`));
+  assert.equal(file.subarray(0, 4).toString(), 'wOF2', `${font} must be a WOFF2 asset`);
+  assert.match(
+    await readFile(resolve(root, `packages/styles/fonts/${notice}-OFL.txt`), 'utf8'),
+    /SIL OPEN FONT LICENSE Version 1\.1/,
+  );
+}
 assert.equal(
   new Set(components.map((item) => item.name)).size,
   components.length,

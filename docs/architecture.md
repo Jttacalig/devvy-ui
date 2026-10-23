@@ -38,7 +38,7 @@ packages or promise adapters before testing actual applications.
 
 ## 100-component release
 
-The inventory is exactly 100 primary names at 0.2.0. Card helpers, variants and composed
+The inventory is exactly 100 primary names in 0.3.0 source and published npm 0.2.0. Card helpers, variants and composed
 application/AI examples do not inflate that count. `completion-catalog.ts` and
 `CompletionPreview.tsx` provide explicit API examples for the final 50. Installed consumers
 share the canonical completion fixture to exercise all additions on React 18 and 19.
@@ -48,3 +48,24 @@ AlertDialog, CommandPalette, Lightbox and OnboardingTour. Backend services remai
 Documentation API/example catalogs stay on the server. Navigation receives only name,
 slug and description; the server chooses the preview batch. Client preview shells do not
 import the full API/code catalog. Keep that boundary when extending the documentation.
+
+## Optional MCP developer tooling
+
+`packages/mcp` is a private, locally connectable stdio server. Its build creates a bundled
+snapshot from the canonical catalog, workspace registry and a pinned npm alias of the
+published 0.2.0 registry. Requests read that snapshot; they cannot access arbitrary project
+paths, execute commands, write files or fetch remote registries. Published source is the
+default, workspace source is explicit and unreleased, and unsupported versions are rejected.
+The official server SDK and schema validator remain isolated from all six public UI packages.
+The same server factory registers tools, resources and prompts; the SDK's `serveStdio`
+handles modern and legacy negotiation. Original recipe fixtures are checked against each
+registry's full source closure, and token declarations come from the matching registry CSS.
+Structured output schemas, byte caps and strict input bounds are shared by both eras.
+The standalone executable bundles local modules and the snapshot, with only SDK/Zod runtime
+dependencies. Build-time registry inputs and Inspector stay development-only. See [MCP](mcp.md).
+
+The docs use a client shell receiving slim metadata and server-rendered content. `/ui` and
+`/ui/playground` use the full canvas; inner guides retain documentation navigation. Website
+Minimal/Modern/Glass styles compose the existing tokens and adaptive Glass material.
+The live editor debounces HTML/CSS updates and retains the script-blocking sandbox/CSP;
+edited TSX remains an export workflow.
