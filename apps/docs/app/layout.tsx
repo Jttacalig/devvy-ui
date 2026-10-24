@@ -15,6 +15,7 @@ import './signature.css';
 import './dropdowns.css';
 import './search.css';
 import './fonts.css';
+import './support.css';
 
 export async function generateMetadata(): Promise<Metadata> {
   const { label: releaseLabel } = await getPublishedRelease();

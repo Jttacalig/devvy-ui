@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Navbar } from '@devvy-ui/react';
+import { SupportButton } from './SupportButton';
 
 const links = [
   ['Docs', '/ui/docs'],
@@ -31,6 +32,23 @@ export function HeaderNavigation() {
           {label}
         </Link>
       ))}
+      <SupportButton className="dvy-support-menu" />
+      <a
+        className="dvy-header-mobile-resource"
+        href="https://www.npmjs.com/package/@devvy-ui/react"
+        target="_blank"
+        rel="noreferrer"
+      >
+        npm <span aria-hidden="true">↗</span>
+      </a>
+      <a
+        className="dvy-header-mobile-resource"
+        href="https://github.com/Jttacalig/devvy-ui"
+        target="_blank"
+        rel="noreferrer"
+      >
+        GitHub <span aria-hidden="true">↗</span>
+      </a>
     </Navbar>
   );
 }

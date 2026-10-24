@@ -4,10 +4,12 @@ import { LandingDetails } from '../../components/LandingStudio';
 import { LandingExamples } from '../../components/LandingExamples';
 import { LandingInstall } from '../../components/LandingInstall';
 import { LandingHeroBar } from '../../components/LandingHeroBar';
+import { SupportWidget } from '../../components/SupportWidget';
 import { catalog } from '../../lib/catalog';
 import { docsMetadata } from '../../lib/metadata';
 import { docsUrl, githubRepoUrl, npmPackageUrl } from '../../lib/release';
 import { getPublishedRelease } from '../../lib/published-release';
+import { supportUrl } from '../../lib/support';
 
 export async function generateMetadata() {
   const { label } = await getPublishedRelease();
@@ -158,6 +160,31 @@ export default async function Home() {
           Open the playground <span aria-hidden="true">↗</span>
         </Link>
       </section>
+      <section className="dvy-support-section" aria-labelledby="support-heading" id="support">
+        <div>
+          <span className="landing-kicker">INDEPENDENTLY BUILT. OPEN TO EVERYONE.</span>
+          <h2 id="support-heading">Help keep good tools open.</h2>
+          <p>
+            DEVVY UI is free and open source. If it helps you build, a coffee supports the time
+            behind the components, documentation, and everything that comes next.
+          </p>
+        </div>
+        <div className="dvy-support-actions">
+          <a
+            className="dvy-button"
+            data-variant="solid"
+            data-tone="brand"
+            data-size="lg"
+            href={supportUrl}
+            target="_blank"
+            rel="noreferrer"
+          >
+            Buy me a coffee <span aria-hidden="true">↗</span>
+          </a>
+          <small>Always optional. Always appreciated.</small>
+        </div>
+      </section>
+      <SupportWidget />
     </div>
   );
 }
