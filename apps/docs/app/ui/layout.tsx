@@ -5,8 +5,10 @@ import { DocsShell } from '../../components/DocsShell';
 import { SiteSearch } from '../../components/SiteSearch';
 import { ThemeControl } from '../../components/ThemeControl';
 import { HeaderNavigation } from '../../components/HeaderNavigation';
+import { SupportButton } from '../../components/SupportButton';
 import { catalog } from '../../lib/catalog';
 import { getPublishedRelease } from '../../lib/published-release';
+import { supportUrl } from '../../lib/support';
 
 export const revalidate = 300;
 
@@ -38,6 +40,7 @@ export default async function UILayout({ children }: { children: React.ReactNode
         <HeaderNavigation />
         <div className="header-actions">
           <SiteSearch items={navigationItems} />
+          <SupportButton className="dvy-support-header" />
           <a
             className="header-icon-link"
             href="https://www.npmjs.com/package/@devvy-ui/react"
@@ -97,6 +100,10 @@ export default async function UILayout({ children }: { children: React.ReactNode
             </a>
             <span className="footer-sep">·</span>
             <span>Open source under MIT license</span>
+            <span className="footer-sep">·</span>
+            <a href={supportUrl} target="_blank" rel="noreferrer">
+              Support independent development ↗
+            </a>
           </div>
           <div className="footer-badge">
             <Badge tone="neutral">{releaseLabel}</Badge>
