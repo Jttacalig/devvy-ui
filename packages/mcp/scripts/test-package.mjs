@@ -58,8 +58,8 @@ for (const mode of ['legacy', { pin: '2026-07-28' }]) {
       name: 'get_ui_recipe',
       arguments: { recipe: 'project-dashboard' },
     });
-    assert.equal(response.structuredContent.provenance.requestedVersion, '0.2.0');
-    assert.doesNotMatch(response.structuredContent.recipe.code, /rowSelection/);
+    assert.equal(response.structuredContent.provenance.requestedVersion, '0.3.1');
+    assert.match(response.structuredContent.recipe.code, /rowSelection/);
     const local = await client.callTool({
       name: 'get_component_examples',
       arguments: { slug: 'data-table', version: 'workspace' },

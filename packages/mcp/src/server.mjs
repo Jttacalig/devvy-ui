@@ -17,14 +17,14 @@ const annotations = {
 
 export async function createServer() {
   const data = JSON.parse(await readFile(snapshotURL, 'utf8'));
+  const publishedVersion = data.stable.version;
   const server = new McpServer(
     { name: 'devvy-ui', version: '0.1.0' },
     {
-      instructions:
-        'Read-only DEVVY UI source tools. Default published 0.2.0 is isolated from explicitly unreleased workspace data. Use get_component before inventing props; guides describe the workspace. Recipes are original MIT compositions, not additional components.',
+      instructions: `Read-only DEVVY UI source tools. Default published ${publishedVersion} is isolated from explicitly unreleased workspace data. Use get_component before inventing props; guides describe the workspace. Recipes are original MIT compositions, not additional components.`,
     },
   );
-  const versions = z.enum(['0.2.0', 'workspace']).default('0.2.0');
+  const versions = z.enum([publishedVersion, 'workspace']).default(publishedVersion);
   const slugs = data.catalog.map((item) => item.slug);
   const slug = z.enum(slugs);
   const guide = z.enum(Object.keys(data.guides));
@@ -97,7 +97,7 @@ export async function createServer() {
     accessibility: z.array(z.string()),
     clientBoundary: z.string(),
   });
-  const recipeId = z.enum(data.versionData['0.2.0'].examples.map((entry) => entry.id));
+  const recipeId = z.enum(data.versionData[publishedVersion].examples.map((entry) => entry.id));
   function recipeFor(id, version) {
     const recipe = data.versionData[version].examples.find((entry) => entry.id === id);
     if (!recipe) throw new Error('Unsupported recipe for this version.');
@@ -216,8 +216,7 @@ export async function createServer() {
   server.registerTool(
     'search_components',
     {
-      description:
-        'Search DEVVY components by name or task. Defaults to published 0.2.0; workspace is explicitly unreleased.',
+      description: `Search DEVVY components by name or task. Defaults to published ${publishedVersion}; workspace is explicitly unreleased.`,
       inputSchema: z.strictObject({
         query: z.string().max(200).default(''),
         limit: z.number().int().min(1).max(20).default(10),
@@ -362,11 +361,11 @@ export async function createServer() {
           ? ['pnpm install --frozen-lockfile', 'pnpm build', 'pnpm pack:all']
           : mode === 'source'
             ? [
-                'npx @devvy-ui/cli@0.2.0 init',
-                `npx @devvy-ui/cli@0.2.0 add ${names.join(' ')}`,
-                'npx @devvy-ui/cli@0.2.0 doctor',
+                `npx @devvy-ui/cli@${version} init`,
+                `npx @devvy-ui/cli@${version} add ${names.join(' ')}`,
+                `npx @devvy-ui/cli@${version} doctor`,
               ]
-            : ['npm install @devvy-ui/react@0.2.0'];
+            : [`npm install @devvy-ui/react@${version}`];
       return result({
         provenance: provenance(version),
         mode,
@@ -393,7 +392,7 @@ export async function createServer() {
       });
     },
   );
-  for (const version of ['0.2.0', 'workspace']) {
+  for (const version of [publishedVersion, 'workspace']) {
     for (const kind of ['tokens', 'examples', 'recipes']) {
       server.registerResource(
         `${kind}-${version}`,
@@ -455,7 +454,7 @@ export async function createServer() {
       contents: [
         {
           uri: uri.href,
-          text: 'Local read-only DEVVY developer preview. Eight tools, versioned component/token/example/recipe resources, and three reusable prompts. Supports immutable published 0.2.0 and explicitly unreleased workspace snapshots. Tool responses are capped at 384 KiB encoded; large source is never silently truncated. No file writes, shell execution, remote registry fetch, credentials or AI provider are used by tool requests.',
+          text: `Local read-only DEVVY developer preview. Eight tools, versioned component/token/example/recipe resources, and three reusable prompts. Supports immutable published ${publishedVersion} and explicitly unreleased workspace snapshots. Tool responses are capped at 384 KiB encoded; large source is never silently truncated. No file writes, shell execution, remote registry fetch, credentials or AI provider are used by tool requests.`,
         },
       ],
     }),
@@ -495,7 +494,7 @@ export async function createServer() {
     ({ theme, version }) =>
       promptResult('Customize a scoped DEVVY theme', {
         instructions:
-          'Use the canonical selectors, token values and media conditions below. Put overrides after the imports on the intended theme container. Maintain readable contrast, visible focus, reduced motion and optional Glass fallbacks. Do not introduce a styling framework or assume workspace fonts exist in npm 0.2.0.',
+          'Use the canonical selectors, token values and media conditions below. Put overrides after the imports on the intended theme container. Maintain readable contrast, visible focus, reduced motion and optional Glass fallbacks. Optional self-hosted font entries are available since 0.3.0; import a family explicitly and preserve its OFL notices. Do not introduce a styling framework.',
         ...tokensFor({ version, theme, category: 'all', offset: 0, limit: 100 }),
       }),
   );

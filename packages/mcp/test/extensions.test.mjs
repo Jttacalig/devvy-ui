@@ -34,7 +34,7 @@ test('discovery advertises structured output, read-only annotations, resources a
       assert.ok(Buffer.byteLength(JSON.stringify(response)) < MAX_RESPONSE_BYTES);
       if (resource.mimeType === 'application/json') {
         const value = JSON.parse(response.contents[0].text);
-        assert.ok(['0.2.0', 'workspace'].includes(value.provenance.requestedVersion));
+        assert.ok(['0.3.1', 'workspace'].includes(value.provenance.requestedVersion));
       }
     }
     assert.deepEqual((await client.listPrompts()).prompts.map((item) => item.name).sort(), [
@@ -46,8 +46,8 @@ test('discovery advertises structured output, read-only annotations, resources a
 
 test('tokens come from immutable canonical version data and retain selectors, conditions and pagination', async () =>
   connected(async (client) => {
-    for (const version of ['0.2.0', 'workspace']) {
-      const registry = version === '0.2.0' ? snapshot.stable : snapshot.workspace;
+    for (const version of ['0.3.1', 'workspace']) {
+      const registry = version === '0.3.1' ? snapshot.stable : snapshot.workspace;
       const all = read(
         await client.callTool({ name: 'get_design_tokens', arguments: { version, limit: 100 } }),
       );
@@ -93,7 +93,7 @@ test('tokens come from immutable canonical version data and retain selectors, co
 
 test('examples and recipes preserve published/workspace API isolation and actual import closure', async () =>
   connected(async (client) => {
-    for (const version of ['0.2.0', 'workspace']) {
+    for (const version of ['0.3.1', 'workspace']) {
       const example = read(
         await client.callTool({
           name: 'get_component_examples',
@@ -101,8 +101,8 @@ test('examples and recipes preserve published/workspace API isolation and actual
         }),
       );
       assert.equal(example.examples.length, 1);
-      if (version === '0.2.0') assert.doesNotMatch(example.examples[0].code, /rowSelection/);
-      else assert.match(example.examples[0].code, /rowSelection/);
+      assert.match(example.examples[0].code, /rowSelection/);
+      assert.equal(example.provenance.requestedVersion, version);
       for (const definition of snapshot.versionData[version].examples) {
         const { recipe, provenance } = read(
           await client.callTool({
@@ -116,7 +116,7 @@ test('examples and recipes preserve published/workspace API isolation and actual
         for (const entry of recipe.imports) {
           assert.equal(entry.from, `@devvy-ui/react/${entry.slug}`);
           assert.ok(
-            (version === '0.2.0' ? snapshot.stable : snapshot.workspace).items.some(
+            (version === '0.3.1' ? snapshot.stable : snapshot.workspace).items.some(
               (item) => item.name === entry.slug,
             ),
           );
@@ -136,7 +136,7 @@ test('examples and recipes preserve published/workspace API isolation and actual
 
 test('prompts embed only bounded version-matched context; bad prompt/resource names are rejected', async () =>
   connected(async (client) => {
-    for (const version of ['0.2.0', 'workspace']) {
+    for (const version of ['0.3.1', 'workspace']) {
       for (const [name, args] of [
         ['build_ui', { recipe: 'project-dashboard' }],
         ['customize_theme', { theme: 'dark' }],
@@ -146,8 +146,7 @@ test('prompts embed only bounded version-matched context; bad prompt/resource na
         assert.ok(Buffer.byteLength(JSON.stringify(response)) < 48 * 1024);
         const value = JSON.parse(response.messages[0].content.text);
         assert.equal(value.provenance.requestedVersion, version);
-        if (name === 'build_ui')
-          assert.equal(value.recipe.code.includes('rowSelection'), version === 'workspace');
+        if (name === 'build_ui') assert.ok(value.recipe.code.includes('rowSelection'));
       }
     }
     await assert.rejects(
@@ -193,8 +192,8 @@ test('malformed tools reject unknown keys, invalid enums, oversized values and i
 
 test('all canonical source responses obey the encoded cap without silently truncating files', async () =>
   connected(async (client) => {
-    for (const version of ['0.2.0', 'workspace']) {
-      for (const item of (version === '0.2.0' ? snapshot.stable : snapshot.workspace).items) {
+    for (const version of ['0.3.1', 'workspace']) {
+      for (const item of (version === '0.3.1' ? snapshot.stable : snapshot.workspace).items) {
         const response = await client.callTool({
           name: 'get_source',
           arguments: { slug: item.name, version, includeStyles: true },
@@ -231,7 +230,7 @@ test('built standalone entry supports protocol discovery without repository-rela
     assert.equal(
       read(await client.callTool({ name: 'get_ui_recipe', arguments: { recipe: 'settings-form' } }))
         .provenance.requestedVersion,
-      '0.2.0',
+      '0.3.1',
     );
   }, true));
 
@@ -247,7 +246,7 @@ test('the current 2026-07-28 stdio era negotiates and serves the same canonical 
             arguments: { recipe: 'project-dashboard' },
           }),
         ).provenance.requestedVersion,
-        '0.2.0',
+        '0.3.1',
       );
     },
     true,

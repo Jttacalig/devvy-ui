@@ -42,7 +42,7 @@ packages or promise adapters before testing actual applications.
 
 ## 100-component release
 
-The inventory is exactly 100 primary names in the 0.3.0 source and npm releases. Card helpers, variants and composed
+The inventory is exactly 100 primary names in the 0.3.1 source and npm releases. Card helpers, variants and composed
 application/AI examples do not inflate that count. `completion-catalog.ts` and
 `CompletionPreview.tsx` provide explicit API examples for the final 50. Installed consumers
 share the canonical completion fixture to exercise all additions on React 18 and 19.
@@ -57,7 +57,7 @@ import the full API/code catalog. Keep that boundary when extending the document
 
 `packages/mcp` is a private, locally connectable stdio server. Its build creates a bundled
 snapshot from the canonical catalog, workspace registry and a pinned npm alias of the
-published 0.2.0 registry. Requests read that snapshot; they cannot access arbitrary project
+published 0.3.1 registry. Requests read that snapshot; they cannot access arbitrary project
 paths, execute commands, write files or fetch remote registries. Published source is the
 default, workspace source is explicit and unreleased, and unsupported versions are rejected.
 The official server SDK and schema validator remain isolated from all six public UI packages.

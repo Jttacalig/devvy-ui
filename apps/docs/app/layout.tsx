@@ -26,6 +26,11 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     description: `DEVVY UI ${releaseLabel}: 100 typed React components, keyboard accessibility, customizable themes, optional DEVVY GLASS and MIT source ownership.`,
     icons: { icon: '/devvy-logo.png', apple: '/devvy-logo.png' },
+    applicationName: 'DEVVY UI',
+    authors: [{ name: 'DEV STATION', url: 'https://www.dev-station.dev' }],
+    creator: 'DEV STATION',
+    publisher: 'DEV STATION',
+    robots: { index: true, follow: true },
   };
 }
 export default function Layout({ children }: { children: React.ReactNode }) {

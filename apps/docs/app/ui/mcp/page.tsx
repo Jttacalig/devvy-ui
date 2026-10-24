@@ -2,16 +2,45 @@ import Link from 'next/link';
 import { Badge, Card, CardContent, CardHeader, CardTitle } from '@devvy-ui/react';
 import { CopyCode } from '../../../components/CopyCode';
 import { docsMetadata } from '../../../lib/metadata';
+import { mcpPublishedVersion } from '../../../lib/mcp-release';
+import { docsUrl } from '../../../lib/release';
 
 export const metadata = docsMetadata(
   'MCP developer tools',
-  'Connect a local AI coding assistant to DEVVY UI component APIs, canonical source, guides and installation plans. Optional read-only developer preview.',
+  `Read canonical DEVVY UI ${mcpPublishedVersion} component APIs, source, design tokens and recipes with the optional local, read-only MCP developer preview.`,
   '/mcp',
 );
 
 export default function MCPPage() {
   return (
     <article className="article">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'TechArticle',
+            '@id': `${docsUrl}/mcp#guide`,
+            headline: 'Give your assistant the actual source.',
+            description: `Local read-only MCP developer tools with canonical DEVVY UI ${mcpPublishedVersion} source, tokens and recipes.`,
+            url: `${docsUrl}/mcp`,
+            version: mcpPublishedVersion,
+            inLanguage: 'en',
+            isAccessibleForFree: true,
+            author: {
+              '@type': 'Organization',
+              name: 'DEV STATION',
+              url: 'https://www.dev-station.dev',
+            },
+            about: {
+              '@type': 'SoftwareSourceCode',
+              name: 'DEVVY UI',
+              version: mcpPublishedVersion,
+              url: docsUrl,
+            },
+          }),
+        }}
+      />
       <div className="breadcrumb">
         Developer tools / <span>MCP</span>
       </div>
@@ -30,7 +59,7 @@ export default function MCPPage() {
           ],
           [
             'Use the right version',
-            'Published 0.2.0 is the default. Workspace additions are explicitly marked as unreleased.',
+            `Published ${mcpPublishedVersion} is the default. Workspace requests remain explicitly separate and unreleased.`,
           ],
           [
             'Own the implementation',
@@ -51,6 +80,10 @@ export default function MCPPage() {
       <p>
         This optional tool is implemented in the repository. It is not published as an npm MCP
         package and has no hosted endpoint. Build the checkout before connecting:
+      </p>
+      <p>
+        Rebuild your local server to use the updated published-source pin. Updating this website
+        does not replace a previously built MCP snapshot or change your editor configuration.
       </p>
       <CopyCode
         label="Build local MCP developer tools"
@@ -106,9 +139,7 @@ export default function MCPPage() {
       <h2>Try a useful request</h2>
       <CopyCode
         label="Example AI development request"
-        code={
-          'Find a searchable selector for our settings form.\nRead its published 0.2.0 API and source dependencies.\nGive me an installation plan, then explain how to customize\nits colors while preserving keyboard behavior.'
-        }
+        code={`Find a searchable selector for our settings form.\nRead its published ${mcpPublishedVersion} API and source dependencies.\nGive me an installation plan, then explain how to customize\nits colors while preserving keyboard behavior.`}
       />
       <h2>What the tools do</h2>
       <div className="table-scroll" role="region" tabIndex={0} aria-label="MCP tools">
@@ -161,9 +192,10 @@ export default function MCPPage() {
       </p>
       <CopyCode
         label="Request a supported DEVVY recipe"
-        code={
-          '{"name":"get_ui_recipe","arguments":{"recipe":"project-dashboard","version":"0.2.0"}}'
-        }
+        code={JSON.stringify({
+          name: 'get_ui_recipe',
+          arguments: { recipe: 'project-dashboard', version: mcpPublishedVersion },
+        })}
       />
       <p>
         Structured tool responses are capped at 384 KiB before SDK wire metadata. Source is never
@@ -174,8 +206,7 @@ export default function MCPPage() {
       <p>
         <a href="https://github.com/Jttacalig/devvy-ui/blob/main/docs/mcp.md">
           Full setup, protocol references and verification guide ↗
-        </a>{' '}
-        (workspace guide; may not be on main yet).
+        </a>
       </p>
       <h2>Predictable boundaries</h2>
       <p>
@@ -185,10 +216,10 @@ export default function MCPPage() {
         application remain responsible for reviewing generated changes.
       </p>
       <p>
-        The pinned published registry supplies 0.2.0 source. Choose <code>workspace</code> only when
-        you intend to use the unreleased checkout; unsupported versions are rejected. Development
-        guides can describe newer features, so version-specific component source is the API
-        authority.
+        The pinned published registry supplies {mcpPublishedVersion} source, including optional
+        table selection. Choose <code>workspace</code> only when you intend to use the unreleased
+        checkout; unsupported versions are rejected. Development guides can describe newer features,
+        so version-specific component source is the API authority.
       </p>
       <Link href="/ui/getting-started">Install the stable React library →</Link>
     </article>

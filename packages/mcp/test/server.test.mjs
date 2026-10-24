@@ -38,10 +38,10 @@ test('real stdio discovery preserves the original five tools alongside three ext
     );
     const { resources } = await client.listResources();
     assert.equal(resources.length, 9);
-    const catalog = await client.readResource({ uri: 'devvy://catalog/0.2.0' });
+    const catalog = await client.readResource({ uri: 'devvy://catalog/0.3.1' });
     const data = JSON.parse(catalog.contents[0].text);
     assert.equal(data.components.length, 100);
-    assert.equal(data.provenance.requestedVersion, '0.2.0');
+    assert.equal(data.provenance.requestedVersion, '0.3.1');
   }));
 
 test('version-specific APIs distinguish published source from workspace additions', async () =>
@@ -55,9 +55,14 @@ test('version-specific APIs distinguish published source from workspace addition
         arguments: { slug: 'data-table', version: 'workspace' },
       }),
     );
-    assert.doesNotMatch(stable.apiSource, /rowSelection/);
+    assert.match(stable.apiSource, /rowSelection/);
+    assert.equal(stable.provenance.requestedVersion, '0.3.1');
+    assert.equal(stable.provenance.sourceVersion, '0.3.1');
+    assert.doesNotMatch(stable.provenance.status, /Unreleased/);
+    assert.ok(!('baselineCommit' in stable.provenance));
     assert.match(workspace.apiSource, /rowSelection/);
     assert.match(workspace.provenance.status, /Unreleased/);
+    assert.ok('baselineCommit' in workspace.provenance);
     assert.match(stable.import, /@devvy-ui\/react\/data-table/);
   }));
 
@@ -77,7 +82,7 @@ test('source retrieval includes dependency closure and MIT notices; plans do not
         arguments: { components: ['glass', 'button'], mode: 'source' },
       }),
     );
-    assert.ok(plan.commands.includes('npx @devvy-ui/cli@0.2.0 add glass button'));
+    assert.ok(plan.commands.includes('npx @devvy-ui/cli@0.3.1 add glass button'));
     const local = read(
       await client.callTool({
         name: 'get_installation_plan',
@@ -102,6 +107,7 @@ test('search and guides work, while traversal, unsupported versions and unbounde
       { name: 'get_component', arguments: { slug: '../package.json' } },
       { name: 'get_guide', arguments: { guide: '../../.env' } },
       { name: 'get_component', arguments: { slug: 'button', version: '99.0.0' } },
+      { name: 'get_component', arguments: { slug: 'button', version: '0.2.0' } },
       { name: 'search_components', arguments: { query: 'x'.repeat(201) } },
       { name: 'get_installation_plan', arguments: { components: ['button; rm'] } },
     ])

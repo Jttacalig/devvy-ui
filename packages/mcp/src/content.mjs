@@ -91,7 +91,7 @@ export function stylingFor(imports) {
     customization:
       'Override --dvy- variables, native props and dvy- classes; keep focus and reduced-effects behavior.',
     fonts:
-      'System fonts by default. Optional workspace fonts are not assumed by recipes or published 0.2.0 examples.',
+      'System fonts by default. Optional self-hosted font CSS entries are published since 0.3.0; import the chosen family explicitly and keep its OFL notices. Recipes do not require a font download.',
   };
 }
 

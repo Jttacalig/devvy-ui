@@ -10,10 +10,10 @@ assert.equal(
 for (const dependency of Object.values(pkg.dependencies))
   assert.doesNotMatch(dependency, /workspace:|file:|link:/);
 const snapshot = JSON.parse(await readFile(new URL('dist/snapshot.json', root), 'utf8'));
-assert.equal(snapshot.stable.version, '0.2.0');
+assert.equal(snapshot.stable.version, '0.3.1');
 assert.equal(snapshot.stable.items.length, 100);
 assert.equal(snapshot.workspace.items.length, 100);
-assert.ok(snapshot.versionData['0.2.0'].examples.length >= 3);
+assert.ok(snapshot.versionData['0.3.1'].examples.length >= 3);
 assert.match(await readFile(new URL('dist/server.mjs', root), 'utf8'), /^#!\/usr\/bin\/env node/);
 assert.match(await readFile(new URL('LICENSE', root), 'utf8'), /MIT License/);
 assert.ok((await readFile(new URL('README.md', root), 'utf8')).length);

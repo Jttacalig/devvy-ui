@@ -126,8 +126,7 @@ export default async function Section({ params }: { params: Promise<{ section: s
             These commands resolve npm&apos;s <code>latest</code> tag, currently{' '}
             {publishedNpmVersion}. To pin this release, use{' '}
             <code>@devvy-ui/react@{publishedNpmVersion}</code>. Optional fonts and table selection
-            are included in the published 0.3.0 packages. The separate MCP developer preview remains
-            private.
+            have been included since 0.3.0. The separate MCP developer preview remains private.
           </p>
           <h2>2. Import stylesheets</h2>
           <p>

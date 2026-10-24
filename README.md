@@ -149,7 +149,7 @@ An optional local MCP developer preview is available in `packages/mcp`. Connect 
 assistant to discover components, read version-specific APIs/source and request installation
 plans, version-matched design tokens, verified examples and UI recipes. Discover resources
 and reusable prompts without introducing AI into the production UI bundle. It defaults to
-published 0.2.0 and labels workspace additions as unreleased. See [editor setup and boundaries](docs/mcp.md).
+published 0.3.1 and labels workspace additions as unreleased. See [editor setup and boundaries](docs/mcp.md).
 The optional standalone artifact is prepared but private; the tool is not published on npm and does
 not add an AI runtime to your application.
 

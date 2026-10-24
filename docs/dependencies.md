@@ -16,7 +16,7 @@ Inspector's source-checkout postinstall is explicitly disabled because published
 are included. Its upstream LICENSE describes the MIT/Apache-2.0 transition and retained notices.
 Registry inputs are build-only dependencies, excluded from the standalone runtime dependency graph.
 Its published-registry npm alias pins original
-`@devvy-ui/registry@0.2.0` (MIT), while its workspace registry dependency supplies explicitly
+`@devvy-ui/registry@0.3.1` (MIT), while its workspace registry dependency supplies explicitly
 unreleased source. These dependencies have no path into the React or styling bundles.
 The same-day published registry has an explicit, pinned minimum-release-age exception;
 the third-party SDK versions do not bypass that policy. Review the lockfile and upstream
