@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
+import { mcpPublishedVersion } from '../../apps/docs/lib/mcp-release';
 
 test('MCP guide documents all tools, editor setup and private release boundaries accessibly', async ({
   page,
@@ -14,6 +15,10 @@ test('MCP guide documents all tools, editor setup and private release boundaries
     await expect(page.getByRole('heading', { name, exact: true })).toBeVisible();
   await expect(page.locator('article')).toContainText('publishing disabled');
   await expect(page.locator('article')).toContainText('384 KiB');
+  await expect(page.locator('article')).toContainText(
+    `Published ${mcpPublishedVersion} is the default.`,
+  );
+  await expect(page.locator('article')).not.toContainText('0.2.0');
   for (const theme of ['light', 'dark']) {
     await page.getByRole('combobox', { name: 'Site theme', exact: true }).selectOption(theme);
     expect(

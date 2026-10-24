@@ -98,9 +98,9 @@ test('official Inspector CLI calls new tools, reads versioned data and retrieves
     assert.ok(value.structuredContent.provenance.registrySha256);
   }
   const resource = payload(
-    await inspect('tokens', ['--method', 'resources/read', '--uri', 'devvy://tokens/0.2.0']),
+    await inspect('tokens', ['--method', 'resources/read', '--uri', 'devvy://tokens/0.3.1']),
   );
-  assert.equal(JSON.parse(resource.contents[0].text).provenance.requestedVersion, '0.2.0');
+  assert.equal(JSON.parse(resource.contents[0].text).provenance.requestedVersion, '0.3.1');
   const prompts = payload(await inspect('prompts', ['--method', 'prompts/list']));
   assert.equal(prompts.prompts.length, 3);
   const prompt = payload(
@@ -111,8 +111,8 @@ test('official Inspector CLI calls new tools, reads versioned data and retrieves
       'build_ui',
       '--prompt-args',
       'recipe=project-dashboard',
-      'version=0.2.0',
+      'version=0.3.1',
     ]),
   );
-  assert.doesNotMatch(JSON.parse(prompt.messages[0].content.text).recipe.code, /rowSelection/);
+  assert.match(JSON.parse(prompt.messages[0].content.text).recipe.code, /rowSelection/);
 });

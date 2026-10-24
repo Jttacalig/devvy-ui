@@ -4,12 +4,12 @@ Use feature branches and reviewable pull requests in
 [Jttacalig/devvy-ui](https://github.com/Jttacalig/devvy-ui). Review source, licenses,
 package contents and CI before merging; do not push directly to protected main.
 
-**DEVVY UI v0.3.0 Stable is released on GitHub and npm.** Its six UI packages are
+**DEVVY UI v0.3.1 Stable is released on GitHub and npm.** Its six UI packages are
 versioned together. npm publication is a separate, explicitly authorized action; the
 optional MCP developer package remains private and is excluded from the six-package publication.
 
-All six published packages report version 0.3.0 and
-`latest: 0.3.0` in the live npm registry, verified on 23 October 2026. The historical
+All six published packages report version 0.3.1 and
+`latest: 0.3.1` in the live npm registry, verified on 24 October 2026 (Asia/Manila). The historical
 `beta` tag remains at 0.1.0-beta.2. The 100-component library uses one fixed six-package
 Changesets group. Publication does not deploy the documentation website.
 
@@ -17,7 +17,7 @@ See [npm release verification](verification-npm-030.md) for the publication chec
 the stale README discovered after publishing. npm renders the README shipped with a
 package; changing GitHub or dist-tags does not replace it. Correct package README inputs
 and publish a new, reviewed patch version to update npm's rendered documentation. Never
-attempt to overwrite 0.3.0.
+attempt to overwrite an existing release.
 
 The following workflow applies to future authorized releases. Preserve historical changelogs.
 

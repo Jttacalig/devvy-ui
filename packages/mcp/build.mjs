@@ -27,8 +27,14 @@ const stable = JSON.parse(
     'utf8',
   ),
 );
-if (stable.version !== '0.2.0')
-  throw new Error('Published source alias must resolve to the reviewed 0.2.0 registry.');
+const manifest = JSON.parse(await readFile(new URL('./package.json', import.meta.url), 'utf8'));
+const publishedVersion = manifest.devDependencies['@devvy-ui/published-registry'].match(
+  /^npm:@devvy-ui\/registry@(\d+\.\d+\.\d+)$/,
+)?.[1];
+if (!publishedVersion || stable.version !== publishedVersion)
+  throw new Error(
+    'Published source alias must resolve to the reviewed immutable registry version.',
+  );
 const guidePaths = {
   installation: 'README.md',
   customization: 'docs/customization.md',
@@ -46,7 +52,7 @@ const guides = Object.fromEntries(
 const metadata = catalog.map(({ name, slug, description }) => ({ name, slug, description }));
 const versionData = Object.fromEntries(
   [
-    ['0.2.0', stable],
+    [publishedVersion, stable],
     ['workspace', workspace],
   ].map(([version, registry]) => [
     version,
@@ -86,7 +92,10 @@ await writeFile(
       status:
         'Unreleased workspace snapshot; package version is a baseline, not proof of npm publication.',
     },
-    stable: { ...stable, status: 'Immutable published @devvy-ui/registry@0.2.0 source.' },
+    stable: {
+      ...stable,
+      status: `Immutable published @devvy-ui/registry@${publishedVersion} source.`,
+    },
     guides,
   }) + '\n',
 );

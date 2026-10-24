@@ -103,7 +103,7 @@ preview with version-matched tokens, verified examples/recipes, discoverable res
 reusable prompts. See [MCP editor setup and response contracts](mcp.md) for Codex, Claude
 Code, Cursor and VS Code. Standalone packaging is prepared; publishing stays disabled.
 It is not a published MCP package or hosted service. Calls are read-only; project updates
-still use reviewed assistant edits and the CLI's conflict protection. The published 0.2.0
+still use reviewed assistant edits and the CLI's conflict protection. The published 0.3.1
 registry and unreleased workspace snapshot are separate, explicitly selectable sources.
 
 See [AI interface direction](ai-interfaces.md) for optional provider-independent compositions

@@ -26,7 +26,7 @@ adding their dependencies to the base library.
 
 Start with a documented chat/composer/tool-state example using these primitives. Keep it
 inside DEVVY UI. A later `/ui/ai` area can host reviewed patterns after implementation and
-testing; the current 0.3.0 Stable release does not claim that route exists.
+testing; the current 0.3.1 Stable release does not claim that route exists.
 
 ## Integration boundary
 

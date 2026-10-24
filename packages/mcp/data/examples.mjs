@@ -26,12 +26,12 @@ export default function WorkspaceSettings() {
 }
 `;
 
-const dashboard = (workspace) => `'use client';
+const dashboard = (withSelection) => `'use client';
 import { Card, CardContent, CardHeader, CardTitle } from '@devvy-ui/react/card';
 import { DataTable } from '@devvy-ui/react/data-table';
 import { Badge } from '@devvy-ui/react/badge';
 import { Progress } from '@devvy-ui/react/progress';
-${workspace ? "import { Button } from '@devvy-ui/react/button';\n" : ''}
+${withSelection ? "import { Button } from '@devvy-ui/react/button';\n" : ''}
 const rows = [{ id: 'orbit', name: 'Orbit workspace', state: 'In progress' }, { id: 'atlas', name: 'Atlas website', state: 'Ready' }];
 export default function ProjectDashboard() {
   return <Card>
@@ -44,7 +44,7 @@ export default function ProjectDashboard() {
           { key: 'name', label: 'Project', render: (row) => row.name, sortValue: (row) => row.name },
           { key: 'state', label: 'Status', render: (row) => <Badge>{row.state}</Badge> },
         ]}${
-          workspace
+          withSelection
             ? `
         rowSelection={{ getRowLabel: (row) => row.name,
           renderActions: (selected, clear) => <Button onClick={clear}>Clear {selected.length} selected</Button>
@@ -89,14 +89,13 @@ export const recipeDefinitions = [
   {
     id: 'project-dashboard',
     title: 'Project dashboard',
-    description:
-      'Sortable, filterable and paginated project data; workspace adds optional selection.',
+    description: 'Sortable, filterable and paginated project data with optional row selection.',
     primary: 'data-table',
     accessibility: [
       'Supply a meaningful table label and text status.',
-      'Row selection is workspace-only; published 0.2.0 uses the base table API.',
+      'Supply a distinct accessible row label; select-all affects eligible rows on the current page.',
     ],
-    makeCode: (version) => dashboard(version === 'workspace'),
+    makeCode: () => dashboard(true),
   },
   {
     id: 'glass-workspace',

@@ -56,10 +56,10 @@ async function compile(examples, registry) {
 }
 
 test('all six recipe variants type-check against their own canonical registry closure', async () => {
-  for (const version of ['0.2.0', 'workspace']) {
+  for (const version of ['0.3.1', 'workspace']) {
     const diagnostics = await compile(
       snapshot.versionData[version].examples,
-      version === '0.2.0' ? snapshot.stable : snapshot.workspace,
+      version === '0.3.1' ? snapshot.stable : snapshot.workspace,
     );
     assert.equal(
       diagnostics.length,
@@ -73,14 +73,17 @@ test('all six recipe variants type-check against their own canonical registry cl
   }
 });
 
-test('workspace-only selection deliberately fails compilation against published 0.2.0', async () => {
+test('published recipes reject invented future props instead of assuming workspace APIs', async () => {
   const example = snapshot.versionData.workspace.examples.find(
     (entry) => entry.id === 'project-dashboard',
   );
-  const diagnostics = await compile([example], snapshot.stable);
+  const diagnostics = await compile(
+    [{ ...example, code: example.code.replace('rowSelection={{', 'unreleasedSelection={{') }],
+    snapshot.stable,
+  );
   assert.ok(
     diagnostics.some((entry) =>
-      ts.flattenDiagnosticMessageText(entry.messageText, '\n').includes('rowSelection'),
+      ts.flattenDiagnosticMessageText(entry.messageText, '\n').includes('unreleasedSelection'),
     ),
   );
 });

@@ -112,18 +112,18 @@ canonical registry source. Recipes reference real supported components and add n
 component names. Connect your own data/persistence and supply unique IDs for repeated forms.
 
 ```json
-{"name":"get_design_tokens","arguments":{"category":"typography","version":"0.2.0"}}
+{"name":"get_design_tokens","arguments":{"category":"typography","version":"0.3.1"}}
 {"name":"get_component_examples","arguments":{"slug":"data-table","version":"workspace"}}
-{"name":"get_ui_recipe","arguments":{"recipe":"glass-workspace","version":"0.2.0"}}
+{"name":"get_ui_recipe","arguments":{"recipe":"glass-workspace","version":"0.3.1"}}
 ```
 
 ## Version and response contract
 
-`version` accepts only **`0.2.0`** (default) and **`workspace`**. Published data uses the
-immutable `@devvy-ui/registry@0.2.0` pinned npm alias at build time. Workspace source is a
+`version` accepts only **`0.3.1`** (default) and **`workspace`**. Published data uses the
+immutable `@devvy-ui/registry@0.3.1` pinned npm alias at build time. Workspace source is a
 separate, explicitly unreleased snapshot with baseline commit and dirty state. Responses
-include registry SHA-256 provenance. Published recipes never receive workspace-only row
-selection. Tokens come from the selected registry's stylesheet, not live website overrides;
+include registry SHA-256 provenance. Published 0.3.1 supports the row selection introduced
+in 0.3.0; future workspace changes remain separate. Tokens come from the selected registry's stylesheet, not live website overrides;
 CSS `var()` values/media conditions remain declarations, not browser-computed colors.
 
 Tools return `structuredContent` and equivalent JSON text with output schemas. Encoded

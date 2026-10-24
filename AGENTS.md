@@ -43,6 +43,8 @@ Documentation release labels read validated npm tags on the server with a five-m
 Keep the verified fallback separate from workspace versions, retain request/response bounds,
 and run the docs app's test task for metadata changes. API examples and MCP source pins
 remain versioned independently; live labels must not imply an implementation upgrade.
+Keep canonical sitemap, robots, social previews and assistant-facing reference files aligned
+with those facts. Never fabricate freshness dates, search outcomes or MCP publication.
 
 MCP stays optional and read-only. Published responses use the pinned immutable registry;
 workspace APIs remain explicitly unreleased. Validate recipe imports/types against each

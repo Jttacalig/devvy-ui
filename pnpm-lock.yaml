@@ -144,8 +144,8 @@ importers:
         version: 4.6.7
     devDependencies:
       '@devvy-ui/published-registry':
-        specifier: npm:@devvy-ui/registry@0.2.0
-        version: '@devvy-ui/registry@0.2.0'
+        specifier: npm:@devvy-ui/registry@0.3.1
+        version: '@devvy-ui/registry@0.3.1'
       '@devvy-ui/registry':
         specifier: workspace:^
         version: link:../registry
@@ -345,8 +345,8 @@ packages:
     resolution: {integrity: sha512-Vd/9EVDiu6PPJt9yAh6roZP6El1xHrdvIVGjyBsHR0RYwNHgL7FJPyIIW4fANJNG6FtyZfvlRPpFI4ZM/lubvw==}
     engines: {node: '>=18'}
 
-  '@devvy-ui/registry@0.2.0':
-    resolution: {integrity: sha512-Zttf3pBpn0JTA63SgCZ6iM5dL4uVNbNnChs91cyjC5pTR8SV0LhIARWCJoHHTSNND2gabU5i0ddYtKVtBQFntA==}
+  '@devvy-ui/registry@0.3.1':
+    resolution: {integrity: sha512-ETYuq3RftyClEzcO3ccbx9zFM4xJ33xYqVszIaXqo3BnN4x5MxywR+aOEgWpEeiAHpd+pmTe+fyM6nszMSiNtQ==}
 
   '@emnapi/runtime@1.11.3':
     resolution: {integrity: sha512-Xz4Tpyki7XyrpbUK1jR1AhdAdaXyhhY4lZ3neLodmhpuWfy2PAQN5B46sAiU4liOXGLkHypn/qU+jvfWSCYYLA==}
@@ -3622,7 +3622,7 @@ snapshots:
 
   '@csstools/css-tokenizer@3.0.4': {}
 
-  '@devvy-ui/registry@0.2.0': {}
+  '@devvy-ui/registry@0.3.1': {}
 
   '@emnapi/runtime@1.11.3':
     dependencies:

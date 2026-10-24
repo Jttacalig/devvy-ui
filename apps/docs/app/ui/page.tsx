@@ -29,6 +29,7 @@ export default async function Home() {
           __html: JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'SoftwareSourceCode',
+            '@id': `${docsUrl}#library`,
             name: 'DEVVY UI',
             version: releaseVersion,
             description:
@@ -38,6 +39,9 @@ export default async function Home() {
             downloadUrl: npmPackageUrl,
             license: 'https://opensource.org/license/mit',
             programmingLanguage: ['TypeScript', 'CSS'],
+            runtimePlatform: 'React 18.2+ or React 19',
+            isAccessibleForFree: true,
+            mainEntityOfPage: docsUrl,
             author: {
               '@type': 'Organization',
               name: 'DEV STATION',

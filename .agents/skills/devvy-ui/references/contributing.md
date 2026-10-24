@@ -82,7 +82,7 @@ to remove its CI project. Keep actual evidence separate from future support or r
 ## Optional developer tools and fonts
 
 `packages/mcp` is a private, local stdio developer tool. Keep it read-only and separate
-from runtime packages. Its default source is the pinned published 0.2.0 registry alias;
+from runtime packages. Its default source is the exact published registry alias in its package manifest;
 workspace source must be explicitly identified as unreleased, with build provenance.
 Never add arbitrary file/URL reads, shell execution or automatic editor configuration.
 Rebuild the snapshot after guide/catalog/source changes. Validate recipe types/imports against each canonical version closure; keep token data version-matched and output structured/bounded. Run real stdio, Inspector and isolated artifact tests from docs/mcp.md.
@@ -98,3 +98,9 @@ The docs server reads validated npm tags independently of workspace package meta
 Preserve five-minute caching, strict six-package agreement, bounded reads and outage fallback.
 Run pnpm --filter devvy-ui-docs test and the published-version browser regression after
 changing this behavior. Labels do not upgrade versioned API examples or MCP snapshots.
+
+Canonical sitemap, robots, social-card and llms.txt routes belong to the docs app.
+Keep crawler-visible release facts aligned with rendered content. Distinguish live npm
+labels, versioned documentation implementations and the separately reviewed MCP source pin.
+Test those endpoints and metadata using tests/browser/seo.spec.ts; do not invent freshness
+dates, search rankings or a hosted/published MCP service.

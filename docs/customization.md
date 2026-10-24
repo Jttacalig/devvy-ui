@@ -81,7 +81,7 @@ The editors keep drafts in memory. Copy or download before leaving or reloading 
 
 ## Customize the completed inventory
 
-The 0.3.0 source and npm releases contain 100 primary components. Composed controls expose typed options
+The 0.3.1 source and npm releases contain 100 primary components. Composed controls expose typed options
 and callbacks; native wrappers preserve native props and refs. Source installation includes
 dependency closure and listed helpers such as lib/widgets.tsx. Preserve your edits when
 merging upstream helpers and CSS. Keep uploading, persistence and AI requests application-owned.

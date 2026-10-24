@@ -22,7 +22,7 @@ Eight tools: `search_components`, `get_component`, `get_source`, `get_guide`,
 Discover versioned catalogs/tokens/example/recipe indexes with `resources/list`, and
 `build_ui`, `customize_theme`, `review_component` with `prompts/list`.
 
-Default version **0.2.0** uses the pinned immutable published registry. Choose **workspace**
+Default version **0.3.1** uses the pinned immutable published registry. Choose **workspace**
 explicitly for unreleased APIs. Other versions are rejected. Source is the API authority;
 workspace guides can discuss additions not on npm. Recipes are original MIT compositions
 validated against each version's actual source. Example coverage is curated; unavailable
